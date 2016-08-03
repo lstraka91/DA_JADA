@@ -63,7 +63,7 @@ public class Person {
 	/**
 	 * Class constructor using fields.
 	 */
-	public Person(String personName, String password, String email, Date birthday, Date registrationDate) {
+	public Person(String personName, String password, String email, Date birthday) {
 		super();
 		this.personName = personName;
 		this.password = password;
