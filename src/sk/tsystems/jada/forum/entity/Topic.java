@@ -12,56 +12,61 @@ import org.hibernate.mapping.Set;
 
 @Entity
 public class Topic {
-	
+
 	/**
 	 * Identifier of topic
 	 */
 	@Id
 	@GeneratedValue
 	private int idTopic;
-	
+
 	/**
 	 * Name of topic
 	 */
 	private String topicName;
-	
+
 	/**
 	 * Topic body, description of topic
 	 */
 	private String topicDescription;
-	
+
 	/**
 	 * Date added topic
 	 */
 	private Date topicDate = new Date(System.currentTimeMillis());
-	
+
 	/**
 	 * List of keywords
 	 */
-//	@OneToMany(mappedBy="topic")
-//	private List<keyWords> listKeyWord;
-	
+	// @OneToMany(mappedBy="topic")
+	// private List<keyWords> listKeyWord;
+
 	/**
 	 * Constructor.
 	 *
-	 * @param String topicName
-	 * @param String topicDescription
-	 * @param Date topicDate
-	 * @param List<keyWords> listKeyWord
+	 * @param String
+	 *            topicName
+	 * @param String
+	 *            topicDescription
+	 * @param Date
+	 *            topicDate
+	 * @param List<keyWords>
+	 *            listKeyWord
 	 */
-	public Topic(String topicName, String topicDescription, Date topicDate/*, List<keyWords> listKeyWord*/) {
+	public Topic(String topicName, String topicDescription,
+			Date topicDate/* , List<keyWords> listKeyWord */) {
 		super();
 		this.topicName = topicName;
 		this.topicDescription = topicDescription;
 		this.topicDate = topicDate;
-//		this.listKeyWord = listKeyWord;
+		// this.listKeyWord = listKeyWord;
 	}
-	
+
 	/**
 	 * Constructor.
 	 */
-	public Topic(){
-		
+	public Topic() {
+
 	}
 
 	/**
@@ -76,7 +81,8 @@ public class Topic {
 	/**
 	 * Sets identifier of topic.
 	 * 
-	 * @param int idTopic          
+	 * @param int
+	 *            idTopic
 	 */
 	public void setIdTopic(int idTopic) {
 		this.idTopic = idTopic;
@@ -94,7 +100,8 @@ public class Topic {
 	/**
 	 * Sets name of topic
 	 * 
-	 * @param String topicName           
+	 * @param String
+	 *            topicName
 	 */
 	public void setTopicName(String topicName) {
 		this.topicName = topicName;
@@ -112,7 +119,8 @@ public class Topic {
 	/**
 	 * Sets description of topic.
 	 * 
-	 * @param String topicBody          
+	 * @param String
+	 *            topicBody
 	 */
 	public void setTopictopicDescription(String topicDescription) {
 		this.topicDescription = topicDescription;
@@ -126,11 +134,12 @@ public class Topic {
 	public Date getTopicDate() {
 		return topicDate;
 	}
-	
+
 	/**
 	 * Sets date added topic.
 	 * 
-	 * @param Date topicDate            
+	 * @param Date
+	 *            topicDate
 	 */
 	public void setTopicDate(Date topicDate) {
 		this.topicDate = topicDate;
