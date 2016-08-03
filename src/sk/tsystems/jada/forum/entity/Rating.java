@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Rating implements Serializable{
+public class Rating implements Serializable {
 	/**
 	 * 
 	 */

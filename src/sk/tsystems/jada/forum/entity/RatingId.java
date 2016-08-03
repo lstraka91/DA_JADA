@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class RatingId implements Serializable{
+public class RatingId implements Serializable {
 
 	/**
 	 * auto generated serialUID
@@ -16,23 +16,24 @@ public class RatingId implements Serializable{
 	 * int of commentary id
 	 */
 	private Integer idCommentary;
-	
+
 	/**
 	 * int of person id
 	 */
 	private int idPerson;
 
-
-/**
- * get personId
- * @return idPerson
- */
+	/**
+	 * get personId
+	 * 
+	 * @return idPerson
+	 */
 	public int getIdPerson() {
 		return idPerson;
 	}
 
 	/**
 	 * set IdPeron
+	 * 
 	 * @param idPerson
 	 */
 	public void setIdPerson(int idPerson) {
@@ -41,14 +42,16 @@ public class RatingId implements Serializable{
 
 	/**
 	 * get commentary Id
+	 * 
 	 * @return idCommentary
 	 */
 	public Integer getIdCommentary() {
 		return idCommentary;
 	}
-	
+
 	/**
 	 * set idComment
+	 * 
 	 * @param idCommentary
 	 */
 	public void setIdCommentary(Integer idCommentary) {
