@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.mapping.Set;
-
 @Entity
 public class Topic {
 
@@ -38,8 +36,14 @@ public class Topic {
 	/**
 	 * List of keywords
 	 */
-	// @OneToMany(mappedBy="topic")
-	// private List<keyWords> listKeyWord;
+	@OneToMany(mappedBy = "topic")
+	private List<KeyWords> listKeyWord;
+
+	/**
+	 * Person who update topic
+	 */
+	@OneToMany
+	private Person person;
 
 	/**
 	 * Constructor.
@@ -53,13 +57,12 @@ public class Topic {
 	 * @param List<keyWords>
 	 *            listKeyWord
 	 */
-	public Topic(String topicName, String topicDescription,
-			Date topicDate/* , List<keyWords> listKeyWord */) {
-		super();
+	public Topic(String topicName, String topicDescription, Date topicDate, Person person, List<KeyWords> listKeyWord) {
 		this.topicName = topicName;
 		this.topicDescription = topicDescription;
 		this.topicDate = topicDate;
-		// this.listKeyWord = listKeyWord;
+		this.person = person;
+		this.listKeyWord = listKeyWord;
 	}
 
 	/**
@@ -112,7 +115,7 @@ public class Topic {
 	 * 
 	 * @return topicBody
 	 */
-	public String getTopictopicDescription() {
+	public String getTopicDescription() {
 		return topicDescription;
 	}
 
@@ -122,7 +125,7 @@ public class Topic {
 	 * @param String
 	 *            topicBody
 	 */
-	public void setTopictopicDescription(String topicDescription) {
+	public void setTopicDescription(String topicDescription) {
 		this.topicDescription = topicDescription;
 	}
 
@@ -143,5 +146,42 @@ public class Topic {
 	 */
 	public void setTopicDate(Date topicDate) {
 		this.topicDate = topicDate;
+	}
+
+	/**
+	 * Return list of keywords
+	 * 
+	 * @return listKeyWord
+	 */
+	public List<KeyWords> getListKeyWord() {
+		return listKeyWord;
+	}
+
+	/**
+	 * Sets list keywords.
+	 * 
+	 * @param List<KeyWords>
+	 *            listKeyWord
+	 */
+	public void setListKeyWord(List<KeyWords> listKeyWord) {
+		this.listKeyWord = listKeyWord;
+	}
+
+	/**
+	 * Return person
+	 * 
+	 * @return person
+	 */
+	public Person getPerson() {
+		return person;
+	}
+
+	/**
+	 * Sets person.
+	 * 
+	 * @param Person person
+	 */
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 }
