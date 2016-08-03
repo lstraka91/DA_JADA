@@ -31,13 +31,13 @@ public class Topic {
 	/**
 	 * Date added topic
 	 */
-	private Date topicDate = new Date(System.currentTimeMillis());
+	private Date topicDate;
 
 	/**
 	 * List of keywords
 	 */
 	@OneToMany(mappedBy = "topic")
-	private List<KeyWords> listKeyWord;
+	private List<KeyWord> listKeyWord;
 
 	/**
 	 * Person who update topic
@@ -52,15 +52,13 @@ public class Topic {
 	 *            topicName
 	 * @param String
 	 *            topicDescription
-	 * @param Date
-	 *            topicDate
-	 * @param List<keyWords>
+	 * @param List<keyWord>
 	 *            listKeyWord
 	 */
-	public Topic(String topicName, String topicDescription, Date topicDate, Person person, List<KeyWords> listKeyWord) {
+	public Topic(String topicName, String topicDescription, Person person, List<KeyWord> listKeyWord) {
 		this.topicName = topicName;
 		this.topicDescription = topicDescription;
-		this.topicDate = topicDate;
+		this.topicDate = new Date(System.currentTimeMillis());
 		this.person = person;
 		this.listKeyWord = listKeyWord;
 	}
@@ -149,7 +147,7 @@ public class Topic {
 	 * 
 	 * @return listKeyWord
 	 */
-	public List<KeyWords> getListKeyWord() {
+	public List<KeyWord> getListKeyWord() {
 		return listKeyWord;
 	}
 
@@ -158,7 +156,7 @@ public class Topic {
 	 * 
 	 * @param listKeyWord
 	 */
-	public void setListKeyWord(List<KeyWords> listKeyWord) {
+	public void setListKeyWord(List<KeyWord> listKeyWord) {
 		this.listKeyWord = listKeyWord;
 	}
 
