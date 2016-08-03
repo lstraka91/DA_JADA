@@ -2,136 +2,112 @@ package sk.tsystems.jada.forum.entity;
 
 import java.util.Date;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
-/** 
+/**
  * Database entity for comment
  */
 @Entity
 public class Commentary {
 
-/** 
- * Comment identifier
- */
-@Id
-@GeneratedValue
-public	Integer idCommentary;
+	/**
+	 * Comment identifier
+	 */
+	@Id
+	@GeneratedValue
+	public int idCommentary;
 
-/** 
- * Body of commentary
- */
-public	String commentaryBody;
+	/**
+	 * Body of commentary
+	 */
+	public String commentaryBody;
 
-/** 
- * Added comment date
- */
-public	Date commentaryDate;
+	/**
+	 * Added comment date
+	 */
+	public Date commentaryDate;
 
-/** 
- * User object
- */
-@ManyToOne
-public Person person;
+	/**
+	 * User object
+	 */
+	@ManyToOne
+	public Person person;
 
+	/**
+	 * Topic object
+	 */
+	@ManyToOne
+	public Topic topic;
 
-/** 
- * Topic object
- */
-@ManyToOne
-public Topic topic;
+	/**
+	 * Default constructor
+	 */
+	public Commentary() {
 
+	}
 
-/**
- * Default constructor
- */
-public Commentary() {
-	
-}
+	/**
+	 * 
+	 * @param commentaryBody
+	 * @param commentaryDate
+	 * @param person
+	 * @param topic
+	 */
+	public Commentary(String commentaryBody, Date commentaryDate, Person person, Topic topic) {
+		this.commentaryBody = commentaryBody;
+		this.commentaryDate = commentaryDate;
+		this.person = person;
+		this.topic = topic;
+	}
 
+	/**
+	 * Getters
+	 */
+	public Integer getIdCommentary() {
+		return idCommentary;
+	}
 
-/**
- * 
- * @param idCommentary
- * @param commentaryBody
- * @param commentaryDate
- * @param person
- * @param topic
- */
-public Commentary(Integer idCommentary, String commentaryBody, Date commentaryDate, Person person, Topic topic) {
-	super();
-	this.idCommentary = idCommentary;
-	this.commentaryBody = commentaryBody;
-	this.commentaryDate = commentaryDate;
-	this.person = person;
-	this.topic = topic;
-}
+	public String getCommentaryBody() {
+		return commentaryBody;
+	}
 
+	public Date getCommentaryDate() {
+		return commentaryDate;
+	}
 
-/** 
- * Getters
- */
-public Integer getIdCommentary() {
-	return idCommentary;
-}
+	public Person getPerson() {
+		return person;
+	}
 
+	public Topic getTopic() {
+		return topic;
+	}
 
-public String getCommentaryBody() {
-	return commentaryBody;
-}
+	/**
+	 * Setters
+	 */
 
+	public void setIdCommentary(Integer idCommentary) {
+		this.idCommentary = idCommentary;
+	}
 
-public Date getCommentaryDate() {
-	return commentaryDate;
-}
+	public void setCommentaryBody(String commentaryBody) {
+		this.commentaryBody = commentaryBody;
+	}
 
+	public void setCommentaryDate(Date commentaryDate) {
+		this.commentaryDate = commentaryDate;
+	}
 
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 
-
-
-public Person getPerson() {
-	return person;
-}
-
-
-public Topic getTopic() {
-	return topic;
-}
-
-
-
-/** 
- * Setters
- */
-
-public void setIdCommentary(Integer idCommentary) {
-	this.idCommentary = idCommentary;
-}
-
-
-public void setCommentaryBody(String commentaryBody) {
-	this.commentaryBody = commentaryBody;
-}
-
-
-public void setCommentaryDate(Date commentaryDate) {
-	this.commentaryDate = commentaryDate;
-}
-
-
-public void setPerson(Person person) {
-	this.person = person;
-}
-
-
-public void setTopic(Topic topic) {
-	this.topic = topic;
-}
-
-
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
 
 }

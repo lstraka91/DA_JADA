@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,8 +19,6 @@ public class Topic {
 	/**
 	 * Identifier of topic
 	 */
-	@Id
-	@GeneratedValue
 	private int idTopic;
 
 	/**
@@ -45,7 +44,6 @@ public class Topic {
 	/**
 	 * Person who update topic
 	 */
-	@ManyToOne
 	private Person person;
 
 	/**
@@ -77,6 +75,8 @@ public class Topic {
 	 * 
 	 * @return idTopic
 	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getIdTopic() {
 		return idTopic;
 	}
@@ -149,6 +149,7 @@ public class Topic {
 	 * 
 	 * @return person
 	 */
+	@ManyToOne
 	public Person getPerson() {
 		return person;
 	}
@@ -163,7 +164,7 @@ public class Topic {
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "topic_keyword", joinColumns = @JoinColumn(name = "id_topic", referencedColumnName = "idTopic"), inverseJoinColumns = @JoinColumn(name = "id_keyWord", referencedColumnName = "idKeyWord"))
+	@JoinTable(name = "topic_keyword", joinColumns = @JoinColumn(name = "id_topic"), inverseJoinColumns = @JoinColumn(name = "id_keyWord"))
 	public Set<KeyWord> getKeyWords() {
 		return keyWords;
 	}
