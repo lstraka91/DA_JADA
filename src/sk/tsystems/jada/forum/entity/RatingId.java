@@ -13,51 +13,46 @@ public class RatingId implements Serializable{
 	private static final long serialVersionUID = -5416666417570281293L;
 
 	/**
-	 * Object that indicate comment to which was rating applied
+	 * int of commentary id
 	 */
-	private Commentary comment;
+	private Integer idCommentary;
 	
 	/**
-	 * Object that indicate person who rate the comment
+	 * int of person id
 	 */
-	private Person person;
+	private int idPerson;
 
-	/**
-	 * getter method that returns Commentary object
-	 * 
-	 * @return comment
-	 */
-	
-	public Commentary getComment() {
-		return comment;
+
+/**
+ * get personId
+ * @return idPerson
+ */
+	public int getIdPerson() {
+		return idPerson;
 	}
 
 	/**
-	 * set the comment object
-	 * 
-	 * @param comment
+	 * set IdPeron
+	 * @param idPerson
 	 */
-	public void setComment(Commentary comment) {
-		this.comment = comment;
+	public void setIdPerson(int idPerson) {
+		this.idPerson = idPerson;
 	}
 
 	/**
-	 * getter method that return Person object
-	 * 
-	 * @return person
+	 * get commentary Id
+	 * @return idCommentary
 	 */
+	public Integer getIdCommentary() {
+		return idCommentary;
+	}
 	
-	public Person getPerson() {
-		return person;
-	}
-
 	/**
-	 * set the user object
-	 * 
-	 * @param person
+	 * set idComment
+	 * @param idCommentary
 	 */
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setIdCommentary(Integer idCommentary) {
+		this.idCommentary = idCommentary;
 	}
 
 }

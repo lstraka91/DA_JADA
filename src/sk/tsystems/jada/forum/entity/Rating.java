@@ -1,12 +1,19 @@
 package sk.tsystems.jada.forum.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Rating {
+public class Rating implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 428108314569688804L;
+
 	/**
 	 * ident of rating
 	 */
