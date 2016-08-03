@@ -54,9 +54,7 @@ public class PersonService {
 	public Person registerPerson(Person person) {
 
 		Person foundPerson = getPersonByName(person.getPersonName());
-		
-//		int idPerson = getPersonByName(person.getPersonName()).getIdPerson();
-//		System.out.println(idPerson);
+
 		if (foundPerson != null) {
 			return null;
 		} else {
