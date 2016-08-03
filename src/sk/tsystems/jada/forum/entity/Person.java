@@ -11,21 +11,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Person {
 
 	/**
 	 * Identifies user.
 	 */
 	@Id
 	@GeneratedValue
-	@Column(name = "ID_USER")
-	private int idUser;
+	@Column(name = "ID_PERSON")
+	private int idPerson;
 
 	/**
 	 * User name.
 	 */
-	@Column(name = "user_Name")
-	private String userName;
+	@Column(name = "PERSON_NAME")
+	private String personName;
 
 	/**
 	 * Password of user.
@@ -56,27 +56,40 @@ public class User {
 	/**
 	 * Implicit class constructor.
 	 */
-	public User() {
+	public Person() {
 
 	}
 
 	/**
 	 * Class constructor using fields.
 	 */
-	public User(String userName, String password, String email, Date birthday) {
-		this.userName = userName;
+	public Person(String personName, String password, String email, Date birthday, Date registrationDate) {
+		super();
+		this.personName = personName;
 		this.password = password;
 		this.email = email;
 		this.birthday = birthday;
 		this.registrationDate = new Date(System.currentTimeMillis());
 	}
 
-	public String getUserName() {
-		return userName;
+	/********************************************************************************************************
+	 ********************************** Getters and setters for fields **************************************
+	 ********************************************************************************************************/
+
+	public int getIdPerson() {
+		return idPerson;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setIdPerson(int idPerson) {
+		this.idPerson = idPerson;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
 	}
 
 	public String getPassword() {
@@ -121,7 +134,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [idUser=" + idUser + ", userName=" + userName + ", password=" + password + ", email=" + email
+		return "User [idUser=" + idPerson + ", userName=" + personName + ", password=" + password + ", email=" + email
 				+ ", birthday=" + birthday + ", registrationDate=" + registrationDate + ", active=" + active + "]";
 	}
 
