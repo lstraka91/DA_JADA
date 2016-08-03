@@ -16,7 +16,8 @@ public class PersonService {
 	 * @param idPerson
 	 * @return Object Person with parameter idPerson.
 	 */
-	private Person getPerson(int idPerson) {
+	@SuppressWarnings("unused")
+	private Person getPersonByID(int idPerson) {
 		EntityManager em = JpaHelper.getEntityManager();
 		return em.find(Person.class, idPerson);
 	}

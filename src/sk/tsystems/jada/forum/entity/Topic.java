@@ -1,12 +1,17 @@
 package sk.tsystems.jada.forum.entity;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Topic {
@@ -36,38 +41,36 @@ public class Topic {
 	/**
 	 * List of keywords
 	 */
-	@OneToMany(mappedBy = "topic")
-	private List<KeyWord> listKeyWord;
+	private Set<KeyWord> keyWords;
 
 	/**
 	 * Person who update topic
 	 */
-	@OneToMany
+	@ManyToOne
 	private Person person;
-
-	/**
-	 * Constructor.
-	 *
-	 * @param String
-	 *            topicName
-	 * @param String
-	 *            topicDescription
-	 * @param List<keyWord>
-	 *            listKeyWord
-	 */
-	public Topic(String topicName, String topicDescription, Person person, List<KeyWord> listKeyWord) {
-		this.topicName = topicName;
-		this.topicDescription = topicDescription;
-		this.topicDate = new Date(System.currentTimeMillis());
-		this.person = person;
-		this.listKeyWord = listKeyWord;
-	}
 
 	/**
 	 * Constructor.
 	 */
 	public Topic() {
 
+	}
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param topicName
+	 * @param topicDescription
+	 * @param keyWords
+	 * @param person
+	 */
+	public Topic(String topicName, String topicDescription, Set<KeyWord> keyWords, Person person) {
+		super();
+		this.topicName = topicName;
+		this.topicDescription = topicDescription;
+		this.topicDate = new Date(System.currentTimeMillis());
+		this.keyWords = keyWords;
+		this.person = person;
 	}
 
 	/**
@@ -143,24 +146,6 @@ public class Topic {
 	}
 
 	/**
-	 * Return list of keywords
-	 * 
-	 * @return listKeyWord
-	 */
-	public List<KeyWord> getListKeyWord() {
-		return listKeyWord;
-	}
-
-	/**
-	 * Sets list keywords.
-	 * 
-	 * @param listKeyWord
-	 */
-	public void setListKeyWord(List<KeyWord> listKeyWord) {
-		this.listKeyWord = listKeyWord;
-	}
-
-	/**
 	 * Return person
 	 * 
 	 * @return person
@@ -177,4 +162,15 @@ public class Topic {
 	public void setPerson(Person person) {
 		this.person = person;
 	}
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "topic_keyword", joinColumns = @JoinColumn(name = "id_topic", referencedColumnName = "idTopic"), inverseJoinColumns = @JoinColumn(name = "id_keyWord", referencedColumnName = "idKeyWord"))
+	public Set<KeyWord> getKeyWords() {
+		return keyWords;
+	}
+
+	public void setKeyWords(Set<KeyWord> keywords) {
+		this.keyWords = keywords;
+	}
+
 }
