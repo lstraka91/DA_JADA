@@ -24,7 +24,7 @@ public class Forum extends HttpServlet {
 
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/forum.jsp").forward(request, response);
 	}
 
 }

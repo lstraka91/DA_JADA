@@ -28,9 +28,8 @@ public class JpaHelper {
 	}
 
 	public static void beginTransaction() {
-//		System.out.println("________________________________________________________________________");
-		if(!getEntityManager().getTransaction().isActive())
-		getEntityManager().getTransaction().begin();
+		if (!getEntityManager().getTransaction().isActive())
+			getEntityManager().getTransaction().begin();
 	}
 
 	public static void commitTransaction() {
