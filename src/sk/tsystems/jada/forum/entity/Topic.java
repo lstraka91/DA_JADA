@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -42,7 +43,7 @@ public class Topic {
 	/**
 	 * Person who update topic
 	 */
-	@OneToMany
+	@ManyToOne
 	private Person person;
 
 	/**
