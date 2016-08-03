@@ -18,7 +18,7 @@ public class RatingId implements Serializable{
 	private Commentary comment;
 	
 	/**
-	 * Object that indicate user who rate the comment
+	 * Object that indicate person who rate the comment
 	 */
 	private Person person;
 
@@ -42,9 +42,9 @@ public class RatingId implements Serializable{
 	}
 
 	/**
-	 * getter method that return User object
+	 * getter method that return Person object
 	 * 
-	 * @return user
+	 * @return person
 	 */
 	
 	public Person getPerson() {
@@ -54,7 +54,7 @@ public class RatingId implements Serializable{
 	/**
 	 * set the user object
 	 * 
-	 * @param user
+	 * @param person
 	 */
 	public void setPerson(Person person) {
 		this.person = person;
