@@ -53,9 +53,11 @@ public class PersonService {
 	 */
 	public Person registerPerson(Person person) {
 
-		int idPerson = getPersonByName(person.getPersonName()).getIdPerson();
-		System.out.println(idPerson);
-		if (idPerson != 0) {
+		Person foundPerson = getPersonByName(person.getPersonName());
+		
+//		int idPerson = getPersonByName(person.getPersonName()).getIdPerson();
+//		System.out.println(idPerson);
+		if (foundPerson != null) {
 			return null;
 		} else {
 			insertPerson(person);
