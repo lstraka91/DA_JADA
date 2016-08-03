@@ -84,8 +84,7 @@ public class Topic {
 	/**
 	 * Sets identifier of topic.
 	 * 
-	 * @param int
-	 *            idTopic
+	 * @param idTopic
 	 */
 	public void setIdTopic(int idTopic) {
 		this.idTopic = idTopic;
@@ -103,8 +102,7 @@ public class Topic {
 	/**
 	 * Sets name of topic
 	 * 
-	 * @param String
-	 *            topicName
+	 * @param topicName
 	 */
 	public void setTopicName(String topicName) {
 		this.topicName = topicName;
@@ -122,8 +120,7 @@ public class Topic {
 	/**
 	 * Sets description of topic.
 	 * 
-	 * @param String
-	 *            topicBody
+	 * @param topicDescription
 	 */
 	public void setTopicDescription(String topicDescription) {
 		this.topicDescription = topicDescription;
@@ -141,8 +138,7 @@ public class Topic {
 	/**
 	 * Sets date added topic.
 	 * 
-	 * @param Date
-	 *            topicDate
+	 * @param topicDate
 	 */
 	public void setTopicDate(Date topicDate) {
 		this.topicDate = topicDate;
@@ -160,8 +156,7 @@ public class Topic {
 	/**
 	 * Sets list keywords.
 	 * 
-	 * @param List<KeyWords>
-	 *            listKeyWord
+	 * @param listKeyWord
 	 */
 	public void setListKeyWord(List<KeyWords> listKeyWord) {
 		this.listKeyWord = listKeyWord;
@@ -179,7 +174,7 @@ public class Topic {
 	/**
 	 * Sets person.
 	 * 
-	 * @param Person person
+	 * @param person
 	 */
 	public void setPerson(Person person) {
 		this.person = person;
