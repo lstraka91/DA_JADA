@@ -83,6 +83,7 @@ public class CommentaryService {
 	 * Remove comment by object
 	 * 
 	 * @param comment
+	 * 
 	 */
 	public void removeCommentByObject(Commentary comment) {
 		JpaHelper.beginTransaction();
