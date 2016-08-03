@@ -29,7 +29,7 @@ public class PersonService {
 	 * @return Object Person with requested personName or null when person not
 	 *         in database.
 	 */
-	private Person getPersonByName(String personName) {
+	public Person getPersonByName(String personName) {
 		Person person;
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p where p.personName = :personName");
@@ -53,9 +53,9 @@ public class PersonService {
 	 */
 	public Person registerPerson(Person person) {
 
-		int idPerson = getPersonByName(person.getPersonName()).getIdPerson();
-		System.out.println(idPerson);
-		if (idPerson != 0) {
+		Person foundPerson = getPersonByName(person.getPersonName());
+
+		if (foundPerson != null) {
 			return null;
 		} else {
 			insertPerson(person);

@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Rating implements Serializable{
+public class Rating implements Serializable {
 	/**
 	 * 
 	 */
@@ -19,12 +19,12 @@ public class Rating implements Serializable{
 	 */
 	@Id
 	@GeneratedValue
-	private int ident;
+	private int idRating;
 
 	/**
 	 * value of rating should be 0 OR 1
 	 */
-	private int value;
+	private int rate;
 
 	/**
 	 * Object type ratingId that indicate composite primary key
@@ -35,31 +35,31 @@ public class Rating implements Serializable{
 	/**
 	 * getter that return ident of rating
 	 * 
-	 * @return ident
+	 * @return idRating
 	 */
 
-	public int getIdent() {
-		return ident;
+	public int getIdRating() {
+		return idRating;
 	}
 
 	/**
 	 * getter that return value of rating
 	 * 
-	 * @return
+	 * @return rate
 	 */
 
-	public int getValue() {
-		return value;
+	public int getRate() {
+		return rate;
 	}
 
 	/**
 	 * set the value of rating
 	 * 
-	 * @param value
+	 * @param rate
 	 */
 
-	public void setValue(int value) {
-		this.value = value;
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 	/**
