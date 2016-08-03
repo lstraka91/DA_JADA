@@ -48,19 +48,17 @@ public class Topic {
 	/**
 	 * Constructor.
 	 *
-	 * @param String
-	 *            topicName
-	 * @param String
-	 *            topicDescription
-	 * @param List<keyWord>
-	 *            listKeyWord
+	 * @param topicName
+	 * @param topicDescription
+	 * @param person
+	 * @param listKeyWord
 	 */
 	public Topic(String topicName, String topicDescription, Person person, List<KeyWord> listKeyWord) {
 		this.topicName = topicName;
 		this.topicDescription = topicDescription;
-		this.topicDate = new Date(System.currentTimeMillis());
 		this.person = person;
 		this.listKeyWord = listKeyWord;
+		this.topicDate = new Date(System.currentTimeMillis());
 	}
 
 	/**
