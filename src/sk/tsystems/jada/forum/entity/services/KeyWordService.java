@@ -9,7 +9,7 @@ import sk.tsystems.jada.forum.entity.KeyWord;
 public class KeyWordService extends JpaHelper {
 
 	/**
-	 * Ulozenie klucoveho slova.
+	 * Save keyword  to database
 	 * 
 	 * @param keyWord
 	 */
@@ -21,8 +21,8 @@ public class KeyWordService extends JpaHelper {
 	}
 
 	/**
-	 * Vyhladanie klucoveho slova (podla Stringu) ulozenie klucoveho slova pri
-	 * zadani takeho, ktore sa nezhoduje je zakomentovane.
+	 * Find keyword in database (by String),  
+	 * if keyword isn't in database, function save it (comment row)
 	 * 
 	 * @param input
 	 * @return
@@ -43,7 +43,8 @@ public class KeyWordService extends JpaHelper {
 	}
 
 	/**
-	 * Pomocna funkcia pre vytvorenie objektu KeyWord.
+	 * Helper function
+	 * (create new object - keyword)
 	 * 
 	 * @param keyWord
 	 * @return
