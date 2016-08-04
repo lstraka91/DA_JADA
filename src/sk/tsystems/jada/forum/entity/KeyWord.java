@@ -21,7 +21,7 @@ public class KeyWord {
 	}
 
 	public KeyWord(String keyWord) {
-		this.keyWord = keyWord;
+		this.keyWord = keyWord.toLowerCase();
 	}
 
 	@Id
