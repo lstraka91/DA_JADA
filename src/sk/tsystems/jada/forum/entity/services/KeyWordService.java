@@ -3,10 +3,11 @@
  */
 package sk.tsystems.jada.forum.entity.services;
 
+import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import javax.persistence.EntityManager;
 import sk.tsystems.jada.forum.entity.KeyWord;
 
-public class KeyWordService extends JpaHelper {
+public class KeyWordService {
 
 	/**
 	 * Save keyword  to database
@@ -14,10 +15,10 @@ public class KeyWordService extends JpaHelper {
 	 * @param keyWord
 	 */
 	public void saveKeyWord(KeyWord keyWord) {
-		EntityManager em = getEntityManager();
-		beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		JpaHelper.beginTransaction();
 		em.persist(keyWord);
-		commitTransaction();
+		JpaHelper.commitTransaction();
 	}
 
 	/**
@@ -52,7 +53,6 @@ public class KeyWordService extends JpaHelper {
 	public KeyWord createKeyWord(String keyWord) {
 		KeyWord kw = new KeyWord();
 		kw.setKeyWord(keyWord);
-		;
 		return kw;
 	}
 

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Topic {
 	/**
 	 * Name of topic
 	 */
+	@Column(unique = true)
 	private String topicName;
 
 	/**
@@ -63,7 +65,7 @@ public class Topic {
 	 */
 	public Topic(String topicName, String topicDescription, Set<KeyWord> keyWords, Person person) {
 		super();
-		this.topicName = topicName;
+		this.topicName = topicName.toLowerCase();
 		this.topicDescription = topicDescription;
 		this.topicDate = new Date(System.currentTimeMillis());
 		this.keyWords = keyWords;
@@ -105,7 +107,7 @@ public class Topic {
 	 * @param topicName
 	 */
 	public void setTopicName(String topicName) {
-		this.topicName = topicName;
+		this.topicName = topicName.toLowerCase();
 	}
 
 	/**

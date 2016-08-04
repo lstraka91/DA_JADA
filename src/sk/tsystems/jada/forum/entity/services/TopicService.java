@@ -1,6 +1,9 @@
 package sk.tsystems.jada.forum.entity.services;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
+
 
 import sk.tsystems.jada.forum.entity.Topic;
 
@@ -75,9 +78,12 @@ public class TopicService {
 	 * Method for select all topics from database
 	 * 
 	 * @return
+	 * 
 	 */
-	public Topic findTopics() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Topic> showTopics() {
+		EntityManager em = JpaHelper.getEntityManager();
+		javax.persistence.Query query = em.createQuery("select t from Topic t");
+		return (ArrayList<Topic>)query.getResultList();
+		
 	}
 }
