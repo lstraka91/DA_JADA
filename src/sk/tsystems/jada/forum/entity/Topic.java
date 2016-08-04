@@ -49,6 +49,11 @@ public class Topic {
 	private Person person;
 
 	/**
+	 * Rating of comment.
+	 */
+	private int rating;
+
+	/**
 	 * Constructor.
 	 */
 	public Topic() {
@@ -70,6 +75,7 @@ public class Topic {
 		this.topicDate = new Date(System.currentTimeMillis());
 		this.keyWords = keyWords;
 		this.person = person;
+		this.rating = 0;
 	}
 
 	/**
@@ -173,6 +179,14 @@ public class Topic {
 
 	public void setKeyWords(Set<KeyWord> keywords) {
 		this.keyWords = keywords;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 }

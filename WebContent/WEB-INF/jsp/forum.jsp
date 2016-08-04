@@ -26,17 +26,11 @@
 					</p>
 				</div>
 				<div class="col-sm-7 text-left">
-					<h1>Welcome</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat
-						cupidatat non proident, sunt in culpa qui officia deserunt mollit
-						anim id est laborum consectetur adipiscing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-						minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-						aliquip ex ea commodo consequat.</p>
-					<hr>
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">@</span> <input
+							type="text" class="form-control" placeholder="Username"
+							aria-describedby="basic-addon1">
+					</div>
 				</div>
 				<div class="col-sm-4 sidenav">
 					<div class="well">
@@ -87,12 +81,11 @@
 
 		<section class="content">
 		<h1>Table Filter</h1>
-		<div class="col-md-10">
+		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="pull-right">
 						<div class="btn-group">
-							${topics}
 							<c:forEach items="${topKeyWords}" var="keyWord">
 								<button type="button" class="btn btn-filter"">testkeyword:
 									${keyWord.keyWord }</button>
@@ -103,158 +96,52 @@
 					<div class="table-container">
 						<table class="table table-filter">
 							<tbody>
-								<tr data-status="pagado">
-									<td>
-										<div class="ckbox">
-											<input type="checkbox" id="checkbox1"> <label
-												for="checkbox1"></label>
-										</div>
-									</td>
-									<td><a href="javascript:;" class="star"> <i
-											class="glyphicon glyphicon-star"></i>
-									</a></td>
-									<td>
-										<div class="media">
-											<a href="#" class="pull-left"> <img
-												src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-												class="media-photo">
-											</a>
-											<div class="media-body">
-												<span class="media-meta pull-right">Febrero 13, 2016</span>
-												<h4 class="title">
-													Lorem Impsum <span class="pull-right pagado">(Pagado)</span>
-												</h4>
-												<p class="summary">Ut enim ad minim veniam, quis nostrud
-													exercitation...</p>
+								<c:forEach items="${topics}" var="topic">
+									<tr>
+										<td>
+											<div class="well">
+												<div>Topic rating:${topic }</div>
+
+												<div class="btn-group" role="group" aria-label="...">
+													<button type="button" class="btn btn-success">
+														<span class="glyphicon glyphicon-thumbs-up"
+															aria-hidden="true"></span>
+													</button>
+													<button type="button" class="btn btn-danger">
+														<span class="glyphicon glyphicon-thumbs-down"
+															aria-hidden="true"></span>
+													</button>
+												</div>
 											</div>
-										</div>
-									</td>
-								</tr>
-								<tr data-status="pendiente">
-									<td>
-										<div class="ckbox">
-											<input type="checkbox" id="checkbox3"> <label
-												for="checkbox3"></label>
-										</div>
-									</td>
-									<td><a href="javascript:;" class="star"> <i
-											class="glyphicon glyphicon-star"></i>
-									</a></td>
-									<td>
-										<div class="media">
-											<a href="#" class="pull-left"> <img
-												src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-												class="media-photo">
-											</a>
-											<div class="media-body">
-												<span class="media-meta pull-right">Febrero 13, 2016</span>
-												<h4 class="title">
-													Lorem Impsum <span class="pull-right pendiente">(Pendiente)</span>
-												</h4>
-												<p class="summary">Ut enim ad minim veniam, quis nostrud
-													exercitation...</p>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr data-status="cancelado">
-									<td>
-										<div class="ckbox">
-											<input type="checkbox" id="checkbox2"> <label
-												for="checkbox2"></label>
-										</div>
-									</td>
-									<td><a href="javascript:;" class="star"> <i
-											class="glyphicon glyphicon-star"></i>
-									</a></td>
-									<td>
-										<div class="media">
-											<a href="#" class="pull-left"> <img
-												src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-												class="media-photo">
-											</a>
-											<div class="media-body">
-												<span class="media-meta pull-right">Febrero 13, 2016</span>
-												<h4 class="title">
-													Lorem Impsum <span class="pull-right cancelado">(Cancelado)</span>
-												</h4>
-												<p class="summary">Ut enim ad minim veniam, quis nostrud
-													exercitation...</p>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr data-status="pagado" class="selected">
-									<td>
-										<div class="ckbox">
-											<input type="checkbox" id="checkbox4" checked> <label
-												for="checkbox4"></label>
-										</div>
-									</td>
-									<td><a href="javascript:;" class="star star-checked">
-											<i class="glyphicon glyphicon-star"></i>
-									</a></td>
-									<td>
-										<div class="media">
-											<a href="#" class="pull-left"> <img
-												src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-												class="media-photo">
-											</a>
-											<div class="media-body">
-												<span class="media-meta pull-right">Febrero 13, 2016</span>
-												<h4 class="title">
-													Lorem Impsum <span class="pull-right pagado">(Pagado)</span>
-												</h4>
-												<p class="summary">Ut enim ad minim veniam, quis nostrud
-													exercitation...</p>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr data-status="pendiente">
-									<td>
-										<div class="ckbox">
-											<input type="checkbox" id="checkbox5"> <label
-												for="checkbox5"></label>
-										</div>
-									</td>
-									<td><a href="javascript:;" class="star"> <i
-											class="glyphicon glyphicon-star"></i>
-									</a></td>
-									<td>
-										<div class="media">
-											<a href="#" class="pull-left"> <img
-												src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-												class="media-photo">
-											</a>
-											<div class="media-body">
-												<span class="media-meta pull-right">Febrero 13, 2016</span>
-												<h4 class="title">
-													Lorem Impsum <span class="pull-right pendiente">(Pendiente)</span>
-												</h4>
-												<p class="summary">Ut enim ad minim veniam, quis nostrud
-													exercitation...</p>
-											</div>
-										</div>
-									</td>
-								</tr>
+										</td>
+										<td><div class="media-body">
+												<h3>
+													<a href="#">${topic.topicName }</a><span class="pull-right">(${topic.person.personName })</span>
+												</h3>
+												<p>${topic.topicDescription}</p>
+												<span class="pull-right">${topic.topicDate }</span>
+												<c:forEach items="${topic.keyWords}" var="keyword">
+													<button class="btn btn-sm-info">${keyword.keyWord }</button>
+												</c:forEach>
+											</div> <!-- 											<div class="media-body"> --> <!-- 												<h4> -->
+											<%-- 													${topic.topicName } <span class="pull-right pagado">(${topic.person.personName })</span> --%>
+											<!-- 												</h4> --> <!-- 											</div> --></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
-			<div class="content-footer">
-				<p>
-					Page © - 2016 <br> Powered By <a
-						href="https://www.facebook.com/tavo.qiqe.lucero" target="_blank">TavoQiqe</a>
-				</p>
-			</div>
+
 		</div>
 		</section>
 
-		<footer class="container-fluid text-center">
-		<p>Footer Text</p>
-		</footer>
+		<div class="content-footer">
+			<p>
+				JadaForum © - 2016 <br> Powered By <a href="#" target="_blank">JaDA</a>
+			</p>
+		</div>
 	</div>
 </body>
 </html>
