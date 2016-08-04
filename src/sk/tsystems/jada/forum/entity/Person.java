@@ -33,6 +33,11 @@ public class Person {
 	private String password;
 
 	/**
+	 * Full name of user.
+	 */
+	private String fullName;
+
+	/**
 	 * User email.
 	 */
 	private String email;
@@ -68,10 +73,11 @@ public class Person {
 	 * @param email
 	 * @param birthday
 	 */
-	public Person(String personName, String password, String email, Date birthday) {
+	public Person(String personName, String password, String fullName, String email, Date birthday) {
 		super();
 		this.personName = personName;
 		this.password = password;
+		this.fullName = fullName;
 		this.email = email;
 		this.birthday = birthday;
 		this.registrationDate = new Date(System.currentTimeMillis());
@@ -137,10 +143,19 @@ public class Person {
 		this.active = active;
 	}
 
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
 	@Override
 	public String toString() {
-		return "User [idUser=" + idPerson + ", userName=" + personName + ", password=" + password + ", email=" + email
-				+ ", birthday=" + birthday + ", registrationDate=" + registrationDate + ", active=" + active + "]";
+		return "Person [idPerson=" + idPerson + ", personName=" + personName + ", password=" + password + ", fullName="
+				+ fullName + ", email=" + email + ", birthday=" + birthday + ", registrationDate=" + registrationDate
+				+ ", active=" + active + "]";
 	}
 
 }

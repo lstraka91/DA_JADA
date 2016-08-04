@@ -44,8 +44,31 @@ public class PersonService {
 	}
 
 	/**
-	 * Checks if player is already in database or register new player in
-	 * database.
+	 * Find object of Class Person in database by persons name and his password.
+	 * 
+	 * @param personName
+	 * @return Object Person with requested personName or null when person not
+	 *         in database.
+	 */
+	public Person getPersonByNameAndPass(String personName, String password) {
+		Person person;
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em
+				.createQuery("select p from Person p where p.personName = :personName and p.password = :password");
+
+		query.setParameter("personName", personName);
+		query.setParameter("password", password);
+		if (!query.getResultList().isEmpty()) {
+			person = (Person) query.getResultList().get(0);
+			return person;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Checks if player is already in database or persists new object of player
+	 * in database.
 	 * 
 	 * @param person
 	 * @return returns null if person already is in database otherwise persists
@@ -54,7 +77,6 @@ public class PersonService {
 	public Person registerPerson(Person person) {
 
 		Person foundPerson = getPersonByName(person.getPersonName());
-
 		if (foundPerson != null) {
 			return null;
 		} else {

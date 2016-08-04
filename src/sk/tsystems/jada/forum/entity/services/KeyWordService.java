@@ -11,13 +11,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-
 import sk.tsystems.jada.forum.entity.KeyWord;
 
 public class KeyWordService {
 
 	/**
-	 * Save keyword  to database
+	 * Save keyword to database
 	 * 
 	 * @param keyWord
 	 */
@@ -29,8 +28,8 @@ public class KeyWordService {
 	}
 
 	/**
-	 * Find keyword in database (by String),  
-	 * if keyword isn't in database, function save it (comment row)
+	 * Find keyword in database (by String), if keyword isn't in database,
+	 * function save it (comment row)
 	 * 
 	 * @param input
 	 * @return
@@ -51,8 +50,7 @@ public class KeyWordService {
 	}
 
 	/**
-	 * Helper function
-	 * (create new object - keyword)
+	 * Helper function (create new object - keyword)
 	 * 
 	 * @param keyWord
 	 * @return
@@ -62,27 +60,19 @@ public class KeyWordService {
 		kw.setKeyWord(keyWord);
 		return kw;
 	}
-	
+
 	/**
 	 * Find top 10 used keywords
 	 * 
 	 * @return
 	 */
-	public ArrayList<Integer> topKeyWords(){
+	public ArrayList<Integer> topKeyWords() {
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createNativeQuery("select ID_KEYWORD from (select id_keyword, count(id_keyword) as pocet from topic_keyword group by ID_KEYWORD order by ID_KEYWORD desc)");
-		ArrayList<Integer> result = (ArrayList<Integer>)query.setMaxResults(10).getResultList();
-//		ArrayList<Integer> result = new ArrayList<>();
-//		int size = 10;
-//		if(list1.size()<10){
-//			size = list1.size();
-//		}
-//		for(int i = 0; i<size; i++){
-//			result.add(list1.get(i));
-//		}
+		Query query = em.createNativeQuery(
+				"select ID_KEYWORD from (select id_keyword, count(id_keyword) as pocet from topic_keyword group by ID_KEYWORD order by ID_KEYWORD desc)");
+		ArrayList<Integer> result = (ArrayList<Integer>) query.setMaxResults(10).getResultList();
 		return result;
-		
-	}
 
+	}
 
 }
