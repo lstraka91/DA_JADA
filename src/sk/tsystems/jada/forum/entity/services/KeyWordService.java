@@ -4,7 +4,14 @@
 package sk.tsystems.jada.forum.entity.services;
 
 import sk.tsystems.jada.forum.entity.services.JpaHelper;
+
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
+
 import sk.tsystems.jada.forum.entity.KeyWord;
 
 public class KeyWordService {
@@ -36,7 +43,7 @@ public class KeyWordService {
 			query.setParameter("input", input);
 			System.out.println(query.getResultList());
 			kw = (KeyWord) query.getSingleResult();
-		} catch (javax.persistence.NoResultException e) {
+		} catch (NoResultException e) {
 			System.out.println("Your keyWord is not in database");
 			saveKeyWord(createKeyWord(input));
 		}
@@ -55,5 +62,27 @@ public class KeyWordService {
 		kw.setKeyWord(keyWord);
 		return kw;
 	}
+	
+	/**
+	 * Find top 10 used keywords
+	 * 
+	 * @return
+	 */
+	public ArrayList<Integer> topKeyWords(){
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createNativeQuery("select ID_KEYWORD from (select id_keyword, count(id_keyword) as pocet from topic_keyword group by ID_KEYWORD order by ID_KEYWORD desc)");
+		ArrayList<Integer> result = (ArrayList<Integer>)query.setMaxResults(10).getResultList();
+//		ArrayList<Integer> result = new ArrayList<>();
+//		int size = 10;
+//		if(list1.size()<10){
+//			size = list1.size();
+//		}
+//		for(int i = 0; i<size; i++){
+//			result.add(list1.get(i));
+//		}
+		return result;
+		
+	}
+
 
 }
