@@ -3,7 +3,7 @@ package sk.tsystems.jada.forum.entity.services;
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+
 
 import sk.tsystems.jada.forum.entity.Topic;
 
@@ -82,7 +82,7 @@ public class TopicService {
 	 */
 	public ArrayList<Topic> showTopics() {
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("select t from Topic t");
+		javax.persistence.Query query = em.createQuery("select t from Topic t");
 		return (ArrayList<Topic>)query.getResultList();
 		
 	}
