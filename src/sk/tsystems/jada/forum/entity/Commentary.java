@@ -67,7 +67,7 @@ public class Commentary {
 	/**
 	 * Getters
 	 */
-	public Integer getIdCommentary() {
+	public int getIdCommentary() {
 		return idCommentary;
 	}
 
@@ -91,7 +91,7 @@ public class Commentary {
 	 * Setters
 	 */
 
-	public void setIdCommentary(Integer idCommentary) {
+	public void setIdCommentary(int idCommentary) {
 		this.idCommentary = idCommentary;
 	}
 

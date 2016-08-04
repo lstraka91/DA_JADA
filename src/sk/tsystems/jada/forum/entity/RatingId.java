@@ -15,12 +15,30 @@ public class RatingId implements Serializable {
 	/**
 	 * int of commentary id
 	 */
-	private Integer idCommentary;
+	private int idCommentary;
 
 	/**
 	 * int of person id
 	 */
 	private int idPerson;
+
+	/**
+	 * Constructor that initialize personId and commentId
+	 * 
+	 * @param person
+	 * @param comment
+	 */
+	public RatingId(Person person, Commentary comment) {
+		this.idCommentary = comment.getIdCommentary();
+		this.idPerson = person.getIdPerson();
+	}
+
+	/**
+	 * default constructor without parameters
+	 */
+	public RatingId() {
+
+	}
 
 	/**
 	 * get personId
@@ -45,7 +63,7 @@ public class RatingId implements Serializable {
 	 * 
 	 * @return idCommentary
 	 */
-	public Integer getIdCommentary() {
+	public int getIdCommentary() {
 		return idCommentary;
 	}
 
@@ -54,7 +72,7 @@ public class RatingId implements Serializable {
 	 * 
 	 * @param idCommentary
 	 */
-	public void setIdCommentary(Integer idCommentary) {
+	public void setIdCommentary(int idCommentary) {
 		this.idCommentary = idCommentary;
 	}
 

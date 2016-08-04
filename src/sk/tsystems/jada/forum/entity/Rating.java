@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import sk.tsystems.jada.forum.entity.services.PersonService;
+
 @Entity
 @Table(name = "Ratinggg")
 public class Rating implements Serializable {
@@ -17,7 +19,7 @@ public class Rating implements Serializable {
 	private static final long serialVersionUID = 428108314569688804L;
 
 	/**
-	 * ident of rating
+	 * rating id
 	 */
 	@Id
 	@GeneratedValue
@@ -32,7 +34,16 @@ public class Rating implements Serializable {
 	 * Object type ratingId that indicate composite primary key
 	 */
 	@EmbeddedId
-	private RatingId rid;
+	private RatingId ratingIdCompositePK;
+
+	public Rating(int rate, Person person, Commentary commentary) {
+
+		// initialize ratingID compostite Primary Keys
+		RatingId ratingIdPK = new RatingId(person, commentary);
+		this.ratingIdCompositePK = ratingIdPK;
+		this.rate = rate;
+
+	}
 
 	/**
 	 * getter that return ident of rating
@@ -69,8 +80,8 @@ public class Rating implements Serializable {
 	 * 
 	 * @return RatingId object
 	 */
-	public RatingId getRid() {
-		return rid;
+	public RatingId getRatingIdCompositePK() {
+		return ratingIdCompositePK;
 	}
 
 	/**
@@ -78,9 +89,8 @@ public class Rating implements Serializable {
 	 * 
 	 * @param rid
 	 */
-
-	public void setRid(RatingId rid) {
-		this.rid = rid;
+	public void setRatingIdCompositePK(RatingId ratingIdCompositePK) {
+		this.ratingIdCompositePK = ratingIdCompositePK;
 	}
 
 }
