@@ -149,7 +149,7 @@ public class Topic {
 	 * 
 	 * @return person
 	 */
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	public Person getPerson() {
 		return person;
 	}

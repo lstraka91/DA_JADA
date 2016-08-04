@@ -3,8 +3,11 @@ package sk.tsystems.jada.forum.entity.services;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import sk.tsystems.jada.forum.entity.Commentary;
+import sk.tsystems.jada.forum.entity.Person;
+import sk.tsystems.jada.forum.entity.Topic;
 
 public class CommentaryService {
 
@@ -29,8 +32,7 @@ public class CommentaryService {
 
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		JpaHelper.commitTransaction();
-		List<Commentary> list = em.createQuery("SELECT c FROM CommentJPA c where c.game.gameID = '' ").getResultList();
+		List<Commentary> list = em.createQuery("SELECT c FROM Commentary c").getResultList();
 
 		return list;
 	}
@@ -40,14 +42,19 @@ public class CommentaryService {
 	 * 
 	 * @return List<Commentary>
 	 */
-	public List<Commentary> selectAllComentByTopic() {
+	public List<Commentary> selectAllComentByTopic(Topic topic) {
 
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		JpaHelper.commitTransaction();
-		List<Commentary> list = em.createQuery("SELECT c FROM CommentJPA c where c.game.gameID = '' ").getResultList();
+		Query query = em.createQuery("SELECT c FROM Commentary c where c.topic.idTopic = :idTopic ");
+		query.setParameter("idTopic", topic.getIdTopic());
 
-		return list;
+		if (!query.getResultList().isEmpty()) {
+			List<Commentary> resultList = query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -55,14 +62,19 @@ public class CommentaryService {
 	 * 
 	 * @return List<Commentary>
 	 */
-	public List<Commentary> selectAllComentByPerson() {
+	public List<Commentary> selectAllComentByPerson(Person person) {
 
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		JpaHelper.commitTransaction();
-		List<Commentary> list = em.createQuery("SELECT c FROM CommentJPA c where c.game.gameID = '' ").getResultList();
+		Query query = em.createQuery("SELECT c FROM Commentary c where c.person.idPerson = :idPerson ");
+		query.setParameter("idPerson", person.getIdPerson());
 
-		return list;
+		if (!query.getResultList().isEmpty()) {
+			List<Commentary> resultList = query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
 	}
 
 	/**
