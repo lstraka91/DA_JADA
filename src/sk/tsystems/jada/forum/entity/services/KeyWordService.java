@@ -37,7 +37,7 @@ public class KeyWordService extends JpaHelper {
 			kw = (KeyWord) query.getSingleResult();
 		} catch (javax.persistence.NoResultException e) {
 			System.out.println("Your keyWord is not in database");
-//			saveKeyWord(addKeyWord(input));
+			saveKeyWord(createKeyWord(input));
 		}
 		return kw;
 	}
@@ -49,7 +49,7 @@ public class KeyWordService extends JpaHelper {
 	 * @param keyWord
 	 * @return
 	 */
-	public KeyWord addKeyWord(String keyWord) {
+	public KeyWord createKeyWord(String keyWord) {
 		KeyWord kw = new KeyWord();
 		kw.setKeyWord(keyWord);
 		;
