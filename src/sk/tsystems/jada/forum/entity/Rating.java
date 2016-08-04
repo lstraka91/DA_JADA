@@ -45,6 +45,10 @@ public class Rating implements Serializable {
 
 	}
 
+	public Rating() {
+
+	}
+
 	/**
 	 * getter that return ident of rating
 	 * 
