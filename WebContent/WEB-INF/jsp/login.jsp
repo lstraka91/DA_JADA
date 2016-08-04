@@ -36,10 +36,10 @@
 </head>
 <body>
 	<div class="container">
-	
 
-	
-<!-- 
+		<jsp:include page="header.jsp" />
+
+		<!-- 
 		<c:if test="${not empty param.error}">
 			<div class="alert alert-danger" role="alert">
 				<strong>Login Error!</strong> Invalid username or password, try
@@ -49,7 +49,7 @@
  -->
 		<div class="row">
 			<div class="center-form panel">
-				<form method="post" action="/login">
+				<form method="post" action="/JADA_Tsystems_TeamProject/login">
 					<div class="panel-body">
 						<h2 class="text-center">Please log in</h2>
 
@@ -58,21 +58,19 @@
 
 								<input type="text" name="userName" value=""
 									placeholder="Insert your username here"
-									class="form-control input-lg" required autofocus/>
+									class="form-control input-lg" required autofocus />
 							</div>
 							<div class="form-group">
 
 								<input type="password" name="password" value=""
 									placeholder="Insert your password here"
-									class="form-control input-lg" requried/>
+									class="form-control input-lg" requried />
 							</div>
 
 							<input type="submit" value="Login"
 								class="btn btn-lg btn-block btn-success" /> <a
-								href="/GameCenter/register"
-								class="btn btn-lg btn-block btn-primary">Register</a> <a
-								href="/GameCenter/games"
-								class="btn btn-lg btn-block btn-primary">Continue as guest</a>
+								href="/JADA_Tsystems_TeamProject/registration"
+								class="btn btn-lg btn-block btn-primary">Register</a>
 
 
 						</center>
@@ -80,7 +78,7 @@
 				</form>
 			</div>
 		</div>
-	
+
 	</div>
 
 </body>

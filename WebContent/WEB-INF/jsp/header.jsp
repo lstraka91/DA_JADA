@@ -2,6 +2,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page session="true"%>
 <!-- Latest compiled and minified CSS -->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -40,10 +41,25 @@
 				<li><a href="#">Contact</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="login"><span
-						class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<c:choose>
+					<c:when test="${sessionScope.user!=null}">
+						<li><span class="glyphicon glyphicon-user"></span>
+							${sessionScope.user.fullName }</li>
+						<li><a href="logoutUser"><span
+								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+
+					</c:when>
+					<c:otherwise>
+
+						<li><a href="login"><span
+								class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+						<li><a href="registration"><span
+								class="glyphicon glyphicon-log-in"></span> Registration</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</div>
 </nav>
+
 

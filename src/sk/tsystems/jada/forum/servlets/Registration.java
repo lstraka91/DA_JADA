@@ -1,6 +1,7 @@
 package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,13 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sk.tsystems.jada.forum.entity.Person;
-import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Registration
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/registration")
+public class Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,8 +24,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
 	}
 
 	/**
@@ -35,19 +34,14 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String userName = request.getParameter("userName");
-		// String pass = request.getParameter("password");
-		System.out.println(userName);
+		String fullname = request.getParameter("fullName");
+		String email = request.getParameter("Email");
+		String password = request.getParameter("Password");
 
-		Person person = new PersonService().getPersonByName(userName);
+		Person person = new Person(userName, password, fullname, email, new Date());
 
-		if (person == null) {
-
-		} else {
-			System.out.println("Succes logged as " + person.getPersonName());
-			request.getSession().setAttribute("user", person);
-			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
-
-		}
+		request.getSession().setAttribute("user", person);
+		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
 
 	}
 
