@@ -39,7 +39,12 @@ public class KeyWord {
 	}
 
 	public void setKeyWord(String keyWord) {
-		this.keyWord = keyWord;
+		this.keyWord = keyWord.toLowerCase();
+	}
+	
+	@Override
+	public String toString() {
+		return "KeyWordEntity [id=" + idKeyWord + ", name=" + keyWord;
 	}
 
 }
