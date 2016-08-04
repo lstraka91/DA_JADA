@@ -2,6 +2,7 @@ package sk.tsystems.jada.forum.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,13 +34,13 @@ public class Commentary {
 	/**
 	 * User object
 	 */
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	public Person person;
 
 	/**
 	 * Topic object
 	 */
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	public Topic topic;
 
 	/**
