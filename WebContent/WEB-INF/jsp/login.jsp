@@ -58,11 +58,8 @@
 
 								<input type="text" name="userName" value=""
 									placeholder="Insert your username here"
-									class="form-control input-lg" required autofocus />
-							</div>
-							<div class="form-group">
-
-								<input type="password" name="password" value=""
+									class="form-control input-lg" required autofocus /> <input
+									type="password" name="password" value=""
 									placeholder="Insert your password here"
 									class="form-control input-lg" requried />
 							</div>

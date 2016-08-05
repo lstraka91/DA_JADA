@@ -45,7 +45,7 @@
 					<c:when test="${sessionScope.user!=null}">
 						<li><span class="glyphicon glyphicon-user"></span>
 							${sessionScope.user.fullName }</li>
-						<li><a href="logoutUser"><span
+						<li><a href="login"><span
 								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
 
 					</c:when>
