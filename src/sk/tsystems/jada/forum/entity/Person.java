@@ -30,7 +30,7 @@ public class Person {
 	/**
 	 * Password of user.
 	 */
-	private String password;
+	private int password;
 
 	/**
 	 * Full name of user.
@@ -73,7 +73,7 @@ public class Person {
 	 * @param email
 	 * @param birthday
 	 */
-	public Person(String personName, String password, String fullName, String email, Date birthday) {
+	public Person(String personName, int password, String fullName, String email, Date birthday) {
 		super();
 		this.personName = personName;
 		this.password = password;
@@ -103,11 +103,11 @@ public class Person {
 		this.personName = personName;
 	}
 
-	public String getPassword() {
+	public int getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(int password) {
 		this.password = password;
 	}
 

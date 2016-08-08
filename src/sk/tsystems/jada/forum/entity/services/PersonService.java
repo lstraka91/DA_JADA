@@ -50,7 +50,7 @@ public class PersonService {
 	 * @return Object Person with requested personName or null when person not
 	 *         in database.
 	 */
-	public Person getPersonByNameAndPass(String personName, String password) {
+	public Person getPersonByNameAndPass(String personName, int password) {
 		Person person;
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em
@@ -96,13 +96,14 @@ public class PersonService {
 		em.persist(person);
 		JpaHelper.commitTransaction();
 	}
+
 	/**
-	 * Hash password 
+	 * Hash password
 	 * 
 	 * @param password
 	 * @return
 	 */
-	public int hashPassword(String password){
+	public int hashPassword(String password) {
 		int hashcode = password.hashCode();
 		return hashcode;
 	}
