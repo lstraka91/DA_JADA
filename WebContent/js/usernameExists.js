@@ -1,7 +1,7 @@
 $(document).ready(function(){
  
 $("#userName").change(function() {
- 
+	$("#register").attr("disabled", true);
 var usr = $("#userName").val();
  
 if(usr.length >= 4){
@@ -18,6 +18,7 @@ if(usr.length >= 4){
     				$("#userName").removeClass('form-control');
     				$("#userName").addClass("object_ok");
     				$("#status").html('&nbsp;<img src="images/tick.gif" align="absmiddle">');
+    				$("#register").attr("disabled", false);
     			} else{ 
     				$("#userName").removeClass('object_ok'); // if necessary
     				$("#userName").removeClass('form-control');
