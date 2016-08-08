@@ -1,12 +1,8 @@
 package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,29 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sk.tsystems.jada.forum.entity.Commentary;
-import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Rating;
-import sk.tsystems.jada.forum.entity.RatingId;
 import sk.tsystems.jada.forum.entity.Topic;
 import sk.tsystems.jada.forum.entity.services.CommentaryService;
 import sk.tsystems.jada.forum.entity.services.RatingService;
-import sk.tsystems.jada.forum.entity.services.TopicService;
 
 /**
  * Servlet implementation class TopicServlet
  */
-@WebServlet("/TopicServlet")
+@WebServlet("/topic")
 public class TopicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public TopicServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -78,9 +63,9 @@ public class TopicServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void forwardToList(HttpServletRequest request, HttpServletResponse response)
+	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/forum.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/topic.jsp").forward(request, response);
 	}
 
 }
