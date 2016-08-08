@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sk.tsystems.jada.forum.entity.Person;
+import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
  * Servlet implementation class Registration
@@ -39,7 +40,7 @@ public class Registration extends HttpServlet {
 		String password = request.getParameter("Password");
 
 		Person person = new Person(userName, password, fullname, email, new Date());
-
+		new PersonService().registerPerson(person);
 		request.getSession().setAttribute("user", person);
 		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
 

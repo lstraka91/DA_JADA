@@ -43,9 +43,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${sessionScope.user!=null}">
-						<li><span class="glyphicon glyphicon-user"></span>
-							${sessionScope.user.fullName }</li>
-						<li><a href="login"><span
+						<li><a href="logout"><span class="glyphicon glyphicon-user"></span> ${sessionScope.user.fullName } </a></li>
+						<li><a href="logout"><span
 								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
 
 					</c:when>

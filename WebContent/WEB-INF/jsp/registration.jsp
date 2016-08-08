@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -27,8 +28,7 @@
 	href='https://fonts.googleapis.com/css?family=Indie+Flower|Candal|Sigmar+One'
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/style.css">
-
-
+<script src="js/usernameExists.js"></script>
 <title>Welcome to Game Center</title>
 </head>
 <body>
@@ -52,7 +52,7 @@
 						<center>
 							<div class="form-group">
 
-								<input type="text" name="userName" value=""
+								<input type="text" name="userName" value="" id="userName"
 									placeholder="Insert your username here"
 									class="form-control input-lg" required />
 							</div>
