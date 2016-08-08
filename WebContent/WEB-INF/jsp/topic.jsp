@@ -25,8 +25,19 @@
 
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
-	
-	
-	
+
+
+		<h4>Comments for topic:</h4>
+		<jsp:include page="/TopicServlet" flush="true" />
+		<br> <br>
+
+			<form>
+				<label for="comment">Comment:</label> <br>
+				<textarea name="comment" spellcheck="true" cols="52" rows="10"
+					required title="Content." placeholder="Article content"></textarea>
+				<br> <br> <input type="submit">
+			</form>
+		
+		
 	</div>
 </nav>
