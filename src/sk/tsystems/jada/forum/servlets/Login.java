@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String pass = request.getParameter("password");
-		int hashedPass= new PersonService().hashPassword(pass);
+		int hashedPass = new PersonService().hashPassword(pass);
 		System.out.println(userName);
 
 		Person person = new PersonService().getPersonByNameAndPass(userName, hashedPass);
