@@ -57,9 +57,9 @@ public class Commentary {
 	 * @param person
 	 * @param topic
 	 */
-	public Commentary(String commentaryBody, Date commentaryDate, Person person, Topic topic) {
+	public Commentary(String commentaryBody, Person person, Topic topic) {
 		this.commentaryBody = commentaryBody;
-		this.commentaryDate = commentaryDate;
+		this.commentaryDate = new Date(System.currentTimeMillis());
 		this.person = person;
 		this.topic = topic;
 	}

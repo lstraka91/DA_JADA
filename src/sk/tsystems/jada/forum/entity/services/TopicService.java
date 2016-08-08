@@ -15,23 +15,14 @@ public class TopicService {
 	 * @param topic
 	 */
 	public void addTopic(Topic topic) {
-		JpaHelper.beginTransaction();
-		EntityManager em = JpaHelper.getEntityManager();
-		em.persist(topic);
-		JpaHelper.commitTransaction();
-	}
-
-	/**
-	 * Method for remove topic from database by object topic
-	 * 
-	 * @param topic
-	 */
-	public void removeTopicByObject(Topic topic) {
-		JpaHelper.beginTransaction();
-		EntityManager em = JpaHelper.getEntityManager();
-		topic = em.find(Topic.class, topic);
-		em.remove(topic);
-		JpaHelper.commitTransaction();
+		String topicName = topic.getTopicName();
+		int idTopic = getIdTopicByName(topicName);
+		if (idTopic == 0) {
+			JpaHelper.beginTransaction();
+			EntityManager em = JpaHelper.getEntityManager();
+			em.persist(topic);
+			JpaHelper.commitTransaction();
+		}
 	}
 
 	/**
@@ -39,38 +30,46 @@ public class TopicService {
 	 * 
 	 * @param id
 	 */
-	public void removeTopicById(int id) {
+	public void removeTopicById(int idTopic) {
 		Topic topic = new Topic();
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		topic = em.find(Topic.class, id);
-		em.remove(topic);
+		topic = em.find(Topic.class, idTopic);
+		if (topic != null) {
+			em.remove(topic);
+		}
 		JpaHelper.commitTransaction();
 	}
 
 	/**
 	 * Method for update topic name
 	 * 
-	 * @param topic
+	 * @param idTopic, topicName
 	 */
-	public void updateTopicName(Topic topic, String topicName) {
+	public void updateTopicName(int idTopic, String topicName) {
+		Topic topic = new Topic();
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		topic = em.find(Topic.class, topic);
-		topic.setTopicName(topicName);
+		topic = em.find(Topic.class, idTopic);
+		if (topic != null) {
+			topic.setTopicName(topicName);
+		}
 		JpaHelper.commitTransaction();
 	}
 
 	/**
 	 * Method for update topic description
 	 * 
-	 * @param topic
+	 * @param idTopic, topicDescription
 	 */
-	public void updateTopicDescrition(Topic topic, String topicDescription) {
+	public void updateTopicDescrition(int idTopic, String topicDescription) {
+		Topic topic = new Topic();
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		topic = em.find(Topic.class, topic);
-		topic.setTopicDescription(topicDescription);
+		topic = em.find(Topic.class, idTopic);
+		if (topic != null) {
+			topic.setTopicDescription(topicDescription);
+		}
 		JpaHelper.commitTransaction();
 	}
 
@@ -86,4 +85,20 @@ public class TopicService {
 		return (ArrayList<Topic>) query.getResultList();
 	}
 
+	/**
+	 * Method for return id topic by topic name
+	 * 
+	 * @param topicName
+	 * @return id topic
+	 */
+	public int getIdTopicByName(String topicName) {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT idTopic FROM Topic t WHERE t.topicName=:topicName");
+		query.setParameter("topicName", topicName);
+		if (query.getResultList().isEmpty()) {
+			return 0;
+		} else {
+			return (int) query.getResultList().get(0);
+		}
+	}
 }
