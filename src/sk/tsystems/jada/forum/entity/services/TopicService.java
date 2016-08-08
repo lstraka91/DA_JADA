@@ -86,19 +86,4 @@ public class TopicService {
 		return (ArrayList<Topic>) query.getResultList();
 	}
 
-	private void addRating(Topic topic, int value) {
-		JpaHelper.beginTransaction();
-		EntityManager em = JpaHelper.getEntityManager();
-		topic = em.find(Topic.class, topic);
-		topic.setRating(topic.getRating() + value);
-		JpaHelper.commitTransaction();
-	}
-
-	public void updateRatingUp(Topic topic) {
-		addRating(topic, 1);
-	}
-
-	public void updateRatingDown(Topic topic) {
-		addRating(topic, -1);
-	}
 }
