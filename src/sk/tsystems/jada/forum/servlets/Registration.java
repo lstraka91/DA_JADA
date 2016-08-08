@@ -38,8 +38,8 @@ public class Registration extends HttpServlet {
 		String fullname = request.getParameter("fullName");
 		String email = request.getParameter("Email");
 		String password = request.getParameter("Password");
-
-		Person person = new Person(userName, password, fullname, email, new Date());
+		int hashedPass= new PersonService().hashPassword(password);
+		Person person = new Person(userName, hashedPass, fullname, email, new Date());
 		new PersonService().registerPerson(person);
 		request.getSession().setAttribute("user", person);
 		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");

@@ -28,6 +28,7 @@
 	href='https://fonts.googleapis.com/css?family=Indie+Flower|Candal|Sigmar+One'
 	rel='stylesheet' type='text/css'>
 <script src="js/usernameExists.js"></script>
+<script src="js/checkPasswordStrong.js"></script>
 <link rel="stylesheet" href="css/style.css">
 <title>Welcome to Game Center</title>
 </head>
@@ -61,7 +62,7 @@
 
 								<input type="text" name="fullName" value=""
 									placeholder="Insert your fullName"
-									class="form-control input-lg" />
+									class="form-control input-lg" required/>
 							</div>
 							<div class="form-group">
 
@@ -71,10 +72,11 @@
 							</div>
 							<div class="form-group">
 
-								<input type="password" name="Password" value=""
+								<input type="password" name="Password" id="password" value=""
 									placeholder="Insert your password here"
 									class="form-control input-lg" id="password" minlength="6"
 									required />
+									<div id="passCheck" ></div>
 							</div>
 							<div class="form-group">
 

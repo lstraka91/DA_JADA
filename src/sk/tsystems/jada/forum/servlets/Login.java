@@ -35,10 +35,11 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String userName = request.getParameter("userName");
-		// String pass = request.getParameter("password");
+		String pass = request.getParameter("password");
+		int hashedPass= new PersonService().hashPassword(pass);
 		System.out.println(userName);
 
-		Person person = new PersonService().getPersonByName(userName);
+		Person person = new PersonService().getPersonByNameAndPass(userName, hashedPass);
 
 		if (person == null) {
 			response.sendRedirect("/JADA_Tsystems_TeamProject/login");

@@ -35,7 +35,11 @@ public class Forum extends HttpServlet {
 		// new PersonService().registerPerson(person)
 
 		// listOfID = new KeyWordService().getTopKeyWords();
-
+		
+		String action = request.getParameter("action");
+		
+		
+		
 		forwardToList(request, response);
 
 	}
