@@ -96,5 +96,15 @@ public class PersonService {
 		em.persist(person);
 		JpaHelper.commitTransaction();
 	}
+	/**
+	 * Hash password 
+	 * 
+	 * @param password
+	 * @return
+	 */
+	public int hashPassword(String password){
+		int hashcode = password.hashCode();
+		return hashcode;
+	}
 
 }
