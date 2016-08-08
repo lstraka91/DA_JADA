@@ -27,8 +27,8 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Indie+Flower|Candal|Sigmar+One'
 	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="css/style.css">
 <script src="js/usernameExists.js"></script>
+<link rel="stylesheet" href="css/style.css">
 <title>Welcome to Game Center</title>
 </head>
 <body>
@@ -52,9 +52,10 @@
 						<center>
 							<div class="form-group">
 
-								<input type="text" name="userName" value="" id="userName"
+								<input type="text" name="userName"  id="userName"
 									placeholder="Insert your username here"
 									class="form-control input-lg" required />
+									<div id="status" ></div>
 							</div>
 							<div class="form-group">
 
@@ -88,7 +89,7 @@
 									placeholder="Insert your email address"
 									class="form-control input-lg" required />
 							</div>
-							<input type="submit" value="Register user"
+							<input type="submit" value="Register user" id="register"
 								class="btn btn-lg btn-block btn-success" /> <a
 								href="/JADA_Tsystems_TeamProject/login"
 								class="btn btn-lg btn-block btn-primary">Back to Login</a>

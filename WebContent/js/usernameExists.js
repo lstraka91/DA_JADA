@@ -4,45 +4,36 @@ $("#userName").change(function() {
  
 var usr = $("#userName").val();
  
-if(usr.length >= 4)
-{
-//$("#status").html('<img src="loader.gif" align="absmiddle">&nbsp;Checking availability...');
+if(usr.length >= 4){
+	$("#status").html('<img src="images/loader.gif" align="absmiddle">&nbsp;Checking availability...');
  
-    $.ajax({ 
-    type: "POST", 
-    url: "CheckUsername", 
-    data: "userName="+ usr, 
-    success: function(msg){ 
+    	$.ajax({ 
+    		type: "POST", 
+    		url: "checkUsername", 
+    		data: "userName="+ usr, 
+    		success: function(msg){ 
+    			console.log(msg);
+    			if(msg === 'OK'){
+    				$("#userName").removeClass('object_error'); // if necessary
+    				$("#userName").removeClass('form-control');
+    				$("#userName").addClass("object_ok");
+    				$("#status").html('&nbsp;<img src="images/tick.gif" align="absmiddle">');
+    			} else{ 
+    				$("#userName").removeClass('object_ok'); // if necessary
+    				$("#userName").removeClass('form-control');
+    				$("#userName").addClass("object_error");
+    				$("#status").html(msg);
+    				$("#register").attr("disabled", true);
+    			} 
+    		}
     
-   $("#status").ajaxComplete(function(event, request, settings){
+    	});
  
-    if(msg == 'OK')
-    {
-        $("#userName").removeClass('object_error'); // if necessary
-        $("#userName").addClass("object_ok");
-       // $(this).html('&nbsp;<img src="tick.gif" align="absmiddle">');
-    } 
-    else 
-    { 
-        $("#userName").removeClass('object_ok'); // if necessary
-        $("#userName").addClass("object_error");
-        $(this).html(msg);
-    } 
-    
-   });
- 
- }
-    
-  });
- 
-}
-else
-    {
-    $("#status").html('<font color="red">' +
-'The username should have at least <strong>4</strong> characters.</font>');
-    $("#userName").removeClass('object_ok'); // if necessary
-    $("#userName").addClass("object_error");
-    }
+	}else{
+		$("#status").html('<font color="red"> The username should have at least <strong>4</strong> characters.</font>');
+		$("#userName").removeClass('object_ok'); // if necessary
+		$("#userName").addClass("object_error");
+	}
  
 });
  

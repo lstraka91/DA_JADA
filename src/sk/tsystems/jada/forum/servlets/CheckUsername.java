@@ -13,7 +13,7 @@ import sk.tsystems.jada.forum.entity.services.PersonService;
 /**
  * Servlet implementation class CheckUsername
  */
-@WebServlet("/CheckUsername")
+@WebServlet("/checkUsername")
 public class CheckUsername extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,9 +38,9 @@ public class CheckUsername extends HttpServlet {
 			System.out.println("wohooo z checkUsername" + personName);
 			Person person = new PersonService().getPersonByName(personName);
 			if (person == null) {
-				response.getWriter().println("OK");
+				response.getWriter().print("OK");
 			} else {
-				response.getWriter().println("Exists");
+				response.getWriter().println("<font color='red'>The nickname <strong>"+person.getPersonName()+"</strong> is already in use.</font>");
 			}
 
 		}
