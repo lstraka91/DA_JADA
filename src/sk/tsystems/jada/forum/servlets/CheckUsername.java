@@ -1,7 +1,6 @@
 package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,10 +11,10 @@ import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class CheckUsername
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/CheckUsername")
+public class CheckUsername extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -24,8 +23,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -34,21 +33,17 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String userName = request.getParameter("userName");
-		// String pass = request.getParameter("password");
-		System.out.println(userName);
-
-		Person person = new PersonService().getPersonByName(userName);
-
-		if (person == null) {
-			response.sendRedirect("/JADA_Tsystems_TeamProject/login");
-		} else {
-			System.out.println("Succes logged as " + person.getPersonName());
-			request.getSession().setAttribute("user", person);
-			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+		String personName = request.getParameter("userName").trim();
+		if (personName != null) {
+			System.out.println("wohooo z checkUsername" + personName);
+			Person person = new PersonService().getPersonByName(personName);
+			if (person == null) {
+				response.getWriter().println("OK");
+			} else {
+				response.getWriter().println("Exists");
+			}
 
 		}
-
 	}
 
 }
