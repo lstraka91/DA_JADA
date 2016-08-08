@@ -48,7 +48,7 @@ public class Admin extends Person {
 	 * @param deleteTopicPermission
 	 * @param activationUserPernmision
 	 */
-	public Admin(String personName, String password, String fullName, String email, Date birthday,
+	public Admin(String personName, int password, String fullName, String email, Date birthday,
 			boolean deleteCommentPermission, boolean deleteUserPermission, boolean deleteTopicPermission,
 			boolean activationUserPernmision) {
 		super(personName, password, fullName, email, birthday);

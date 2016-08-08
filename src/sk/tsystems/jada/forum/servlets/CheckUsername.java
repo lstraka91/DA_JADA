@@ -40,7 +40,8 @@ public class CheckUsername extends HttpServlet {
 			if (person == null) {
 				response.getWriter().print("OK");
 			} else {
-				response.getWriter().println("<font color='red'>The nickname <strong>"+person.getPersonName()+"</strong> is already in use.</font>");
+				response.getWriter().println("<font color='red'>The nickname <strong>" + person.getPersonName()
+						+ "</strong> is already in use.</font>");
 			}
 
 		}

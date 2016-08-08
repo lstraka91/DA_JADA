@@ -12,7 +12,7 @@ import sk.tsystems.jada.forum.entity.Commentary;
 public class AdminService {
 
 	/**
-	 * Show all admin
+	 * Show all admins
 	 * 
 	 * @return
 	 */
@@ -38,11 +38,15 @@ public class AdminService {
 			boolean deleteTopicPermission, boolean activationUserPernmision) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		admin = em.find(Admin.class, admin);
-		admin.setActivationUserPernmision(activationUserPernmision);
-		admin.setDeleteCommentPermission(deleteCommentPermission);
-		admin.setDeleteTopicPermission(deleteTopicPermission);
-		admin.setDeleteUserPermission(deleteUserPermission);
+		// Admin admin1 = em.find(Admin.class );
+		if (admin != null) {
+			System.out.println("som dnu ");
+			admin.setActivationUserPernmision(activationUserPernmision);
+			admin.setDeleteCommentPermission(deleteCommentPermission);
+			admin.setDeleteTopicPermission(deleteTopicPermission);
+			admin.setDeleteUserPermission(deleteUserPermission);
+			em.merge(admin);
+		}
 		JpaHelper.commitTransaction();
 
 	}
