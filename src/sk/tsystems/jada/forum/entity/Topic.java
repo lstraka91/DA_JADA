@@ -176,5 +176,12 @@ public class Topic {
 		this.keyWords = keywords;
 	}
 
+	@Override
+	public String toString() {
+		return "Topic [idTopic=" + idTopic + ", topicName=" + topicName + ", topicDescription=" + topicDescription
+				+ ", topicDate=" + topicDate + ", keyWords=" + keyWords + ", person=" + person + "]";
+	}
+
+	
 
 }
