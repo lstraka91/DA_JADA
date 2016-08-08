@@ -62,7 +62,7 @@ public class KeyWordService {
 	}
 
 	/**
-	 * Find top 10 used keywords
+	 * Find id of top 10 used keywords
 	 * 
 	 * @return
 	 */
