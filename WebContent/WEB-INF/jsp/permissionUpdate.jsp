@@ -14,10 +14,6 @@
 
 
 		<div class="container">
-			<h2>Table</h2>
-			<p>The .table-responsive class creates a responsive table which
-				will scroll horizontally on small devices (under 768px). When
-				viewing on anything larger than 768px wide, there is no difference:</p>
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
@@ -35,43 +31,56 @@
 						<c:forEach items="${admins}" var="admins" varStatus="theCount">
 							<tr>
 								<td>${theCount.index +1}</td>
-								<td>${admins.personName }</td>
+								<td> <button type="button" class="btn btn-danger"> <b><i>${admins.personName}</i></b> </button></td>
 
 								<td><c:if test="${admins.deleteCommentPermission == true}">
-										<p>YES</p>
+										<img src="images/button_ok.png" alt="ok" height="16"
+											width="16">
 									</c:if> <c:if test="${admins.deleteCommentPermission == false}">
-										<p>NO</p>
+										<img src="images/button_cancel.png" alt="X" height="16"
+											width="16">
 									</c:if></td>
 
 								<td><c:if test="${admins.deleteTopicPermission == true}">
-										<p>YES</p>
+										<img src="images/button_ok.png" alt="ok" height="16"
+											width="16">
 									</c:if> <c:if test="${admins.deleteTopicPermission == false}">
-										<p>NO</p>
+										<img src="images/button_cancel.png" alt="X" height="16"
+											width="16">
 									</c:if></td>
 
 								<td><c:if test="${admins.deleteUserPermission == true}">
-										<p>YES</p>
+										<img src="images/button_ok.png" alt="ok" height="16"
+											width="16">
 									</c:if> <c:if test="${admins.deleteUserPermission == false}">
-										<p>NO</p>
+										<img src="images/button_cancel.png" alt="X" height="16"
+											width="16">
 									</c:if></td>
 
 								<td><c:if test="${admins.activationUserPernmision == true}">
-										<p>YES</p>
+										<img src="images/button_ok.png" alt="ok" height="16"
+											width="16">
 									</c:if> <c:if test="${admins.activationUserPernmision == false}">
-										<p>NO</p>
+										<img src="images/button_cancel.png" alt="X" height="16"
+											width="16">
 									</c:if></td>
-
-
-
-							</tr>
+						</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+			
+			
+			
+			
 			</div>
 		</div>
 
 
 	</div>
+
+
+
+
 
 
 

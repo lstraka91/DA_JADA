@@ -37,6 +37,8 @@ public class PermissioUpdate extends HttpServlet {
 		forwardToList(request, response);
 
 	}
+	
+	
 
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
