@@ -31,7 +31,7 @@
 					<c:forEach items="${topicComments}" var="comment">
 						<p>${comment.commentaryBody}</p>
 						<h4>
-							<span>${comment.commentaryDate}</span> <span class="pull-right">(${comment.person.personName})</span>
+							<span>${comment.commentaryDate}</span> <span class="pull-right">(${comment.person.fullName})</span>
 						</h4>
 						<hr>
 					</c:forEach>
@@ -40,19 +40,26 @@
 			</div>
 		</div>
 
-		<c:if test="${user != null}">
-			<div>
-				<form>
-					<input type="hidden" name="idTopic" value="${currentTopic.idTopic}">
-					<label for="comment">Comment:</label> <br>
-					<textarea name="comment" spellcheck="true" cols="150" rows="3"
-						required title="Content." maxlength="254"
-						placeholder="Article content"></textarea>
-					<br> <br> <input type="submit">
-				</form>
-			</div>
-		</c:if>
-
+		<c:choose>
+			<c:when test="${user != null}">
+				<div>
+					<form>
+						<input type="hidden" name="idTopic"
+							value="${currentTopic.idTopic}"> <label for="comment">Comment:</label>
+						<br>
+						<textarea name="comment" spellcheck="true" cols="150" rows="3"
+							required title="Content." maxlength="254"
+							placeholder="Article content"></textarea>
+						<br> <br> <input type="submit">
+					</form>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<center>
+					<h4>You must be logged in to comment topic</h4>
+				</center>
+			</c:otherwise>
+		</c:choose>
 		<hr>
 		<div class="content-footer">
 			<p>
