@@ -49,7 +49,7 @@ public class TopicServlet extends HttpServlet {
 			session.setAttribute("currentTopic", topic);
 		}
 
-//		int rate = (int) session.getAttribute("currentRating");
+		// int rate = (int) session.getAttribute("currentRating");
 
 		String comment = request.getParameter("comment");
 		if (comment != null & person != null) {
@@ -62,10 +62,10 @@ public class TopicServlet extends HttpServlet {
 		topicComment = (List<Commentary>) cs.selectAllComentByTopic(topic);
 		request.setAttribute("topicComments", topicComment);
 
-//		Rating rating = new Rating(rate, person, com);
-//		rs.addRating(rating);
-//		int topicRating = rs.getRatingOfComment(com);
-//		request.setAttribute("topicRatings", topicRating);
+		// Rating rating = new Rating(rate, person, com);
+		// rs.addRating(rating);
+		// int topicRating = rs.getRatingOfComment(com);
+		// request.setAttribute("topicRatings", topicRating);
 
 		forwardToList(request, response);
 	}

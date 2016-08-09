@@ -44,10 +44,11 @@
 		<c:if test="${user != null}">
 			<div>
 				<form>
-				<input type="hidden" name="idTopic" value="${currentTopic.idTopic}">
+					<input type="hidden" name="idTopic" value="${currentTopic.idTopic}">
 					<label for="comment">Comment:</label> <br>
 					<textarea name="comment" spellcheck="true" cols="150" rows="3"
-						required title="Content." maxlength="254" placeholder="Article content"></textarea>
+						required title="Content." maxlength="254"
+						placeholder="Article content"></textarea>
 					<br> <br> <input type="submit">
 				</form>
 			</div>
