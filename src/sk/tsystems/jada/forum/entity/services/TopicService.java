@@ -1,10 +1,12 @@
 package sk.tsystems.jada.forum.entity.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.Topic;
 
 public class TopicService {
@@ -44,7 +46,8 @@ public class TopicService {
 	/**
 	 * Method for update topic name
 	 * 
-	 * @param idTopic, topicName
+	 * @param idTopic,
+	 *            topicName
 	 */
 	public void updateTopicName(int idTopic, String topicName) {
 		Topic topic = new Topic();
@@ -60,7 +63,8 @@ public class TopicService {
 	/**
 	 * Method for update topic description
 	 * 
-	 * @param idTopic, topicDescription
+	 * @param idTopic,
+	 *            topicDescription
 	 */
 	public void updateTopicDescrition(int idTopic, String topicDescription) {
 		Topic topic = new Topic();
@@ -82,7 +86,12 @@ public class TopicService {
 	public ArrayList<Topic> showTopics() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select t from Topic t");
-		return (ArrayList<Topic>) query.getResultList();
+		if (!query.getResultList().isEmpty()) {
+			ArrayList<Topic> resultList = (ArrayList<Topic>) query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
 	}
 
 	/**

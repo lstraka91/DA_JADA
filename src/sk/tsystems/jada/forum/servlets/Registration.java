@@ -43,7 +43,7 @@ public class Registration extends HttpServlet {
 		Date birthDate = null;
 		try {
 			String birthDateString = request.getParameter("birthDate");
-			birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(birthDateString);
+			birthDate = new SimpleDateFormat("dd-MM-yyyy").parse(birthDateString);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
