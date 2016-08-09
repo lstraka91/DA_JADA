@@ -7,7 +7,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="css/style.css">
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -18,9 +18,20 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<div class="row">
-	<!-- 		<img src="images/title.png" alt="title" height="200rem"> -->
+<!-- <div class="row">
+			<img src="images/title.png" alt="title" height="200rem">
 	<h1 class="display-1">JADA - Forum</h1>
+</div> -->
+<div class="jumbotron">
+        <div class="row">
+            <div class="col-md-2 col-lg-2">
+                <img src="images/qaa.png" alt="JADA" class="img-responsive">
+            </div>
+            <div class="col-md-9 col-lg-9">
+                <h1 class="text-center text-primary">JaDa - FORUM </h1>
+            </div>
+        </div>
+        <p class="text-center jumbotext" >Join to our community and ask for help if you had a trouble !! <span class="glyphicon glyphicon-thumbs-up"></span></p>
 </div>
 
 <nav class="navbar navbar-inverse">
@@ -62,5 +73,7 @@
 		</div>
 	</div>
 </nav>
+
+ 
 
 
