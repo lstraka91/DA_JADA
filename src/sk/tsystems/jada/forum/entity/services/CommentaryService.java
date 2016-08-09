@@ -104,5 +104,24 @@ public class CommentaryService {
 		em.remove(comment);
 		JpaHelper.commitTransaction();
 	}
+	
+	/**
+	 * Select Commentary object from Database by id of COmment
+	 * @param id
+	 * @return return Commentary object or null if select failed and have no result for the current Id
+	 */
+	public Commentary selectCommentById(int id){
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT c FROM Commentary c where c.idCommentary = :idComment ");
+		query.setParameter("idComment", id);
+
+		if (!query.getResultList().isEmpty()) {
+			List<Commentary> resultList = query.getResultList();
+			return resultList.get(0);
+		} else {
+			return null;
+		}
+	}
 
 }

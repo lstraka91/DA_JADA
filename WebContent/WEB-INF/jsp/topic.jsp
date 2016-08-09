@@ -33,6 +33,7 @@
 						<h4>
 							<span>${comment.commentaryDate}</span> <span class="pull-right">(${comment.person.fullName})</span>
 						</h4>
+						<a href="topic?idTopic=${currentTopic.idTopic}&addRate=like&idComment=${comment.idCommentary}">Like</a>
 						<hr>
 					</c:forEach>
 
@@ -47,16 +48,18 @@
 						<input type="hidden" name="idTopic"
 							value="${currentTopic.idTopic}"> <label for="comment">Comment:</label>
 						<br>
-						<textarea name="comment" spellcheck="true" cols="150" rows="3"
+						<textarea name="comment" spellcheck="true" rows="3"
 							required title="Content." maxlength="254"
-							placeholder="Article content"></textarea>
-						<br> <br> <input type="submit">
+							placeholder="Article content" class="form-control input-lg"></textarea>
+						<br> <input type="submit" value="Add Comment" class="btn btn-primary ">
 					</form>
 				</div>
 			</c:when>
 			<c:otherwise>
 				<center>
-					<h4>You must be logged in to comment topic</h4>
+					<div class="alert alert-warning" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign"
+						aria-hidden="true"></span> <span class="sr-only">Info:</span>You must be logged in to comment topic</div>
 				</center>
 			</c:otherwise>
 		</c:choose>

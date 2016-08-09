@@ -9,7 +9,7 @@ public class CommentWithRating {
 	private Rating rating;
 	private int rateOfComment;
 	
-	public CommentWithRating(Commentary comment, Rating rating, int rateOfComment) {
+	public CommentWithRating(Commentary comment, int rateOfComment) {
 		this.comment = comment;
 		this.rating = rating;
 		this.rateOfComment = rateOfComment;

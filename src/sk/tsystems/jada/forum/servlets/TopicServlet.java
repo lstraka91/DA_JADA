@@ -50,7 +50,12 @@ public class TopicServlet extends HttpServlet {
 		}
 
 		// int rate = (int) session.getAttribute("currentRating");
-
+		if(request.getParameter("addRate")!=null && person!=null){
+			int idComment = Integer.parseInt(request.getParameter("idComment"));
+			System.out.println("ked tu dojdem tak viem rejtovat ..>D");
+			Rating rating = new Rating(1, person, cs.selectCommentById(idComment));
+			rs.addRating(rating);
+		}
 		String comment = request.getParameter("comment");
 		if (comment != null & person != null) {
 			topic = (Topic) session.getAttribute("currentTopic");

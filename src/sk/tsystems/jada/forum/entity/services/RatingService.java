@@ -28,8 +28,7 @@ public class RatingService {
 	 * @param rating
 	 */
 	public void addRating(Rating rating) {
-
-		if (checkIfRatingExist(rating).equals(null)) {
+		if (checkIfRatingExist(rating)) {
 			createRating(rating);
 
 		} else {
@@ -87,17 +86,17 @@ public class RatingService {
 	 * method that checks if Rating exists
 	 * 
 	 * @param rating
-	 * @return Rating from DB or null if Rating doesn't exist yet
+	 * @return true if Rating doesn't exist yet and false otherwise
 	 */
-	private Rating checkIfRatingExist(Rating rating) {
+	private boolean checkIfRatingExist(Rating rating) {
 		ArrayList<Rating> ratingList = (ArrayList<Rating>) em
 				.createQuery("Select r from Rating r where r.ratingIdCompositePK=:rid ")
 				.setParameter("rid", rating.getRatingIdCompositePK()).getResultList();
 		System.out.println(ratingList.size());
-		if (ratingList.size() > 0) {
-			return ratingList.get(0);
+		if (ratingList.isEmpty()) {
+			return true;
 		} else {
-			return null;
+			return false;
 		}
 	}
 
