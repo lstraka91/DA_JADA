@@ -27,16 +27,13 @@
 					<p>
 						<a href="#">placeholder</a>
 					</p>
-					<p>
-						<a href="#">placeholder</a>
-					</p>
 				</div>
 				<div class="col-sm-7 text-left">
-					<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1">@</span> <input
-							type="text" class="form-control" placeholder="Username" name=""
-							aria-describedby="basic-addon1">
-					</div>
+					<!-- 					<div class="input-group"> -->
+					<!-- 						<span class="input-group-addon" id="basic-addon1">@</span> <input -->
+					<!-- 							type="text" class="form-control" placeholder="Username" name="" -->
+					<!-- 							aria-describedby="basic-addon1"> -->
+					<!-- 					</div> -->
 				</div>
 				<div class="col-sm-4 sidenav">
 					<div class="well">
@@ -91,19 +88,10 @@
 					<thead>
 						<tr>
 							<th>topic</th>
-							<!-- 							<th>description</th> -->
-							<!-- 							<th>date</th> -->
-							<!-- 							<th>author</th> -->
-							<!-- 							<th>keywords</th> -->
 						</tr>
 					</thead>
 					<c:forEach items="${topics}" var="topic">
 						<tr>
-							<%-- 							<td>${topic.topicName }</td> --%>
-							<%-- 							<td>${topic.topicDescription}</td> --%>
-							<%-- 							<td>${topic.topicDate }</td> --%>
-							<%-- 							<td>${topic.person.personName }</td> --%>
-							<%-- 							<td>${keyword.keyWord }</td> --%>
 
 							<td><div class="media-body">
 

@@ -2,21 +2,21 @@ $("#keyWords").tagit({
 
 	// Options
 	fieldName : "keyWords",
-//	 availableTags: ["c++", "java", "php", "javascript", "ruby", "python",
-//	 "c"],
-	availableTags : '@Session["keywordslist"]',
-
+	// availableTags: ["c++", "java", "php", "javascript", "ruby",
+	// "python",
+	// "c"],
+	availableTags : jsArray,
 	autocomplete : {
 		delay : 0,
 		minLength : 1
 	},
 	showAutocompleteOnFocus : false,
-	removeConfirmation : false,
+	removeConfirmation : true,
 	caseSensitive : false,
 	allowDuplicates : false,
 	allowSpaces : false,
 	readOnly : false,
-	tagLimit : null,
+	tagLimit : 10,
 	singleField : true,
 	singleFieldDelimiter : ',',
 	singleFieldNode : null,

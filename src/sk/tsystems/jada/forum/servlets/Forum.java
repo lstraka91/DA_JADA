@@ -32,11 +32,8 @@ public class Forum extends HttpServlet {
 
 		request.setAttribute("topics", topics);
 
-		// new PersonService().registerPerson(person)
-
-		// listOfID = new KeyWordService().getTopKeyWords();
 		
-		String action = request.getParameter("action");
+//		String action = request.getParameter("action");
 		
 		
 		

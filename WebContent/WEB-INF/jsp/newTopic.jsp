@@ -1,3 +1,7 @@
+<%@page import="sk.tsystems.jada.forum.entity.services.KeyWordService"%>
+<%@page import="sk.tsystems.jada.forum.entity.KeyWord"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -21,21 +25,18 @@
 		<jsp:include page="header.jsp"></jsp:include>
 
 
+
 		<c:choose>
 			<c:when test="${user!=null }">
 				<form>
+					<input type="hidden" name="action" value="addtopic">
 					<ul id="keyWords">
-						<c:forEach items="${ keywordslist} var='keyword'">
-							<li>${keyword.keyWord }</li>
-						</c:forEach>
 
 					</ul>
-
-					<input type="hidden" name="action" value="addtopic"> <input
-						type="text" class="form-control" placeholder="Topic name"
-						name="topicName">
+					<input type="text" class="form-control" placeholder="Topic name"
+						name="topicName" required>
 					<textarea name="topicDesc" type="text" class="form-control"
-						placeholder="Write description..." id="topicDesc"></textarea>
+						placeholder="Write description..." id="topicDesc" required></textarea>
 					<button type="submit" class="btn btn-success green">
 						<span class="glyphicon glyphicon-comment " aria-hidden="true"></span>
 						Share
@@ -49,11 +50,7 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#keyWords").tagit();
-		});
-	</script>
+
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"
 		type="text/javascript" charset="utf-8"></script>
@@ -62,6 +59,19 @@
 		type="text/javascript" charset="utf-8"></script>
 
 	<script src="js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">		
+	$(document).ready(function() {
+		$("#keyWords").tagit();
+	});
+	<%ArrayList<KeyWord> keyWords = new KeyWordService().getAllKeyWords();
+
+			ArrayList<String> keyWordStrings = new ArrayList<>();
+			for (KeyWord keyWord : keyWords) {
+				keyWordStrings.add(keyWord.getKeyWord());
+			}%>
+	var jsArray = [<%for (int i = 0; i < keyWordStrings.size(); i++) {%>"<%=keyWordStrings.get(i)%>"<%=i + 1 < keyWordStrings.size() ? "," : ""%><%}%>];
+</script>
 	<script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
+
 </body>
 </html>

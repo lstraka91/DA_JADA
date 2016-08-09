@@ -33,7 +33,8 @@ public class JpaHelper {
 	}
 
 	public static void commitTransaction() {
-		getEntityManager().getTransaction().commit();
+		if (!getEntityManager().getTransaction().isActive())
+			getEntityManager().getTransaction().commit();
 	}
 
 	public static void closeEntityManager() {
