@@ -44,7 +44,7 @@
 
 								<input type="text" name="birthDate" id="datepicker" value=""
 									placeholder="Insert your DateOfBirth here"
-									class="form-control input-lg" required />
+									class="form-control input-lg" required autocomplete=off/>
 							</div>
 							<div class="form-group">
 
@@ -96,7 +96,8 @@
 
 	<script>
 		$(document).ready(function() {
-			$("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
+			$("#datepicker").datepicker({ dateFormat: 'dd-mm-yy',changeMonth: true,
+			      changeYear: true,yearRange: "1900:+nn" });
 			 
 
 		});
