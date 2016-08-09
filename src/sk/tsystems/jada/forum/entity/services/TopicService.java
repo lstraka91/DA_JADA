@@ -101,4 +101,21 @@ public class TopicService {
 			return (int) query.getResultList().get(0);
 		}
 	}
+	
+	/**
+	 * Method for return topic by id topic
+	 * 
+	 * @param idTopic
+	 * @return topic
+	 */
+	public Topic findTopicById(int idTopic){
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT t FROM Topic t WHERE t.idTopic=:idTopic");
+		query.setParameter("idTopic", idTopic);
+		if (query.getResultList().isEmpty()) {
+			return null;
+		} else {
+			return (Topic) query.getResultList().get(0);
+		}
+	}
 }
