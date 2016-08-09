@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container">
-		
+
 
 		<jsp:include page="header.jsp"></jsp:include>
 
@@ -108,7 +108,9 @@
 							<td><div class="media-body">
 
 									<h3>
-										<a href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a><span class="pull-right">(${topic.person.personName })</span>
+										<a
+											href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a><span
+											class="pull-right">(${topic.person.personName })</span>
 									</h3>
 									<p>${topic.topicDescription}</p>
 									<span class="pull-right">${topic.topicDate }</span>
@@ -131,6 +133,8 @@
 		</div>
 	</div>
 
-
+	<script
+		src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+	<script src='js/dataTables.js'></script>
 </body>
 </html>
