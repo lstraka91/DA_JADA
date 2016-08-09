@@ -17,10 +17,8 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="row">
-	<div class="row">
-		<!-- 		<img src="images/title.png" alt="title" height="200rem"> -->
-		<h1 class="display-1">JADA - Forum</h1>
-	</div>
+	<!-- 		<img src="images/title.png" alt="title" height="200rem"> -->
+	<h1 class="display-1">JADA - Forum</h1>
 </div>
 
 <nav class="navbar navbar-inverse">
@@ -43,7 +41,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${sessionScope.user!=null}">
-						<li><a href="logout"><span class="glyphicon glyphicon-user"></span> ${sessionScope.user.fullName } </a></li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-user"></span>
+								${sessionScope.user.fullName } </a></li>
 						<li><a href="logout"><span
 								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
 

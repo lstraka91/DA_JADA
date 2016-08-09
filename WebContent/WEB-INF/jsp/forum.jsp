@@ -9,11 +9,13 @@
 
 <link rel="stylesheet" type="text/css"
 	href="css/jquery.dataTables.min.css">
+
+
 </head>
 <body>
 	<div class="container">
-	<a href="http://github.com/aehlke/tag-it"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" /></a>
-	
+		
+
 		<jsp:include page="header.jsp"></jsp:include>
 
 		<div class="container-fluid text-center">
@@ -106,7 +108,7 @@
 							<td><div class="media-body">
 
 									<h3>
-										<a href="#">${topic.topicName }</a><span class="pull-right">(${topic.person.personName })</span>
+										<a href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a><span class="pull-right">(${topic.person.personName })</span>
 									</h3>
 									<p>${topic.topicDescription}</p>
 									<span class="pull-right">${topic.topicDate }</span>
@@ -129,9 +131,6 @@
 		</div>
 	</div>
 
-	<script src="//code.jquery.com/jquery-1.12.3.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-	<script src='js/dataTables.js'></script>
+
 </body>
 </html>
