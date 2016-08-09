@@ -8,27 +8,30 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
+<link
+	href='https://fonts.googleapis.com/css?family=Indie+Flower|Candal|Sigmar+One'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
 <!-- Latest compiled JavaScript -->
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!-- <div class="row">
-			<img src="images/title.png" alt="title" height="200rem">
-	<h1 class="display-1">JADA - Forum</h1>
-</div> -->
+
 <div class="jumbotron">
         <div class="row">
             <div class="col-md-2 col-lg-2">
                 <img src="images/qaa.png" alt="JADA" class="img-responsive">
             </div>
             <div class="col-md-9 col-lg-9">
-                <h1 class="text-center text-primary">JaDa - FORUM </h1>
+                <h1 class="text-center text-primary jumboHead">JaDa - FORUM </h1>
             </div>
         </div>
         <p class="text-center jumbotext" >Join to our community and ask for help if you had a trouble !! <span class="glyphicon glyphicon-thumbs-up"></span></p>
