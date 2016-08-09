@@ -64,7 +64,6 @@ public class TopicServlet extends HttpServlet {
 
 //		Rating rating = new Rating(rate, person, com);
 //		rs.addRating(rating);
-//
 //		int topicRating = rs.getRatingOfComment(com);
 //		request.setAttribute("topicRatings", topicRating);
 

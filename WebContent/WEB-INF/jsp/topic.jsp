@@ -28,9 +28,7 @@
 							<button class="btn btn-sm-info">${keyword.keyWord }</button>
 						</c:forEach>
 					</tr>
-
 					<hr>
-
 					<c:forEach items="${topicComments}" var="comment">
 						<p>${comment.commentaryBody}</p>
 						<h4>
