@@ -12,47 +12,63 @@
 	<div class="container">
 		<jsp:include page="header.jsp"></jsp:include>
 
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<table id="adminsList" class="display" cellspacing="0" width="100%">
+
+		<div class="container">
+			<h2>Table</h2>
+			<p>The .table-responsive class creates a responsive table which
+				will scroll horizontally on small devices (under 768px). When
+				viewing on anything larger than 768px wide, there is no difference:</p>
+			<div class="table-responsive">
+				<table class="table">
 					<thead>
 						<tr>
-							<th>Admins</th>
-							<!-- 							<th>description</th> -->
-							<!-- 							<th>date</th> -->
-							<!-- 							<th>author</th> -->
-							<!-- 							<th>keywords</th> -->
+							<th>#</th>
+							<th>AdminName</th>
+							<th>DeleteComment</th>
+							<th>DeleteTopic</th>
+							<th>DeleteUser</th>
+							<th>ActivateUser</th>
+
 						</tr>
 					</thead>
-					<c:forEach items="${admins}" var="admins">
-						<tr>
-							<%-- 							<td>${topic.topicName }</td> --%>
-							<%-- 							<td>${topic.topicDescription}</td> --%>
-							<%-- 							<td>${topic.topicDate }</td> --%>
-							<%-- 							<td>${topic.person.personName }</td> --%>
-							<%-- 							<td>${keyword.keyWord }</td> --%>
+					<tbody>
+						<c:forEach items="${admins}" var="admins" varStatus="theCount">
+							<tr>
+								<td>${theCount.index +1}</td>
+								<td>${admins.personName }</td>
 
-							<td><div class="media-body">
+								<td><c:if test="${admins.deleteCommentPermission == true}">
+										<p>YES</p>
+									</c:if> <c:if test="${admins.deleteCommentPermission == false}">
+										<p>NO</p>
+									</c:if></td>
 
-									<h3>
-										${admins.personName }<span class="pull-right">(${admins.fullName })</span>
-									</h3>
-<%-- 									<p>${topic.topicDescription}</p> --%>
-<%-- 									<span class="pull-right">${topic.topicDate }</span> --%>
-<%-- 									<c:forEach items="${topic.keyWords}" var="keyword"> --%>
-<%-- 										<button class="btn btn-sm-info">${keyword.keyWord }</button> --%>
-<%-- 									</c:forEach> --%>
-								</div></td>
-						</tr>
-					</c:forEach>
+								<td><c:if test="${admins.deleteTopicPermission == true}">
+										<p>YES</p>
+									</c:if> <c:if test="${admins.deleteTopicPermission == false}">
+										<p>NO</p>
+									</c:if></td>
+
+								<td><c:if test="${admins.deleteUserPermission == true}">
+										<p>YES</p>
+									</c:if> <c:if test="${admins.deleteUserPermission == false}">
+										<p>NO</p>
+									</c:if></td>
+
+								<td><c:if test="${admins.activationUserPernmision == true}">
+										<p>YES</p>
+									</c:if> <c:if test="${admins.activationUserPernmision == false}">
+										<p>NO</p>
+									</c:if></td>
+
+
+
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 			</div>
 		</div>
-
-
-
-
-
 
 
 	</div>
