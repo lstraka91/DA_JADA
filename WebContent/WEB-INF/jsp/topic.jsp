@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Topic-JADA</title>
 
-<link rel="stylesheet" type="text/css"
-	href="css/jquery.dataTables.min.css">
+
 </head>
 <body>
 	<div class="container">
@@ -16,7 +15,7 @@
 
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<table id="topicList" class="display" cellspacing="0" width="100%">
+				<table cellspacing="0" width="100%">
 
 					<tr>
 						<h3>
