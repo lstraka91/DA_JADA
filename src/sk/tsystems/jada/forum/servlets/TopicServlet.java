@@ -41,14 +41,15 @@ public class TopicServlet extends HttpServlet {
 		CommentaryService cs = new CommentaryService();
 		RatingService rs = new RatingService();
 
+		Person person = (Person) session.getAttribute("user");
+
 		int idTopic = Integer.parseInt(request.getParameter("idTopic"));
 		Topic topic = new TopicService().findTopicById(idTopic);
 		if (topic != null) {
 			session.setAttribute("currentTopic", topic);
 		}
 
-		Person person = (Person) session.getAttribute("user");
-		// int rate = (int) session.getAttribute("currentRating");
+//		int rate = (int) session.getAttribute("currentRating");
 
 		String comment = request.getParameter("comment");
 		if (comment != null & person != null) {
@@ -57,15 +58,15 @@ public class TopicServlet extends HttpServlet {
 			cs.addComent(com);
 		}
 
-		// Rating rating = new Rating(rate, person, com);
-		// rs.addRating(rating);
-
 		List<Commentary> topicComment = new ArrayList<>();
 		topicComment = (List<Commentary>) cs.selectAllComentByTopic(topic);
 		request.setAttribute("topicComments", topicComment);
 
-		// int topicRating = rs.getRatingOfComment(com);
-		// request.setAttribute("topicRating", topicRating);
+//		Rating rating = new Rating(rate, person, com);
+//		rs.addRating(rating);
+//
+//		int topicRating = rs.getRatingOfComment(com);
+//		request.setAttribute("topicRatings", topicRating);
 
 		forwardToList(request, response);
 	}
