@@ -1,6 +1,8 @@
 package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -38,8 +40,15 @@ public class Registration extends HttpServlet {
 		String fullname = request.getParameter("fullName");
 		String email = request.getParameter("Email");
 		String password = request.getParameter("Password");
+		Date birthDate = null;
+		try {
+			String birthDateString = request.getParameter("birthDate");
+			birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(birthDateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		int hashedPass= new PersonService().hashPassword(password);
-		Person person = new Person(userName, hashedPass, fullname, email, new Date());
+		Person person = new Person(userName, hashedPass, fullname, email, birthDate);
 		new PersonService().registerPerson(person);
 		request.getSession().setAttribute("user", person);
 		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
