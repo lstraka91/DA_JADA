@@ -6,6 +6,7 @@ package sk.tsystems.jada.forum.entity.services;
 import sk.tsystems.jada.forum.entity.services.JpaHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -38,7 +39,7 @@ public class KeyWordService {
 		KeyWord kw = null;
 		try {
 			EntityManager em = JpaHelper.getEntityManager();
-			javax.persistence.Query query = em.createQuery("SELECT k from KeyWord k WHERE k.keyWord=:input");
+			Query query = em.createQuery("SELECT k from KeyWord k WHERE k.keyWord=:input");
 			query.setParameter("input", input);
 			System.out.println(query.getResultList());
 			kw = (KeyWord) query.getSingleResult();
@@ -66,6 +67,7 @@ public class KeyWordService {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> topKeyWords() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createNativeQuery(
@@ -73,6 +75,14 @@ public class KeyWordService {
 		ArrayList<Integer> result = (ArrayList<Integer>) query.setMaxResults(10).getResultList();
 		return result;
 
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<KeyWord> getAllKeyWords() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select k from KeyWord k");
+		ArrayList<KeyWord> resultList = (ArrayList<KeyWord>) query.getResultList();
+		return resultList;
 	}
 
 }

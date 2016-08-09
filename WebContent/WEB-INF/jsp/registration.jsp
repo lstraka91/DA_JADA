@@ -66,7 +66,7 @@
 							</div>
 							<div class="form-group">
 
-								<input type="text" name="birthDate" value=""
+								<input type="date" name="birthDate" value=""
 									placeholder="Insert your DateOfBirth here"
 									class="form-control input-lg" required />
 							</div>
