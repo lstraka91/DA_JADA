@@ -14,14 +14,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sk.tsystems.jada.forum.dTO.CommentWithRating;
 import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Rating;
 import sk.tsystems.jada.forum.entity.Topic;
+import sk.tsystems.jada.forum.entity.services.CommentWithRatingService;
 import sk.tsystems.jada.forum.entity.services.CommentaryService;
 import sk.tsystems.jada.forum.entity.services.RatingService;
 import sk.tsystems.jada.forum.entity.services.TopicService;
+import sun.java2d.pipe.RenderQueue;
 
 /**
  * Servlet implementation class TopicServlet
@@ -50,11 +53,16 @@ public class TopicServlet extends HttpServlet {
 		}
 
 		// int rate = (int) session.getAttribute("currentRating");
-		if(request.getParameter("addRate")!=null && person!=null){
+		if (request.getParameter("addRate") != null && person != null) {
 			int idComment = Integer.parseInt(request.getParameter("idComment"));
-			System.out.println("ked tu dojdem tak viem rejtovat ..>D");
-			Rating rating = new Rating(1, person, cs.selectCommentById(idComment));
-			rs.addRating(rating);
+			Rating rating;
+			if (request.getParameter("addRate").equals("like")) {
+				rating = new Rating(1, person, cs.selectCommentById(idComment));
+				rs.addRating(rating);
+			} else if (request.getParameter("addRate").equals("dislike")) {
+				rating = new Rating(-1, person, cs.selectCommentById(idComment));
+				rs.addRating(rating);
+			}
 		}
 		String comment = request.getParameter("comment");
 		if (comment != null & person != null) {
@@ -67,11 +75,10 @@ public class TopicServlet extends HttpServlet {
 		topicComment = (List<Commentary>) cs.selectAllComentByTopic(topic);
 		request.setAttribute("topicComments", topicComment);
 
-		// Rating rating = new Rating(rate, person, com);
-		// rs.addRating(rating);
-		// int topicRating = rs.getRatingOfComment(com);
-		// request.setAttribute("topicRatings", topicRating);
-
+		List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatings(topic);
+		if (topicCommentsWithRate != null) {
+			request.setAttribute("commentWithRateList", topicCommentsWithRate);
+		}
 		forwardToList(request, response);
 	}
 

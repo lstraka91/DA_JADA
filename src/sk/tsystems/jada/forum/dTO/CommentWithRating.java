@@ -5,42 +5,56 @@ import sk.tsystems.jada.forum.entity.Rating;
 
 public class CommentWithRating {
 
+	/**
+	 * Commentary object 
+	 */
 	private Commentary comment;
-	private Rating rating;
+	/**
+	 * int value of rate for the current comment
+	 */
 	private int rateOfComment;
-	
-	public CommentWithRating(Commentary comment, int rateOfComment) {
+	/**
+	 * count of rating for the current comment
+	 */
+	private int countOfCommentsRating;
+
+	/**
+	 * Constructor that return DtO object of Comment with rating and count of ratings
+	 * @param comment
+	 * @param rateOfComment
+	 * @param countOfCommentsRating
+	 */
+	public CommentWithRating(Commentary comment, int rateOfComment, int countOfCommentsRating) {
 		this.comment = comment;
-		this.rating = rating;
 		this.rateOfComment = rateOfComment;
+		this.countOfCommentsRating = countOfCommentsRating;
 	}
 
+	/**
+	 * Get Commentary object
+	 * 
+	 * @return comment
+	 */
 	public Commentary getComment() {
 		return comment;
 	}
 
-	public void setComment(Commentary comment) {
-		this.comment = comment;
-	}
-
-	public Rating getRating() {
-		return rating;
-	}
-
-	public void setRating(Rating rating) {
-		this.rating = rating;
-	}
-
+	/**
+	 * get rate of Comment
+	 * 
+	 * @return integer value of rating
+	 */
 	public int getRateOfComment() {
 		return rateOfComment;
 	}
 
-	public void setRateOfComment(int rateOfComment) {
-		this.rateOfComment = rateOfComment;
+	/**
+	 * get count of rating to current comment
+	 * 
+	 * @return integer value of count
+	 */
+	public int getCountOfCommentsRating() {
+		return countOfCommentsRating;
 	}
-	
-	
-	
-	
-	
+
 }

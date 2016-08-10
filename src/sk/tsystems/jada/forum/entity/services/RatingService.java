@@ -30,9 +30,10 @@ public class RatingService {
 	public void addRating(Rating rating) {
 		if (checkIfRatingExist(rating)) {
 			createRating(rating);
-
 		} else {
-			updateRating(rating);
+			int rate = rating.getRate();
+			Rating existsRating = getRatingByRating(rating);
+			updateRating(rate, existsRating);
 		}
 	}
 
@@ -52,10 +53,10 @@ public class RatingService {
 	 * 
 	 * @param rating
 	 */
-	private void updateRating(Rating rating) {
+	private void updateRating(int rate, Rating rating) {
 		JpaHelper.beginTransaction();
-		Rating updateRating = em.find(Rating.class, checkIfRatingExist(rating));
-		updateRating.setRate(rating.getRate());
+		Rating updateRating = em.find(Rating.class, rating);
+		updateRating.setRate(rate);
 		em.persist(updateRating);
 		JpaHelper.commitTransaction();
 	}
@@ -92,7 +93,6 @@ public class RatingService {
 		ArrayList<Rating> ratingList = (ArrayList<Rating>) em
 				.createQuery("Select r from Rating r where r.ratingIdCompositePK=:rid ")
 				.setParameter("rid", rating.getRatingIdCompositePK()).getResultList();
-		System.out.println(ratingList.size());
 		if (ratingList.isEmpty()) {
 			return true;
 		} else {
@@ -100,4 +100,42 @@ public class RatingService {
 		}
 	}
 
+	/**
+	 * Select Rating object from database
+	 * 
+	 * @param rating
+	 * @return object Rating or null if Entity notExist
+	 */
+	public Rating getRatingByRating(Rating rating) {
+		ArrayList<Rating> ratingList = (ArrayList<Rating>) em
+				.createQuery("Select r from Rating r where r.ratingIdCompositePK=:rid ")
+				.setParameter("rid", rating.getRatingIdCompositePK()).getResultList();
+		if (ratingList.isEmpty()) {
+			return null;
+		} else {
+			return ratingList.get(0);
+		}
+	}
+
+	/**
+	 * Select count of rating for current comment
+	 * 
+	 * @param comment
+	 * @return count of rating
+	 */
+	public int getCountOfCommentRating(Commentary comment) {
+		JpaHelper.beginTransaction();
+		List<Long> countRating = em
+				.createQuery(
+						"select count(r.rate) from Rating r join r.ratingIdCompositePK c  where c.idCommentary=:idCom group by c.idCommentary")
+				.setParameter("idCom", comment.getIdCommentary()).getResultList();
+		JpaHelper.commitTransaction();
+		if (countRating.size() > 0) {
+			System.out.println(countRating.get(0).intValue());
+			return countRating.get(0).intValue();
+		} else {
+
+			return 0;
+		}
+	}
 }

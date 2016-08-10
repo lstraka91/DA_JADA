@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,21 +23,57 @@
 							<span>${currentTopic.topicName}</span> <span class="pull-right">(${currentTopic.person.personName})</span>
 						</h3>
 						<p>${currentTopic.topicDescription}</p>
-						<p class="pull-right">${currentTopic.topicDate }</p>
+
+						<p class="pull-right">
+							<fmt:formatDate value="${currentTopic.topicDate}"
+								pattern="dd.MM.yyyy HH:mm" />
+						</p>
 						<c:forEach items="${currentTopic.keyWords}" var="keyword">
 							<button class="btn btn-sm-info">${keyword.keyWord }</button>
 						</c:forEach>
 					</tr>
 					<hr>
-					<c:forEach items="${topicComments}" var="comment">
-						<p>${comment.commentaryBody}</p>
-						<h4>
-							<span>${comment.commentaryDate}</span> <span class="pull-right">(${comment.person.fullName})</span>
-						</h4>
-						<a href="topic?idTopic=${currentTopic.idTopic}&addRate=like&idComment=${comment.idCommentary}">Like</a>
+
+					<!-- My implementation of comments with rating -->
+					<c:forEach items="${commentWithRateList}" var="commRate">
+						<p>${commRate.comment.commentaryBody}</p>
+						<p>
+							<span class="pull-right">(${commRate.comment.person.fullName})</span>
+						</p>
+						<fmt:parseNumber var="rate" value="${commRate.rateOfComment}" />
+						<div class="row">
+
+							<div class="col-md-5 offset-md-5">
+								<span class="badge "><span class="glyphicon glyphicon-info-sign"></span>  
+									${commRate.countOfCommentsRating} times rated</span> 
+									<a
+									href="topic?idTopic=${currentTopic.idTopic}&addRate=like&idComment=${commRate.comment.idCommentary}"
+									class="btn btn-default"><span
+									class="glyphicon glyphicon-thumbs-up"></span>Like</a>
+
+								<c:if test="${rate>0}">
+									<span class="label label-success">${commRate.rateOfComment}</span>
+
+								</c:if>
+								<c:if test="${rate==0}">
+									<span class="label label-default">${commRate.rateOfComment}</span>
+								</c:if>
+								<c:if test="${rate<0}">
+									<span class="label label-danger">${commRate.rateOfComment}</span>
+								</c:if>
+								<a
+									href="topic?idTopic=${currentTopic.idTopic}&addRate=dislike&idComment=${commRate.comment.idCommentary}"
+									class="btn btn-default"><span
+									class="glyphicon glyphicon-thumbs-down"></span>Dislike</a>
+
+							</div>
+						</div>
+						<span class="pull-right">commented <strong><fmt:formatDate
+									value="${commRate.comment.commentaryDate}"
+									pattern="dd.MM.yyyy HH:mm" /></strong></span>
+						<br>
 						<hr>
 					</c:forEach>
-
 				</table>
 			</div>
 		</div>
@@ -48,18 +85,21 @@
 						<input type="hidden" name="idTopic"
 							value="${currentTopic.idTopic}"> <label for="comment">Comment:</label>
 						<br>
-						<textarea name="comment" spellcheck="true" rows="3"
-							required title="Content." maxlength="254"
-							placeholder="Article content" class="form-control input-lg"></textarea>
-						<br> <input type="submit" value="Add Comment" class="btn btn-primary ">
+						<textarea name="comment" spellcheck="true" rows="3" required
+							title="Content." maxlength="254" placeholder="Article content"
+							class="form-control input-lg"></textarea>
+						<br> <input type="submit" value="Add Comment"
+							class="btn btn-primary ">
 					</form>
 				</div>
 			</c:when>
 			<c:otherwise>
 				<center>
 					<div class="alert alert-warning" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign"
-						aria-hidden="true"></span> <span class="sr-only">Info:</span>You must be logged in to comment topic</div>
+						<span class="glyphicon glyphicon-exclamation-sign"
+							aria-hidden="true"></span> <span class="sr-only">Info:</span>You
+						must be logged in to comment topic
+					</div>
 				</center>
 			</c:otherwise>
 		</c:choose>

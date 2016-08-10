@@ -9,17 +9,27 @@ import sk.tsystems.jada.forum.entity.Topic;
 
 public class CommentWithRatingService {
 
-	public List<CommentWithRating> getCommentsAndRatings(Topic topic){
-		List<CommentWithRating> dToList= new ArrayList<>();
+	/**
+	 * method that return List of CommentWithRating object from database
+	 * 
+	 * @param topic
+	 * @return List of CommentWithRating object
+	 */
+	public List<CommentWithRating> getCommentsAndRatings(Topic topic) {
+		List<CommentWithRating> dToList = new ArrayList<>();
+		List<Commentary> comList = new ArrayList<>();
 		CommentaryService cmntService = new CommentaryService();
-		RatingService ratingServc= new RatingService();
-		List<Commentary> comList = cmntService.selectAllComentByTopic(topic);
-		for (int i = 0; i < comList.size(); i++) {
-			
-			int rating = ratingServc.getRatingOfComment(comList.get(i));
-			CommentWithRating comWithRate = new CommentWithRating(comList.get(i), rating);
-			dToList.add(comWithRate);
+		RatingService ratingServc = new RatingService();
+		comList = cmntService.selectAllComentByTopic(topic);
+		if (comList != null) {
+			for (int i = 0; i < comList.size(); i++) {
+				int rating = ratingServc.getRatingOfComment(comList.get(i));
+				int count = ratingServc.getCountOfCommentRating(comList.get(i));
+				CommentWithRating comWithRate = new CommentWithRating(comList.get(i), rating, count);
+				dToList.add(comWithRate);
+			}
+			return dToList;
 		}
-		return dToList;
+		return null;
 	}
 }
