@@ -11,73 +11,90 @@
 <body>
 	<div class="container">
 		<jsp:include page="header.jsp"></jsp:include>
-	
-	
-	<div class="container">
-  <h2>EDIT ADMINS</h2>
-  
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Admins DETAILS</th>
-        <th>NEW DETAILS</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td> <%= request.getParameter("personName")%></td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td> <%= request.getParameter("fullName")%></td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td> <%= request.getParameter("birthday")%></td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-      <tr>
-        <td> <%= request.getParameter("deleteCommentr")%></td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td> <%= request.getParameter("deleteUser")%></td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td> <%= request.getParameter("deleteTopic")%></td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td> <%= request.getParameter("activatedUser")%></td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      
-    </tbody>
-  </table>
-</div>
-		
-		
-		request.setAttribute("personName", admin.getPersonName());
-		request.setAttribute("fullName", admin.getFullName());
-		request.setAttribute("birthday", admin.getBirthday());
-		request.setAttribute("email", admin.getEmail());
-		request.setAttribute("deleteCommentr", admin.isDeleteCommentPermission());
-		request.setAttribute("deleteUser", admin.isDeleteUserPermission());
-		request.setAttribute("deleteTopic", admin.isDeleteTopicPermission());
-		request.setAttribute("activatedUser", admin.isActivationUserPernmision());
-		
-		
-		
-		
-</div>
+
+
+		<div class="container">
+			
+					<tr>
+						<td>Activate USER</td>
+						<td><label class="checkbox-inline"><input
+								type="checkbox" value="">ENABLE</label> <label
+							class="checkbox-inline"> <input type="checkbox" value="">DISABLE
+						</label></td>
+
+					</tr>
+					<tr>
+						<td>Delete Comment</td>
+						<td><label class="checkbox-inline"><input
+								type="checkbox" value="">ENABLE</label> <label
+							class="checkbox-inline"> <input type="checkbox" value="">DISABLE
+						</label></td>
+
+					</tr>
+					<tr>
+
+						<td>Delete Topic</td>
+						<td><label class="checkbox-inline"><input
+								type="checkbox" value="">ENABLE</label> <label
+							class="checkbox-inline"> <input type="checkbox" value="">DISABLE
+						</label></td>
+
+					</tr>
+					<tr>
+						<td>Delete USER</td>
+						<td><label class="checkbox-inline"><input
+								type="checkbox" value="">ENABLE</label> <label
+							class="checkbox-inline"> <input type="checkbox" value="">DISABLE
+						</label></td>
+
+					</tr>
+
+
+				</tbody>
+			</table>
+
+					
+			<form method="post" action=" ">
+					<div class="panel-body">
+						<h2 class="text-center formHead">Edit Admin</h2>
+
+						<center>
+							<div class="form-group">
+
+								<input type="text" name="userName" id="userName"
+									value="${admin.personName}"
+									class="form-control input-lg" required />
+								<div id="status"></div>
+							</div>
+							<div class="form-group">
+
+								<input type="text" name="fullName"
+									value="${admin.fullName}"
+									class="form-control input-lg" required />
+							</div>
+							<div class="form-group">
+
+						
+						
+							<div class="form-group">
+
+								<input type="email" name="Email"
+									value="${admin.email}"
+									class="form-control input-lg" required />
+							</div>
+							<input type="submit" value="Register RRRRuser" id="register"
+								class="btn btn-lg btn-block btn-success" /> <a
+								href="/JADA_Tsystems_TeamProject/login"
+								class="btn btn-lg btn-block btn-primary">UPDATE</a>
+						</center>
+					</div>
+				</form>
+			
+			
+			
+		</div>
+
+
+	</div>
 </body>
 </html>
