@@ -31,11 +31,11 @@ public class NewTopic extends HttpServlet {
 		if ("addtopic".equals(action)) {
 			Topic newTopic = new Topic();
 			newTopic.setPerson((Person) session.getAttribute("user"));
-			newTopic.setTopicDate(new Date(System.currentTimeMillis()));
+			newTopic.setTopicDate(new Date());
 			newTopic.setTopicName(request.getParameter("topicName"));
 			newTopic.setTopicDescription(request.getParameter("topicDesc"));
 
-			System.out.println("Class of keywords: " + request.getParameter("keyWords").getClass());
+			System.out.println("keywords: " + request.getParameter("keyWords"));
 
 			System.out.println(newTopic.toString());
 			 new TopicService().addTopic(newTopic);

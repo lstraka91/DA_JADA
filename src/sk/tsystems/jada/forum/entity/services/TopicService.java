@@ -86,7 +86,7 @@ public class TopicService {
 	public ArrayList<Topic> showTopics() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select t from Topic t");
-		if (!query.getResultList().isEmpty()) {
+		if (query.getResultList() != null) {
 			ArrayList<Topic> resultList = (ArrayList<Topic>) query.getResultList();
 			return resultList;
 		} else {
