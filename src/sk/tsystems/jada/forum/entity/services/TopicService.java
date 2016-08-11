@@ -103,7 +103,7 @@ public class TopicService {
 	public int getIdTopicByName(String topicName) {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT idTopic FROM Topic t WHERE t.topicName=:topicName");
-		query.setParameter("topicName", topicName);
+		query.setParameter("topicName", topicName.toLowerCase());
 		if (query.getResultList().isEmpty()) {
 			return 0;
 		} else {
