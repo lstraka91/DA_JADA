@@ -1,7 +1,11 @@
 package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Topic;
+import sk.tsystems.jada.forum.entity.services.KeyWordService;
 import sk.tsystems.jada.forum.entity.services.TopicService;
 
 /**
@@ -37,8 +43,20 @@ public class NewTopic extends HttpServlet {
 
 			System.out.println("keywords: " + request.getParameter("keyWords"));
 
+			String keyWordsString = request.getParameter("keyWords");
+			// List<String> elephantList = Arrays.asList(str.split(","));
+
+			if (keyWordsString != null) {
+				List<String> keyWordsList = Arrays.asList(keyWordsString.split(","));
+				Set<KeyWord> kWSet = new HashSet<>();
+				for (String kWString : keyWordsList) {
+					kWSet.add(new KeyWordService().findKeyWord(kWString));
+				}
+				newTopic.setKeyWords(kWSet);
+			}
+
 			System.out.println(newTopic.toString());
-			 new TopicService().addTopic(newTopic);
+			new TopicService().addTopic(newTopic);
 			response.sendRedirect("/JADA_Tsystems_TeamProject/newtopic");
 
 		}

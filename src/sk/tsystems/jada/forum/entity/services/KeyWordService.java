@@ -21,7 +21,7 @@ public class KeyWordService {
 	 * 
 	 * @param keyWord
 	 */
-	public void saveKeyWord(KeyWord keyWord) {
+	private void saveKeyWord(KeyWord keyWord) {
 		EntityManager em = JpaHelper.getEntityManager();
 		JpaHelper.beginTransaction();
 		em.persist(keyWord);
@@ -44,8 +44,9 @@ public class KeyWordService {
 			System.out.println(query.getResultList());
 			kw = (KeyWord) query.getSingleResult();
 		} catch (NoResultException e) {
-			System.out.println("Your keyWord is not in database");
-			saveKeyWord(createKeyWord(input));
+			System.out.println("KeyWord " + input + " is not in database");
+			kw = createKeyWord(input);
+			saveKeyWord(kw);
 		}
 		return kw;
 	}
@@ -56,7 +57,7 @@ public class KeyWordService {
 	 * @param keyWord
 	 * @return
 	 */
-	public KeyWord createKeyWord(String keyWord) {
+	private KeyWord createKeyWord(String keyWord) {
 		KeyWord kw = new KeyWord();
 		kw.setKeyWord(keyWord);
 		return kw;

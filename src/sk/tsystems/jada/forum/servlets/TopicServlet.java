@@ -2,10 +2,7 @@ package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import sk.tsystems.jada.forum.dTO.CommentWithRating;
 import sk.tsystems.jada.forum.entity.Commentary;
-import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Rating;
 import sk.tsystems.jada.forum.entity.Topic;
@@ -24,7 +20,6 @@ import sk.tsystems.jada.forum.entity.services.CommentWithRatingService;
 import sk.tsystems.jada.forum.entity.services.CommentaryService;
 import sk.tsystems.jada.forum.entity.services.RatingService;
 import sk.tsystems.jada.forum.entity.services.TopicService;
-import sun.java2d.pipe.RenderQueue;
 
 /**
  * Servlet implementation class TopicServlet
