@@ -24,22 +24,22 @@
  -->
 		<div class="row">
 			<div class="center-form panel">
-				<form method="post" action="/JADA_Tsystems_TeamProject/login">
+				<form method="post" >
 					<div class="panel-body">
 						<h2 class="text-center formHead">Please log in</h2>
 
 						<center>
 							<div class="form-group">
-
-								<input type="text" name="userName" value=""
+<div id="failedLogin"></div>
+								<input type="text" name="userName" value="" id="username"
 									placeholder="Insert your username here"
 									class="form-control input-lg" required autofocus /> <input
-									type="password" name="password" value=""
+									type="password" name="password" value="" id="pass"
 									placeholder="Insert your password here"
 									class="form-control input-lg" requried />
 							</div>
 
-							<input type="submit" value="Login"
+							<input type="button" value="Login" id="login"
 								class="btn btn-lg btn-block btn-success" /> <a
 								href="/JADA_Tsystems_TeamProject/registration"
 								class="btn btn-lg btn-block btn-primary">Register</a>
@@ -52,7 +52,7 @@
 		</div>
 
 	</div>
-
+<script src="js/login.js"></script>
 </body>
 </html>
 
