@@ -96,6 +96,24 @@ public class PersonService {
 		em.persist(person);
 		JpaHelper.commitTransaction();
 	}
+	
+	/**
+	 * Update person data / fullname and email 
+	 * @param person
+	 * @param updatePerson
+	 */
+	public void updatePersonProfile(Person person, Person updatePerson){
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		Person editPerson = em.find(Person.class, person.getIdPerson());
+		if(updatePerson.getEmail()!=null){
+			editPerson.setEmail(updatePerson.getEmail());
+		}
+		if(updatePerson.getFullName()!=null){
+			editPerson.setFullName(updatePerson.getFullName());
+		}
+		JpaHelper.commitTransaction();
+	}
 
 	/**
 	 * Hash password
