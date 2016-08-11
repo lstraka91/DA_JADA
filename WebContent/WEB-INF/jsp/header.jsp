@@ -25,16 +25,20 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+
 <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-2 col-lg-2">
-                <img src="images/qaa.png" alt="JADA" class="img-responsive">
-            </div>
-            <div class="col-md-9 col-lg-9">
-                <h1 class="text-center text-primary jumboHead">JaDa - FORUM </h1>
-            </div>
-        </div>
-        <p class="text-center jumbotext" >Join to our community and ask for help if you had a trouble !! <span class="glyphicon glyphicon-thumbs-up"></span></p>
+	<div class="row">
+		<div class="col-md-2 col-lg-2">
+			<img src="images/qaa.png" alt="JADA" class="img-responsive">
+		</div>
+		<div class="col-md-9 col-lg-9">
+			<h1 class="text-center text-primary jumboHead">JaDa - FORUM</h1>
+		</div>
+	</div>
+	<p class="text-center jumbotext">
+		Join to our community and ask for help if you had a trouble !! <span
+			class="glyphicon glyphicon-thumbs-up"></span>
+	</p>
 </div>
 
 <nav class="navbar navbar-inverse">
@@ -53,12 +57,27 @@
 				<li><a href="#">About</a></li>
 				<li><a href="#">Projects</a></li>
 				<li><a href="#">Contact</a></li>
+				<c:if
+					test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
+					<li>
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button"
+								data-toggle="dropdown">
+								Dropdown Example <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="showAdminsPermission">Admin permission</a></li>
+								<li><a href="#">CSS</a></li>
+								<li><a href="#">JavaScript</a></li>
+							</ul>
+						</div>
+					</li>
+				</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${sessionScope.user!=null}">
-						<li><a href="#"><span
-								class="glyphicon glyphicon-user"></span>
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 								${sessionScope.user.fullName } </a></li>
 						<li><a href="logout"><span
 								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
@@ -77,6 +96,6 @@
 	</div>
 </nav>
 
- 
+
 
 
