@@ -43,7 +43,7 @@ public class Registration extends HttpServlet {
 		Date birthDate = null;
 		try {
 			String birthDateString = request.getParameter("birthDate");
-			birthDate = new SimpleDateFormat("dd-MM-yyyy").parse(birthDateString);
+			birthDate = new SimpleDateFormat("dd.MM.yyyy").parse(birthDateString);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +52,7 @@ public class Registration extends HttpServlet {
 		new PersonService().registerPerson(person);
 		request.getSession().setAttribute("user", person);
 		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
-
+		
 	}
 
 }

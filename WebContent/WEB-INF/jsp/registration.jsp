@@ -96,10 +96,8 @@
 
 	<script>
 		$(document).ready(function() {
-			$("#datepicker").datepicker({ dateFormat: 'dd-mm-yy',changeMonth: true,
+			$("#datepicker").datepicker({ dateFormat: 'dd.mm.yy',changeMonth: true,
 			      changeYear: true,yearRange: "1900:+nn" });
-			 
-
 		});
 	</script>
 	<script src="js/usernameExists.js"></script>
