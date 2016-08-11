@@ -77,7 +77,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${sessionScope.user!=null}">
-						<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+						<li><a href="userProfile"><span class="glyphicon glyphicon-user"></span>
 								${sessionScope.user.fullName } </a></li>
 						<li><a href="logout"><span
 								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
