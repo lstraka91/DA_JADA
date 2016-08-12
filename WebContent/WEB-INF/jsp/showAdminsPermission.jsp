@@ -24,6 +24,7 @@
 							<th>DeleteTopic</th>
 							<th>DeleteUser</th>
 							<th>ActivateUser</th>
+							<th></th>
 
 						</tr>
 					</thead>
@@ -31,9 +32,7 @@
 						<c:forEach items="${admins}" var="admins" varStatus="theCount">
 							<tr>
 								<td>${theCount.index +1}</td>
-								<td><a href="UpdateAdmin?adminName=${admins.personName}"
-									class="btn btn-danger"> <b><i>${admins.personName}</i></b>
-								</a></td>
+								<td><b><i>${admins.personName}</i></b></td>
 
 								<td><c:choose>
 										<c:when test="${admins.deleteCommentPermission == true}">
@@ -82,6 +81,11 @@
 										</c:otherwise>
 
 									</c:choose></td>
+								<td><a href="UpdateAdmin?adminName=${admins.personName}"
+									class="btn btn-warning"> <span
+										class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+										Edit
+								</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

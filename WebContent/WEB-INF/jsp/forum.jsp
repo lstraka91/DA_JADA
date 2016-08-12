@@ -1,6 +1,9 @@
+<%@page import="java.util.Date"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -84,29 +87,41 @@
 
 		<div class="panel panel-default">
 			<div class="panel-body">
+				<ul class="nav nav-tabs navbar-right">
+					<li class="active"><a href="#">new</a></li>
+					<li><a href="#">top viewed</a></li>
+					<li><a href="#">most commented</a></li>
+				</ul>
 				<table id="topicList" class="display" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>topic</th>
-						</tr>
-					</thead>
+					<thead></thead>
 					<c:forEach items="${topics}" var="topic">
 						<tr>
+							<td>Views Comments</td>
+							<td colspan="2"><a
+								href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
 
-							<td><div class="media-body">
+								<p>${topic.topicDescription}</p> <c:forEach
+									items="${topic.keyWords}" var="keyword">
+									<button class="btn btn-sm-info">${keyword.keyWord }</button>
+								</c:forEach></td>
+							<td>(${topic.person.personName })</td>
 
-									<h3>
-										<a
-											href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a><span
-											class="pull-right">(${topic.person.personName })</span>
-									</h3>
-									<p>${topic.topicDescription}</p>
-									<span class="pull-right">${topic.topicDate }</span>
-									<c:forEach items="${topic.keyWords}" var="keyword">
-										<button class="btn btn-sm-info">${keyword.keyWord }</button>
-									</c:forEach>
-								</div></td>
+							<td><c:choose>
+									<c:when test="${now.date gt topic.topicDate.date}">
+										<p>
+											<fmt:formatDate value="${topic.topicDate}"
+												pattern="dd.MMM yyy HH:mm" />
+										</p>
+									</c:when>
+									<c:otherwise>
+										<time class="timeago" datetime="${topic.topicDate}"></time>
+									</c:otherwise>
+								</c:choose> <%-- 																		<time class="timeago" datetime="${topic.topicDate}"></time> --%>
+
+							</td>
+
 						</tr>
+
 					</c:forEach>
 				</table>
 			</div>
@@ -121,8 +136,12 @@
 		</div>
 	</div>
 
-	<script
-		src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-	<script src='js/dataTables.js'></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.timeago.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery("time.timeago").timeago();
+		});
+	</script>
 </body>
 </html>

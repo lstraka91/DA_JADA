@@ -11,52 +11,52 @@
 <body>
 	<div class="container">
 		<jsp:include page="header.jsp"></jsp:include>
-		
 
-    <table class="table table-hover">
 
-        <thead>
+		<table class="table table-hover">
 
-            <tr>
+			<thead>
 
-                <th>#</th>
+				<tr>
 
-                <th>User Name</th>
+					<th>#</th>
 
-                <th>Email</th>
+					<th>User Name</th>
 
-                <th>Actic</th>
+					<th>Email</th>
 
-            </tr>
+					<th>Active</th>
 
-        </thead>
+				</tr>
 
-        <tbody>
+			</thead>
 
-            <tr>
+			<tbody>
 
-                <td>1</td>
+				<tr>
 
-                <td>John</td>
+					<td>1</td>
 
-                <td>Carter</td>
+					<td>John</td>
 
-                <td>johncarter@mail.com</td>
+					<td>Carter</td>
 
-            </tr>
-         
+					<td>johncarter@mail.com</td>
 
-        </tbody>
+				</tr>
 
-    </table>
 
-		
-		
-		
-		
-		
-		
-		</div>
+			</tbody>
+
+		</table>
+
+
+
+
+
+
+
+	</div>
 
 </body>
 </html>
