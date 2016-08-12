@@ -39,17 +39,42 @@ public class UserProfile extends HttpServlet {
 		String fullName = request.getParameter("fullname");
 		String email = request.getParameter("email");
 		Person editedPerson = new Person();
+		String oldPass = request.getParameter("oldpass");
+		String newPass = request.getParameter("password");
 
-		Person updatePerson = (Person) request.getSession().getAttribute("user");
-		System.out.println(updatePerson.toString());
-		if (!updatePerson.getEmail().equals(email)) {
-			editedPerson.setEmail(email);
+		if (request.getSession().getAttribute("user") != null) {
+
+			Person updatePerson = (Person) request.getSession().getAttribute("user");
+			System.out.println(updatePerson.toString());
+			System.out.println(editedPerson.toString());
+			System.out.println("old" + oldPass);
+			System.out.println("new" + newPass);
+			if (!updatePerson.getEmail().equals(email)) {
+				editedPerson.setEmail(email);
+			}
+			if (!updatePerson.getFullName().equals(fullName)) {
+				editedPerson.setFullName(fullName);
+			}
+
+			if (!updatePerson.getEmail().equals(email) || !updatePerson.getFullName().equals(fullName)) {
+				new PersonService().updatePersonProfile(updatePerson, editedPerson);
+				request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
+			}
+			if (!oldPass.equals("") || !newPass.equals("")|| !oldPass.equals(null)|| !newPass.equals(null)) {
+				if (new PersonService().hashPassword(oldPass) == updatePerson.getPassword()) {
+					System.out.println("kontrola stareho a noveho hesla");
+					int hashedPass= new PersonService().hashPassword(newPass);
+					new PersonService().changePersonPassword(updatePerson, hashedPass);
+				} else {
+					request.setAttribute("passError", "false");
+					System.out.println("nezodne hesla");
 				}
-		if (!updatePerson.getFullName().equals(fullName)) {
-			editedPerson.setFullName(fullName);
+			} else {
+//				request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
+			}
+		} else {
+			request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
 		}
-		new PersonService().updatePersonProfile(updatePerson, editedPerson);
-		request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
 	}
 
 }

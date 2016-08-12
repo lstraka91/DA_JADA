@@ -2,6 +2,8 @@ $(document).ready(function(){
  
 $("#password").change(function() {
 	$("#register").attr("disabled", true);
+	$("#save").attr("disabled", true);
+	$("#save").prop("disabled", true);
 var pass = $("#password").val();
  
 if(pass.length >= 8){
@@ -20,13 +22,16 @@ if(pass.length >= 8){
     				//$("#passCheck").html('&nbsp;<img src="images/tick.gif" align="absmiddle">');
     				$("#passCheck").html('');
     				$("#register").attr("disabled", false);
+    				$("#save").attr("disabled", false);
+    				$("#save").prop("disabled", false);
     			} else{ 
     				$("#password").removeClass('object_ok'); // if necessary
     				$("#password").removeClass('form-control');
     				$("#password").addClass("object_error");
     				$("#passCheck").html(msg);
     				$("#register").attr("disabled", true);
-    				
+    				$("#save").attr("disabled", true);
+    				$("#save").prop("disabled", true);
     			} 
     		}
     

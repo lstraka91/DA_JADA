@@ -78,7 +78,7 @@
 		</div>
 
 	</div>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		var password = document.getElementById("password"), confirm_password = document
 				.getElementById("confirm_password");
 
@@ -92,7 +92,7 @@
 
 		password.onchange = validatePassword;
 		confirm_password.onkeyup = validatePassword;
-	</script>
+	</script> -->
 
 	<script>
 		$(document).ready(function() {
@@ -102,6 +102,7 @@
 	</script>
 	<script src="js/usernameExists.js"></script>
 	<script src="js/checkPasswordStrong.js"></script>
+	<script src="js/validatePassword.js"></script>
 </body>
 </html>
 

@@ -114,6 +114,19 @@ public class PersonService {
 		}
 		JpaHelper.commitTransaction();
 	}
+	
+	/**
+	 * Change person password
+	 * @param person
+	 * @param newPassword
+	 */
+	public void changePersonPassword(Person person, int newPassword){
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		Person editPerson = em.find(Person.class, person.getIdPerson());
+		editPerson.setPassword(newPassword);
+		JpaHelper.commitTransaction();
+	}
 
 	/**
 	 * Hash password
