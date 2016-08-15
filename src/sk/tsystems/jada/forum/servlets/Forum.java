@@ -32,11 +32,15 @@ public class Forum extends HttpServlet {
 
 		request.setAttribute("topics", topics);
 
-		
-//		String action = request.getParameter("action");
-		
-		
-		
+		String action = request.getParameter("action");
+		if (action != null) {
+			if ("top".equals(action)) {
+				System.out.println("show top viewed topics");
+			}
+			if ("mostcommented".equals(action)) {
+				System.out.println("show top viewed topics");
+			}
+		}
 		forwardToList(request, response);
 
 	}

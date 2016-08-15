@@ -55,7 +55,7 @@ public class TopicService {
 		EntityManager em = JpaHelper.getEntityManager();
 		topic = em.find(Topic.class, idTopic);
 		if (topic != null) {
-			topic.setTopicName(topicName);
+			topic.setTopicName(topicName.toLowerCase());
 		}
 		JpaHelper.commitTransaction();
 	}

@@ -30,11 +30,14 @@
 			<c:when test="${user!=null }">
 				<form>
 					<input type="hidden" name="action" value="addtopic">
+					Enter keywords other users can find your question:
 					<ul id="keyWords">
 
 					</ul>
+					Ask question to start new topic:
 					<input type="text" class="form-control" placeholder="Topic name"
 						name="topicName" required>
+					Describe your problem:
 					<textarea name="topicDesc" type="text" class="form-control"
 						placeholder="Write description..." id="topicDesc" required></textarea>
 					<button type="submit" class="btn btn-success green">

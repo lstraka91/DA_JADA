@@ -66,7 +66,7 @@ public class Topic {
 	 */
 	public Topic(String topicName, String topicDescription, Set<KeyWord> keyWords, Person person) {
 		super();
-		this.topicName = topicName.toLowerCase();
+		this.topicName = topicName;
 		this.topicDescription = topicDescription;
 		this.topicDate = new Date(System.currentTimeMillis());
 		this.keyWords = keyWords;
@@ -108,7 +108,7 @@ public class Topic {
 	 * @param topicName
 	 */
 	public void setTopicName(String topicName) {
-		this.topicName = topicName.toLowerCase();
+		this.topicName = topicName;
 	}
 
 	/**
@@ -182,6 +182,7 @@ public class Topic {
 				+ ", topicDate=" + topicDate + ", keyWords=" + keyWords + ", person=" + person + "]";
 	}
 
+	
 	
 
 }

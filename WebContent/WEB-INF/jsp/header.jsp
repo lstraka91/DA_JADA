@@ -54,30 +54,28 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li><a href="forum">Home</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Projects</a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a href="/JADA_Tsystems_TeamProject/newtopic"><span
+								class="glyphicon glyphicon-question-sign"></span> ASK
+						QUESTION</a></li>
+				<li><a href="#">empty link</a></li>
 				<c:if
 					test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
-					<li>
-						<div class="dropdown">
-							<button class="btn btn-primary dropdown-toggle" type="button"
-								data-toggle="dropdown">
-								Dropdown Example <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="showAdminsPermission">Admin permission</a></li>
-								<li><a href="#">CSS</a></li>
-								<li><a href="#">JavaScript</a></li>
-							</ul>
-						</div>
-					</li>
+					<li class="dropdown"><a
+						class="btn dropdown-toggle" type="button"
+						data-toggle="dropdown">Admin menu <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="showAdminsPermission">Admin permissions</a></li>
+							<li><a href="#">Users - in progress</a></li>
+							<li><a href="#">Activation requests - in progress</a></li>
+						</ul></li>
 				</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${sessionScope.user!=null}">
-						<li><a href="userProfile"><span class="glyphicon glyphicon-user"></span>
+						<li><a href="userProfile"><span
+								class="glyphicon glyphicon-user"></span>
 								${sessionScope.user.fullName } </a></li>
 						<li><a href="logout"><span
 								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>

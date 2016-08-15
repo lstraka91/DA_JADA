@@ -10,8 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Forum-JADA</title>
 
-<link rel="stylesheet" type="text/css"
-	href="css/jquery.dataTables.min.css">
+<!-- <link rel="stylesheet" type="text/css" -->
+<!-- 	href="css/jquery.dataTables.min.css"> -->
 
 
 </head>
@@ -21,78 +21,15 @@
 
 		<jsp:include page="header.jsp"></jsp:include>
 
-		<div class="container-fluid text-center">
-			<div class="row content">
-				<div class="col-sm-1 sidenav">
-					<p>
-						<a href="/JADA_Tsystems_TeamProject/newtopic">ASK QUESTION</a>
-					</p>
-					<p>
-						<a href="#">placeholder</a>
-					</p>
-				</div>
-				<div class="col-sm-7 text-left">
-					<!-- 					<div class="input-group"> -->
-					<!-- 						<span class="input-group-addon" id="basic-addon1">@</span> <input -->
-					<!-- 							type="text" class="form-control" placeholder="Username" name="" -->
-					<!-- 							aria-describedby="basic-addon1"> -->
-					<!-- 					</div> -->
-				</div>
-				<div class="col-sm-4 sidenav">
-					<div class="well">
-						<div id="myCarousel" class="carousel slide" data-ride="carousel">
-							<!-- Indicators -->
-							<ol class="carousel-indicators">
-								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-								<li data-target="#myCarousel" data-slide-to="1"></li>
-								<li data-target="#myCarousel" data-slide-to="2"></li>
-								<li data-target="#myCarousel" data-slide-to="3"></li>
-							</ol>
-
-							<!-- Wrapper for slides -->
-							<div class="carousel-inner" role="listbox"
-								style="max-height: 20rem; min-height: 25rem">
-								<div class="item active">
-									<img src="images/joke1.png" alt="joke1.png">
-								</div>
-
-								<div class="item">
-									<img src="images/joke2.png" alt="joke2.png">
-								</div>
-
-								<div class="item">
-									<img src="images/joke3.png" alt="joke3.png">
-								</div>
-
-								<div class="item">
-									<img src="images/joke4.png" alt="joke4.png">
-								</div>
-							</div>
-
-							<!-- Left and right controls -->
-							<a class="left carousel-control" href="#myCarousel" role="button"
-								data-slide="prev"> <span
-								class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-								<span class="sr-only">Previous</span>
-							</a> <a class="right carousel-control" href="#myCarousel"
-								role="button" data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-								<span class="sr-only">Next</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<ul class="nav nav-tabs navbar-right">
-					<li class="active"><a href="#">new</a></li>
-					<li><a href="#">top viewed</a></li>
-					<li><a href="#">most commented</a></li>
+					<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
+					<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top viewed</a></li>
+					<li><a href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most commented</a></li>
 				</ul>
-				<table id="topicList" class="display" cellspacing="0" width="100%">
+				<!-- 				<table id="topicList" class="table table-inverse"> -->
+				<table class="table table-striped table-inverse">
 					<thead></thead>
 					<c:forEach items="${topics}" var="topic">
 						<tr>
@@ -114,11 +51,9 @@
 										</p>
 									</c:when>
 									<c:otherwise>
-										<time class="timeago" datetime="${topic.topicDate}"></time>
+										<time class="timeago" datetime="${topic.topicDate}">just now</time>
 									</c:otherwise>
-								</c:choose> <%-- 																		<time class="timeago" datetime="${topic.topicDate}"></time> --%>
-
-							</td>
+								</c:choose></td>
 
 						</tr>
 
@@ -142,6 +77,15 @@
 		jQuery(document).ready(function() {
 			jQuery("time.timeago").timeago();
 		});
+		
+		$(function() {
+			   $("li").click(function() {
+			      // remove classes from all
+			      $("li").removeClass("active");
+			      // add class to the one we clicked
+			      $(this).addClass("active");
+			   });
+			});
 	</script>
 </body>
 </html>
