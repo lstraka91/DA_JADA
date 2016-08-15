@@ -38,7 +38,7 @@ public class SuperAdmin extends Person {
 	 * @param email
 	 * @param birthday
 	 */
-	public SuperAdmin(String personName, int password, String fullName, String email, Date birthday) {
+	public SuperAdmin(String personName, String password, String fullName, String email, Date birthday) {
 		super(personName, password, fullName, email, birthday);
 		this.activationUserPernmision = true;
 		this.deleteCommentPermission = true;

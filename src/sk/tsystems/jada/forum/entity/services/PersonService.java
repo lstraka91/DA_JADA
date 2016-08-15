@@ -3,6 +3,9 @@
  */
 package sk.tsystems.jada.forum.entity.services;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -50,7 +53,7 @@ public class PersonService {
 	 * @return Object Person with requested personName or null when person not
 	 *         in database.
 	 */
-	public Person getPersonByNameAndPass(String personName, int password) {
+	public Person getPersonByNameAndPass(String personName, String password) {
 		Person person;
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em
@@ -96,31 +99,33 @@ public class PersonService {
 		em.persist(person);
 		JpaHelper.commitTransaction();
 	}
-	
+
 	/**
-	 * Update person data / fullname and email 
+	 * Update person data / fullname and email
+	 * 
 	 * @param person
 	 * @param updatePerson
 	 */
-	public void updatePersonProfile(Person person, Person updatePerson){
+	public void updatePersonProfile(Person person, Person updatePerson) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Person editPerson = em.find(Person.class, person.getIdPerson());
-		if(updatePerson.getEmail()!=null){
+		if (updatePerson.getEmail() != null) {
 			editPerson.setEmail(updatePerson.getEmail());
 		}
-		if(updatePerson.getFullName()!=null){
+		if (updatePerson.getFullName() != null) {
 			editPerson.setFullName(updatePerson.getFullName());
 		}
 		JpaHelper.commitTransaction();
 	}
-	
+
 	/**
 	 * Change person password
+	 * 
 	 * @param person
 	 * @param newPassword
 	 */
-	public void changePersonPassword(Person person, int newPassword){
+	public void changePersonPassword(Person person, String newPassword) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Person editPerson = em.find(Person.class, person.getIdPerson());
@@ -137,6 +142,23 @@ public class PersonService {
 	public int hashPassword(String password) {
 		int hashcode = password.hashCode();
 		return hashcode;
+	}
+
+	public static String encryptPassword(String password) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(password.getBytes());
+			byte byteData[] = md.digest();
+
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < byteData.length; i++) {
+				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+			}
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

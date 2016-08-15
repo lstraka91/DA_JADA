@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import sk.tsystems.jada.forum.entity.services.PersonService;
+
 @Entity
 public class Person {
 
@@ -30,7 +32,7 @@ public class Person {
 	/**
 	 * Password of user.
 	 */
-	private int password;
+	private String password;
 
 	/**
 	 * Full name of user.
@@ -73,10 +75,10 @@ public class Person {
 	 * @param email
 	 * @param birthday
 	 */
-	public Person(String personName, int password, String fullName, String email, Date birthday) {
+	public Person(String personName, String password, String fullName, String email, Date birthday) {
 		super();
 		this.personName = personName;
-		this.password = password;
+		this.password = PersonService.encryptPassword(password);
 		this.fullName = fullName;
 		this.email = email;
 		this.birthday = birthday;
@@ -103,12 +105,12 @@ public class Person {
 		this.personName = personName;
 	}
 
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(int password) {
-		this.password = password;
+	public void setPassword(String password) {
+		this.password = PersonService.encryptPassword(password);
 	}
 
 	public String getEmail() {

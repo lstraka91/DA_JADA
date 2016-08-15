@@ -61,10 +61,10 @@ public class UserProfile extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
 			}
 			if (!oldPass.equals("") || !newPass.equals("")|| !oldPass.equals(null)|| !newPass.equals(null)) {
-				if (new PersonService().hashPassword(oldPass) == updatePerson.getPassword()) {
+				if (PersonService.encryptPassword(oldPass) == updatePerson.getPassword()) {
 					System.out.println("kontrola stareho a noveho hesla");
-					int hashedPass= new PersonService().hashPassword(newPass);
-					new PersonService().changePersonPassword(updatePerson, hashedPass);
+					
+					new PersonService().changePersonPassword(updatePerson, newPass);
 				} else {
 					request.setAttribute("passError", "false");
 					System.out.println("nezodne hesla");

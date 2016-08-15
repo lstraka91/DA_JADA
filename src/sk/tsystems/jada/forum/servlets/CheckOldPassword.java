@@ -20,7 +20,7 @@ public class CheckOldPassword extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pass = request.getParameter("password");
 		Person person = (Person) request.getSession().getAttribute("user");
-		if(new PersonService().hashPassword(pass)==person.getPassword()){
+		if(PersonService.encryptPassword(pass).equals(person.getPassword())){
 			response.getWriter().print("OK");
 		}else{
 			response.getWriter().println("<font color='red'>Password doesn't match with your current password!!</font>");

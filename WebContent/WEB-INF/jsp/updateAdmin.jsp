@@ -14,84 +14,125 @@
 
 
 		<div class="container">
-			
-					<tr>
-						<td>Activate USER</td>
-						<td><label class="checkbox-inline"><input
-								type="checkbox" value="">ENABLE</label> <label
-							class="checkbox-inline"> <input type="checkbox" value="">DISABLE
-						</label></td>
 
-					</tr>
-					<tr>
-						<td>Delete Comment</td>
-						<td><label class="checkbox-inline"><input
-								type="checkbox" value="">ENABLE</label> <label
-							class="checkbox-inline"> <input type="checkbox" value="">DISABLE
-						</label></td>
+			<div class="center">
+				<form method="get">
+					<input type="hidden" name="adminName" value="${adminName}">
 
-					</tr>
-					<tr>
+					<c:choose>
+						<c:when test="${admin.activationUserPernmision == true}">
+											Activate USER <label class="checkbox-inline"> <input
+								type="checkbox" value="true" name="activateUser"
+								checked="checked"> ENABLE
+							</label>
+							<br>
+						</c:when>
+						<c:otherwise>
+											Activate USER <label class="checkbox-inline"> <input
+								type="checkbox" value="true" name="activateUser"> ENABLE
+							</label>
+							<br>
+						</c:otherwise>
 
-						<td>Delete Topic</td>
-						<td><label class="checkbox-inline"><input
-								type="checkbox" value="">ENABLE</label> <label
-							class="checkbox-inline"> <input type="checkbox" value="">DISABLE
-						</label></td>
-
-					</tr>
-					<tr>
-						<td>Delete USER</td>
-						<td><label class="checkbox-inline"><input
-								type="checkbox" value="">ENABLE</label> <label
-							class="checkbox-inline"> <input type="checkbox" value="">DISABLE
-						</label></td>
-
-					</tr>
+					</c:choose>
 
 
-				</tbody>
-			</table>
 
-					
+					<c:choose>
+						<c:when test="${admin.deleteCommentPermission == true}">
+											Delete Comment <label class="checkbox-inline"> <input
+								type="checkbox" value="true" name="deleteComment"
+								checked="checked"> ENABLE
+							</label>
+							<br>
+						</c:when>
+						<c:otherwise>
+											Delete Comment <label class="checkbox-inline"> <input
+								type="checkbox" value="true" name="deleteComment">
+								ENABLE
+							</label>
+							<br>
+						</c:otherwise>
+
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${admin.deleteTopicPermission == true}">
+											Delete Topic <label class="checkbox-inline"> <input
+								type="checkbox" value="true" name="deleteTopic"
+								checked="checked"> ENABLE
+							</label>
+							<br>
+						</c:when>
+						<c:otherwise>
+									Delete Topic <label class="checkbox-inline"> <input
+								type="checkbox" value="true" name="deleteTopic"> ENABLE
+							</label>
+							<br>
+						</c:otherwise>
+
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${admin.deleteUserPermission == true}">
+											Delete USER <label class="checkbox-inline"> <input
+								type="checkbox" value="true" name="deleteUser" checked="checked">
+								ENABLE
+							</label>
+							<br>
+						</c:when>
+						<c:otherwise>
+									Delete USER <label class="checkbox-inline"> <input
+								type="checkbox" value="true" name="deleteUser"> ENABLE
+							</label>
+							<br>
+						</c:otherwise>
+
+					</c:choose>
+
+					<input type="submit" name="save" value="Save">
+				</form>
+			</div>
+
+
+
+
 			<form method="post" action=" ">
-					<div class="panel-body">
-						<h2 class="text-center formHead">Edit Admin</h2>
+				<div class="panel-body">
+					<h2 class="text-center formHead">Edit Admin</h2>
 
-						<center>
+					<center>
+						<div class="form-group">
+
+							<input type="text" name="userName" id="userName"
+								value="${admin.personName}" class="form-control input-lg"
+								required />
+							<div id="status"></div>
+						</div>
+						<div class="form-group">
+
+							<input type="text" name="fullName" value="${admin.fullName}"
+								class="form-control input-lg" required />
+						</div>
+						<div class="form-group">
+
+
+
 							<div class="form-group">
 
-								<input type="text" name="userName" id="userName"
-									value="${admin.personName}"
-									class="form-control input-lg" required />
-								<div id="status"></div>
-							</div>
-							<div class="form-group">
-
-								<input type="text" name="fullName"
-									value="${admin.fullName}"
-									class="form-control input-lg" required />
-							</div>
-							<div class="form-group">
-
-						
-						
-							<div class="form-group">
-
-								<input type="email" name="Email"
-									value="${admin.email}"
+								<input type="email" name="Email" value="${admin.email}"
 									class="form-control input-lg" required />
 							</div>
 							<input type="submit" value="Register RRRRuser" id="register"
 								class="btn btn-lg btn-block btn-success" /> <a
 								href="/JADA_Tsystems_TeamProject/login"
 								class="btn btn-lg btn-block btn-primary">UPDATE</a>
-						</center>
-					</div>
-				</form>
-			
-			
-			
+					</center>
+				</div>
+			</form>
+
+
+
 		</div>
 
 

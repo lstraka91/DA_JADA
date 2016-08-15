@@ -47,8 +47,8 @@ public class Registration extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		int hashedPass= new PersonService().hashPassword(password);
-		Person person = new Person(userName, hashedPass, fullname, email, birthDate);
+		
+		Person person = new Person(userName, password, fullname, email, birthDate);
 		new PersonService().registerPerson(person);
 		request.getSession().setAttribute("user", person);
 		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
