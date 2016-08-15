@@ -134,16 +134,10 @@ public class PersonService {
 	}
 
 	/**
-	 * Hash password
-	 * 
-	 * @param password
-	 * @return
+	 * Encryption of User password with MD5 algorithm
+	 * @param password password to encrypt
+	 * @return String representation of encrypted password
 	 */
-	public int hashPassword(String password) {
-		int hashcode = password.hashCode();
-		return hashcode;
-	}
-
 	public static String encryptPassword(String password) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
