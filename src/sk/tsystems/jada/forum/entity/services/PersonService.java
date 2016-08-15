@@ -60,7 +60,7 @@ public class PersonService {
 				.createQuery("select p from Person p where p.personName = :personName and p.password = :password");
 
 		query.setParameter("personName", personName);
-		query.setParameter("password", password);
+		query.setParameter("password", encryptPassword(password));
 		if (!query.getResultList().isEmpty()) {
 			person = (Person) query.getResultList().get(0);
 			return person;
@@ -129,7 +129,7 @@ public class PersonService {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Person editPerson = em.find(Person.class, person.getIdPerson());
-		editPerson.setPassword(newPassword);
+		editPerson.setPassword(encryptPassword(newPassword));
 		JpaHelper.commitTransaction();
 	}
 

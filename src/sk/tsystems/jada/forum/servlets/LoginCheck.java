@@ -37,7 +37,7 @@ public class LoginCheck extends HttpServlet {
 		String pass = request.getParameter("password");
 		System.out.println(userName);
 
-		Person person = new PersonService().getPersonByNameAndPass(userName, PersonService.encryptPassword(pass));
+		Person person = new PersonService().getPersonByNameAndPass(userName, pass);
 
 		if (person == null) {
 			response.getWriter().print("error");
