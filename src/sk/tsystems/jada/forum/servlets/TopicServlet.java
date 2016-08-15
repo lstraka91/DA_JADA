@@ -47,6 +47,10 @@ public class TopicServlet extends HttpServlet {
 			session.setAttribute("currentTopic", topic);
 		}
 
+		if (person != null) {
+			new TopicService().addVisitorToTopic(topic, person.getIdPerson());
+		}
+
 		// int rate = (int) session.getAttribute("currentRating");
 		if (request.getParameter("addRate") != null && person != null) {
 			int idComment = Integer.parseInt(request.getParameter("idComment"));

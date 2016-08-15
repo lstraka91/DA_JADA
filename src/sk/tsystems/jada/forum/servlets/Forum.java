@@ -28,19 +28,26 @@ public class Forum extends HttpServlet {
 
 		List<Topic> topics = new ArrayList<>();
 
-		topics = (List<Topic>) new TopicService().showTopics();
-
-		request.setAttribute("topics", topics);
+		topics = (List<Topic>) new TopicService().getTopicsOrderDate();
 
 		String action = request.getParameter("action");
 		if (action != null) {
+			if ("new".equals(action)) {
+				topics.clear();
+				topics = (List<Topic>) new TopicService().getTopicsOrderDate();
+			}
 			if ("top".equals(action)) {
-				System.out.println("show top viewed topics");
+				topics.clear();
+				topics = (List<Topic>) new TopicService().getTopicsOrderComments();
+
 			}
 			if ("mostcommented".equals(action)) {
-				System.out.println("show top viewed topics");
+				topics.clear();
+//				topics = (List<Topic>) new TopicService().get();
 			}
 		}
+		request.setAttribute("topics", topics);
+
 		forwardToList(request, response);
 
 	}

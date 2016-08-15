@@ -1,10 +1,12 @@
 package sk.tsystems.jada.forum.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,6 +50,10 @@ public class Topic {
 	 */
 	private Person person;
 
+	/**
+	 * Stores ids of users which visited this topic.
+	 */
+	private Set<Integer> viewersList;
 
 	/**
 	 * Constructor.
@@ -71,6 +77,7 @@ public class Topic {
 		this.topicDate = new Date(System.currentTimeMillis());
 		this.keyWords = keyWords;
 		this.person = person;
+		this.viewersList = new HashSet<Integer>();
 	}
 
 	/**
@@ -176,13 +183,25 @@ public class Topic {
 		this.keyWords = keywords;
 	}
 
+	public void addViewerToList(Integer idOfUser) {
+		this.viewersList.add(idOfUser);
+	}
+
+	@Column
+	@ElementCollection(targetClass = Integer.class)
+	public Set<Integer> getViewersList() {
+		return viewersList;
+	}
+
+	public void setViewersList(Set<Integer> viewersList) {
+		this.viewersList = viewersList;
+	}
+
 	@Override
 	public String toString() {
 		return "Topic [idTopic=" + idTopic + ", topicName=" + topicName + ", topicDescription=" + topicDescription
-				+ ", topicDate=" + topicDate + ", keyWords=" + keyWords + ", person=" + person + "]";
+				+ ", topicDate=" + topicDate + ", keyWords=" + keyWords + ", person=" + person + ", viewersList="
+				+ viewersList + "]";
 	}
-
-	
-	
 
 }

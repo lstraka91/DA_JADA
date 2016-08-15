@@ -1,12 +1,10 @@
 package sk.tsystems.jada.forum.entity.services;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.Topic;
 
 public class TopicService {
@@ -55,7 +53,7 @@ public class TopicService {
 		EntityManager em = JpaHelper.getEntityManager();
 		topic = em.find(Topic.class, idTopic);
 		if (topic != null) {
-			topic.setTopicName(topicName.toLowerCase());
+			topic.setTopicName(topicName);
 		}
 		JpaHelper.commitTransaction();
 	}
@@ -83,6 +81,7 @@ public class TopicService {
 	 * @return
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayList<Topic> showTopics() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select t from Topic t");
@@ -103,7 +102,7 @@ public class TopicService {
 	public int getIdTopicByName(String topicName) {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT idTopic FROM Topic t WHERE t.topicName=:topicName");
-		query.setParameter("topicName", topicName.toLowerCase());
+		query.setParameter("topicName", topicName);
 		if (query.getResultList().isEmpty()) {
 			return 0;
 		} else {
@@ -144,4 +143,55 @@ public class TopicService {
 			return (Topic) query.getResultList().get(0);
 		}
 	}
+
+	/**
+	 * Use to get topics ordered by date.
+	 * 
+	 * @return ArrayList of objects of class Topic, ordered by date.
+	 */
+	@SuppressWarnings("unchecked")
+	public ArrayList<Topic> getTopicsOrderDate() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select t from Topic t order by t.topicDate desc");
+		if (query.getResultList() != null) {
+			ArrayList<Topic> resultList = (ArrayList<Topic>) query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Use to get all commented topics in descending order depending on amount
+	 * of comments.
+	 * 
+	 * @return ArrayList of objects of class Topic, which have been commented at
+	 *         least once.
+	 */
+	@SuppressWarnings("unchecked")
+	public ArrayList<Topic> getTopicsOrderComments() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createNativeQuery(
+				"select * from Topic t where t.idtopic in (select topic_idtopic from (select topic_idtopic, count(*) as commentsNumber from Commentary group by topic_idtopic order by commentsNumber desc))",
+				Topic.class);
+		if (query.getResultList() != null) {
+			ArrayList<Topic> resultList = (ArrayList<Topic>) query.getResultList();
+
+			return resultList;
+		} else {
+			return null;
+		}
+	}
+
+	public void addVisitorToTopic(Topic topic, Integer id) {
+		JpaHelper.beginTransaction();
+		Topic existingTopic = findTopicById(topic.getIdTopic());
+		if (existingTopic != null) {
+			if (!existingTopic.getViewersList().contains(id)) {
+				existingTopic.addViewerToList(id);
+				JpaHelper.commitTransaction();
+			}
+		}
+	}
+
 }

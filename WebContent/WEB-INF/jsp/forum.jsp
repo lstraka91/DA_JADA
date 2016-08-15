@@ -4,6 +4,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date" />
+<jsp:useBean id="topicService"
+	class="sk.tsystems.jada.forum.entity.services.TopicService" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,21 +27,34 @@
 			<div class="panel-body">
 				<ul class="nav nav-tabs navbar-right">
 					<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-					<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top viewed</a></li>
-					<li><a href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most commented</a></li>
+					<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top
+							viewed</a></li>
+					<li><a
+						href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+							commented</a></li>
 				</ul>
 				<!-- 				<table id="topicList" class="table table-inverse"> -->
 				<table class="table table-striped table-inverse">
-					<thead></thead>
 					<c:forEach items="${topics}" var="topic">
 						<tr>
-							<td>Views Comments</td>
-							<td colspan="2"><a
+							<td><div class="text-center">
+									<div>
+										<div class="center">
+											${topic.viewersList.stream().count()}</div>
+										<div>Views</div>
+
+									</div>
+									<div class="center">
+										<div>3 - not working</div>
+										<div>Comments</div>
+									</div>
+								</div></td>
+							<td colspan="10"><a
 								href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
 
 								<p>${topic.topicDescription}</p> <c:forEach
 									items="${topic.keyWords}" var="keyword">
-									<button class="btn btn-sm-info">${keyword.keyWord }</button>
+									<button class="btn btn-sm-info disabled">${keyword.keyWord }</button>
 								</c:forEach></td>
 							<td>(${topic.person.personName })</td>
 
@@ -51,7 +66,8 @@
 										</p>
 									</c:when>
 									<c:otherwise>
-										<time class="timeago" datetime="${topic.topicDate}">just now</time>
+										<time class="timeago" datetime="${topic.topicDate}">just
+										now</time>
 									</c:otherwise>
 								</c:choose></td>
 
@@ -77,15 +93,15 @@
 		jQuery(document).ready(function() {
 			jQuery("time.timeago").timeago();
 		});
-		
+
 		$(function() {
-			   $("li").click(function() {
-			      // remove classes from all
-			      $("li").removeClass("active");
-			      // add class to the one we clicked
-			      $(this).addClass("active");
-			   });
+			$("li").click(function() {
+				// remove classes from all
+				$("li").removeClass("active");
+				// add class to the one we clicked
+				$(this).addClass("active");
 			});
+		});
 	</script>
 </body>
 </html>

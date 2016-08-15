@@ -28,6 +28,7 @@ public class CommentaryService {
 	 * 
 	 * @return List<Commentary>
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Commentary> selectAllComent() {
 
 		JpaHelper.beginTransaction();
@@ -42,6 +43,7 @@ public class CommentaryService {
 	 * 
 	 * @return List<Commentary>
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Commentary> selectAllComentByTopic(Topic topic) {
 
 		JpaHelper.beginTransaction();
@@ -62,6 +64,7 @@ public class CommentaryService {
 	 * 
 	 * @return List<Commentary>
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Commentary> selectAllComentByPerson(Person person) {
 
 		JpaHelper.beginTransaction();
@@ -110,6 +113,7 @@ public class CommentaryService {
 	 * @param id
 	 * @return return Commentary object or null if select failed and have no result for the current Id
 	 */
+	@SuppressWarnings("unchecked")
 	public Commentary selectCommentById(int id){
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
