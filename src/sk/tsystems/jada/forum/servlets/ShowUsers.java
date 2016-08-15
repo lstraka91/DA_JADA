@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import oracle.net.aso.i;
 import sk.tsystems.jada.forum.entity.Admin;
 import sk.tsystems.jada.forum.entity.Person;
+import sk.tsystems.jada.forum.entity.Topic;
 import sk.tsystems.jada.forum.entity.services.AdminService;
 import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import sk.tsystems.jada.forum.entity.services.PersonService;
@@ -25,34 +26,72 @@ import sk.tsystems.jada.forum.entity.services.PersonService;
 @WebServlet("/ShowUsers")
 public class ShowUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShowUsers() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ShowUsers() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
 		HttpSession session = request.getSession();
 
-		AdminService service = new AdminService();
-		ArrayList<Admin> admins = new ArrayList<>();
-		admins = service.showAllAdmins();
-		request.setAttribute("admins", admins);
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select p from Person p ");
+		ArrayList<Person> persons = (ArrayList<Person>) query.getResultList();
+		request.setAttribute("persons", persons);
 
-		forwardToList(request, response);
+		for (int i = 0; i < persons.size(); i++) {
+			System.out.println("prikazovy riadok : " + persons.get(i).getPersonName());
+		}
 
-	}
-	
-	
-
-	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/jsp/showUsers.jsp").forward(request, response);
+
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		Person person = new Person();
+		EntityManager em = JpaHelper.getEntityManager();
+		
+		if (request.getParameter("delete") != null) {
+
+			JpaHelper.beginTransaction();
+			person = new PersonService().getPersonByName(request.getParameter("delete"));
+			if (person != null) {
+				em.remove(person);
+			}
+			JpaHelper.commitTransaction();
+		}
+
+		else if (request.getParameter("activate") != null) {
+			JpaHelper.beginTransaction();
+			person = new PersonService().getPersonByName(request.getParameter("activate"));
+			System.out.println(person.getFullName()+  "   " + person.getBirthday());
+			if (person != null) {
+				person.setActive(true);
+				System.out.println("****-----*****----*****---***---**-*-*-*-*-*-*");
+			}
+			JpaHelper.commitTransaction();
+
+			System.out.println("-----------------------------------------------------------");
+		}
+
+		doGet(request, response);
+	}
+
 }
