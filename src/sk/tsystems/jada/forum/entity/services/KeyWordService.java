@@ -37,24 +37,15 @@ public class KeyWordService {
 	 */
 	public KeyWord findKeyWord(String input) {
 		KeyWord kw;
-		// try {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT k from KeyWord k WHERE k.keyWord=:input");
 		query.setParameter("input", input);
-		// System.out.println(query.getResultList());
 		if (!query.getResultList().isEmpty()) {
 			kw = (KeyWord) query.getResultList().get(0);
-			// return kw;
 		} else {
 			kw = new KeyWord(input);
 			saveKeyWord(kw);
-			// return kw;
 		}
-		// } catch (NoResultException e) {
-		// System.out.println("KeyWord " + input + " is not in database");
-		// kw = new KeyWord(input);
-		// saveKeyWord(kw);
-		// }
 		return kw;
 	}
 
