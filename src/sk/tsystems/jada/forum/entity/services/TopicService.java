@@ -1,10 +1,13 @@
 package sk.tsystems.jada.forum.entity.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+
+import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Topic;
 
 public class TopicService {
@@ -186,11 +189,27 @@ public class TopicService {
 	public void addVisitorToTopic(Topic topic, Integer id) {
 		JpaHelper.beginTransaction();
 		Topic existingTopic = findTopicById(topic.getIdTopic());
+		System.out.println("existujuci topic "+existingTopic);
 		if (existingTopic != null) {
 			if (!existingTopic.getViewersList().contains(id)) {
 				existingTopic.addViewerToList(id);
 				JpaHelper.commitTransaction();
 			}
+		}
+	}
+	
+	public List<Topic> selectAllTopicsByPerson(Person person) {
+
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT t FROM Topic t where t.person.idPerson = :idPerson ");
+		query.setParameter("idPerson", person.getIdPerson());
+
+		if (!query.getResultList().isEmpty()) {
+			List<Topic> resultList = query.getResultList();
+			return resultList;
+		} else {
+			return null;
 		}
 	}
 
