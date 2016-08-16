@@ -115,6 +115,14 @@
 														now</time>
 													</c:otherwise>
 												</c:choose></td>
+											<td><c:if
+													test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
+													<a href="editTopic?idTopic=${topic.idTopic}"
+														class="btn btn-warning"> <span
+														class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+														Edit
+													</a>
+												</c:if></td>
 										</tr>
 									</c:forEach>
 								</tbody>
