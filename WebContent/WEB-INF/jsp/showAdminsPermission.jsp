@@ -14,6 +14,8 @@
 
 
 		<div class="container">
+			<h3 class="text-center formHead">Admin Permisions</h3>
+
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
@@ -82,9 +84,9 @@
 
 									</c:choose></td>
 								<td><a href="UpdateAdmin?adminName=${admins.personName}"
-									class="btn btn-warning"> <span
+									class="btn btn-block btn-warning"> <span
 										class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-										Edit
+										Edit 
 								</a></td>
 							</tr>
 						</c:forEach>
