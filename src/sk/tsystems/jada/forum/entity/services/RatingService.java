@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import sk.tsystems.jada.forum.entity.Commentary;
+import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Rating;
 
 public class RatingService {
@@ -136,6 +138,21 @@ public class RatingService {
 		} else {
 
 			return 0;
+		}
+	}
+	
+	public List<Rating> selectAllRatingsByPerson(Person person) {
+
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT r FROM Rating r where r.ratingIdCompositePK.idPerson=:rid ");
+		query.setParameter("rid", person.getIdPerson());
+
+		if (!query.getResultList().isEmpty()) {
+			List<Rating> resultList = query.getResultList();
+			return resultList;
+		} else {
+			return null;
 		}
 	}
 }
