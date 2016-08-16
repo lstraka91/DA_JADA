@@ -2,6 +2,10 @@ package sk.tsystems.jada.forum.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import sk.tsystems.jada.forum.entity.Person;
@@ -11,14 +15,36 @@ import sk.tsystems.jada.forum.entity.services.TopicService;
 
 public class TopicTest {
 
-	TopicService ts = new TopicService();
+	TopicService tcs = new TopicService();
 	PersonService ps = new PersonService();
-	Person person = ps.getPersonByName("Tomas");
+	TestService ts = new TestService();
+	
+	@Before
+	public void beforeTesting(){
+		ts.createPersons();
+		ts.createKeyWords();
+		ts.createTopics();
+	}
+	
+	@After
+	public void afterTesting(){
+		ts.removePersons();
+		ts.removekeyWords();
+		ts.removeTopics();
+	}
+
+	
 
 	@Test
 	public void testAddTopic() {
-		ts.addTopic(createTopic());
-		assertNotNull(ts.findTopicById(ts.getIdTopicByName("mytesttopic")));
+		Topic t = new Topic();
+		t.setTopicName("myTestTopic4");
+		t.setTopicDescription("description of fourth test topic");
+		Person pt2 = ps.getPersonByName("TestPerson3");
+		t.setPerson(pt2);
+		t.setTopicDate(new Date());
+		tcs.addTopic(t);
+		assertNotNull(tcs.findTopicById(tcs.getIdTopicByName("myTestTopic4")));
 	}
 
 	// @Test
@@ -31,50 +57,40 @@ public class TopicTest {
 
 	@Test
 	public void testUpdateTopicName() {
-		ts.addTopic(createTopic());
-		int id = ts.getIdTopicByName("mytesttopic");
-		ts.updateTopicName(id, "nehehe");
-		Topic t = ts.findTopicById(id);
-		assertEquals("nehehe", t.getTopicName());
+		int id = tcs.getIdTopicByName("myTestTopic2");
+		tcs.updateTopicName(id, "changed name");
+		Topic t = tcs.findTopicById(id);
+		assertEquals("changed name", t.getTopicName());
 
 	}
 
 	@Test
 	public void testUpdateTopicDescription() {
-		ts.addTopic(createTopic());
-		int id = ts.getIdTopicByName("mytesttopic");
-		ts.updateTopicDescrition(id, "new description");
-		Topic tt = ts.findTopicById(id);
-		assertEquals("new description", tt.getTopicDescription());
+		int id = tcs.getIdTopicByName("myTestTopic3");
+		tcs.updateTopicDescrition(id, "updated description of third topic");
+		Topic tt = tcs.findTopicById(id);
+		assertEquals("updated description of third topic", tt.getTopicDescription());
 	}
 
-	@Test
-	public void testShowTopics() {
-		assertNotNull(ts.showTopics());
-	}
+//	@Test
+//	public void testShowTopics() {
+//		assertNotNull(tcs.showTopics());
+//	}
 
 	@Test
 	public void testGetIdTopicByName() {
-		ts.addTopic(createTopic());
-		int id = ts.getIdTopicByName("mytesttopic");
-		Topic tc = ts.findTopicById(id);
+		int id = tcs.getIdTopicByName("myTestTopic1");
+		Topic tc = tcs.findTopicById(id);
 		assertEquals(id, tc.getIdTopic());
 	}
 
 	@Test
 	public void testFindTopicById() {
-		ts.addTopic(createTopic());
-		int id = ts.getIdTopicByName("mytesttopic");
-		Topic tr = ts.findTopicById(id);
-		assertEquals("mytesttopic", tr.getTopicName());
+		int id = tcs.getIdTopicByName("myTestTopic3");
+		Topic tr = tcs.findTopicById(id);
+		assertEquals("myTestTopic3", tr.getTopicName());
 	}
 
-	private Topic createTopic() {
-		Topic topic = new Topic();
-		topic.setTopicName("myTestTopic");
-		topic.setPerson(person);
-		topic.setTopicDescription("description of this topic");
-		return topic;
-	}
+
 
 }
