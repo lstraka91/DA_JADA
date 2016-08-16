@@ -98,6 +98,7 @@ public class PersonService {
 	private void insertPerson(Person person) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
+		person.setPassword(encryptPassword(person.getPassword()));
 		em.persist(person);
 		JpaHelper.commitTransaction();
 	}

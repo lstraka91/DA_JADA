@@ -78,7 +78,7 @@ public class Person {
 	public Person(String personName, String password, String fullName, String email, Date birthday) {
 		super();
 		this.personName = personName;
-		this.password = PersonService.encryptPassword(password);
+		this.password = password;
 		this.fullName = fullName;
 		this.email = email;
 		this.birthday = birthday;
@@ -110,7 +110,7 @@ public class Person {
 	}
 
 	public void setPassword(String password) {
-		this.password = PersonService.encryptPassword(password);
+		this.password = password;
 	}
 
 	public String getEmail() {
