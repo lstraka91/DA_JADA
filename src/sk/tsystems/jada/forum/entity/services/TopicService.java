@@ -36,7 +36,7 @@ public class TopicService {
 		Topic topic = new Topic();
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		topic = em.find(Topic.class, idTopic);
+		topic = findTopicById(idTopic);
 		if (topic != null) {
 			em.remove(topic);
 		}
@@ -199,6 +199,7 @@ public class TopicService {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Topic> selectAllTopicsByPerson(Person person) {
 
 		JpaHelper.beginTransaction();
