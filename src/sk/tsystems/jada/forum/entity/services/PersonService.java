@@ -5,11 +5,13 @@ package sk.tsystems.jada.forum.entity.services;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import sk.tsystems.jada.forum.entity.Person;
+import sk.tsystems.jada.forum.entity.Topic;
 
 public class PersonService {
 
@@ -135,7 +137,9 @@ public class PersonService {
 
 	/**
 	 * Encryption of User password with MD5 algorithm
-	 * @param password password to encrypt
+	 * 
+	 * @param password
+	 *            password to encrypt
 	 * @return String representation of encrypted password
 	 */
 	public static String encryptPassword(String password) {
@@ -153,6 +157,50 @@ public class PersonService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public ArrayList<Person> getPersonsOrderByDtype() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select p from Person p order by dtype ");
+		if (query.getResultList() != null) {
+			ArrayList<Person> resultList = (ArrayList<Person>) query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
+	}
+
+	public ArrayList<Person> getPersonsOrderByActiv() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select p from Person p order by active ");
+		if (query.getResultList() != null) {
+			ArrayList<Person> resultList = (ArrayList<Person>) query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
+	}
+
+	public ArrayList<Person> getPersonsOrderByRegistrationDate() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select p from Person p order by registrationDate desc ");
+		if (query.getResultList() != null) {
+			ArrayList<Person> resultList = (ArrayList<Person>) query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
+	}
+
+	public ArrayList<Person> getPersonsOrderByPersonName() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select p from Person p order by p.personName  ");
+		if (query.getResultList() != null) {
+			ArrayList<Person> resultList = (ArrayList<Person>) query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
 	}
 
 }

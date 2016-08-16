@@ -2,6 +2,7 @@ package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -19,6 +20,7 @@ import sk.tsystems.jada.forum.entity.Topic;
 import sk.tsystems.jada.forum.entity.services.AdminService;
 import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import sk.tsystems.jada.forum.entity.services.PersonService;
+import sk.tsystems.jada.forum.entity.services.TopicService;
 
 /**
  * Servlet implementation class ShowUsers
@@ -48,12 +50,34 @@ public class ShowUsers extends HttpServlet {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p ");
 		ArrayList<Person> persons = (ArrayList<Person>) query.getResultList();
-		request.setAttribute("persons", persons);
+		
+		String action = request.getParameter("ordebBy");
+		if (action != null) {
+			if ("dType".equals(action)) {
+				persons.clear();
+				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByDtype();
+			}
+			if ("activ".equals(action)) {
+				persons.clear();
+				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByActiv();
 
-		for (int i = 0; i < persons.size(); i++) {
-			System.out.println("prikazovy riadok : " + persons.get(i).getPersonName());
+			}
+			if ("rDate".equals(action)) {
+				persons.clear();
+				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByRegistrationDate();
+
+			}
+			if ("name".equals(action)) {
+				persons.clear();
+				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByPersonName();
+
+			}
+			
 		}
 
+		
+		
+		request.setAttribute("persons", persons);
 		request.getRequestDispatcher("/WEB-INF/jsp/showUsers.jsp").forward(request, response);
 
 	}
