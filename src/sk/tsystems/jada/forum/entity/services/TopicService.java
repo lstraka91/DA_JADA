@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Topic;
 
@@ -85,7 +84,7 @@ public class TopicService {
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public ArrayList<Topic> showTopics() {
+	public ArrayList<Topic> getAllTopics() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select t from Topic t");
 		if (query.getResultList() != null) {
@@ -189,7 +188,9 @@ public class TopicService {
 	public void addVisitorToTopic(Topic topic, Integer id) {
 		JpaHelper.beginTransaction();
 		Topic existingTopic = findTopicById(topic.getIdTopic());
-		System.out.println("existujuci topic "+existingTopic);
+		if (existingTopic.getPerson().getIdPerson() == id) {
+			return;
+		}
 		if (existingTopic != null) {
 			if (!existingTopic.getViewersList().contains(id)) {
 				existingTopic.addViewerToList(id);
@@ -197,7 +198,7 @@ public class TopicService {
 			}
 		}
 	}
-	
+
 	public List<Topic> selectAllTopicsByPerson(Person person) {
 
 		JpaHelper.beginTransaction();
@@ -207,6 +208,20 @@ public class TopicService {
 
 		if (!query.getResultList().isEmpty()) {
 			List<Topic> resultList = query.getResultList();
+			return resultList;
+		} else {
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Topic> getTopicsOrderViews() {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select t from Topic t");
+		if (query.getResultList() != null) {
+			ArrayList<Topic> resultList = (ArrayList<Topic>) query.getResultList();
+			resultList.sort((t1, t2) -> t1.getViewersList().size() - t2.getViewersList().size());
+			// Collections.reverse(resultList);
 			return resultList;
 		} else {
 			return null;

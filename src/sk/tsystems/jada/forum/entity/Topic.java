@@ -2,6 +2,7 @@ package sk.tsystems.jada.forum.entity;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import sk.tsystems.jada.forum.entity.services.CommentaryService;
 
 @Entity
 public class Topic {
@@ -59,7 +63,7 @@ public class Topic {
 	 * Constructor.
 	 */
 	public Topic() {
-
+		this.keyWords = null;
 	}
 
 	/**
@@ -78,6 +82,25 @@ public class Topic {
 		this.keyWords = keyWords;
 		this.person = person;
 		this.viewersList = new HashSet<Integer>();
+	}
+
+	@Transient
+	public int getNumberOfComments() {
+		List<Commentary> commentsList = new CommentaryService().selectAllComentByTopic(this);
+		if (commentsList != null) {
+			return commentsList.size();
+		} else {
+			return 0;
+		}
+	}
+
+	@Transient
+	public int getNumberOfViews() {
+		if (viewersList != null) {
+			return viewersList.size();
+		} else {
+			return 0;
+		}
 	}
 
 	/**

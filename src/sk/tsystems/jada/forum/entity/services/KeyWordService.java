@@ -36,30 +36,25 @@ public class KeyWordService {
 	 * @return
 	 */
 	public KeyWord findKeyWord(String input) {
-		KeyWord kw = null;
-		try {
-			EntityManager em = JpaHelper.getEntityManager();
-			Query query = em.createQuery("SELECT k from KeyWord k WHERE k.keyWord=:input");
-			query.setParameter("input", input);
-			System.out.println(query.getResultList());
-			kw = (KeyWord) query.getSingleResult();
-		} catch (NoResultException e) {
-			System.out.println("KeyWord " + input + " is not in database");
-			kw = createKeyWord(input);
+		KeyWord kw;
+		// try {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT k from KeyWord k WHERE k.keyWord=:input");
+		query.setParameter("input", input);
+		// System.out.println(query.getResultList());
+		if (!query.getResultList().isEmpty()) {
+			kw = (KeyWord) query.getResultList().get(0);
+			// return kw;
+		} else {
+			kw = new KeyWord(input);
 			saveKeyWord(kw);
+			// return kw;
 		}
-		return kw;
-	}
-
-	/**
-	 * Helper function (create new object - keyword)
-	 * 
-	 * @param keyWord
-	 * @return
-	 */
-	private KeyWord createKeyWord(String keyWord) {
-		KeyWord kw = new KeyWord();
-		kw.setKeyWord(keyWord);
+		// } catch (NoResultException e) {
+		// System.out.println("KeyWord " + input + " is not in database");
+		// kw = new KeyWord(input);
+		// saveKeyWord(kw);
+		// }
 		return kw;
 	}
 

@@ -31,7 +31,7 @@
 		<div class="col-md-2 col-lg-2">
 			<img src="images/qaa.png" alt="JADA" class="img-responsive">
 		</div>
-		<div class="col-md-9 col-lg-9">
+		<div class="col-md-8 col-lg-8">
 			<h1 class="text-center text-primary jumboHead">JaDa - FORUM</h1>
 		</div>
 	</div>

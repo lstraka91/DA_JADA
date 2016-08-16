@@ -41,25 +41,24 @@ public class NewTopic extends HttpServlet {
 			newTopic.setTopicName(request.getParameter("topicName"));
 			newTopic.setTopicDescription(request.getParameter("topicDesc"));
 
-			System.out.println("keywords: " + request.getParameter("keyWords"));
-
 			String keyWordsString = request.getParameter("keyWords");
-			// List<String> elephantList = Arrays.asList(str.split(","));
 
 			if (keyWordsString != null) {
 				List<String> keyWordsList = Arrays.asList(keyWordsString.split(","));
 				Set<KeyWord> kWSet = new HashSet<>();
-				for (String kWString : keyWordsList) {
-					kWSet.add(new KeyWordService().findKeyWord(kWString));
-				}
+				if (!keyWordsList.isEmpty())
+					for (String kWString : keyWordsList) {
+						if (kWString != null && !kWString.isEmpty()) {
+							KeyWord tempKW = new KeyWordService().findKeyWord(kWString);
+							kWSet.add(tempKW);
+						}
+					}
 				newTopic.setKeyWords(kWSet);
 			}
-
-			System.out.println(newTopic.toString());
 			new TopicService().addTopic(newTopic);
 			response.sendRedirect("/JADA_Tsystems_TeamProject/newtopic");
-
 		}
+		session.setAttribute("topics", null);
 
 		forwardToList(request, response);
 

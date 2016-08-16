@@ -2,6 +2,7 @@ package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,7 @@ import sk.tsystems.jada.forum.entity.services.TopicService;
 public class Forum extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,23 +30,27 @@ public class Forum extends HttpServlet {
 
 		List<Topic> topics = new ArrayList<>();
 
-		topics = (List<Topic>) new TopicService().getTopicsOrderDate();
+		topics = (List<Topic>) session.getAttribute("topics");
+		if (topics == null) {
+			topics = (List<Topic>) new TopicService().getTopicsOrderDate();
+		}
 
 		String action = request.getParameter("action");
 		if (action != null) {
 			if ("new".equals(action)) {
-				topics.clear();
-				topics = (List<Topic>) new TopicService().getTopicsOrderDate();
+				topics.sort((t1, t2) -> t1.getTopicDate().compareTo(t2.getTopicDate()));
+				session.setAttribute("sorting", 1);
 			}
 			if ("top".equals(action)) {
-				topics.clear();
-				topics = (List<Topic>) new TopicService().getTopicsOrderComments();
-
+				topics.sort((t1, t2) -> t1.getNumberOfViews() - t2.getNumberOfViews());
+				session.setAttribute("sorting", 2);
 			}
 			if ("mostcommented".equals(action)) {
-				topics.clear();
-//				topics = (List<Topic>) new TopicService().get();
+				topics.sort((t1, t2) -> t1.getNumberOfComments() - t2.getNumberOfComments());
+				session.setAttribute("sorting", 3);
 			}
+			Collections.reverse(topics);
+
 		}
 		request.setAttribute("topics", topics);
 
