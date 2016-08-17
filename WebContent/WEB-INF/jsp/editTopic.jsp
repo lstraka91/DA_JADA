@@ -19,41 +19,51 @@
 <body>
 	<div class="container">
 		<jsp:include page="header.jsp"></jsp:include>
-		Topic name :
-		<div class="row">
-			</label>
-			<div class="col-sm-9">
-				<input type="text" id="topicname" name="topicname"
-					value="${editedTopic.topicName}" class="form-control input-lg">
-			</div>
-		</div>
+		<div class="container">
+			<form method="get">
 
-		Topic description :
-		<div class="row">
-			<div class="col-sm-9">
-				<input type="text" id="topicdescription" name="topicdescription"
-					value="${editedTopic.topicDescription}"
-					class="form-control input-lg">
-			</div>
-		</div>
+				Topic name :
+				<div class="row">
+					</label>
+					<div class="col-sm-9">
+						<input type="text" id="topicname"
+							name="topicname" value="${currentTopic.topicName}"
+							class="form-control input-lg">
+					</div>
+				</div>
 
-		Topic keywords
-		<div class="row">
-			<div class="col-sm-9">
-				<ul id="keyWords">
-					<c:forEach items="${currentTopic.keyWords}" var="keyword">
-						<li class="btn btn-sm-info">${keyword.keyWord }</li>
-					</c:forEach>
-				</ul>
-			</div>
-		</div>
+				Topic description :
+				<div class="row">
+					<div class="col-sm-9">
+						<input type="text" id="topicdescription"
+							name="topicdescription" value="${currentTopic.topicDescription}"
+							class="form-control input-lg">
+					</div>
+				</div>
 
-		<form>
-			<button type="submit" class="btn btn-success green">
-				<span class="glyphicon glyphicon-comment " aria-hidden="true"></span>
-				Save
-			</button>
-		</form>
+				Topic keywords
+				<div class="row">
+					<div class="col-sm-9">
+						<ul id="keyWords">
+							<c:forEach items="${currentTopic.keyWords}"
+								var="keyword">
+								<li class="btn btn-sm-info">
+									${keyword.keyWord }
+								</li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+				<input type="hidden" name="idTopic" value="${currentTopic.idTopic}">
+
+				<button type="submit" class="btn btn-success green">
+					<span class="glyphicon glyphicon-comment "
+						aria-hidden="true">
+					</span>
+					Save
+				</button>
+			</form>
+		</div>
 	</div>
 
 	<script
