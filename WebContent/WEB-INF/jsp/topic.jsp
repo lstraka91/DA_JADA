@@ -106,12 +106,7 @@
 				</center>
 			</c:otherwise>
 		</c:choose>
-		<hr>
-		<div class="content-footer">
-			<p>
-				JadaForum © - 2016 <br> Powered By <a href="#" target="_blank">JaDA</a>
-			</p>
-		</div>
+		<jsp:include page="footer.jsp"></jsp:include>
 
 	</div>
 	<script src="//code.jquery.com/jquery-1.12.3.js"></script>

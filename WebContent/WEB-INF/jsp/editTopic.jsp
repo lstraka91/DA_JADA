@@ -87,6 +87,6 @@
 	var jsArray = [<%for (int i = 0; i < keyWordStrings.size(); i++) {%>"<%=keyWordStrings.get(i)%>"<%=i + 1 < keyWordStrings.size() ? "," : ""%><%}%>];
 </script>
 	<script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
-
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

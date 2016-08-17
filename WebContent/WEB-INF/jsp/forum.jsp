@@ -145,5 +145,6 @@
 	<!-- 	<script type="text/javascript" src="js/jquery.min.js"></script> -->
 	<script type="text/javascript" src="js/jquery.timeago.js"></script>
 	<script type="text/javascript" src="js/forumScripts.js"></script>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

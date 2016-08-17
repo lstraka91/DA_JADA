@@ -28,7 +28,7 @@
 							<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
 							<h2 class="modal-title text-center formHead">
 								Edit Admin permission user:<b> ${adminName }</b>
-							</h4>
+								</h4>
 						</div>
 						<div class="modal-body">
 
@@ -36,10 +36,10 @@
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<form method="get" class="form-horizontal">
-											<input type="hidden" name="adminName" value="${adminName}">
-											<div class="panel panel-default">
-												<div class="panel-body">
-										<div class="form-group">
+										<input type="hidden" name="adminName" value="${adminName}">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="form-group">
 													<c:choose>
 														<c:when test="${admin.activationUserPernmision == true}">
 
@@ -127,26 +127,21 @@
 												</div>
 											</div>
 										</div>
-											<div class="text-center">
-												<div
-													class="btn-group ">
-													<input type="submit"
-														name="save" value="Save changes"
-														class="btn btn-primary btn-block">
-													<a
-														href="/JADA_Tsystems_TeamProject/showAdminsPermission"
-														class="btn btn-info btn-block">
-														Cancel
-													</a>
-												</div>
+										<div class="text-center">
+											<div class="btn-group ">
+												<input type="submit" name="save" value="Save changes"
+													class="btn btn-primary btn-block"> <a
+													href="/JADA_Tsystems_TeamProject/showAdminsPermission"
+													class="btn btn-info btn-block"> Cancel </a>
 											</div>
+										</div>
 									</form>
 								</div>
-								</div>
 							</div>
-								<div class="modal-footer">
-									<a href="/JADA_Tsystems_TeamProject/showAdminsPermission"
-										class="btn btn-default">Close</a>
+						</div>
+						<div class="modal-footer">
+							<a href="/JADA_Tsystems_TeamProject/showAdminsPermission"
+								class="btn btn-default">Close</a>
 
 						</div>
 					</div>
@@ -154,6 +149,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 	$(window).load(function() {

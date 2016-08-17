@@ -53,6 +53,7 @@
 
 	</div>
 	<script src="js/login.js"></script>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
 

@@ -103,6 +103,7 @@
 	<script src="js/usernameExists.js"></script>
 	<script src="js/checkPasswordStrong.js"></script>
 	<script src="js/validatePassword.js"></script>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
 

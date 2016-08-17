@@ -52,7 +52,7 @@
 					<tbody>
 						<c:forEach items="${persons}" var="persons" varStatus="theCount">
 							<tr>
-								
+
 								<td><c:choose>
 										<c:when
 											test="${persons.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
@@ -63,10 +63,7 @@
 											<img src="images/user.ico" alt="user" height="25" width="25">
 										</c:otherwise>
 
-									</c:choose>
-
-								<b><i>${persons.personName}</i></b>
-								</td>
+									</c:choose> <b><i>${persons.personName}</i></b></td>
 
 								<td>${persons.email}</td>
 
@@ -97,23 +94,12 @@
 											</form>
 										</c:otherwise>
 									</c:choose></td>
-
 							</tr>
 						</c:forEach>
 					</tbody>
 
 				</table>
-
-
-
-				<button type="submit" class="btn btn-primary">Submit</button>
-
-
-
-
-
-
-
 			</div>
+			<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

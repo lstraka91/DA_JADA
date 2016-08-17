@@ -86,7 +86,7 @@
 							<h2 class="text-center formHead">Change password</h2>
 							<br>
 							<div class="form-group row">
-							<div id="oldpassword"></div>
+								<div id="oldpassword"></div>
 								<label for="oldpass" class="col-form-label"> <b>Old
 										password:</b>
 								</label> <input type="password" placeholder="Insert old password"
@@ -99,7 +99,7 @@
 								</label> <input type="password" placeholder="Insert new password"
 									id="password" name="password" class="form-control input-lg"
 									required>
-									<div id="passCheck"></div>
+								<div id="passCheck"></div>
 							</div>
 							<div class="form-group row">
 								<label for="confirm_password" class="col-form-label"> <b>New
@@ -115,8 +115,9 @@
 					<center>
 						<input type="button" id="edit" value="Edit profile"
 							class="btn btn-lg btn-primary"> <input type="submit"
-							class="btn btn-lg btn-primary" id="save" name="save" value="Save changes">
-						<input type="button" id="changePass" value="Change password"
+							class="btn btn-lg btn-primary" id="save" name="save"
+							value="Save changes"> <input type="button"
+							id="changePass" value="Change password"
 							class="btn btn-lg btn-warning "> <input type="button"
 							id="back" value="Cancel" class="btn btn-lg btn-primary">
 					</center>
@@ -127,5 +128,6 @@
 	<script src='js/profileForm.js'></script>
 	<script src="js/checkPasswordStrong.js"></script>
 	<script src="js/validatePassword.js"></script>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

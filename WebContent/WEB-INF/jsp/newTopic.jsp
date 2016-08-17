@@ -48,6 +48,13 @@
 			</c:when>
 			<c:otherwise>
 				<center>
+				<center>
+					<div class="alert alert-warning" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign"
+							aria-hidden="true"></span> <span class="sr-only">Info:</span>You
+						must be logged in to create topic !!! <a href="login">Go to login page </a>or<a href="registration"> sign up as new user</a>
+					</div>
+				</center>
 					<h4>You must be logged in to ask a question</h4>
 				</center>
 			</c:otherwise>
@@ -75,6 +82,6 @@
 	var jsArray = [<%for (int i = 0; i < keyWordStrings.size(); i++) {%>"<%=keyWordStrings.get(i)%>"<%=i + 1 < keyWordStrings.size() ? "," : ""%><%}%>];
 </script>
 	<script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
-
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

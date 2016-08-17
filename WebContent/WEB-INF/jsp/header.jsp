@@ -105,8 +105,7 @@
 								class="glyphicon glyphicon-user"></span>
 								${sessionScope.user.fullName } </a></li>
 						<li><a href="logout"><span
-								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
-
+								class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
 					</c:when>
 					<c:otherwise>
 
