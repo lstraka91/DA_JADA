@@ -40,7 +40,6 @@ public class Forum extends HttpServlet {
 		}
 		
 		if (request.getParameter("idTopicDelete") != null) {
-			System.out.println("ta co do pice kurwa tu....");
 			TopicService ts = new TopicService();
 			int idTopicDelete = Integer.parseInt(request.getParameter("idTopicDelete"));
 			Topic topicDelete = ts.findTopicById(idTopicDelete);
