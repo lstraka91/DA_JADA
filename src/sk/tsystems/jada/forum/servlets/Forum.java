@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sk.tsystems.jada.forum.entity.Topic;
+import sk.tsystems.jada.forum.entity.services.PersonService;
 import sk.tsystems.jada.forum.entity.services.TopicService;
 
 /**
@@ -30,9 +31,12 @@ public class Forum extends HttpServlet {
 
 		List<Topic> topics = new ArrayList<>();
 
+		session.setAttribute("countOfNotifi", new PersonService().getNumberOfActivationRequests());
+
 		topics = (List<Topic>) session.getAttribute("topics");
 		if (topics == null) {
 			topics = (List<Topic>) new TopicService().getTopicsOrderDate();
+			session.setAttribute("sorting", 1);
 		}
 
 		String action = request.getParameter("action");
@@ -60,7 +64,7 @@ public class Forum extends HttpServlet {
 
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/forum.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/forum.jsp").include(request, response);
 	}
 
 }

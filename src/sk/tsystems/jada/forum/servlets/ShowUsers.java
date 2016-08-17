@@ -46,11 +46,12 @@ public class ShowUsers extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		HttpSession session = request.getSession();
+		session.setAttribute("countOfNotifi", new PersonService().getNumberOfActivationRequests());
 
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p ");
 		ArrayList<Person> persons = (ArrayList<Person>) query.getResultList();
-		
+
 		String action = request.getParameter("ordebBy");
 		if (action != null) {
 			if ("dType".equals(action)) {
@@ -72,11 +73,9 @@ public class ShowUsers extends HttpServlet {
 				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByPersonName();
 
 			}
-			
+
 		}
 
-		
-		
 		request.setAttribute("persons", persons);
 		request.getRequestDispatcher("/WEB-INF/jsp/showUsers.jsp").forward(request, response);
 
@@ -88,10 +87,10 @@ public class ShowUsers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		Person person = new Person();
 		EntityManager em = JpaHelper.getEntityManager();
-		
+
 		if (request.getParameter("delete") != null) {
 
 			JpaHelper.beginTransaction();
@@ -105,7 +104,7 @@ public class ShowUsers extends HttpServlet {
 		else if (request.getParameter("activate") != null) {
 			JpaHelper.beginTransaction();
 			person = new PersonService().getPersonByName(request.getParameter("activate"));
-			System.out.println(person.getFullName()+  "   " + person.getBirthday());
+			System.out.println(person.getFullName() + "   " + person.getBirthday());
 			if (person != null) {
 				person.setActive(true);
 				System.out.println("****-----*****----*****---***---**-*-*-*-*-*-*");

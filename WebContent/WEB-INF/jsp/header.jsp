@@ -24,7 +24,6 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<jsp:include page="/Notification"></jsp:include>
 
 <div class="jumbotron">
 	<div class="row">
@@ -69,7 +68,8 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="showAdminsPermission">Admin permissions</a></li>
-							<li><a href="ShowUsers">Users List	<b><i>	(${countOfNotifi})</i></b></a></li>
+							<li><a href="ShowUsers">Users List <b><i>
+											(${countOfNotifi})</i></b></a></li>
 							<li><a href="#">Activation requests - in progress</a></li>
 						</ul></li>
 				</c:if>
@@ -81,7 +81,7 @@
 								class="glyphicon glyphicon-user"></span>
 								${sessionScope.user.fullName } </a></li>
 						<li><a href="logout"><span
-								class="glyphicon glyphicon-log-in"></span> Log Out</a></li> 
+								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
 
 					</c:when>
 					<c:otherwise>

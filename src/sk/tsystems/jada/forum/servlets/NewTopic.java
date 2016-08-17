@@ -56,7 +56,7 @@ public class NewTopic extends HttpServlet {
 				newTopic.setKeyWords(kWSet);
 			}
 			new TopicService().addTopic(newTopic);
-			response.sendRedirect("/JADA_Tsystems_TeamProject/newtopic");
+			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
 		}
 		session.setAttribute("topics", null);
 

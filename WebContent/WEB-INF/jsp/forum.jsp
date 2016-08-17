@@ -97,7 +97,6 @@
 												</div></td>
 											<td colspan="10"><a
 												href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
-
 												<c:forEach items="${topic.keyWords}" var="keyword">
 													<button class="btn btn-sm-info disabled">${keyword.keyWord }</button>
 												</c:forEach></td>
@@ -138,7 +137,7 @@
 
 	</div>
 
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!-- 	<script type="text/javascript" src="js/jquery.min.js"></script> -->
 	<script type="text/javascript" src="js/jquery.timeago.js"></script>
 	<script type="text/javascript" src="js/forumScripts.js"></script>
 </body>

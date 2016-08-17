@@ -160,6 +160,7 @@ public class PersonService {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByDtype() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p order by dtype ");
@@ -171,6 +172,7 @@ public class PersonService {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByActiv() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p order by active ");
@@ -182,6 +184,7 @@ public class PersonService {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByRegistrationDate() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p order by registrationDate desc ");
@@ -193,6 +196,7 @@ public class PersonService {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByPersonName() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p order by p.personName  ");
@@ -202,6 +206,21 @@ public class PersonService {
 		} else {
 			return null;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public int getNumberOfActivationRequests(){
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select p from Person p");
+		int count = 0;
+		ArrayList<Person> resultList = (ArrayList<Person>) query.getResultList();
+		for (int i = 0; i < resultList.size(); i++) {
+
+			if (resultList.get(i).isActive() == false) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 }
