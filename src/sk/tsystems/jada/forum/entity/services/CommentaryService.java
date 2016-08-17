@@ -127,5 +127,23 @@ public class CommentaryService {
 			return null;
 		}
 	}
+	/**
+	 * Find comment in table by text
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public Commentary getCommentByText(String text){
+		Commentary comment;
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("select c from Comentary c where c.commentarybody = :text");
+		query.setParameter("text", text);
+		if (!query.getResultList().isEmpty()) {
+			comment = (Commentary) query.getResultList().get(0);
+			return comment;
+		} else {
+			return null;
+		}
+	}
 
 }
