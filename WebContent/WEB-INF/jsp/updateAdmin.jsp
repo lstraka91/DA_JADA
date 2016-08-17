@@ -13,87 +13,156 @@
 		<jsp:include page="header.jsp"></jsp:include>
 
 
+
 		<div class="container">
 
-			<div class="center">
-				<form method="get">
-					<input type="hidden" name="adminName" value="${adminName}">
 
-					<c:choose>
-						<c:when test="${admin.activationUserPernmision == true}">
-											Activate USER <label class="checkbox-inline"> <input
-								type="checkbox" value="true" name="activateUser"
-								checked="checked"> ENABLE
-							</label>
-							<br>
-						</c:when>
-						<c:otherwise>
-											Activate USER <label class="checkbox-inline"> <input
-								type="checkbox" value="true" name="activateUser"> ENABLE
-							</label>
-							<br>
-						</c:otherwise>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog"
+				data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
 
-					</c:choose>
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+							<h2 class="modal-title text-center formHead">
+								Edit Admin permission user:<b> ${adminName }</b>
+							</h4>
+						</div>
+						<div class="modal-body">
 
 
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<form method="get" class="form-horizontal">
+											<input type="hidden" name="adminName" value="${adminName}">
+											<div class="panel panel-default">
+												<div class="panel-body">
+										<div class="form-group">
+													<c:choose>
+														<c:when test="${admin.activationUserPernmision == true}">
 
-					<c:choose>
-						<c:when test="${admin.deleteCommentPermission == true}">
-											Delete Comment <label class="checkbox-inline"> <input
-								type="checkbox" value="true" name="deleteComment"
-								checked="checked"> ENABLE
-							</label>
-							<br>
-						</c:when>
-						<c:otherwise>
-											Delete Comment <label class="checkbox-inline"> <input
-								type="checkbox" value="true" name="deleteComment">
-								ENABLE
-							</label>
-							<br>
-						</c:otherwise>
+															<label class="form-check-label "> <input
+																type="checkbox" value="true" name="activateUser"
+																checked="checked"> Activate User persmision
+															</label>
 
-					</c:choose>
 
-					<c:choose>
-						<c:when test="${admin.deleteTopicPermission == true}">
-											Delete Topic <label class="checkbox-inline"> <input
-								type="checkbox" value="true" name="deleteTopic"
-								checked="checked"> ENABLE
-							</label>
-							<br>
-						</c:when>
-						<c:otherwise>
-									Delete Topic <label class="checkbox-inline"> <input
-								type="checkbox" value="true" name="deleteTopic"> ENABLE
-							</label>
-							<br>
-						</c:otherwise>
+														</c:when>
+														<c:otherwise>
 
-					</c:choose>
+															<label class=class="form-check-label"> <input
+																type="checkbox" value="true" name="activateUser">
+																Activate User persmision
+															</label>
 
-					<c:choose>
-						<c:when test="${admin.deleteUserPermission == true}">
-											Delete USER <label class="checkbox-inline"> <input
-								type="checkbox" value="true" name="deleteUser" checked="checked">
-								ENABLE
-							</label>
-							<br>
-						</c:when>
-						<c:otherwise>
-									Delete USER <label class="checkbox-inline"> <input
-								type="checkbox" value="true" name="deleteUser"> ENABLE
-							</label>
-							<br>
-						</c:otherwise>
+														</c:otherwise>
 
-					</c:choose>
+													</c:choose>
+												</div>
 
-					<input type="submit" name="save" value="Save">
-				</form>
+												<div class="form-group">
+													<c:choose>
+														<c:when test="${admin.deleteCommentPermission == true}">
+
+															<label class="form-check-label"> <input
+																type="checkbox" value="true" name="deleteComment"
+																checked="checked"> Delete comment permission
+															</label>
+
+														</c:when>
+														<c:otherwise>
+
+															<label class="form-check-label"> <input
+																type="checkbox" value="true" name="deleteComment">
+																Delete comment permission
+															</label>
+
+														</c:otherwise>
+
+													</c:choose>
+												</div>
+												<div class="form-group">
+													<c:choose>
+														<c:when test="${admin.deleteTopicPermission == true}">
+
+															<label class="form-check-label"> <input
+																type="checkbox" value="true" name="deleteTopic"
+																checked="checked"> Delete topic permission
+															</label>
+
+														</c:when>
+														<c:otherwise>
+
+															<label class="form-check-label"> <input
+																type="checkbox" value="true" name="deleteTopic">
+																Delete topic permission
+															</label>
+
+														</c:otherwise>
+
+													</c:choose>
+												</div>
+												<div class="form-group">
+													<c:choose>
+														<c:when test="${admin.deleteUserPermission == true}">
+
+															<label class="form-check-label"> <input
+																type="checkbox" value="true" name="deleteUser"
+																checked="checked"> Delete user persmission
+															</label>
+
+														</c:when>
+														<c:otherwise>
+
+															<label class="form-check-label"> <input
+																type="checkbox" value="true" name="deleteUser">
+																Delete user persmission
+															</label>
+
+														</c:otherwise>
+
+													</c:choose>
+												</div>
+											</div>
+										</div>
+											<div class="text-center">
+												<div
+													class="btn-group ">
+													<input type="submit"
+														name="save" value="Save changes"
+														class="btn btn-primary btn-block">
+													<a
+														href="/JADA_Tsystems_TeamProject/showAdminsPermission"
+														class="btn btn-info btn-block">
+														Cancel
+													</a>
+												</div>
+											</div>
+									</form>
+								</div>
+								</div>
+							</div>
+								<div class="modal-footer">
+									<a href="/JADA_Tsystems_TeamProject/showAdminsPermission"
+										class="btn btn-default">Close</a>
+
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	$(window).load(function() {
+		$('#myModal').modal('show');
+	});
+</script>
+<script type="text/javascript">
+	$(window).load(function() {
+		$('#myModal').modal('show');
+	});
+</script>
 </html>

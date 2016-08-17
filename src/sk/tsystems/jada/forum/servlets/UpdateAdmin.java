@@ -36,7 +36,7 @@ public class UpdateAdmin extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		String name = request.getParameter("adminName");
+		String name = request.getParameter("adminName").trim();
 		if (name != null) {
 			AdminService adminService = new AdminService();
 			Admin admin = adminService.findAdminByName(name);
@@ -51,10 +51,11 @@ public class UpdateAdmin extends HttpServlet {
 				boolean deleteComment = request.getParameter("deleteComment") != null;
 				System.out.println(deleteTopic +" " +deleteUser +""+activateUser +""+deleteComment);
 				adminService.permissionUpdate(admin, deleteComment, deleteUser, deleteTopic, activateUser);
+				response.sendRedirect("/JADA_Tsystems_TeamProject/showAdminsPermission");
+				return;
 			}
 
 		}
-
 		forwardToList(request, response);
 
 	}
