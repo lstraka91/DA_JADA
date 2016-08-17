@@ -93,8 +93,11 @@ public class ShowUsers extends HttpServlet {
 
 		if (request.getParameter("delete") != null) {
 
-			JpaHelper.beginTransaction();
 			person = new PersonService().getPersonByName(request.getParameter("delete"));
+			PersonService personService = new PersonService();
+			personService.setRemovedPerson(person);
+						
+			JpaHelper.beginTransaction();
 			if (person != null) {
 				em.remove(person);
 			}

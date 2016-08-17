@@ -35,6 +35,9 @@ public class GenerateBasicDbs {
 	private Set<KeyWord> keyWords14 = new HashSet<>();
 	private Set<KeyWord> keyWords15 = new HashSet<>();
 	
+	
+	private Person removedPerson = new Person("Removed User", "ahahsju@1235", "Removed", "removed@user.sk",new Date(System.currentTimeMillis()));
+	
 	private Admin superAdmin = new Admin("superAdmin", "Qwer123@", "Main Admin", "admin@gmail.com", new Date(System.currentTimeMillis()), true, true, true, true);
 	private Admin admin1 = new Admin("admin1", "Asdf123@", "First Admin", "adminko@gmail.com", new Date(System.currentTimeMillis()), false, false, false, true);
 	private Admin admin2 = new Admin("admin2", "Asdf123@", "Second Admin", "adminko@gmail.com", new Date(System.currentTimeMillis()), false, false, true, false);
@@ -49,11 +52,11 @@ public class GenerateBasicDbs {
 	private Person user6 = new Person("user6", "Zxcv123@", "Sixth User", "user@gmail.com", new Date(System.currentTimeMillis()));
 
 	private Topic topic1 = new Topic("Recyclerview with two datasource from different api calls", "I have a recyclerview to display a list of items and a header.", keyWords1, admin1);
-	private Topic topic2 = new Topic("How to call different implementations of IWindowCloseHandler in Eclipse E4?", "This implementation should be called when the application is running.", keyWords2, admin1);
-	private Topic topic3 = new Topic("How i can change Language in wordpress", "I am making a website using word press , in which I need the back end in English as it is now.", keyWords3, admin1);
-	private Topic topic4 = new Topic("Ruby: wrong number of arguments in Initialize", "This question was voluntarily removed by its author.", keyWords4, admin1);
-	private Topic topic5 = new Topic("pd.to_datetime or parse datetimes won't work with my cvs file (format: dd/mm/yyyy, hh:mm:ss)", "I extracted the following table from my cvs file ", keyWords5, admin1);
-	private Topic topic6 = new Topic("Swipe to delete on CollectionView", "I'm trying to replicate the swipe to delete function like in the mail tableview.", keyWords6, admin1);
+	private Topic topic2 = new Topic("How to call different implementations of IWindowCloseHandler in Eclipse E4?", "This implementation should be called when the application is running.", keyWords2, user1);
+	private Topic topic3 = new Topic("How i can change Language in wordpress", "I am making a website using word press , in which I need the back end in English as it is now.", keyWords3, admin2);
+	private Topic topic4 = new Topic("Ruby: wrong number of arguments in Initialize", "This question was voluntarily removed by its author.", keyWords4, user2);
+	private Topic topic5 = new Topic("pd.to_datetime or parse datetimes won't work with my cvs file (format: dd/mm/yyyy, hh:mm:ss)", "I extracted the following table from my cvs file ", keyWords5, user1);
+	private Topic topic6 = new Topic("Swipe to delete on CollectionView", "I'm trying to replicate the swipe to delete function like in the mail tableview.", keyWords6, admin2);
 	private Topic topic7 = new Topic("Preserve serialization-order of members in CodeDOM", "I know we can enforce generating the members within the classes in the same order.", keyWords7, admin1);
 	private Topic topic8 = new Topic("Missing data on Android enhanced e-commerce analytics page", "I'm measuring my Android app checkout performance by using the google-analytics SDK.", keyWords8, admin1);
 	private Topic topic9 = new Topic("Docker Trusted Registry - Unable to satisfy available container slot", "I am trying to install the Docker Truster Registry (DTR).", keyWords9, admin1);
@@ -75,9 +78,9 @@ public class GenerateBasicDbs {
 	private Commentary comment9 = new Commentary("Softver je oznaèenie pre programové vybavenie poèítaèa", admin1, topic8);
 	private Commentary comment10 = new Commentary("Softver je oznaèenie pre programové vybavenie poèítaèa", admin1, topic9);
 	private Commentary comment11 = new Commentary("Softver je oznaèenie pre programové vybavenie poèítaèa", admin1, topic10);
-	private Commentary comment12 = new Commentary("In Postgres system catalogs are the basic set of complete information about the installation and databases.", admin1, topic11);
-	private Commentary comment13 = new Commentary("If you already have logging enabled and you still get this error on Windows 7 64 bit, try this in IIS 7.5:", admin1, topic12);
-	private Commentary comment14 = new Commentary("If these buttons are disabled, go back to the start menu, right-click the Log Viewer, and select Run as Administrator.", admin1, topic12);
+	private Commentary comment12 = new Commentary("In Postgres system catalogs are the basic set of complete information about the installation and databases.", user2, topic11);
+	private Commentary comment13 = new Commentary("If you already have logging enabled and you still get this error on Windows 7 64 bit, try this in IIS 7.5:", user2, topic12);
+	private Commentary comment14 = new Commentary("If these buttons are disabled, go back to the start menu, right-click the Log Viewer, and select Run as Administrator.", user2, topic12);
 	private Commentary comment15 = new Commentary("You just find solutions just like if it is a regular system, so you may possibly find infinetly many solutions:", admin1, topic14);
 	private Commentary comment16 = new Commentary("I would try the following approach (note that I never had to deal with that problem, so take this answer as an attempt to solve with you the problem instead of a real analytical answer).", admin1, topic14);
 	private Commentary comment17 = new Commentary("This is more likely to happen. The build has broken down and your built version of the app is not using the latest code. You can solve this by rebuilding the app from your IDE.", admin1, topic15);
@@ -125,6 +128,7 @@ public class GenerateBasicDbs {
 	 */
 	public void generateDbs(){
 		
+		personService.registerPerson(removedPerson);
 		personService.registerPerson(superAdmin);
 		personService.registerPerson(admin1);
 		personService.registerPerson(admin2);

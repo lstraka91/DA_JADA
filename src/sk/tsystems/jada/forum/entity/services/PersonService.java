@@ -6,11 +6,16 @@ package sk.tsystems.jada.forum.entity.services;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.Person;
+import sk.tsystems.jada.forum.entity.Rating;
+import sk.tsystems.jada.forum.entity.RatingId;
 import sk.tsystems.jada.forum.entity.Topic;
 
 public class PersonService {
@@ -221,6 +226,52 @@ public class PersonService {
 			}
 		}
 		return count;
+	}
+	
+	public void setRemovedPerson(Person person){
+		Person removedPerson = new Person();
+		removedPerson = new PersonService().getPersonByName("Removed User");
+
+		List<Commentary> commList = new CommentaryService().selectAllComentByPerson(person);
+		if (commList != null) {
+			for (Commentary commentary : commList) {
+				JpaHelper.beginTransaction();
+				EntityManager em = JpaHelper.getEntityManager();
+				Commentary comm = em.find(Commentary.class, commentary.getIdCommentary());
+				comm.setPerson(removedPerson);
+				JpaHelper.commitTransaction();
+			}
+		}
+		List<Rating> ratingList = new RatingService().selectAllRatingsByPerson(person);
+		System.out.println(ratingList);
+		if (ratingList != null) {
+			for (Rating rating : ratingList) {
+				JpaHelper.beginTransaction();
+				EntityManager em = JpaHelper.getEntityManager();
+				RatingId rid = rating.getRatingIdCompositePK();
+				rid.setIdPerson(removedPerson.getIdPerson());
+				JpaHelper.commitTransaction();
+				EntityTransaction updt = em.getTransaction();
+				updt.begin();
+				em.createQuery(
+						"update Rating set ratingIdCompositePK.idPerson=:rating where ratingIdCompositePK.idPerson=:ratingId")
+						.setParameter("rating", rid.getIdPerson()).setParameter("ratingId", person.getIdPerson())
+						.executeUpdate();
+				updt.commit();
+			}
+		}
+		List<Topic> topicList = new TopicService().selectAllTopicsByPerson(person);
+		if (topicList != null) {
+			for (Topic topic : topicList) {
+				JpaHelper.beginTransaction();
+				EntityManager em = JpaHelper.getEntityManager();
+				Topic top = em.find(Topic.class, topic.getIdTopic());
+				top.setPerson(removedPerson);
+				JpaHelper.commitTransaction();
+			}
+		}
+	
+			
 	}
 
 }
