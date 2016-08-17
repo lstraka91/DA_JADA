@@ -68,8 +68,12 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="showAdminsPermission">Admin permissions</a></li>
-							<li><a href="ShowUsers">Users List <b><i>
-											(${countOfNotifi})</i></b></a></li>
+							<li><a href="ShowUsers">Users List  <c:choose><c:when
+										test="${countOfNotifi > 0 }">
+										<span class="badge red"> ${countOfNotifi}</span>
+									</c:when></c:choose>
+
+							</a></li>
 							<li><a href="#">Activation requests - in progress</a></li>
 						</ul></li>
 				</c:if>
