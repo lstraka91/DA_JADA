@@ -25,33 +25,35 @@
 		<div class="row">
 			<div class="center-form panel">
 				<form method="post">
-					<div class="panel-body">
-						<h2 class="text-center formHead">Please log in</h2>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h2 class="text-center formHead">Please log in</h2>
 
-						<center>
-							<div class="form-group">
-								<div id="failedLogin"></div>
-								<input type="text" name="userName" value="" id="username"
-									placeholder="Insert your username here"
-									class="form-control input-lg" required autofocus /> <input
-									type="password" name="password" value="" id="pass"
-									placeholder="Insert your password here"
-									class="form-control input-lg" requried />
-							</div>
-							<div id="status"></div>
-							<input type="button" value="Login" id="login"
-								class="btn btn-lg btn-block btn-success" /> <a
-								href="/JADA_Tsystems_TeamProject/registration"
-								class="btn btn-lg btn-block btn-primary">Register</a>
+							<center>
+								<div class="form-group">
+									<div id="failedLogin"></div>
+									<input type="text" name="userName" value="" id="username"
+										placeholder="Insert your username here"
+										class="form-control input-lg" required autofocus /> <input
+										type="password" name="password" value="" id="pass"
+										placeholder="Insert your password here"
+										class="form-control input-lg" requried />
+								</div>
+								<div id="status"></div>
+								<input type="button" value="Login" id="login"
+									class="btn btn-lg btn-block btn-success" /> <a
+									href="/JADA_Tsystems_TeamProject/registration"
+									class="btn btn-lg btn-block btn-primary">Register</a>
 
 
-						</center>
+							</center>
+						</div>
 					</div>
 				</form>
 			</div>
 		</div>
-
 	</div>
+
 	<script src="js/login.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
