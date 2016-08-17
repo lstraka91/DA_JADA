@@ -44,13 +44,15 @@
 						<div class="row">
 
 							<div class="col-md-5 offset-md-5">
-								<span class="badge "><span class="glyphicon glyphicon-info-sign"></span>  
-									${commRate.countOfCommentsRating} times rated</span> 
+								<span class="badge "><span
+									class="glyphicon glyphicon-info-sign"></span>
+									${commRate.countOfCommentsRating} times rated</span>
+								<c:if test="${user!=null}">
 									<a
-									href="topic?idTopic=${currentTopic.idTopic}&addRate=like&idComment=${commRate.comment.idCommentary}"
-									class="btn btn-default"><span
-									class="glyphicon glyphicon-thumbs-up"></span>Like</a>
-
+										href="topic?idTopic=${currentTopic.idTopic}&addRate=like&idComment=${commRate.comment.idCommentary}"
+										class="btn btn-default"><span
+										class="glyphicon glyphicon-thumbs-up"></span>Like</a>
+								</c:if>
 								<c:if test="${rate>0}">
 									<span class="label label-success">${commRate.rateOfComment}</span>
 
@@ -61,11 +63,12 @@
 								<c:if test="${rate<0}">
 									<span class="label label-danger">${commRate.rateOfComment}</span>
 								</c:if>
+								<c:if test="${user.getClass().simpleName.equals('SuperAdmin')}">
 								<a
 									href="topic?idTopic=${currentTopic.idTopic}&addRate=dislike&idComment=${commRate.comment.idCommentary}"
 									class="btn btn-default"><span
 									class="glyphicon glyphicon-thumbs-down"></span>Dislike</a>
-
+</c:if>
 							</div>
 						</div>
 						<span class="pull-right">commented <strong><fmt:formatDate
