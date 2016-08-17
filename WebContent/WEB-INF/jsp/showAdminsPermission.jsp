@@ -86,27 +86,17 @@
 								<td><a href="UpdateAdmin?adminName=${admins.personName}"
 									class="btn btn-block btn-warning"> <span
 										class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-										Edit 
+										Edit
 								</a></td>
+								
 							</tr>
-						</c:forEach>
+				</c:forEach>
 					</tbody>
 				</table>
-
-
-
-
+				
+				
 			</div>
 		</div>
-
-
 	</div>
-
-
-
-
-
-
-
 </body>
 </html>
