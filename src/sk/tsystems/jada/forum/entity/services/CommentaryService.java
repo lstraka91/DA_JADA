@@ -86,11 +86,14 @@ public class CommentaryService {
 	 * @param id
 	 */
 	public void removeCommentById(int id) {
-		Commentary comment = new Commentary();
+		// Commentary comment = new Commentary();
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		comment = em.find(Commentary.class, id);
-		em.remove(comment);
+		// comment = selectCommentById(id);
+		// System.out.println(comment.getIdCommentary());
+		Commentary toDelete = em.find(Commentary.class, id);
+		System.out.println(toDelete.idCommentary);
+		em.remove(toDelete);
 		JpaHelper.commitTransaction();
 	}
 
@@ -103,18 +106,20 @@ public class CommentaryService {
 	public void removeCommentByObject(Commentary comment) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		comment = em.find(Commentary.class, comment);
+		comment = getCommentByText(comment.getCommentaryBody());
 		em.remove(comment);
 		JpaHelper.commitTransaction();
 	}
-	
+
 	/**
 	 * Select Commentary object from Database by id of COmment
+	 * 
 	 * @param id
-	 * @return return Commentary object or null if select failed and have no result for the current Id
+	 * @return return Commentary object or null if select failed and have no
+	 *         result for the current Id
 	 */
 	@SuppressWarnings("unchecked")
-	public Commentary selectCommentById(int id){
+	public Commentary selectCommentById(int id) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT c FROM Commentary c where c.idCommentary = :idComment ");
@@ -127,16 +132,17 @@ public class CommentaryService {
 			return null;
 		}
 	}
+
 	/**
 	 * Find comment in table by text
 	 * 
 	 * @param text
 	 * @return
 	 */
-	public Commentary getCommentByText(String text){
+	public Commentary getCommentByText(String text) {
 		Commentary comment;
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("select c from Comentary c where c.commentarybody = :text");
+		Query query = em.createQuery("select c from Commentary c where c.commentaryBody = :text");
 		query.setParameter("text", text);
 		if (!query.getResultList().isEmpty()) {
 			comment = (Commentary) query.getResultList().get(0);
