@@ -2,7 +2,9 @@ package sk.tsystems.jada.forum.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -47,13 +49,16 @@ public class TopicTest {
 		assertNotNull(tcs.findTopicById(tcs.getIdTopicByName("myTestTopic4")));
 	}
 
-	// @Test
-	// public void testRemoveTopicById(){
-	// ts.addTopic(createTopic());
-	// int id = ts.getIdTopicByName("mytesttopic");
-	// ts.removeTopicById(id);
-	// assertNull(ts.findTopicById(ts.getIdTopicByName("mytesttopic")));
-	// }
+	 @Test
+	 public void testRemoveTopicById(){
+		 int id = tcs.getIdTopicByName("myTestTopic1");
+		 tcs.removeTopicById(id);
+		 List<Topic> topicList = new ArrayList<>();
+		 topicList= tcs.getAllTopics();
+		 for (Topic topic : topicList) {
+			assertNotEquals(id, topic.getIdTopic());
+		}
+	 }
 
 	@Test
 	public void testUpdateTopicName() {
@@ -72,10 +77,6 @@ public class TopicTest {
 		assertEquals("updated description of third topic", tt.getTopicDescription());
 	}
 
-//	@Test
-//	public void testShowTopics() {
-//		assertNotNull(tcs.showTopics());
-//	}
 
 	@Test
 	public void testGetIdTopicByName() {
