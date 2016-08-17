@@ -1,12 +1,15 @@
 package sk.tsystems.jada.forum.test;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Topic;
+import sk.tsystems.jada.forum.entity.services.CommentaryService;
 import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import sk.tsystems.jada.forum.entity.services.KeyWordService;
 import sk.tsystems.jada.forum.entity.services.PersonService;
@@ -127,7 +130,80 @@ public class TestService {
 		TopicService tcs = new TopicService();
 		tcs.removeTopicById(tcs.getIdTopicByName("myTestTopic1"));
 		tcs.removeTopicById(tcs.getIdTopicByName("changed name"));
+		tcs.removeTopicById(tcs.getIdTopicByName("myTestTopic2"));
 		tcs.removeTopicById(tcs.getIdTopicByName("myTestTopic3"));
 		tcs.removeTopicById(tcs.getIdTopicByName("myTestTopic4"));
 	}
+	
+	CommentaryService cs = new CommentaryService();
+	TopicService tcs = new TopicService();
+	
+	public void createComment1(){ 
+		Commentary c1 = new Commentary();
+		c1.setCommentaryBody("First commentary for testing");
+		c1.setCommentaryDate(new Date());
+		Person pt = ps.getPersonByName("TestPerson1");
+		c1.setPerson(pt);
+		Topic tc1 = tcs.findTopicById(tcs.getIdTopicByName("myTestTopic1"));
+		c1.setTopic(tc1);
+		cs.addComent(c1);
+	}
+	public void createComment2(){
+		Commentary c2 = new Commentary();
+		c2.setCommentaryBody("Second commentary for testing");
+		c2.setCommentaryDate(new Date());
+		Person pc = ps.getPersonByName("TestPerson2");
+		c2.setPerson(pc);
+		Topic tc1 = tcs.findTopicById(tcs.getIdTopicByName("myTestTopic1"));
+		c2.setTopic(tc1);
+		cs.addComent(c2);
+	}
+		
+	public void createComment3(){
+		Commentary c3 = new Commentary();
+		c3.setCommentaryBody("Third commentary for testing");
+		c3.setCommentaryDate(new Date());
+		c3.setPerson(ps.getPersonByName("TestPerson2"));
+		Topic tc2 = tcs.findTopicById(tcs.getIdTopicByName("myTestTopic2"));
+		c3.setTopic(tc2);
+		cs.addComent(c3);
+	}
+	
+	public void createComment4(){
+		Commentary c4 = new Commentary();
+		c4.setCommentaryBody("Fourth commentary for testing");
+		c4.setCommentaryDate(new Date());
+		c4.setPerson(ps.getPersonByName("TestPerson2"));
+		Topic tc2 = tcs.findTopicById(tcs.getIdTopicByName("myTestTopic2"));
+		c4.setTopic(tc2);
+		cs.addComent(c4);
+	}
+	
+	public void createComments(){
+		createComment1();
+		createComment2();
+		createComment3();
+	}
+	
+	public void removeCommentsOfFirstPerson(){
+		Person p = ps.getPersonByName("TestPerson1");
+		List<Commentary> list = cs.selectAllComentByPerson(p);
+		for (Commentary commentary : list) {
+			cs.removeCommentByObject(commentary);
+		}
+	}
+	
+	public void removeCommentsOfSecondPerson(){
+		Person p = ps.getPersonByName("TestPerson2");
+		List<Commentary> list = cs.selectAllComentByPerson(p);
+		for (Commentary commentary : list) {
+			cs.removeCommentByObject(commentary);
+		}
+	}
+	
+	public void removeAllComments(){
+		removeCommentsOfFirstPerson();
+		removeCommentsOfSecondPerson();
+	}
+	
 }
