@@ -29,15 +29,14 @@
 		<c:choose>
 			<c:when test="${user!=null }">
 				<form>
-					<input type="hidden" name="action" value="addtopic">
-					Enter keywords other users can find your question:
+					<input type="hidden" name="action" value="addtopic"> Enter
+					keywords other users can find your question:
 					<ul id="keyWords">
 
 					</ul>
-					Ask question to start new topic:
-					<input type="text" class="form-control" placeholder="Topic name"
-						name="topicName" required>
-					Describe your problem:
+					Ask question to start new topic: <input type="text"
+						class="form-control" placeholder="Topic name" name="topicName"
+						required> Describe your problem:
 					<textarea name="topicDesc" type="text" class="form-control"
 						placeholder="Write description..." id="topicDesc" required></textarea>
 					<button type="submit" class="btn btn-success green">
@@ -48,15 +47,13 @@
 			</c:when>
 			<c:otherwise>
 				<center>
-				<center>
-					<div class="alert alert-warning" role="alert">
-						<span class="glyphicon glyphicon-exclamation-sign"
-							aria-hidden="true"></span> <span class="sr-only">Info:</span>You
-						must be logged in to create topic !!! <a href="login">Go to login page </a>or<a href="registration"> sign up as new user</a>
-					</div>
-				</center>
-					<h4>You must be logged in to ask a question</h4>
-				</center>
+					<center>
+						<div class="alert alert-warning" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign"
+								aria-hidden="true"></span> <span class="sr-only">Info:</span>You
+							must be logged in to create topic !!! <a href="login">Go to
+								login page </a>or<a href="registration"> sign up as new user</a>
+						</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -82,6 +79,6 @@
 	var jsArray = [<%for (int i = 0; i < keyWordStrings.size(); i++) {%>"<%=keyWordStrings.get(i)%>"<%=i + 1 < keyWordStrings.size() ? "," : ""%><%}%>];
 </script>
 	<script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
-<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
