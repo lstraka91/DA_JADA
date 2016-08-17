@@ -2,10 +2,12 @@ package sk.tsystems.jada.forum.entity.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Topic;
 
@@ -33,7 +35,7 @@ public class TopicService {
 	 * @param id
 	 */
 	public void removeTopicById(int idTopic) {
-		Topic topic = new Topic();
+		Topic topic = null;
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		topic = findTopicById(idTopic);
@@ -50,10 +52,9 @@ public class TopicService {
 	 *            topicName
 	 */
 	public void updateTopicName(int idTopic, String topicName) {
-		Topic topic = new Topic();
+		Topic topic = null;
 		JpaHelper.beginTransaction();
-		EntityManager em = JpaHelper.getEntityManager();
-		topic = em.find(Topic.class, idTopic);
+		topic = findTopicById(idTopic);
 		if (topic != null) {
 			topic.setTopicName(topicName);
 		}
@@ -67,15 +68,27 @@ public class TopicService {
 	 *            topicDescription
 	 */
 	public void updateTopicDescrition(int idTopic, String topicDescription) {
-		Topic topic = new Topic();
+		Topic topic = null;
 		JpaHelper.beginTransaction();
-		EntityManager em = JpaHelper.getEntityManager();
-		topic = em.find(Topic.class, idTopic);
+		topic = findTopicById(idTopic);
 		if (topic != null) {
 			topic.setTopicDescription(topicDescription);
 		}
 		JpaHelper.commitTransaction();
 	}
+	
+	public void updateTopic(int idTopic, String topicName, String topicDescription, Set<KeyWord> keyWords){
+		Topic topic = null;
+		JpaHelper.beginTransaction();
+		topic = findTopicById(idTopic);
+		if (topic != null) {
+			topic.setTopicName(topicName);
+			topic.setTopicDescription(topicDescription);
+			topic.setKeyWords(keyWords);
+		}
+		JpaHelper.commitTransaction();
+	}
+	
 
 	/**
 	 * Method for select all topics from database
