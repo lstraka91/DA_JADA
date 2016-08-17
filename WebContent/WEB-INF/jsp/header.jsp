@@ -24,14 +24,14 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<jsp:include page="Notification"></jsp:include>
 
 <div class="jumbotron">
 	<div class="row">
 		<div class="col-md-2 col-lg-2">
 			<img src="images/qaa.png" alt="JADA" class="img-responsive">
 		</div>
-		<div class="col-md-8 col-lg-8">
+		<div class="col-md-9 col-lg-9">
 			<h1 class="text-center text-primary jumboHead">JaDa - FORUM</h1>
 		</div>
 	</div>
@@ -55,18 +55,21 @@
 			<ul class="nav navbar-nav">
 				<li><a href="forum">Home</a></li>
 				<li><a href="/JADA_Tsystems_TeamProject/newtopic"><span
-								class="glyphicon glyphicon-question-sign"></span> ASK
-						QUESTION</a></li>
+						class="glyphicon glyphicon-question-sign"></span> ASK QUESTION</a></li>
 				<li><a href="#">empty link</a></li>
 				<c:if
 					test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
-					<li class="dropdown"><a
-						class="btn dropdown-toggle" type="button"
-						data-toggle="dropdown">Admin menu <span class="caret"></span>
+					<li class="dropdown"><a class="btn dropdown-toggle"
+						type="button" data-toggle="dropdown">Admin menu <c:choose>
+								<c:when test="${countOfNotifi > 0 }">
+									<img src="images/notification.png" alt="admin" height="25"
+										width="25">
+								</c:when>
+							</c:choose> <span class="caret"> </span>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="showAdminsPermission">Admin permissions</a></li>
-							<li><a href="#">Users - in progress</a></li>
+							<li><a href="ShowUsers">Users List	<b><i>	(${countOfNotifi})</i></b></a></li>
 							<li><a href="#">Activation requests - in progress</a></li>
 						</ul></li>
 				</c:if>
@@ -78,7 +81,7 @@
 								class="glyphicon glyphicon-user"></span>
 								${sessionScope.user.fullName } </a></li>
 						<li><a href="logout"><span
-								class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+								class="glyphicon glyphicon-log-in"></span> Log Out</a></li> 
 
 					</c:when>
 					<c:otherwise>

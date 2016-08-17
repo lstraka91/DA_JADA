@@ -35,15 +35,15 @@
 
 						<tr>
 
-							<th></th>
+
 
 							<th>User Name</th>
 
 							<th>Email</th>
 
-                            <th>Registration Date</th>
-                            
-							<th>  </th>
+							<th>Registration Date</th>
+
+							<th></th>
 
 						</tr>
 
@@ -52,7 +52,7 @@
 					<tbody>
 						<c:forEach items="${persons}" var="persons" varStatus="theCount">
 							<tr>
-
+								
 								<td><c:choose>
 										<c:when
 											test="${persons.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
@@ -63,11 +63,12 @@
 											<img src="images/user.ico" alt="user" height="25" width="25">
 										</c:otherwise>
 
-									</c:choose></td>
+									</c:choose>
 
-								<td><b><i>${persons.personName}</i></b></td>
+								<b><i>${persons.personName}</i></b>
+								</td>
 
-								<td>${persons.email} </td>
+								<td>${persons.email}</td>
 
 								<td><p>
 										<fmt:formatDate value="${persons.registrationDate}"
