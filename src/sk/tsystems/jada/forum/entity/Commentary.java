@@ -34,13 +34,13 @@ public class Commentary {
 	/**
 	 * User object
 	 */
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	public Person person;
 
 	/**
 	 * Topic object
 	 */
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	public Topic topic;
 
 	/**
@@ -111,4 +111,11 @@ public class Commentary {
 		this.topic = topic;
 	}
 
+	@Override
+	public String toString() {
+		return "Commentary [idCommentary=" + idCommentary + ", commentaryBody=" + commentaryBody + ", commentaryDate="
+				+ commentaryDate + ", person=" + person + ", topic=" + topic + "]";
+	}
+
+	
 }
