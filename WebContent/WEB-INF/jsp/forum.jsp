@@ -117,9 +117,14 @@
 											<td><c:if
 													test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
 													<a href="editTopic?idTopic=${topic.idTopic}"
-														class="btn btn-warning"> <span
+														class="btn btn-warning btn-block"> <span
 														class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 														Edit
+													</a>
+													<a href="forum?idTopicDelete=${topic.idTopic}"
+														class="btn btn-danger btn-block"> <span
+														class="glyphicon glyphicon-delete" aria-hidden="true"></span>
+														Delete
 													</a>
 												</c:if></td>
 										</tr>
