@@ -77,7 +77,7 @@
 											<form method="post">
 												<input type="hidden" name="delete"
 													value="${persons.personName}"> <input type="submit"
-													value="DELETE" class="btn btn-danger" />
+													value="DELETE" class="btn btn-danger btn-block" />
 											</form>
 
 										</c:when>
@@ -85,13 +85,14 @@
 											<form method="post">
 												<input type="hidden" name="delete"
 													value="${persons.personName}"> <input type="submit"
-													value="DELETE" class="btn btn-danger" />
+													value="DELETE" class="btn btn-danger btn-block" />
 											</form>
 											<form method="post">
 												<input type="hidden" name="activate"
 													value="${persons.personName}"> <input type="submit"
-													name="activate" value="ACTIVATE" class="btn btn-success" />
+													name="activate" value="ACTIVATE" class="btn btn-success btn-block" />
 											</form>
+											
 										</c:otherwise>
 									</c:choose></td>
 							</tr>
