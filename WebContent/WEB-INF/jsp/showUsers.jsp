@@ -27,16 +27,9 @@
 						href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
 							Date</a></li>
 				</ul>
-
-
 				<table class="table table-striped table-inverse">
-
 					<thead>
-
 						<tr>
-
-
-
 							<th>User Name</th>
 
 							<th>Email</th>
@@ -44,15 +37,11 @@
 							<th>Registration Date</th>
 
 							<th></th>
-
 						</tr>
-
 					</thead>
-
 					<tbody>
 						<c:forEach items="${persons}" var="persons" varStatus="theCount">
 							<tr>
-
 								<td><c:choose>
 										<c:when
 											test="${persons.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
