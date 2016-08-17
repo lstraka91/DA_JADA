@@ -24,7 +24,7 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<jsp:include page="Notification"></jsp:include>
+<jsp:include page="/Notification"></jsp:include>
 
 <div class="jumbotron">
 	<div class="row">
