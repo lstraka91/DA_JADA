@@ -38,6 +38,7 @@
 	<script type="text/javascript" src="js/usernameExists.js"></script>
 	<script type="text/javascript" src="js/checkPasswordStrong.js"></script>
 	<script type="text/javascript" src="js/validatePassword.js"></script>
+	
 
 <div class="jumbotron">
 	<div class="row">
@@ -188,7 +189,7 @@
 											placeholder="Insert your password here"
 											class="form-control input-lg" requried />
 									</div>
-									<div id="status"></div>
+									<div id="loginStatus"></div>
 									<input type="button" value="Login" id="login"
 										class="btn btn-lg btn-block btn-success" />
 
@@ -230,8 +231,7 @@
 				<div class="row">
 					<div class="center-form panel">
 						<form method="post"
-							action="/JADA_Tsystems_TeamProject/registration"
-							onsubmit="alert('success');">
+							action="/JADA_Tsystems_TeamProject/registration">
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<div class="form-group">
@@ -270,6 +270,7 @@
 										<input type="password" name="PasswordC"
 											placeholder="Confirm password" class="form-control input-lg"
 											id="confirm_password" required />
+									<div id="passValidation"></div>
 									</div>
 									<div class="form-group">
 										<input type="email" name="Email"

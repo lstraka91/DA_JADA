@@ -131,7 +131,8 @@
 													</c:otherwise>
 												</c:choose></td>
 											<td><c:if
-													test="${user.getClass().simpleName eq 'SuperAdmin' || user.deleteTopicPermission}">
+													test="${user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin'}">
+													<c:if test="${user.deleteTopicPermission }">
 													<a href="editTopic?idTopic=${topic.idTopic}"
 														class="btn btn-warning btn-block"> <span
 														class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -142,6 +143,7 @@
 														class="glyphicon glyphicon-delete" aria-hidden="true"></span>
 														Delete
 													</a>
+													</c:if>
 												</c:if></td>
 										</tr>
 									</c:forEach>

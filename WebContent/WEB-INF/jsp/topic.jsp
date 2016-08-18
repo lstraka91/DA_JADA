@@ -39,7 +39,8 @@
 						varStatus="myindex">
 						<p>
 							<c:if
-								test="${commRate.comment.person.personName eq user.personName or user.getClass().simpleName eq 'SuperAdmin' or user.deleteCommentPermission==true}">
+								test="${commRate.comment.person.personName eq user.personName or user.getClass().simpleName eq 'SuperAdmin' or user.getClass().simpleName eq 'Admin'}">
+					
 					<div class="text-right">
 						<div class="btn-group">
 							<span class="pull-right">
@@ -63,7 +64,8 @@
 						</div>
 					</div>
 					<br>
-							</c:if>
+					</c:if>
+							
 
 						</p>
 						<!-- Try to add MODAL TO EDIT -->

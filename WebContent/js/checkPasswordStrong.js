@@ -19,7 +19,6 @@ if(pass.length >= 8){
     				$("#password").removeClass('object_error'); // if necessary
     				$("#password").removeClass('form-control');
     				$("#password").addClass("object_ok");
-    				//$("#passCheck").html('&nbsp;<img src="images/tick.gif" align="absmiddle">');
     				$("#passCheck").html('');
     				$("#register").attr("disabled", false);
     				$("#save").attr("disabled", false);
@@ -43,5 +42,5 @@ if(pass.length >= 8){
 	}
  
 });
- 
+
 });

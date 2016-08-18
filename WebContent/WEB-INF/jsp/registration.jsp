@@ -35,7 +35,7 @@
 									<input type="text" name="userName" id="userName"
 										placeholder="Insert your username here"
 										class="form-control input-lg" required />
-									<div id="status"></div>
+									<div id="userStatus"></div>
 								</div>
 								<div class="form-group">
 
