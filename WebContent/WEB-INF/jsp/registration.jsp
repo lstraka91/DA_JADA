@@ -22,14 +22,14 @@
 		</c:if>
 		<div class="row">
 			<div class="center-form panel">
-				<form method="post" action="/JADA_Tsystems_TeamProject/registration">
+				<form method="post" action="/JADA_Tsystems_TeamProject/registration"  onsubmit="alert('success');">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h2 class="text-center formHead">Registration form</h2>
 
 							<center>
 								<div class="form-group">
-	<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign"></span>After register admin have to 
+	<div class="alert alert-info" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><span class="glyphicon glyphicon-info-sign"></span>After register admin have to 
 				<strong>activate</strong> your account.You don't be able to login yet <span class="glyphicon glyphicon-info-sign">
 			</div>
 									<input type="text" name="userName" id="userName"
@@ -71,9 +71,7 @@
 										class="form-control input-lg" required />
 								</div>
 								<input type="submit" value="Register user" id="register"
-									class="btn btn-lg btn-block btn-success" /> <a
-									href="/JADA_Tsystems_TeamProject/login"
-									class="btn btn-lg btn-block btn-primary">Back to Login</a>
+									class="btn btn-lg btn-block btn-success" /> 
 							</center>
 						</div>
 					</div>
@@ -82,21 +80,6 @@
 		</div>
 
 	</div>
-	<!-- <script type="text/javascript">
-		var password = document.getElementById("password"), confirm_password = document
-				.getElementById("confirm_password");
-
-		function validatePassword() {
-			if (password.value != confirm_password.value) {
-				confirm_password.setCustomValidity("Passwords Don't Match");
-			} else {
-				confirm_password.setCustomValidity('');
-			}
-		}
-
-		password.onchange = validatePassword;
-		confirm_password.onkeyup = validatePassword;
-	</script> -->
 
 	<script>
 		$(document).ready(function() {
