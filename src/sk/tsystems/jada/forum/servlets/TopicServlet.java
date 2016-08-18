@@ -55,7 +55,10 @@ public class TopicServlet extends HttpServlet {
 		if (request.getParameter("delete") != null && person != null && request.getParameter("idComment") != null) {
 			int idComment = Integer.parseInt(request.getParameter("idComment"));
 			Commentary comToDelete= new CommentaryService().selectCommentById(idComment);
-			new CommentaryService().removeCommentByObject(comToDelete);
+			if(comToDelete!=null){
+				new CommentaryService().removeCommentByObject(comToDelete);
+			}
+			
 		}
 
 		// int rate = (int) session.getAttribute("currentRating");
@@ -75,6 +78,13 @@ public class TopicServlet extends HttpServlet {
 			topic = (Topic) session.getAttribute("currentTopic");
 			Commentary com = new Commentary(comment, person, topic);
 			cs.addComent(com);
+		}
+		String editComment = request.getParameter("editComment");
+		if (editComment != null & person != null & request.getParameter("idComment")!=null) {
+			int commentId= Integer.parseInt(request.getParameter("idComment"));
+			topic = (Topic) session.getAttribute("currentTopic");
+			Commentary commentToUpdate = cs.selectCommentById(commentId);
+			cs.updateCommentBody(commentToUpdate, editComment);
 		}
 
 		List<Commentary> topicComment = new ArrayList<>();

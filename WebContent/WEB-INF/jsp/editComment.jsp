@@ -40,38 +40,20 @@
 						<p>
 							<c:if
 								test="${commRate.comment.person.personName eq user.personName or user.getClass().simpleName eq 'SuperAdmin' or user.deleteCommentPermission==true}">
-					<div class="text-right">
-						<div class="btn-group">
-							<span class="pull-right">
-								<a
+								<span class="pull-right"><a
 									href="topic?idTopic=${currentTopic.idTopic}&delete=true&idComment=${commRate.comment.idCommentary}"
-									class="btn btn-danger">
-									<span
-										class="glyphicon glyphicon-remove-sign">
-									</span>
-									Delete
-								</a>
-							</span>
-							<a
-								href="editComment?idTopic=${currentTopic.idTopic}&idComment=${commRate.comment.idCommentary}&commentaryBody=${commRate.comment.commentaryBody}"
-								class="btn btn-warning">
-								<span
-									class="glyphicon glyphicon-edit">
-								</span>
-								Edit
-							</a>
-						</div>
-					</div>
-					<br>
+									class="btn btn-danger"><span
+										class="glyphicon glyphicon-remove-sign"></span></a> </span>
+								<br>
 							</c:if>
 
 						</p>
-						<!-- Try to add MODAL TO EDIT -->
 
-						<div id="idComment${ myindex.index }" class="commentBody">
+					
+						
 
 							<p>${commRate.comment.commentaryBody}</p>
-						</div>
+						
 
 						<p>
 							<span class="pull-right">
@@ -143,14 +125,60 @@
 				</center>
 			</c:otherwise>
 		</c:choose>
+		<!-- Try to add MODAL TO EDIT -->
+						<!-- Modal -->
+						<div id="editComment" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+							<div class="modal-dialog">
+
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+																			
+										<h4 class="modal-title">Edit comment</h4>
+									</div>
+									<div class="modal-body">
+										<div class="panel">
+											<div class="panel-body">
+												<form method="post">
+													<input type="hidden" name="idTopic"
+														value="${idTopic}"> <input
+														type="hidden" name="idComment"
+														value="${idCommentary}"> <label
+														for="comment"> Comment: </label> <br>
+													<textarea name="editComment" spellcheck="true" rows="3"
+														required title="Content." maxlength="254"
+														placeholder="Article content"
+														class="form-control input-lg">${commentaryBody}
+										</textarea>
+													
+													<br> <input type="submit"
+														value="Save change" class="btn btn-primary ">
+												</form>
+											</div>
+										</div>
+
+									</div>
+									<div class="modal-footer">
+									<a href="/JADA_Tsystems_TeamProject/topic?idTopic=${idTopic}"
+								class="btn btn-default">Close</a>
+										
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<!--end of modal  --> 
+
 
 		<jsp:include page="footer.jsp"></jsp:include>
 
 	</div>
-	<script
-		src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-	<script src='js/dataTables.js'></script>
+	
 </body>
 
-
+<script type="text/javascript">
+$(window).load(function() {
+	$('#editComment').modal('show');
+});
+</script>
 </html>
