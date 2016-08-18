@@ -12,7 +12,7 @@ import sk.tsystems.jada.forum.entity.Admin;
 import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
-
+import sk.tsystems.jada.forum.entity.SuperAdmin;
 import sk.tsystems.jada.forum.entity.Topic;
 
 public class GenerateBasicDbs {
@@ -39,8 +39,8 @@ public class GenerateBasicDbs {
 	private Person removedPerson = new Person("Removed User", "ahahsju@1235", "Removed", "removed@user.sk",
 			new Date(System.currentTimeMillis()));
 
-	private Admin superAdmin = new Admin("superAdmin", "Qwer123@", "Main Admin", "admin@gmail.com",
-			new Date(System.currentTimeMillis()), true, true, true, true);
+	private SuperAdmin superAdmin = new SuperAdmin("superAdmin", "Qwer123@", "Main Admin", "mainadmin@gmail.com",
+			new Date(System.currentTimeMillis()));
 	private Admin admin1 = new Admin("admin1", "Asdf123@", "First Admin", "adminko@gmail.com",
 			new Date(System.currentTimeMillis()), false, false, false, true);
 	private Admin admin2 = new Admin("admin2", "Asdf123@", "Second Admin", "adminko@gmail.com",
@@ -56,11 +56,11 @@ public class GenerateBasicDbs {
 			new Date(System.currentTimeMillis()));
 	private Person user3 = new Person("user3", "Zxcv123@", "Third User", "user@gmail.com",
 			new Date(System.currentTimeMillis()));
-	private Person user4 = new Person("user4", "Zxcv123@", "Fourth User", "user@gmail.com",
+	private Person user4 = new Person("A_user4", "Zxcv123@", "Fourth User", "user@gmail.com",
 			new Date(System.currentTimeMillis()));
-	private Person user5 = new Person("user5", "Zxcv123@", "Fifth User", "user@gmail.com",
+	private Person user5 = new Person("B_user5", "Zxcv123@", "Fifth User", "user@gmail.com",
 			new Date(System.currentTimeMillis()));
-	private Person user6 = new Person("user6", "Zxcv123@", "Sixth User", "user@gmail.com",
+	private Person user6 = new Person("C_user6", "Zxcv123@", "Sixth User", "user@gmail.com",
 			new Date(System.currentTimeMillis()));
 
 	private Topic topic1 = new Topic("Recyclerview with two datasource from different api calls",
@@ -249,6 +249,10 @@ public class GenerateBasicDbs {
 		personService.registerPerson(user4);
 		personService.registerPerson(user5);
 		personService.registerPerson(user6);
+
+		user1.setActive(true);
+		user3.setActive(true);
+		user5.setActive(true);
 
 		keyWords1.add(new KeyWord("recyclerview"));
 		keyWords1.add(new KeyWord("android-volley"));
@@ -440,7 +444,7 @@ public class GenerateBasicDbs {
 		query.executeUpdate();
 		query = em.createNativeQuery("drop table Commentary");
 		query.executeUpdate();
-		query = em.createNativeQuery("drop table topic_person");
+		query = em.createNativeQuery("drop table topic_viewersList");
 		query.executeUpdate();
 		query = em.createNativeQuery("drop table Topic");
 		query.executeUpdate();
@@ -451,17 +455,8 @@ public class GenerateBasicDbs {
 	}
 
 	public static void main(String[] args) {
-		TopicService ts = new TopicService();
-		// ts.removeTopicById(1929);
-
-		CommentaryService cs = new CommentaryService();
-		List<Commentary> testList = cs.selectAllComentByTopic(ts.findTopicById(1933));
-		for (Commentary comment : testList) {
-			System.out.println(comment);
-			cs.removeCommentByObject(comment);
-		}
-		// GenerateBasicDbs gdbs = new GenerateBasicDbs();
-		// gdbs.generateDbs();
-		// gdbs.deleteTables();
+		GenerateBasicDbs gdbs = new GenerateBasicDbs();
+		gdbs.generateDbs();
+//		gdbs.deleteTables();
 	}
 }
