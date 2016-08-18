@@ -106,6 +106,11 @@
 													<img src="images/admin.ico" alt="admin" height="25"
 														width="25">
 												</c:when>
+												<c:when
+													test="${persons.getClass().simpleName eq 'SuperAdmin'}">
+													<img src="images/superAdmin.ico" alt="admin" height="25"
+														width="25">
+												</c:when>
 												<c:otherwise>
 													<img src="images/user.ico" alt="user" height="25"
 														width="25">
