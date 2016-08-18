@@ -119,7 +119,7 @@ public class ShowUsers extends HttpServlet {
 		
 		else if (request.getParameter("disable") != null) {
 			JpaHelper.beginTransaction();
-			person = new PersonService().getPersonByName(request.getParameter("disable"));
+			person = new PersonService().getPersonByName(request.getParameter("dissable"));
 			System.out.println(person.getFullName() + "   " + person.isActive());
 			if (person != null) {
 				person.setActive(false);

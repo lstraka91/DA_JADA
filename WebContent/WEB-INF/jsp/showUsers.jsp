@@ -69,9 +69,9 @@
 													value="DELETE" class="btn btn-danger btn-block" />
 											</form>
 												<form method="post">
-												<input type="hidden" name="disable"
+												<input type="hidden" name="dissable"
 													value="${persons.personName}"> <input type="submit"
-													value="DISABLE" class="btn btn-warning btn-block" />
+													value="DISSABLE" class="btn btn-warning btn-block" />
 											</form>
 
 										</c:when>
