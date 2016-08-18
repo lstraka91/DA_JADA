@@ -146,9 +146,11 @@
 																test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') || user.deleteUserPermission}">
 																<form method="post">
 																	<input type="hidden" name="delete"
-																		value="${persons.personName}"> <input
-																		type="submit" value="DELETE"
-																		class="btn btn-danger btn-block" />
+																		value="${persons.personName}">
+																	<button type="submit" value="DELETE"
+																		class="btn btn-danger btn-block">
+																		<span class="glyphicon glyphicon-remove-sign"></span> DELETE
+																	</button>
 																</form>
 															</c:when>
 														</c:choose>
@@ -158,9 +160,11 @@
 																test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') || user.activationUserPernmision}">
 																<form method="post">
 																	<input type="hidden" name="dissable"
-																		value="${persons.personName}"> <input
-																		type="submit" value="DISSABLE"
-																		class="btn btn-warning btn-block" />
+																		value="${persons.personName}">
+																	<button type="submit" value="DISSABLE"
+																		class="btn btn-warning btn-block">
+																		<span class="glyphicon glyphicon-ban-circle"></span> DISSABLE
+																	</button>
 																</form>
 															</c:when>
 														</c:choose>
@@ -174,9 +178,12 @@
 																test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') || user.deleteUserPermission}">
 																<form method="post">
 																	<input type="hidden" name="delete"
-																		value="${persons.personName}"> <input
-																		type="submit" value="DELETE"
-																		class="btn btn-danger btn-block" />
+																		value="${persons.personName}">
+																	<button type="submit" value="DELETE"
+																		class="btn btn-danger btn-block">
+																		<span class="glyphicon glyphicon-remove-sign"></span>
+																		 DELETE
+																	</button>
 																</form>
 															</c:when>
 														</c:choose>
@@ -186,16 +193,23 @@
 																test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') || user.activationUserPernmision}">
 																<form method="post">
 																	<input type="hidden" name="activate"
-																		value="${persons.personName}"> <input
-																		type="submit" name="activate" value="ACTIVATE"
-																		class="btn btn-success btn-block" />
+																		value="${persons.personName}">
+																	<button type="submit" name="activate" value="ACTIVATE"
+																		class="btn btn-success btn-block">
+																		<span class="glyphicon glyphicon-ok-circle"></span>
+																		 ACTIVATE
+																	</button>
 																</form>
 															</c:when>
 														</c:choose>
 													</c:otherwise>
 
 												</c:choose>
-											</c:if></td>
+											</c:if>
+											<c:if test="${user.getClass().simpleName eq 'SuperAdmin'}">
+											<a href="ShowUsers?name=${persons.personName}&resetPass=true" class="btn btn-info btn-block"><span class="glyphicon glyphicon-refresh"></span> Reset password</a>
+											</c:if>
+											</td>
 									</tr>
 								</c:when>
 							</c:choose>

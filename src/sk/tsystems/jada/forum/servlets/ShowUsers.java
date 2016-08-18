@@ -47,6 +47,7 @@ public class ShowUsers extends HttpServlet {
 			@SuppressWarnings("unchecked")
 			ArrayList<Person> persons = (ArrayList<Person>) query.getResultList();
 
+			String resetPass=request.getParameter("resetPass");
 			String action = request.getParameter("ordebBy");
 			if (action != null) {
 				if ("dType".equals(action)) {
@@ -70,6 +71,12 @@ public class ShowUsers extends HttpServlet {
 					request.setAttribute("orderBy", 4);
 				}
 
+			}
+			if(resetPass!=null){
+				String pName= request.getParameter("name");
+				Person person = new PersonService().getPersonByName(pName);
+				System.out.println(person);
+				new PersonService().changePersonPassword(person, "123456798");
 			}
 
 			request.setAttribute("persons", persons);
