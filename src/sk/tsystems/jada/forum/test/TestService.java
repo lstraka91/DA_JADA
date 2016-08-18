@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import sk.tsystems.jada.forum.entity.Admin;
 import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Rating;
 import sk.tsystems.jada.forum.entity.Topic;
+import sk.tsystems.jada.forum.entity.services.AdminService;
+import sk.tsystems.jada.forum.entity.services.ChangePersonTypeService;
 import sk.tsystems.jada.forum.entity.services.CommentaryService;
 import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import sk.tsystems.jada.forum.entity.services.KeyWordService;
@@ -21,6 +24,8 @@ public class TestService {
 
 	PersonService ps = new PersonService();
 	RatingService rs = new RatingService();
+	ChangePersonTypeService chpts = new ChangePersonTypeService();
+	AdminService as = new AdminService();
 
 	public void createPerson1() {
 		Person p1 = new Person();
@@ -132,11 +137,11 @@ public class TestService {
 
 	public void removeTopics() {
 		TopicService tcs = new TopicService();
-		tcs.removeTopicById(tcs.getIdTopicByName("myTestTopic1"));
-		tcs.removeTopicById(tcs.getIdTopicByName("changed name"));
-		tcs.removeTopicById(tcs.getIdTopicByName("myTestTopic2"));
-		tcs.removeTopicById(tcs.getIdTopicByName("myTestTopic3"));
-		tcs.removeTopicById(tcs.getIdTopicByName("myTestTopic4"));
+		tcs.removeTopicByIdChecked(tcs.getIdTopicByName("myTestTopic1"));
+		tcs.removeTopicByIdChecked(tcs.getIdTopicByName("changed name"));
+		tcs.removeTopicByIdChecked(tcs.getIdTopicByName("myTestTopic2"));
+		tcs.removeTopicByIdChecked(tcs.getIdTopicByName("myTestTopic3"));
+		tcs.removeTopicByIdChecked(tcs.getIdTopicByName("myTestTopic4"));
 	}
 
 	CommentaryService cs = new CommentaryService();
@@ -271,6 +276,16 @@ public class TestService {
 	public void removeRatings() {
 		removeRatingByPerson("TestPerson1");
 		removeRatingByPerson("TestPerson2");
+	}
+	
+	public void createAdmin(){
+		Person person = ps.getPersonByName("TestPerson1");
+		chpts.changePersonToAdmin(person);
+	}
+	
+	public void removeAdmin(){
+		Admin admin = as.findAdminByName("TestPerson1");
+		chpts.changeAdminToPerson(admin);
 	}
 
 }

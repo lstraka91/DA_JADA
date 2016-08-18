@@ -57,18 +57,19 @@ public class TopicService {
 		CommentaryService cs = new CommentaryService();
 
 		Topic topic = findTopicById(idTopic);
-		List<Commentary> commentList = new ArrayList<>();
-		commentList = cs.selectAllComentByTopic(topic);
+		if (topic != null) {
+			List<Commentary> commentList = new ArrayList<>();
+			commentList = cs.selectAllComentByTopic(topic);
 
-		if (commentList != null) {
-			if (!commentList.isEmpty()) {
-				for (Commentary com : commentList) {
-					cs.removeCommentByObject(com);
+			if (commentList != null) {
+				if (!commentList.isEmpty()) {
+					for (Commentary com : commentList) {
+						cs.removeCommentByObject(com);
+					}
 				}
 			}
+			removeTopicById(idTopic);
 		}
-		removeTopicById(idTopic);
-
 	}
 
 	/**

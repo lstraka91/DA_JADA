@@ -50,9 +50,9 @@ public class TopicTest {
 	}
 
 	 @Test
-	 public void testRemoveTopicById(){
+	 public void testRemoveTopicByIdChecked(){
 		 int id = tcs.getIdTopicByName("myTestTopic1");
-		 tcs.removeTopicById(id);
+		 tcs.removeTopicByIdChecked(id);
 		 List<Topic> topicList = new ArrayList<>();
 		 topicList= tcs.getAllTopics();
 		 for (Topic topic : topicList) {
