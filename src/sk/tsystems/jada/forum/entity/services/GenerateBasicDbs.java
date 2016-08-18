@@ -246,6 +246,11 @@ public class GenerateBasicDbs {
 		personService.registerPerson(user1);
 		personService.registerPerson(user2);
 		personService.registerPerson(user3);
+		
+		user1.setActive(true);
+		user2.setActive(true);
+		user3.setActive(true);
+		
 		personService.registerPerson(user4);
 		personService.registerPerson(user5);
 		personService.registerPerson(user6);
@@ -451,17 +456,8 @@ public class GenerateBasicDbs {
 	}
 
 	public static void main(String[] args) {
-		TopicService ts = new TopicService();
-		// ts.removeTopicById(1929);
-
-		CommentaryService cs = new CommentaryService();
-		List<Commentary> testList = cs.selectAllComentByTopic(ts.findTopicById(1933));
-		for (Commentary comment : testList) {
-			System.out.println(comment);
-			cs.removeCommentByObject(comment);
-		}
-		// GenerateBasicDbs gdbs = new GenerateBasicDbs();
-		// gdbs.generateDbs();
-		// gdbs.deleteTables();
+		 GenerateBasicDbs gdbs = new GenerateBasicDbs();
+//		 gdbs.generateDbs();
+		 gdbs.deleteTables();
 	}
 }
