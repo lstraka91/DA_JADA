@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Topic;
@@ -37,52 +36,11 @@ public class TopicService {
 	 */
 	public void removeTopicById(int idTopic) {
 		Topic topic = null;
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
 		topic = findTopicById(idTopic);
 		if (topic != null) {
-			removeCommentsOfTopic(topic);
-			// removeTopicKeywords(idTopic);
-			// removeViewersListOfTopic(idTopic);
-			JpaHelper.beginTransaction();
-			EntityManager em = JpaHelper.getEntityManager();
 			em.remove(topic);
-			JpaHelper.commitTransaction();
-		}
-	}
-
-	private void removeCommentsOfTopic(Topic topic) {
-		CommentaryService cs = new CommentaryService();
-		List<Commentary> comList = cs.selectAllComentByTopic(topic);
-		if (comList != null) {
-			for (Commentary commentary : comList) {
-				cs.removeCommentByObject(commentary);
-			}
-		}
-	}
-
-	private void removeViewersListOfTopic(int idTopic) {
-		JpaHelper.beginTransaction();
-		EntityManager em = JpaHelper.getEntityManager();
-		Query query2 = em.createQuery("Select v from Topic_viewersList v where v.Topic_idTopic=:idTopic");
-		query2.setParameter("idTopic", idTopic);
-		List<String> viewList = query2.getResultList();
-		if (!viewList.isEmpty()) {
-			for (int i = 0; i < viewList.size(); i++) {
-				em.remove(viewList.get(i));
-			}
-		}
-		JpaHelper.commitTransaction();
-	}
-
-	private void removeTopicKeywords(int idTopic) {
-		JpaHelper.beginTransaction();
-		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("Select k from topic_keyword k where k.idTopic=:idTopic");
-		query.setParameter("idTopic", idTopic);
-		List<String> keyList = query.getResultList();
-		if (!keyList.isEmpty()) {
-			for (int i = 0; i < keyList.size(); i++) {
-				em.remove(keyList.get(i));
-			}
 		}
 		JpaHelper.commitTransaction();
 	}
@@ -118,8 +76,8 @@ public class TopicService {
 		}
 		JpaHelper.commitTransaction();
 	}
-
-	public void updateTopic(int idTopic, String topicName, String topicDescription, Set<KeyWord> keyWords) {
+	
+	public void updateTopic(int idTopic, String topicName, String topicDescription, Set<KeyWord> keyWords){
 		Topic topic = null;
 		JpaHelper.beginTransaction();
 		topic = findTopicById(idTopic);
@@ -130,6 +88,7 @@ public class TopicService {
 		}
 		JpaHelper.commitTransaction();
 	}
+	
 
 	/**
 	 * Method for select all topics from database
