@@ -13,11 +13,11 @@ import sk.tsystems.jada.forum.entity.services.AdminService;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
 public class AdminTest {
-	
+
 	TestService ts = new TestService();
 	AdminService as = new AdminService();
 	PersonService ps = new PersonService();
-	
+
 	@Before
 	public void beforeTesting() {
 		ts.createPersons();
@@ -46,7 +46,7 @@ public class AdminTest {
 			assertEquals("TestPerson1", admin.getPersonName());
 		}
 	}
-	
+
 	@Test
 	public void testPermissionUpdate() {
 		Admin admin = as.findAdminByName("TestPerson1");
@@ -56,7 +56,7 @@ public class AdminTest {
 		assertEquals(true, admin.isDeleteTopicPermission());
 		assertEquals(true, admin.isDeleteUserPermission());
 	}
-	
+
 	@Test
 	public void testFindAdminByName() {
 		Admin admin = as.findAdminByName("TestPerson1");

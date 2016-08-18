@@ -16,17 +16,17 @@ public class KeyWordTest {
 	TestService ts = new TestService();
 
 	@Before
-	public void beforeTesting(){
+	public void beforeTesting() {
 		ts.createPersons();
 		ts.createKeyWords();
 	}
-	
+
 	@After
-	public void afterTesting(){
+	public void afterTesting() {
 		ts.removePersons();
 		ts.removekeyWords();
 	}
-	
+
 	@Test
 	public void testFindKeyWord() {
 		String keyWord = "testKeyWord1";

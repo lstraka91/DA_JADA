@@ -22,17 +22,17 @@ public class CommentaryTest {
 	CommentaryService cs = new CommentaryService();
 	TopicService tcs = new TopicService();
 	PersonService ps = new PersonService();
-	
+
 	@Before
-	public void beforeTesting(){
+	public void beforeTesting() {
 		ts.createPersons();
 		ts.createKeyWords();
 		ts.createTopics();
 		ts.createComments();
 	}
-	
+
 	@After
-	public void afterTesting(){
+	public void afterTesting() {
 		ts.removeComments();
 		ts.removeTopics();
 		ts.removekeyWords();
@@ -57,25 +57,25 @@ public class CommentaryTest {
 	public void testSelectAllComent() {
 		assertNotNull(cs.selectAllComent());
 	}
-	
+
 	@Test
 	public void testSelectAllComentByTopic() {
 		Topic topic = tcs.findTopicById(tcs.getIdTopicByName("myTestTopic1"));
-		List<Commentary> list = cs.selectAllComentByTopic(topic);	
+		List<Commentary> list = cs.selectAllComentByTopic(topic);
 		for (Commentary commentary : list) {
 			assertEquals(commentary.getTopic().getIdTopic(), topic.getIdTopic());
 		}
 	}
-	
+
 	@Test
 	public void testSelectAllComentByPerson() {
 		Person person = ps.getPersonByName("TestPerson1");
-		List<Commentary> list= cs.selectAllComentByPerson(person);
+		List<Commentary> list = cs.selectAllComentByPerson(person);
 		for (Commentary commentary : list) {
 			assertEquals(commentary.getPerson().getIdPerson(), person.getIdPerson());
 		}
 	}
-	
+
 	@Test
 	public void testRemoveCommentById() {
 		ts.createComment4();
@@ -87,7 +87,7 @@ public class CommentaryTest {
 			assertNotEquals(id, commentary.getIdCommentary());
 		}
 	}
-	
+
 	@Test
 	public void testRemoveCommentByObject() {
 		ts.createComment4();
@@ -95,14 +95,15 @@ public class CommentaryTest {
 		cs.removeCommentByObject(comment);
 		assertNull(cs.getCommentByText("Fourth commentary for testing"));
 	}
-	
+
 	@Test
 	public void testSelectCommentById() {
 		Commentary comment = cs.getCommentByText("First commentary for testing");
 		int id = comment.getIdCommentary();
 		assertEquals(id, cs.selectCommentById(comment.getIdCommentary()).getIdCommentary());
-		
+
 	}
+
 	@Test
 	public void testGetCommentByText() {
 		Commentary c = cs.getCommentByText("First commentary for testing");

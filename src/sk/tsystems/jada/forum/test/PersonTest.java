@@ -75,7 +75,8 @@ public class PersonTest {
 	public void testChangePersonPassword() {
 		Person person = ps.getPersonByName("TestPerson1");
 		ps.changePersonPassword(person, "SuperUltraNewPass@@478");
-		assertEquals(PersonService.encryptPassword("SuperUltraNewPass@@478"), ps.getPersonByName("TestPerson1").getPassword());
+		assertEquals(PersonService.encryptPassword("SuperUltraNewPass@@478"),
+				ps.getPersonByName("TestPerson1").getPassword());
 	}
 
 	@Test

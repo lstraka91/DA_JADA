@@ -277,13 +277,13 @@ public class TestService {
 		removeRatingByPerson("TestPerson1");
 		removeRatingByPerson("TestPerson2");
 	}
-	
-	public void createAdmin(){
+
+	public void createAdmin() {
 		Person person = ps.getPersonByName("TestPerson1");
 		chpts.changePersonToAdmin(person);
 	}
-	
-	public void removeAdmin(){
+
+	public void removeAdmin() {
 		Admin admin = as.findAdminByName("TestPerson1");
 		chpts.changeAdminToPerson(admin);
 	}
