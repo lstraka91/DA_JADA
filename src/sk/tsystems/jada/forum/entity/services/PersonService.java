@@ -27,7 +27,7 @@ public class PersonService {
 	 * @return Object Person with parameter idPerson.
 	 */
 	@SuppressWarnings("unused")
-	private Person getPersonByID(int idPerson) {
+	public Person getPersonByID(int idPerson) {
 		Person person = null;
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person where p.idPerson =: idPerson");

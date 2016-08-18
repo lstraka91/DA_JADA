@@ -40,8 +40,8 @@ public class TopicService {
 		topic = findTopicById(idTopic);
 		if (topic != null) {
 			removeCommentsOfTopic(topic);
-			removeTopicKeywords(idTopic);
-			removeViewersListOfTopic(idTopic);
+			// removeTopicKeywords(idTopic);
+			// removeViewersListOfTopic(idTopic);
 			JpaHelper.beginTransaction();
 			EntityManager em = JpaHelper.getEntityManager();
 			em.remove(topic);

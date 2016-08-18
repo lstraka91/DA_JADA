@@ -17,12 +17,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import sk.tsystems.jada.forum.entity.services.CommentaryService;
+import sk.tsystems.jada.forum.entity.services.PersonService;
 
 @Entity
 public class Topic {
@@ -61,7 +63,7 @@ public class Topic {
 	/**
 	 * Stores ids of users which visited this topic.
 	 */
-	private Set<Integer> viewersList;
+	private Set<Person> viewersList;
 
 	/**
 	 * Constructor.
@@ -85,7 +87,7 @@ public class Topic {
 		this.topicDate = new Date(System.currentTimeMillis());
 		this.keyWords = keyWords;
 		this.person = person;
-		this.viewersList = new HashSet<Integer>();
+		this.viewersList = new HashSet<Person>();
 	}
 
 	@Transient
@@ -202,7 +204,6 @@ public class Topic {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "topic_keyword", joinColumns = @JoinColumn(name = "id_topic"), inverseJoinColumns = @JoinColumn(name = "id_keyWord"))
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	public Set<KeyWord> getKeyWords() {
 		return keyWords;
 	}
@@ -212,18 +213,16 @@ public class Topic {
 	}
 
 	public void addViewerToList(Integer idOfUser) {
-		this.viewersList.add(idOfUser);
+		this.viewersList.add(new PersonService().getPersonByID(idOfUser));
 	}
 
-	@Column
 	@OneToMany
-	@ElementCollection(targetClass = Integer.class)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	public Set<Integer> getViewersList() {
+	@JoinTable(name = "topic_person", joinColumns = @JoinColumn(name = "id_topic"), inverseJoinColumns = @JoinColumn(name = "id_person"))
+	public Set<Person> getViewersList() {
 		return viewersList;
 	}
 
-	public void setViewersList(Set<Integer> viewersList) {
+	public void setViewersList(Set<Person> viewersList) {
 		this.viewersList = viewersList;
 	}
 
@@ -232,6 +231,12 @@ public class Topic {
 		return "Topic [idTopic=" + idTopic + ", topicName=" + topicName + ", topicDescription=" + topicDescription
 				+ ", topicDate=" + topicDate + ", keyWords=" + keyWords + ", person=" + person + ", viewersList="
 				+ viewersList + "]";
+	}
+
+	@PreRemove
+	private void removeReferences() {
+		this.setKeyWords(null);
+		this.setViewersList(null);
 	}
 
 }
