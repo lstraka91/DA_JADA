@@ -120,12 +120,15 @@
 													</c:otherwise>
 												</c:choose></td>
 											<td><c:if
-													test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
+													test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin')}">
 													<a href="editTopic?idTopic=${topic.idTopic}"
 														class="btn btn-warning btn-block"> <span
 														class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 														Edit
 													</a>
+												</c:if> <c:if
+													test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') 
+													|| user.deleteTopicPermission}">
 													<a href="forum?idTopicDelete=${topic.idTopic}"
 														class="btn btn-danger btn-block"> <span
 														class="glyphicon glyphicon-delete" aria-hidden="true"></span>
