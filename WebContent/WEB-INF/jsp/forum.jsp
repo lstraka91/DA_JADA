@@ -100,11 +100,22 @@
 														<div>Comments</div>
 													</div>
 												</div></td>
-											<td colspan="10"><a
-												href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
-												<c:forEach items="${topic.keyWords}" var="keyword">
-													<button class="btn btn-sm-info disabled">${keyword.keyWord }</button>
-												</c:forEach></td>
+											<td colspan="10"><div class="row">
+													<a
+														href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
+												</div>
+												<div class="row">
+													<c:choose>
+														<c:when test="${not empty topic.keyWords }">
+															<c:forEach items="${topic.keyWords}" var="keyword">
+																<button class="btn btn-sm-info disabled">${keyword.keyWord }</button>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<p>key words not defined.</p>
+														</c:otherwise>
+													</c:choose>
+												</div></td>
 											<td>(${topic.person.personName })</td>
 
 											<td><c:choose>
@@ -150,7 +161,6 @@
 
 	</div>
 
-	<!-- 	<script type="text/javascript" src="js/jquery.min.js"></script> -->
 	<script type="text/javascript" src="js/jquery.timeago.js"></script>
 	<script type="text/javascript" src="js/forumScripts.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>

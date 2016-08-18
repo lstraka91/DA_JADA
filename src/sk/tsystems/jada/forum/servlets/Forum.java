@@ -39,15 +39,6 @@ public class Forum extends HttpServlet {
 			session.setAttribute("sorting", 1);
 		}
 
-		if (request.getParameter("idTopicDelete") != null) {
-			TopicService ts = new TopicService();
-			int idTopicDelete = Integer.parseInt(request.getParameter("idTopicDelete"));
-			Topic topicDelete = ts.findTopicById(idTopicDelete);
-			if (topicDelete != null) {
-				ts.removeTopicByIdChecked(idTopicDelete);
-			}
-		}
-
 		String action = request.getParameter("action");
 		if (action != null) {
 			if ("new".equals(action)) {
@@ -66,6 +57,16 @@ public class Forum extends HttpServlet {
 
 		}
 		request.setAttribute("topics", topics);
+
+		if (request.getParameter("idTopicDelete") != null) {
+			TopicService ts = new TopicService();
+			int idTopicDelete = Integer.parseInt(request.getParameter("idTopicDelete"));
+			Topic topicDelete = ts.findTopicById(idTopicDelete);
+			if (topicDelete != null) {
+				ts.removeTopicByIdChecked(idTopicDelete);
+			}
+			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+		}
 
 		forwardToList(request, response);
 

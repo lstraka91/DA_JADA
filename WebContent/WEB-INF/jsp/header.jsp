@@ -15,13 +15,14 @@
 	href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 
 <!-- jQuery library -->
-<script
+<script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script
+<script type="text/javascript"
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
@@ -35,12 +36,14 @@
 		</div>
 	</div>
 	<p class="text-center jumbotext">
-		Join to our community and ask for help if you had a trouble !! <span
+		Join to our community and ask for help if you had a trouble <span
 			class="glyphicon glyphicon-thumbs-up"></span>
 	</p>
 </div>
 
-<nav class="navbar navbar-inverse">
+
+
+<nav class="navbar navbar-fixed-top navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -48,14 +51,13 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">JADA</a>
+			<a class="navbar-brand" href="forum">JADA</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="forum">Home</a></li>
 				<li><a href="/JADA_Tsystems_TeamProject/newtopic"><span
 						class="glyphicon glyphicon-question-sign"></span> ASK QUESTION</a></li>
-				<li><a href="#">empty link</a></li>
+
 				<c:if test="${user.getClass().simpleName.equals('Admin')}">
 					<li class="dropdown"><a class="btn dropdown-toggle"
 						type="button" data-toggle="dropdown">Admin menu <c:choose>
@@ -65,6 +67,7 @@
 								</c:when>
 							</c:choose> <span class="caret"> </span>
 					</a>
+
 						<ul class="dropdown-menu">
 							<li><a href="ShowUsers">Show all USERs <c:choose>
 										<c:when test="${countOfNotifi > 0 }">
@@ -97,7 +100,29 @@
 							<li><a href="changePersonType">Change User type</a></li>
 						</ul></li>
 				</c:if>
+
 			</ul>
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+					<input type="text" class="form-control"
+						placeholder="Describe your problem...">
+				</div>
+				<a href="#openModal" type="submit" class="btn btn-default"> <span
+					class="glyphicon glyphicon-search"></span> Search
+				</a>
+			</form>
+
+			<div id="openModal" class="modalDialog">
+				<div class="text-center">
+					<a href="#close" title="Close" class="close"><span
+						class="glyphicon glyphicon-remove"></span></a> <img
+						src="images/construction.png" alt="work in progress">
+					<h3>Work in progress</h3>
+				</div>
+			</div>
+
+
+
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${sessionScope.user!=null}">
@@ -119,3 +144,5 @@
 		</div>
 	</div>
 </nav>
+
+
