@@ -17,15 +17,79 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<ul class="nav nav-tabs navbar-right">
-					<li><a
-						href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
-					<li><a
-						href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
-					<li><a
-						href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
-					<li><a
-						href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
-							Date</a></li>
+
+					<c:choose>
+						<c:when test="${orderBy == 1 }">
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li role="presentation" class="active"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+
+						</c:when>
+
+						<c:when test="${orderBy == 2 }">
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li role="presentation" class="active"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+						</c:when>
+
+						<c:when test="${orderBy == 3 }">
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+							<li role="presentation" class="active"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+						</c:when>
+
+						<c:when test="${orderBy == 4 }">
+							<li role="presentation" class="active"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li role="presentation" ><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+						</c:when>
+
+						<c:otherwise>
+
+							<li><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+							<li><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+
+						</c:otherwise>
+					</c:choose>
+
+
+
+
+
+
+
+
 				</ul>
 				<table class="table table-striped table-inverse">
 					<thead>
@@ -41,6 +105,8 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${persons}" var="persons" varStatus="theCount">
+						<c:choose>
+						<c:when test="${persons.personName ne 'Removed User'}">
 							<tr>
 								<td><c:choose>
 										<c:when
@@ -68,7 +134,7 @@
 													value="${persons.personName}"> <input type="submit"
 													value="DELETE" class="btn btn-danger btn-block" />
 											</form>
-												<form method="post">
+											<form method="post">
 												<input type="hidden" name="dissable"
 													value="${persons.personName}"> <input type="submit"
 													value="DISSABLE" class="btn btn-warning btn-block" />
@@ -84,12 +150,15 @@
 											<form method="post">
 												<input type="hidden" name="activate"
 													value="${persons.personName}"> <input type="submit"
-													name="activate" value="ACTIVATE" class="btn btn-success btn-block" />
+													name="activate" value="ACTIVATE"
+													class="btn btn-success btn-block" />
 											</form>
-											
+
 										</c:otherwise>
 									</c:choose></td>
 							</tr>
+							</c:when>
+							</c:choose>
 						</c:forEach>
 					</tbody>
 
