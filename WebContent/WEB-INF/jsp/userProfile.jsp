@@ -94,19 +94,20 @@
 									required>
 							</div>
 							<div class="form-group row">
-								<label for="newpass" class="col-form-label"> <b>New
+								<label for="passsword" class="col-form-label"> <b>New
 										password:</b>
 								</label> <input type="password" placeholder="Insert new password"
-									id="password" name="password" class="form-control input-lg"
+									id="passsword" name="password" class="form-control input-lg"
 									required>
-								<div id="passCheck"></div>
+								<div id="passsCheck"></div>
 							</div>
 							<div class="form-group row">
-								<label for="confirm_password" class="col-form-label"> <b>New
+								<label for="confirm_passsword" class="col-form-label"> <b>New
 										password again:</b>
 								</label> <input type="password" placeholder="Retype new password"
-									id="confirm_password" name="confirm_password"
+									id="confirm_passsword" name="confirm_password"
 									class="form-control input-lg" required>
+									<div id="passsValidation"></div>
 							</div>
 						</div>
 					</div>
@@ -115,7 +116,7 @@
 					<center>
 						<input type="button" id="edit" value="Edit profile"
 							class="btn btn-lg btn-primary"> <input type="submit"
-							class="btn btn-lg btn-primary" id="save" name="save"
+							class="btn btn-lg btn-primary" id="ssave" name="save"
 							value="Save changes"> <input type="button"
 							id="changePass" value="Change password"
 							class="btn btn-lg btn-warning "> <input type="button"
@@ -125,9 +126,8 @@
 			</div>
 		</div>
 	</div>
-	<script src='js/profileForm.js'></script>
-	<script src="js/checkPasswordStrong.js"></script>
-	<script src="js/validatePassword.js"></script>
+	<script type="text/javascript" src='js/profileForm.js'></script>
+
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

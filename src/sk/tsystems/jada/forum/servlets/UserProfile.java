@@ -63,7 +63,7 @@ public class UserProfile extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
 			}
 			if (!oldPass.equals("") || !newPass.equals("") || !oldPass.equals(null) || !newPass.equals(null)) {
-				if (PersonService.encryptPassword(oldPass) == updatePerson.getPassword()) {
+				if (PersonService.encryptPassword(oldPass).equals(updatePerson.getPassword())) {
 					System.out.println("kontrola stareho a noveho hesla");
 
 					new PersonService().changePersonPassword(updatePerson, newPass);
@@ -72,10 +72,9 @@ public class UserProfile extends HttpServlet {
 					System.out.println("nezodne hesla");
 				}
 			}
-			request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
-		} else {
-			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
-		}
+		} 
+		
+		
 	}
 
 }

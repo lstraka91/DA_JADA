@@ -23,116 +23,114 @@
 
 		<jsp:include page="header.jsp"></jsp:include>
 
-		<div class="container">
+		
+			<div class="panel panel-default">
+				<div class="panel-body">
 
-			<div class="row">
-				<div class="panel panel-default">
-					<div class="panel-body">
+					<ul class="nav nav-tabs navbar-right">
 
-						<ul class="nav nav-tabs navbar-right">
+						<c:choose>
+							<c:when test="${sorting==2 }">
+								<li role="presentation"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
+								<li role="presentation" class="active"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=top">top
+										viewed</a></li>
+								<li role="presentation"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+										commented</a></li>
+							</c:when>
 
-							<c:choose>
-								<c:when test="${sorting==2 }">
-									<li role="presentation"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-									<li role="presentation" class="active"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=top">top
-											viewed</a></li>
-									<li role="presentation"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
-											commented</a></li>
-								</c:when>
+							<c:when test="${sorting==3 }">
+								<li role="presentation"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
+								<li role="presentation"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=top">top
+										viewed</a></li>
+								<li role="presentation" class="active"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+										commented</a></li>
+							</c:when>
+							<c:otherwise>
+								<li role="presentation" class="active"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
+								<li role="presentation"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=top">top
+										viewed</a></li>
+								<li role="presentation"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+										commented</a></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+					<div class="table">
+						<table class="table table-hover">
+							<thead>
 
-								<c:when test="${sorting==3 }">
-									<li role="presentation"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-									<li role="presentation"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=top">top
-											viewed</a></li>
-									<li role="presentation" class="active"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
-											commented</a></li>
-								</c:when>
-								<c:otherwise>
-									<li role="presentation" class="active"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-									<li role="presentation"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=top">top
-											viewed</a></li>
-									<li role="presentation"><a
-										href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
-											commented</a></li>
-								</c:otherwise>
-							</c:choose>
-						</ul>
-						<div class="table">
-							<table class="table table-hover">
-								<thead>
-
-								</thead>
-								<tbody id="myTable">
-									<c:forEach items="${topics}" var="topic">
-										<tr>
-											<td><div class="text-center">
-													<div class="center">
-														<div>
-															<c:choose>
-																<c:when test="${topic.viewersList!=null }">
+							</thead>
+							<tbody id="myTable">
+								<c:forEach items="${topics}" var="topic">
+									<tr>
+										<td><div class="text-center">
+												<div class="center">
+													<div>
+														<c:choose>
+															<c:when test="${topic.viewersList!=null }">
 															${topic.viewersList.stream().count()}
 															</c:when>
-																<c:otherwise>0</c:otherwise>
-															</c:choose>
-														</div>
-														<div>Views</div>
-
+															<c:otherwise>0</c:otherwise>
+														</c:choose>
 													</div>
-													<div class="center">
-														<div>
-															<c:choose>
-																<c:when
-																	test="${commentService.selectAllComentByTopic(topic)!=null }">
+													<div>Views</div>
+
+												</div>
+												<div class="center">
+													<div>
+														<c:choose>
+															<c:when
+																test="${commentService.selectAllComentByTopic(topic)!=null }">
 															${commentService.selectAllComentByTopic(topic).stream().count() }
 															</c:when>
-																<c:otherwise>0</c:otherwise>
-															</c:choose>
+															<c:otherwise>0</c:otherwise>
+														</c:choose>
 
-														</div>
-														<div>Comments</div>
 													</div>
-												</div></td>
-											<td colspan="10"><div class="row">
-													<a
-														href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
+													<div>Comments</div>
 												</div>
-												<div class="row">
-													<c:choose>
-														<c:when test="${not empty topic.keyWords }">
-															<c:forEach items="${topic.keyWords}" var="keyword">
-																<button class="btn btn-sm-info disabled">${keyword.keyWord }</button>
-															</c:forEach>
-														</c:when>
-														<c:otherwise>
-															<p>key words not defined.</p>
-														</c:otherwise>
-													</c:choose>
-												</div></td>
-											<td>(${topic.person.personName })</td>
-
-											<td><c:choose>
-													<c:when test="${now.date gt topic.topicDate.date}">
-														<p>
-															<fmt:formatDate value="${topic.topicDate}"
-																pattern="dd.MMM yyy HH:mm" />
-														</p>
+											</div></td>
+										<td colspan="10"><div class="row">
+												<a
+													href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
+											</div>
+											<div class="row">
+												<c:choose>
+													<c:when test="${not empty topic.keyWords }">
+														<c:forEach items="${topic.keyWords}" var="keyword">
+															<button class="btn btn-sm-info disabled">${keyword.keyWord }</button>
+														</c:forEach>
 													</c:when>
 													<c:otherwise>
-														<time class="timeago" datetime="${topic.topicDate}">just
-														now</time>
+														<p>key words not defined.</p>
 													</c:otherwise>
-												</c:choose></td>
-											<td><c:if
-													test="${user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin'}">
-													<c:if test="${user.deleteTopicPermission }">
+												</c:choose>
+											</div></td>
+										<td>(${topic.person.personName })</td>
+
+										<td><c:choose>
+												<c:when test="${now.date gt topic.topicDate.date}">
+													<p>
+														<fmt:formatDate value="${topic.topicDate}"
+															pattern="dd.MMM yyy HH:mm" />
+													</p>
+												</c:when>
+												<c:otherwise>
+													<time class="timeago" datetime="${topic.topicDate}">just
+													now</time>
+												</c:otherwise>
+											</c:choose></td>
+										<td><c:if
+												test="${user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin'}">
+												<c:if test="${user.deleteTopicPermission }">
 													<a href="editTopic?idTopic=${topic.idTopic}"
 														class="btn btn-warning btn-block"> <span
 														class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -143,25 +141,25 @@
 														class="glyphicon glyphicon-delete" aria-hidden="true"></span>
 														Delete
 													</a>
-													</c:if>
-												</c:if></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-						<div class="col-md-12 text-center">
-							<ul class="pagination pagination-md pager" id="myPager"></ul>
-						</div>
+												</c:if>
+											</c:if></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-md-12 text-center">
+						<ul class="pagination pagination-md pager" id="myPager"></ul>
 					</div>
 				</div>
 			</div>
-		</div>
+		
 
-	</div>
+
 
 	<script type="text/javascript" src="js/jquery.timeago.js"></script>
 	<script type="text/javascript" src="js/forumScripts.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>
