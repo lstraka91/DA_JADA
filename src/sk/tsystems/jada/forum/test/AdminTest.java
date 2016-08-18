@@ -42,9 +42,6 @@ public class AdminTest {
 	public void testShowAllAdmins() {
 		ArrayList<Admin> list = as.showAllAdmins();
 		assertNotNull(list);
-		for (Admin admin : list) {
-			assertEquals("TestPerson1", admin.getPersonName());
-		}
 	}
 
 	@Test
