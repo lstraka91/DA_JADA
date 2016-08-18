@@ -88,14 +88,18 @@
 						<tr>
 							<th>User Name</th>
 
+							<th>Full Name</th>
+
 							<th>Email</th>
+
+							<th>B.Day</th>
 
 							<th>Registration Date</th>
 
 							<th></th>
 						</tr>
 					</thead>
-					<tbody  id="usersList">
+					<tbody id="usersList">
 						<c:forEach items="${persons}" var="persons" varStatus="theCount">
 							<c:choose>
 								<c:when test="${persons.personName ne 'Removed User'}">
@@ -118,45 +122,76 @@
 
 											</c:choose> <b><i>${persons.personName}</i></b></td>
 
+										<td>${persons.fullName}</td>
+
 										<td>${persons.email}</td>
 
+										<td><p>
+												<fmt:formatDate value="${persons.birthday}"
+													pattern="dd.MMM yyy HH:mm" />
+											</p></td>
 										<td><p>
 												<fmt:formatDate value="${persons.registrationDate}"
 													pattern="dd.MMM yyy HH:mm" />
 											</p></td>
 										<td><c:if
 												test="${persons.getClass().simpleName ne 'SuperAdmin'}">
+
 												<c:choose>
 
-													<c:when test="${persons.active == true}">
-														<form method="post">
-															<input type="hidden" name="delete"
-																value="${persons.personName}"> <input
-																type="submit" value="DELETE"
-																class="btn btn-danger btn-block" />
-														</form>
-														<form method="post">
-															<input type="hidden" name="dissable"
-																value="${persons.personName}"> <input
-																type="submit" value="DISSABLE"
-																class="btn btn-warning btn-block" />
-														</form>
+													<c:when test="${persons.active}">
 
+														<c:choose>
+															<c:when
+																test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') || user.deleteUserPermission}">
+																<form method="post">
+																	<input type="hidden" name="delete"
+																		value="${persons.personName}"> <input
+																		type="submit" value="DELETE"
+																		class="btn btn-danger btn-block" />
+																</form>
+															</c:when>
+														</c:choose>
+
+														<c:choose>
+															<c:when
+																test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') || user.activationUserPernmision}">
+																<form method="post">
+																	<input type="hidden" name="dissable"
+																		value="${persons.personName}"> <input
+																		type="submit" value="DISSABLE"
+																		class="btn btn-warning btn-block" />
+																</form>
+															</c:when>
+														</c:choose>
 													</c:when>
-													<c:otherwise>
-														<form method="post">
-															<input type="hidden" name="delete"
-																value="${persons.personName}"> <input
-																type="submit" value="DELETE"
-																class="btn btn-danger btn-block" />
-														</form>
-														<form method="post">
-															<input type="hidden" name="activate"
-																value="${persons.personName}"> <input
-																type="submit" name="activate" value="ACTIVATE"
-																class="btn btn-success btn-block" />
-														</form>
 
+
+													<c:otherwise>
+
+														<c:choose>
+															<c:when
+																test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') || user.deleteUserPermission}">
+																<form method="post">
+																	<input type="hidden" name="delete"
+																		value="${persons.personName}"> <input
+																		type="submit" value="DELETE"
+																		class="btn btn-danger btn-block" />
+																</form>
+															</c:when>
+														</c:choose>
+
+														<c:choose>
+															<c:when
+																test="${user.getClass().name.equals('sk.tsystems.jada.forum.entity.SuperAdmin') || user.activationUserPernmision}">
+																<form method="post">
+																	<input type="hidden" name="activate"
+																		value="${persons.personName}"> <input
+																		type="submit" name="activate" value="ACTIVATE"
+																		class="btn btn-success btn-block" />
+																</form>
+															</c:when>
+														</c:choose>
 													</c:otherwise>
 
 												</c:choose>
