@@ -131,14 +131,12 @@
 													</c:otherwise>
 												</c:choose></td>
 											<td><c:if
-													test="${user.getClass().simpleName eq 'SuperAdmin'}">
+													test="${user.getClass().simpleName eq 'SuperAdmin' || user.deleteTopicPermission}">
 													<a href="editTopic?idTopic=${topic.idTopic}"
 														class="btn btn-warning btn-block"> <span
 														class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 														Edit
 													</a>
-												</c:if> <c:if
-													test="${user.getClass().simpleName eq 'SuperAdmin' || user.deleteTopicPermission}">
 													<a href="forum?idTopicDelete=${topic.idTopic}"
 														class="btn btn-danger btn-block"> <span
 														class="glyphicon glyphicon-delete" aria-hidden="true"></span>
