@@ -36,66 +36,71 @@ public class TopicServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		CommentaryService cs = new CommentaryService();
-		RatingService rs = new RatingService();
+		if (session.getAttribute("user") != null) {
 
-		Person person = (Person) session.getAttribute("user");
+			CommentaryService cs = new CommentaryService();
+			RatingService rs = new RatingService();
 
-		int idTopic = Integer.parseInt(request.getParameter("idTopic"));
-		Topic topic = new TopicService().findTopicById(idTopic);
-		if (topic != null) {
-			session.setAttribute("currentTopic", topic);
-		}
+			Person person = (Person) session.getAttribute("user");
 
-		if (person != null) {
-			new TopicService().addVisitorToTopic(topic, person.getIdPerson());
-		}
-		
-		//delete owners comment
-		if (request.getParameter("delete") != null && person != null && request.getParameter("idComment") != null) {
-			int idComment = Integer.parseInt(request.getParameter("idComment"));
-			Commentary comToDelete= new CommentaryService().selectCommentById(idComment);
-			if(comToDelete!=null){
-				new CommentaryService().removeCommentByObject(comToDelete);
+			int idTopic = Integer.parseInt(request.getParameter("idTopic"));
+			Topic topic = new TopicService().findTopicById(idTopic);
+			if (topic != null) {
+				session.setAttribute("currentTopic", topic);
 			}
-			
-		}
 
-		// int rate = (int) session.getAttribute("currentRating");
-		if (request.getParameter("addRate") != null && person != null) {
-			int idComment = Integer.parseInt(request.getParameter("idComment"));
-			Rating rating;
-			if (request.getParameter("addRate").equals("like")) {
-				rating = new Rating(1, person, cs.selectCommentById(idComment));
-				rs.addRating(rating);
-			} else if (request.getParameter("addRate").equals("dislike")) {
-				rating = new Rating(-1, person, cs.selectCommentById(idComment));
-				rs.addRating(rating);
+			if (person != null) {
+				new TopicService().addVisitorToTopic(topic, person.getIdPerson());
 			}
-		}
-		String comment = request.getParameter("comment");
-		if (comment != null & person != null) {
-			topic = (Topic) session.getAttribute("currentTopic");
-			Commentary com = new Commentary(comment, person, topic);
-			cs.addComent(com);
-		}
-		String editComment = request.getParameter("editComment");
-		if (editComment != null & person != null & request.getParameter("idComment")!=null) {
-			int commentId= Integer.parseInt(request.getParameter("idComment"));
-			topic = (Topic) session.getAttribute("currentTopic");
-			Commentary commentToUpdate = cs.selectCommentById(commentId);
-			cs.updateCommentBody(commentToUpdate, editComment);
-		}
 
-		List<Commentary> topicComment = new ArrayList<>();
-		topicComment = (List<Commentary>) cs.selectAllComentByTopic(topic);
-		request.setAttribute("topicComments", topicComment);
+			// delete owners comment
+			if (request.getParameter("delete") != null && person != null && request.getParameter("idComment") != null) {
+				int idComment = Integer.parseInt(request.getParameter("idComment"));
+				Commentary comToDelete = new CommentaryService().selectCommentById(idComment);
+				if (comToDelete != null) {
+					new CommentaryService().removeCommentByObject(comToDelete);
+				}
 
-		List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatings(topic);
-		if (topicCommentsWithRate != null) {
-			request.setAttribute("commentWithRateList", topicCommentsWithRate);
+			}
+
+			// int rate = (int) session.getAttribute("currentRating");
+			if (request.getParameter("addRate") != null && person != null) {
+				int idComment = Integer.parseInt(request.getParameter("idComment"));
+				Rating rating;
+				if (request.getParameter("addRate").equals("like")) {
+					rating = new Rating(1, person, cs.selectCommentById(idComment));
+					rs.addRating(rating);
+				} else if (request.getParameter("addRate").equals("dislike")) {
+					rating = new Rating(-1, person, cs.selectCommentById(idComment));
+					rs.addRating(rating);
+				}
+			}
+			String comment = request.getParameter("comment");
+			if (comment != null & person != null) {
+				topic = (Topic) session.getAttribute("currentTopic");
+				Commentary com = new Commentary(comment, person, topic);
+				cs.addComent(com);
+			}
+			String editComment = request.getParameter("editComment");
+			if (editComment != null & person != null & request.getParameter("idComment") != null) {
+				int commentId = Integer.parseInt(request.getParameter("idComment"));
+				topic = (Topic) session.getAttribute("currentTopic");
+				Commentary commentToUpdate = cs.selectCommentById(commentId);
+				cs.updateCommentBody(commentToUpdate, editComment);
+			}
+
+			List<Commentary> topicComment = new ArrayList<>();
+			topicComment = (List<Commentary>) cs.selectAllComentByTopic(topic);
+			request.setAttribute("topicComments", topicComment);
+
+			List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatings(topic);
+			if (topicCommentsWithRate != null) {
+				request.setAttribute("commentWithRateList", topicCommentsWithRate);
+			}
+			forwardToList(request, response);
+		} else {
+			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
 		}
-		forwardToList(request, response);
 	}
 
 	/**

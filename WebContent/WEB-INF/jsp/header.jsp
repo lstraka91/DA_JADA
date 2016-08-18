@@ -24,7 +24,20 @@
 <!-- Latest compiled JavaScript -->
 <script type="text/javascript"
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("#datepicker").datepicker({
+				dateFormat : 'dd.mm.yy',
+				changeMonth : true,
+				changeYear : true,
+				yearRange : "1900:+nn"
+			});
+		});
+	</script>
+	<script type="text/javascript" src="js/usernameExists.js"></script>
+	<script type="text/javascript" src="js/checkPasswordStrong.js"></script>
+	<script type="text/javascript" src="js/validatePassword.js"></script>
 
 <div class="jumbotron">
 	<div class="row">
@@ -134,9 +147,9 @@
 					</c:when>
 					<c:otherwise>
 
-						<li><a href="login"><span
+						<li><a href="#" data-toggle="modal" data-target="#login"><span
 								class="glyphicon glyphicon-log-in"></span> Log in</a></li>
-						<li><a href="registration"><span
+						<li><a href="#" data-toggle="modal" data-target="#registration"><span
 								class="glyphicon glyphicon-log-in"></span> Registration</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -145,4 +158,137 @@
 	</div>
 </nav>
 
+
+<!-- Modal Login -->
+<div class="modal fade" id="login" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title text-center formHead">
+					Login page
+					</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="center-form panel">
+						<form method="post">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<h2 class="text-center formHead">Please log in</h2>
+
+									<div class="form-group">
+										<div id="failedLogin"></div>
+										<input type="text" name="userName" value="" id="username"
+											placeholder="Insert your username here"
+											class="form-control input-lg" required autofocus /> <input
+											type="password" name="password" value="" id="pass"
+											placeholder="Insert your password here"
+											class="form-control input-lg" requried />
+									</div>
+									<div id="status"></div>
+									<input type="button" value="Login" id="login"
+										class="btn btn-lg btn-block btn-success" />
+
+
+
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- Modal Registration-->
+<div class="modal fade" id="registration" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2 class="modal-title text-center formHead">
+					Registration page
+					</h2>
+			</div>
+			<div class="modal-body">
+				<c:if test="${not empty param.error}">
+					<div class="alert alert-danger" role="alert">
+						<strong>Registration Error!</strong> Username allready exist,
+						change the username.
+					</div>
+				</c:if>
+				<div class="row">
+					<div class="center-form panel">
+						<form method="post"
+							action="/JADA_Tsystems_TeamProject/registration"
+							onsubmit="alert('success');">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="form-group">
+										<div class="alert alert-info" role="alert">
+											<a href="#" class="close" data-dismiss="alert"
+												aria-label="close">&times;</a><span
+												class="glyphicon glyphicon-info-sign"></span>After register
+											admin have to <strong>activate</strong> your account.You
+											don't be able to login yet
+										</div>
+										<input type="text" name="userName" id="userName"
+											placeholder="Insert your username here"
+											class="form-control input-lg" required />
+										<div id="status"></div>
+									</div>
+									<div class="form-group">
+
+										<input type="text" name="fullName"
+											placeholder="Insert your fullName"
+											class="form-control input-lg" required />
+									</div>
+									<div class="form-group">
+
+										<input type="text" name="birthDate" id="datepicker" value=""
+											placeholder="Insert your DateOfBirth here"
+											class="form-control input-lg" required autocomplete=off />
+									</div>
+									<div class="form-group">
+										<input type="password" name="Password" id="password"
+											placeholder="Insert your password here"
+											class="form-control input-lg" id="password" minlength="6"
+											required />
+										<div id="passCheck"></div>
+									</div>
+									<div class="form-group">
+										<input type="password" name="PasswordC"
+											placeholder="Confirm password" class="form-control input-lg"
+											id="confirm_password" required />
+									</div>
+									<div class="form-group">
+										<input type="email" name="Email"
+											placeholder="Insert your email address"
+											class="form-control input-lg" required />
+									</div>
+									<input type="submit" value="Register user" id="register"
+										class="btn btn-lg btn-block btn-success" />
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div>
 

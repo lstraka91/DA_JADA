@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.services.ChangePersonTypeService;
@@ -29,6 +30,9 @@ public class ChangePersonType extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") != null) {
+			
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p ");
 		ArrayList<Person> persons = (ArrayList<Person>) query.getResultList();
@@ -75,6 +79,9 @@ public class ChangePersonType extends HttpServlet {
 
 		request.setAttribute("persons", persons);
 		request.getRequestDispatcher("/WEB-INF/jsp/changePersonType.jsp").forward(request, response);
+		}else{
+			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+		}
 	}
 
 	/**

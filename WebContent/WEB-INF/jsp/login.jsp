@@ -22,6 +22,7 @@
 			</div>
 		</c:if>
  -->
+		
 		<div class="row">
 			<div class="center-form panel">
 				<form method="post">
@@ -41,9 +42,7 @@
 								</div>
 								<div id="status"></div>
 								<input type="button" value="Login" id="login"
-									class="btn btn-lg btn-block btn-success" /> <a
-									href="/JADA_Tsystems_TeamProject/registration"
-									class="btn btn-lg btn-block btn-primary">Register</a>
+									class="btn btn-lg btn-block btn-success" /> 
 
 
 							</center>
