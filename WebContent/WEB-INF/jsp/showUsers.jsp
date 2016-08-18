@@ -59,7 +59,7 @@
 						<c:when test="${orderBy == 4 }">
 							<li role="presentation" class="active"><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
-							<li role="presentation" ><a
+							<li role="presentation"><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
 							<li role="presentation"><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
@@ -82,14 +82,6 @@
 
 						</c:otherwise>
 					</c:choose>
-
-
-
-
-
-
-
-
 				</ul>
 				<table class="table table-striped table-inverse">
 					<thead>
@@ -103,69 +95,80 @@
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody  id="usersList">
 						<c:forEach items="${persons}" var="persons" varStatus="theCount">
-						<c:choose>
-						<c:when test="${persons.personName ne 'Removed User'}">
-							<tr>
-								<td><c:choose>
-										<c:when
-											test="${persons.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
-											<img src="images/admin.ico" alt="admin" height="25"
-												width="25">
-										</c:when>
-										<c:otherwise>
-											<img src="images/user.ico" alt="user" height="25" width="25">
-										</c:otherwise>
+							<c:choose>
+								<c:when test="${persons.personName ne 'Removed User'}">
+									<tr>
+										<td><c:choose>
+												<c:when
+													test="${persons.getClass().name.equals('sk.tsystems.jada.forum.entity.Admin')}">
+													<img src="images/admin.ico" alt="admin" height="25"
+														width="25">
+												</c:when>
+												<c:otherwise>
+													<img src="images/user.ico" alt="user" height="25"
+														width="25">
+												</c:otherwise>
 
-									</c:choose> <b><i>${persons.personName}</i></b></td>
+											</c:choose> <b><i>${persons.personName}</i></b></td>
 
-								<td>${persons.email}</td>
+										<td>${persons.email}</td>
 
-								<td><p>
-										<fmt:formatDate value="${persons.registrationDate}"
-											pattern="dd.MMM yyy HH:mm" />
-									</p></td>
+										<td><p>
+												<fmt:formatDate value="${persons.registrationDate}"
+													pattern="dd.MMM yyy HH:mm" />
+											</p></td>
+										<td><c:if
+												test="${persons.getClass().simpleName ne 'SuperAdmin'}">
+												<c:choose>
 
-								<td><c:choose>
-										<c:when test="${persons.active == true}">
-											<form method="post">
-												<input type="hidden" name="delete"
-													value="${persons.personName}"> <input type="submit"
-													value="DELETE" class="btn btn-danger btn-block" />
-											</form>
-											<form method="post">
-												<input type="hidden" name="dissable"
-													value="${persons.personName}"> <input type="submit"
-													value="DISSABLE" class="btn btn-warning btn-block" />
-											</form>
+													<c:when test="${persons.active == true}">
+														<form method="post">
+															<input type="hidden" name="delete"
+																value="${persons.personName}"> <input
+																type="submit" value="DELETE"
+																class="btn btn-danger btn-block" />
+														</form>
+														<form method="post">
+															<input type="hidden" name="dissable"
+																value="${persons.personName}"> <input
+																type="submit" value="DISSABLE"
+																class="btn btn-warning btn-block" />
+														</form>
 
-										</c:when>
-										<c:otherwise>
-											<form method="post">
-												<input type="hidden" name="delete"
-													value="${persons.personName}"> <input type="submit"
-													value="DELETE" class="btn btn-danger btn-block" />
-											</form>
-											<form method="post">
-												<input type="hidden" name="activate"
-													value="${persons.personName}"> <input type="submit"
-													name="activate" value="ACTIVATE"
-													class="btn btn-success btn-block" />
-											</form>
+													</c:when>
+													<c:otherwise>
+														<form method="post">
+															<input type="hidden" name="delete"
+																value="${persons.personName}"> <input
+																type="submit" value="DELETE"
+																class="btn btn-danger btn-block" />
+														</form>
+														<form method="post">
+															<input type="hidden" name="activate"
+																value="${persons.personName}"> <input
+																type="submit" name="activate" value="ACTIVATE"
+																class="btn btn-success btn-block" />
+														</form>
 
-										</c:otherwise>
-									</c:choose></td>
-							</tr>
-							</c:when>
+													</c:otherwise>
+
+												</c:choose>
+											</c:if></td>
+									</tr>
+								</c:when>
 							</c:choose>
 						</c:forEach>
 					</tbody>
-
 				</table>
+			</div>
+			<div class="col-md-12 text-center">
+				<ul class="pagination pagination-md pager" id="numberOfPage"></ul>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/numberOfPage.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
