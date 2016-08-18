@@ -92,8 +92,8 @@
 									</c:choose>
 
 							</a></li>
-							<li><a href="showAdminsPermission">Change Admin
-									permisions</a></li>
+							<li><a href="showAdminsPermission">Change admin
+									permissions</a></li>
 							<li><a href="changePersonType">Change User type</a></li>
 						</ul></li>
 				</c:if>

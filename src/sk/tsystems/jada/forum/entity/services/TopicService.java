@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Topic;
@@ -34,7 +35,7 @@ public class TopicService {
 	 * 
 	 * @param id
 	 */
-	public void removeTopicById(int idTopic) {
+	private void removeTopicById(int idTopic) {
 		Topic topic = null;
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
@@ -43,6 +44,31 @@ public class TopicService {
 			em.remove(topic);
 		}
 		JpaHelper.commitTransaction();
+	}
+
+	/**
+	 * Removes object of topic with all comments, keeps references of objects
+	 * Person, KeyWords.
+	 * 
+	 * @param idTopic
+	 *            type: Integer, unique identifier of Topic
+	 */
+	public void removeTopicByIdChecked(int idTopic) {
+		CommentaryService cs = new CommentaryService();
+
+		Topic topic = findTopicById(idTopic);
+		List<Commentary> commentList = new ArrayList<>();
+		commentList = cs.selectAllComentByTopic(topic);
+
+		if (commentList != null) {
+			if (!commentList.isEmpty()) {
+				for (Commentary com : commentList) {
+					cs.removeCommentByObject(com);
+				}
+			}
+		}
+		removeTopicById(idTopic);
+
 	}
 
 	/**
@@ -76,8 +102,8 @@ public class TopicService {
 		}
 		JpaHelper.commitTransaction();
 	}
-	
-	public void updateTopic(int idTopic, String topicName, String topicDescription, Set<KeyWord> keyWords){
+
+	public void updateTopic(int idTopic, String topicName, String topicDescription, Set<KeyWord> keyWords) {
 		Topic topic = null;
 		JpaHelper.beginTransaction();
 		topic = findTopicById(idTopic);
@@ -88,7 +114,6 @@ public class TopicService {
 		}
 		JpaHelper.commitTransaction();
 	}
-	
 
 	/**
 	 * Method for select all topics from database

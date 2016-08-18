@@ -106,7 +106,7 @@ public class CommentaryService {
 	public void removeCommentByObject(Commentary comment) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		comment = getCommentByText(comment.getCommentaryBody());
+		comment = selectCommentById(comment.getIdCommentary());
 		em.remove(comment);
 		JpaHelper.commitTransaction();
 	}
@@ -151,13 +151,14 @@ public class CommentaryService {
 			return null;
 		}
 	}
-	
+
 	/**
-	 * update body of comment 
+	 * update body of comment
+	 * 
 	 * @param comment
 	 * @param commentBody
 	 */
-	public void updateCommentBody(Commentary comment, String commentBody){
+	public void updateCommentBody(Commentary comment, String commentBody) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Commentary commentToEdit = em.find(Commentary.class, comment.getIdCommentary());

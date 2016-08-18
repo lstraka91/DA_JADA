@@ -38,13 +38,13 @@ public class Forum extends HttpServlet {
 			topics = (List<Topic>) new TopicService().getTopicsOrderDate();
 			session.setAttribute("sorting", 1);
 		}
-		
+
 		if (request.getParameter("idTopicDelete") != null) {
 			TopicService ts = new TopicService();
 			int idTopicDelete = Integer.parseInt(request.getParameter("idTopicDelete"));
 			Topic topicDelete = ts.findTopicById(idTopicDelete);
 			if (topicDelete != null) {
-				ts.removeTopicById(idTopicDelete);
+				ts.removeTopicByIdChecked(idTopicDelete);
 			}
 		}
 
@@ -70,7 +70,7 @@ public class Forum extends HttpServlet {
 		forwardToList(request, response);
 
 	}
-	
+
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/jsp/forum.jsp").include(request, response);

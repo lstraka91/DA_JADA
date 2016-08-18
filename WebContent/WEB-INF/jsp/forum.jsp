@@ -12,6 +12,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Forum-JADA</title>
 
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
+<link href="css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+
 </head>
 <body>
 	<div class="container">

@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**
  * Database entity for comment
  */
@@ -40,7 +43,8 @@ public class Commentary {
 	/**
 	 * Topic object
 	 */
-	@ManyToOne(cascade = CascadeType.DETACH)
+	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	public Topic topic;
 
 	/**
@@ -117,5 +121,4 @@ public class Commentary {
 				+ commentaryDate + ", person=" + person + ", topic=" + topic + "]";
 	}
 
-	
 }
