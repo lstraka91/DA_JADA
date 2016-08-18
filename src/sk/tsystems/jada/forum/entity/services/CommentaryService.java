@@ -151,5 +151,18 @@ public class CommentaryService {
 			return null;
 		}
 	}
+	
+	/**
+	 * update body of comment 
+	 * @param comment
+	 * @param commentBody
+	 */
+	public void updateCommentBody(Commentary comment, String commentBody){
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		Commentary commentToEdit = em.find(Commentary.class, comment.getIdCommentary());
+		commentToEdit.setCommentaryBody(commentBody);
+		JpaHelper.commitTransaction();
+	}
 
 }
