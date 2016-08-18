@@ -7,8 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
@@ -25,8 +23,12 @@ public class UserProfile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (request.getSession().getAttribute("user") != null) {
 
-		request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
+		} else {
+			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+		}
 	}
 
 	/**
@@ -60,20 +62,19 @@ public class UserProfile extends HttpServlet {
 				new PersonService().updatePersonProfile(updatePerson, editedPerson);
 				request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
 			}
-			if (!oldPass.equals("") || !newPass.equals("")|| !oldPass.equals(null)|| !newPass.equals(null)) {
+			if (!oldPass.equals("") || !newPass.equals("") || !oldPass.equals(null) || !newPass.equals(null)) {
 				if (PersonService.encryptPassword(oldPass) == updatePerson.getPassword()) {
 					System.out.println("kontrola stareho a noveho hesla");
-					
+
 					new PersonService().changePersonPassword(updatePerson, newPass);
 				} else {
 					request.setAttribute("passError", "false");
 					System.out.println("nezodne hesla");
 				}
-			} else {
-//				request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
 			}
-		} else {
 			request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
+		} else {
+			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
 		}
 	}
 

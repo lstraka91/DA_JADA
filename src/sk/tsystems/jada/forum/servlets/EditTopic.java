@@ -27,41 +27,44 @@ public class EditTopic extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		TopicService ts = new TopicService();
-
 		HttpSession session = request.getSession();
 
-		String topicName = request.getParameter("topicname");
-		String topicDescription = request.getParameter("topicdescription");
-		String keyWordsString = request.getParameter("keyWords");
+		if (session.getAttribute("user") != null) {
+			
+			TopicService ts = new TopicService();
+			String topicName = request.getParameter("topicname");
+			String topicDescription = request.getParameter("topicdescription");
+			String keyWordsString = request.getParameter("keyWords");
 
-		if (request.getParameter("idTopic") != null) {
-			int idTopic = Integer.parseInt(request.getParameter("idTopic"));
-			Topic topic = ts.findTopicById(idTopic);
-			if (topic != null) {
-				session.setAttribute("currentTopic", topic);
-			}
-			if (keyWordsString != null) {
-				List<String> keyWordsList = Arrays.asList(keyWordsString.split(","));
-				Set<KeyWord> keyWords = new HashSet<>();
-				if (!keyWordsList.isEmpty())
-					for (String kWString : keyWordsList) {
-						if (kWString != null && !kWString.isEmpty()) {
-							KeyWord tempKW = new KeyWordService().findKeyWord(kWString);
-							keyWords.add(tempKW);
+			if (request.getParameter("idTopic") != null) {
+				int idTopic = Integer.parseInt(request.getParameter("idTopic"));
+				Topic topic = ts.findTopicById(idTopic);
+				if (topic != null) {
+					session.setAttribute("currentTopic", topic);
+				}
+				if (keyWordsString != null) {
+					List<String> keyWordsList = Arrays.asList(keyWordsString.split(","));
+					Set<KeyWord> keyWords = new HashSet<>();
+					if (!keyWordsList.isEmpty())
+						for (String kWString : keyWordsList) {
+							if (kWString != null && !kWString.isEmpty()) {
+								KeyWord tempKW = new KeyWordService().findKeyWord(kWString);
+								keyWords.add(tempKW);
+							}
 						}
+					if (topicName != null & topicDescription != null) {
+						ts.updateTopic(idTopic, topicName, topicDescription, keyWords);
+						response.sendRedirect("/JADA_Tsystems_TeamProject/topic?idTopic=" + idTopic);
 					}
-				if (topicName != null & topicDescription != null) {
-					ts.updateTopic(idTopic, topicName, topicDescription, keyWords);
-					response.sendRedirect("/JADA_Tsystems_TeamProject/topic?idTopic=" + idTopic);
 				}
 			}
-		}
 
-		forwardToList(request, response);
+			forwardToList(request, response);
+		} else {
+			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+		}
 	}
-	
+
 	private void forwardToList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/jsp/editTopic.jsp").include(request, response);

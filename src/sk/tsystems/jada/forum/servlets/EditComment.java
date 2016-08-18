@@ -24,59 +24,68 @@ import sk.tsystems.jada.forum.entity.services.TopicService;
 @WebServlet("/editComment")
 public class EditComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		CommentaryService cs = new CommentaryService();
 
-		int idTopic = Integer.parseInt(request.getParameter("idTopic"));
-		Topic topic = new TopicService().findTopicById(idTopic);
-		if (topic != null) {
-			session.setAttribute("currentTopic", topic);
-		}
-		
-		List<Commentary> topicComment = new ArrayList<>();
-		topicComment = (List<Commentary>) cs.selectAllComentByTopic(topic);
-		request.setAttribute("topicComments", topicComment);
+		if (session.getAttribute("user") != null) {
 
-		List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatings(topic);
-		if (topicCommentsWithRate != null) {
-			request.setAttribute("commentWithRateList", topicCommentsWithRate);
+			int idTopic = Integer.parseInt(request.getParameter("idTopic"));
+			Topic topic = new TopicService().findTopicById(idTopic);
+			if (topic != null) {
+				session.setAttribute("currentTopic", topic);
+			}
+
+			List<Commentary> topicComment = new ArrayList<>();
+			topicComment = (List<Commentary>) cs.selectAllComentByTopic(topic);
+			request.setAttribute("topicComments", topicComment);
+
+			List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatings(topic);
+			if (topicCommentsWithRate != null) {
+				request.setAttribute("commentWithRateList", topicCommentsWithRate);
+			}
+			// ORIGINAL PISANE V EDIT COMMENT
+			if (request.getParameter("commentaryBody") != null) {
+
+				String commentBody = request.getParameter("commentaryBody").trim();
+				System.out.println(commentBody);
+				if (request.getParameter("idComment") != null && request.getParameter("idTopic") != null) {
+
+					int idComment = Integer.parseInt(request.getParameter("idComment"));
+					int idTopicc = Integer.parseInt(request.getParameter("idTopic"));
+					request.setAttribute("idTopic", idTopicc);
+					request.setAttribute("idComment", idComment);
+				}
+				request.setAttribute("commentaryBody", commentBody);
+			}
+
+			request.getRequestDispatcher("/WEB-INF/jsp/editComment.jsp").forward(request, response);
+		} else {
+			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
 		}
-		//ORIGINAL PISANE V EDIT COMMENT
-		if (request.getParameter("commentaryBody")!=null){
-			
-			String commentBody= request.getParameter("commentaryBody").trim();
-			System.out.println(commentBody);
-		if(request.getParameter("idComment")!=null && request.getParameter("idTopic")!=null ){
-			
-		int idComment = Integer.parseInt(request.getParameter("idComment"));
-		int idTopicc = Integer.parseInt(request.getParameter("idTopic"));
-		request.setAttribute("idTopic",idTopicc);
-		request.setAttribute("idComment",idComment);
-		}
-		request.setAttribute("commentaryBody", commentBody);
-		}
-				
-		request.getRequestDispatcher("/WEB-INF/jsp/editComment.jsp").forward(request, response);
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String editComment = request.getParameter("editComment");
-		if (editComment != null & request.getParameter("idComment")!=null) {
-			int commentId= Integer.parseInt(request.getParameter("idComment"));
-			int topicId= Integer.parseInt(request.getParameter("idTopic"));
+		if (editComment != null & request.getParameter("idComment") != null) {
+			int commentId = Integer.parseInt(request.getParameter("idComment"));
+			int topicId = Integer.parseInt(request.getParameter("idTopic"));
 			Commentary commentToUpdate = new CommentaryService().selectCommentById(commentId);
 			new CommentaryService().updateCommentBody(commentToUpdate, editComment);
-			response.sendRedirect("/JADA_Tsystems_TeamProject/topic?idTopic="+topicId);
-			
+			response.sendRedirect("/JADA_Tsystems_TeamProject/topic?idTopic=" + topicId);
+
 		}
 	}
 

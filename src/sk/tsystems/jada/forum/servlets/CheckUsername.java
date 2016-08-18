@@ -35,7 +35,7 @@ public class CheckUsername extends HttpServlet {
 			throws ServletException, IOException {
 		String personName = request.getParameter("userName").trim();
 		if (personName != null) {
-			System.out.println("wohooo z checkUsername" + personName);
+			
 			Person person = new PersonService().getPersonByName(personName);
 			if (person == null) {
 				response.getWriter().print("OK");
