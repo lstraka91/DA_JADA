@@ -36,7 +36,7 @@ public class TopicServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		if (session.getAttribute("user") != null) {
+		
 
 			CommentaryService cs = new CommentaryService();
 			RatingService rs = new RatingService();
@@ -98,9 +98,7 @@ public class TopicServlet extends HttpServlet {
 				request.setAttribute("commentWithRateList", topicCommentsWithRate);
 			}
 			forwardToList(request, response);
-		} else {
-			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
-		}
+		
 	}
 
 	/**

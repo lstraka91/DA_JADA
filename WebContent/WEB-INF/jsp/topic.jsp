@@ -38,35 +38,47 @@
 					<c:forEach items="${commentWithRateList}" var="commRate"
 						varStatus="myindex">
 						<p>
-							<c:if
-								test="${commRate.comment.person.personName eq user.personName or user.getClass().simpleName eq 'SuperAdmin' or user.getClass().simpleName eq 'Admin'}">
-					
-					<div class="text-right">
-						<div class="btn-group">
-							<span class="pull-right">
-								<a
-									href="topic?idTopic=${currentTopic.idTopic}&delete=true&idComment=${commRate.comment.idCommentary}"
-									class="btn btn-danger">
-									<span
-										class="glyphicon glyphicon-remove-sign">
-									</span>
-									Delete
-								</a>
-							</span>
-							<a
-								href="editComment?idTopic=${currentTopic.idTopic}&idComment=${commRate.comment.idCommentary}&commentaryBody=${commRate.comment.commentaryBody}"
-								class="btn btn-warning">
-								<span
-									class="glyphicon glyphicon-edit">
-								</span>
-								Edit
-							</a>
-						</div>
-					</div>
-					<br>
-					</c:if>
-							
+							<c:choose>
+								<c:when
+									test="${commRate.comment.person.personName eq user.personName or user.getClass().simpleName eq 'SuperAdmin'}">
+									<div class="text-right">
+										<div class="btn-group">
+											<span class="pull-right"> <a
+												href="topic?idTopic=${currentTopic.idTopic}&delete=true&idComment=${commRate.comment.idCommentary}"
+												class="btn btn-danger"> <span
+													class="glyphicon glyphicon-remove-sign"> </span> Delete
+											</a>
+											</span> <a
+												href="editComment?idTopic=${currentTopic.idTopic}&idComment=${commRate.comment.idCommentary}&commentaryBody=${commRate.comment.commentaryBody}"
+												class="btn btn-warning"> <span
+												class="glyphicon glyphicon-edit"> </span> Edit
+											</a>
+										</div>
+									</div>
+									<br>
+								</c:when>
+								<c:when test="${user.getClass().simpleName eq 'SuperAdmin'}">
 
+									<c:if test="${user.deleteCommentPermission}">
+
+										<div class="text-right">
+											<div class="btn-group">
+												<span class="pull-right"> <a
+													href="topic?idTopic=${currentTopic.idTopic}&delete=true&idComment=${commRate.comment.idCommentary}"
+													class="btn btn-danger"> <span
+														class="glyphicon glyphicon-remove-sign"> </span> Delete
+												</a>
+												</span> <a
+													href="editComment?idTopic=${currentTopic.idTopic}&idComment=${commRate.comment.idCommentary}&commentaryBody=${commRate.comment.commentaryBody}"
+													class="btn btn-warning"> <span
+													class="glyphicon glyphicon-edit"> </span> Edit
+												</a>
+											</div>
+										</div>
+										<br>
+									</c:if>
+								</c:when>
+							</c:choose>
 						</p>
 						<!-- Try to add MODAL TO EDIT -->
 
