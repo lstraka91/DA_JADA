@@ -50,6 +50,13 @@ public class TopicServlet extends HttpServlet {
 		if (person != null) {
 			new TopicService().addVisitorToTopic(topic, person.getIdPerson());
 		}
+		
+		//delete owners comment
+		if (request.getParameter("delete") != null && person != null && request.getParameter("idComment") != null) {
+			int idComment = Integer.parseInt(request.getParameter("idComment"));
+			Commentary comToDelete= new CommentaryService().selectCommentById(idComment);
+			new CommentaryService().removeCommentByObject(comToDelete);
+		}
 
 		// int rate = (int) session.getAttribute("currentRating");
 		if (request.getParameter("addRate") != null && person != null) {

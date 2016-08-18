@@ -36,9 +36,20 @@
 
 					<!-- My implementation of comments with rating -->
 					<c:forEach items="${commentWithRateList}" var="commRate">
+						<p>
+							<c:if
+								test="${commRate.comment.person.personName eq user.personName or user.getClass().simpleName eq 'SuperAdmin' or user.deleteCommentPermission==true}">
+								<span class="pull-right"><a
+									href="topic?idTopic=${currentTopic.idTopic}&delete=true&idComment=${commRate.comment.idCommentary}"
+									class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></a> </span>
+									<br>
+							</c:if>
+						</p>
 						<p>${commRate.comment.commentaryBody}</p>
 						<p>
-							<span class="pull-right">(${commRate.comment.person.fullName})</span>
+							<span class="pull-right">
+								(${commRate.comment.person.fullName})
+							</span>
 						</p>
 						<fmt:parseNumber var="rate" value="${commRate.rateOfComment}" />
 						<div class="row">
@@ -63,12 +74,12 @@
 								<c:if test="${rate<0}">
 									<span class="label label-danger">${commRate.rateOfComment}</span>
 								</c:if>
-								<c:if test="${user.getClass().simpleName.equals('SuperAdmin')}">
-								<a
-									href="topic?idTopic=${currentTopic.idTopic}&addRate=dislike&idComment=${commRate.comment.idCommentary}"
-									class="btn btn-default"><span
-									class="glyphicon glyphicon-thumbs-down"></span>Dislike</a>
-</c:if>
+								<c:if test="${user!=null}">
+									<a
+										href="topic?idTopic=${currentTopic.idTopic}&addRate=dislike&idComment=${commRate.comment.idCommentary}"
+										class="btn btn-default"><span
+										class="glyphicon glyphicon-thumbs-down"></span>Dislike</a>
+								</c:if>
 							</div>
 						</div>
 						<span class="pull-right">commented <strong><fmt:formatDate
