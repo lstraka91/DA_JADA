@@ -20,22 +20,21 @@ public class TopicTest {
 	TopicService tcs = new TopicService();
 	PersonService ps = new PersonService();
 	TestService ts = new TestService();
-	
+
 	@Before
-	public void beforeTesting(){
+	public void beforeTesting() {
 		ts.createPersons();
 		ts.createKeyWords();
 		ts.createTopics();
 	}
-	
-	@After
-	public void afterTesting(){
-		ts.removePersons();
-		ts.removekeyWords();
-		ts.removeTopics();
-	}
 
-	
+	@After
+	public void afterTesting() {
+		ts.removeTopics();
+		ts.removekeyWords();
+		ts.removePersons();
+
+	}
 
 	@Test
 	public void testAddTopic() {
@@ -49,16 +48,16 @@ public class TopicTest {
 		assertNotNull(tcs.findTopicById(tcs.getIdTopicByName("myTestTopic4")));
 	}
 
-	 @Test
-	 public void testRemoveTopicByIdChecked(){
-		 int id = tcs.getIdTopicByName("myTestTopic1");
-		 tcs.removeTopicByIdChecked(id);
-		 List<Topic> topicList = new ArrayList<>();
-		 topicList= tcs.getAllTopics();
-		 for (Topic topic : topicList) {
+	@Test
+	public void testRemoveTopicByIdChecked() {
+		int id = tcs.getIdTopicByName("myTestTopic1");
+		tcs.removeTopicByIdChecked(id);
+		List<Topic> topicList = new ArrayList<>();
+		topicList = tcs.getAllTopics();
+		for (Topic topic : topicList) {
 			assertNotEquals(id, topic.getIdTopic());
 		}
-	 }
+	}
 
 	@Test
 	public void testUpdateTopicName() {
@@ -77,7 +76,6 @@ public class TopicTest {
 		assertEquals("updated description of third topic", tt.getTopicDescription());
 	}
 
-
 	@Test
 	public void testGetIdTopicByName() {
 		int id = tcs.getIdTopicByName("myTestTopic1");
@@ -91,7 +89,5 @@ public class TopicTest {
 		Topic tr = tcs.findTopicById(id);
 		assertEquals("myTestTopic3", tr.getTopicName());
 	}
-
-
 
 }
