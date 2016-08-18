@@ -2,6 +2,7 @@ package sk.tsystems.jada.forum.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -11,8 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sk.tsystems.jada.forum.entity.Person;
+import sk.tsystems.jada.forum.entity.services.CommentaryService;
 import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import sk.tsystems.jada.forum.entity.services.PersonService;
+import sk.tsystems.jada.forum.entity.services.TopicService;
 
 public class PersonTest {
 
@@ -29,6 +32,14 @@ public class PersonTest {
 		ts.removePersons();
 	}
 
+//	@Test
+//	public void testGetPersonById() {
+//		String name = "TestPerson1";
+//		int id = ps.getPersonByName(name).getIdPerson();
+//		Person person = ps.getPersonByID(id);
+//		assertEquals(name, person.getPersonName());
+//	}
+	
 	@Test
 	public void testGetPersonByName() {
 		Person person = ps.getPersonByName("TestPerson1");
@@ -84,5 +95,49 @@ public class PersonTest {
 		String pass = ps.encryptPassword("PassWorD@963");
 		assertEquals("c04c944759d3d3b52b29ca70c638d976", pass);
 	}
-
+	
+	@Test
+	public void testGetPersonsOrderByDtype() {
+		ArrayList<Person> list = ps.getPersonsOrderByDtype();
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void testGetPersonsOrderByActiv() {
+		ArrayList<Person> list = ps.getPersonsOrderByActiv();
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void testGetPersonsOrderByRegistrationDate() {
+		ArrayList<Person> list = ps.getPersonsOrderByRegistrationDate();
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void testGetPersonsOrderByPersonName() {
+		ArrayList<Person> list = ps.getPersonsOrderByPersonName();
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void testGetNumberOfActivationRequests() {
+		int requests = ps.getNumberOfActivationRequests();
+		assertEquals(0, requests);
+	}
+	
+//	@Test
+//	public void testSetRemovedPerson() {
+//		ts.createTopic1();
+//		ts.createComment1();
+//		Person person = ps.getPersonByName("TestPerson1");
+//		ps.setRemovedPerson(person);
+//		CommentaryService cs = new CommentaryService();
+//		TopicService tcs = new TopicService();
+//		assertEquals("Removed User", cs.getCommentByText("First commentary for testing").getPerson().getPersonName());
+//		assertEquals("Removed User", tcs.findTopicById(tcs.getIdTopicByName("myTestTopic1")).getPerson().getPersonName());
+//		ts.deleteAfterTest();
+//	}
+	
+ 
 }

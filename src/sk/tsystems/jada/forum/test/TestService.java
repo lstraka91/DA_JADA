@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import sk.tsystems.jada.forum.entity.Admin;
 import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.KeyWord;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Rating;
+import sk.tsystems.jada.forum.entity.SuperAdmin;
 import sk.tsystems.jada.forum.entity.Topic;
 import sk.tsystems.jada.forum.entity.services.AdminService;
 import sk.tsystems.jada.forum.entity.services.ChangePersonTypeService;
@@ -109,6 +111,17 @@ public class TestService {
 		removekeyWord("testKeyWord6");
 	}
 
+	public void createTopic1(){
+		Topic t1 = new Topic();
+		t1.setTopicName("myTestTopic1");
+		t1.setTopicDescription("description of first test topic");
+		Person pt = ps.getPersonByName("TestPerson1");
+		t1.setPerson(pt);
+		t1.setTopicDate(new Date());
+		TopicService ts = new TopicService();
+		ts.addTopic(t1);
+	}
+	
 	public void createTopics() {
 		Topic t1 = new Topic();
 		t1.setTopicName("myTestTopic1");
@@ -210,6 +223,14 @@ public class TestService {
 			cs.removeCommentByObject(commentary);
 		}
 	}
+	
+	public void removeCommentsOfRemovedPerson() {
+		Person p = ps.getPersonByName("Removed User");
+		List<Commentary> list = cs.selectAllComentByPerson(p);
+		for (Commentary commentary : list) {
+			cs.removeCommentByObject(commentary);
+		}
+	}
 
 	public void removeComments() {
 		removeCommentsOfFirstPerson();
@@ -287,5 +308,31 @@ public class TestService {
 		Admin admin = as.findAdminByName("TestPerson1");
 		chpts.changeAdminToPerson(admin);
 	}
+	
+	public SuperAdmin findSuperAdminByName(String personName) {
+		JpaHelper.beginTransaction();
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT a from Superadmin a where a.personName =:personName  ");
+		query.setParameter("personName", personName);
+		SuperAdmin admin;
+		// Admin admin = (Admin) query.getResultList().get(0);
+		// if (query.getResultList().get(0) != null) {
+		// return admin;
+		// } else {
+		// return null;
+		// }
+		if (!query.getResultList().isEmpty()) {
+			admin = (SuperAdmin) query.getResultList().get(0);
+			return admin;
+		} else {
+			return null;
+		}
+	}
 
+	public void deleteAfterTest(){
+		TopicService tcs = new TopicService();
+		tcs.removeTopicByIdChecked(tcs.getIdTopicByName("myTestTopic1"));
+		removeCommentsOfRemovedPerson();
+		removePersonByName("Removed User");
+	}
 }

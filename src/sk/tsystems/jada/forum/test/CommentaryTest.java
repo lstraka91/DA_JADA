@@ -109,4 +109,12 @@ public class CommentaryTest {
 		Commentary c = cs.getCommentByText("First commentary for testing");
 		assertEquals("First commentary for testing", c.getCommentaryBody());
 	}
+	
+	@Test
+	public void testUpdateCommentBody() {
+		Commentary c = cs.getCommentByText("First commentary for testing");
+		cs.updateCommentBody(c, "new comment body");
+		Commentary c1 = cs.getCommentByText("new comment body");
+		assertEquals("new comment body", c1.getCommentaryBody());
+	}
 }
