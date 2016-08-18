@@ -33,7 +33,7 @@ public class CommentaryTest {
 	
 	@After
 	public void afterTesting(){
-		ts.removeAllComments();
+		ts.removeComments();
 		ts.removeTopics();
 		ts.removekeyWords();
 		ts.removePersons();
