@@ -182,7 +182,7 @@ public class Topic {
 	 * 
 	 * @return person
 	 */
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	public Person getPerson() {
 		return person;
 	}
@@ -196,7 +196,7 @@ public class Topic {
 		this.person = person;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.DETACH)
 	@JoinTable(name = "topic_keyword", joinColumns = @JoinColumn(name = "id_topic"), inverseJoinColumns = @JoinColumn(name = "id_keyWord"))
 	public Set<KeyWord> getKeyWords() {
 		return keyWords;
