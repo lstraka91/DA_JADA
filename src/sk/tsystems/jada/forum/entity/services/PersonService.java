@@ -27,9 +27,15 @@ public class PersonService {
 	 * @return Object Person with parameter idPerson.
 	 */
 	@SuppressWarnings("unused")
-	private Person getPersonByID(int idPerson) {
+	public Person getPersonByID(int idPerson) {
+		Person person = null;
 		EntityManager em = JpaHelper.getEntityManager();
-		return em.find(Person.class, idPerson);
+		Query query = em.createQuery("select p from Person where p.idPerson =: idPerson");
+		query.setParameter("idPerson", idPerson);
+		if (!query.getResultList().isEmpty()) {
+			person = (Person) query.getResultList().get(0);
+		}
+		return person;
 	}
 
 	/**
@@ -212,9 +218,9 @@ public class PersonService {
 			return null;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public int getNumberOfActivationRequests(){
+	public int getNumberOfActivationRequests() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("select p from Person p");
 		int count = 0;
@@ -227,8 +233,8 @@ public class PersonService {
 		}
 		return count;
 	}
-	
-	public void setRemovedPerson(Person person){
+
+	public void setRemovedPerson(Person person) {
 		Person removedPerson = new Person();
 		removedPerson = new PersonService().getPersonByName("Removed User");
 
@@ -270,8 +276,7 @@ public class PersonService {
 				JpaHelper.commitTransaction();
 			}
 		}
-	
-			
+
 	}
 
 }
