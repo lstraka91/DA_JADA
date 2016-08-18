@@ -68,6 +68,11 @@
 													value="${persons.personName}"> <input type="submit"
 													value="DELETE" class="btn btn-danger btn-block" />
 											</form>
+												<form method="post">
+												<input type="hidden" name="disable"
+													value="${persons.personName}"> <input type="submit"
+													value="DISABLE" class="btn btn-warning btn-block" />
+											</form>
 
 										</c:when>
 										<c:otherwise>

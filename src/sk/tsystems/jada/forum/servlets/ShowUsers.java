@@ -116,6 +116,21 @@ public class ShowUsers extends HttpServlet {
 
 			System.out.println("-----------------------------------------------------------");
 		}
+		
+		else if (request.getParameter("disable") != null) {
+			JpaHelper.beginTransaction();
+			person = new PersonService().getPersonByName(request.getParameter("disable"));
+			System.out.println(person.getFullName() + "   " + person.isActive());
+			if (person != null) {
+				person.setActive(false);
+				System.out.println("****-----*****----*****---***---**-*-*-*-*-*-*");
+			}
+			JpaHelper.commitTransaction();
+
+			System.out.println("-----------------------------------------------------------");
+			System.out.println(person.getFullName() + "   " + person.isActive());
+			
+		}
 
 		doGet(request, response);
 	}
