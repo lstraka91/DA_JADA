@@ -134,7 +134,7 @@ public class PersonTest {
 		}
 
 		int requests = ps.getNumberOfActivationRequests();
-		assertEquals(count, requests);
+		assertEquals(count-1, requests);
 	}
 
 }

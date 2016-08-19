@@ -114,7 +114,7 @@
 												</c:otherwise>
 											</c:choose>
 										</div></td>
-									<td>(${topic.person.personName })</td>
+
 
 									<td><c:choose>
 											<c:when test="${now.date gt topic.topicDate.date}">
@@ -128,8 +128,12 @@
 												now</time>
 											</c:otherwise>
 										</c:choose></td>
+									<td><div><img class="headimg"
+										alt="head" src="images/headimg.png"></div><div>
+											(${topic.person.personName })</div></td>
 									<td><c:choose>
-											<c:when test="${user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin'}">
+											<c:when
+												test="${user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin'}">
 												<c:if test="${user.deleteTopicPermission }">
 													<a href="editTopic?idTopic=${topic.idTopic}"
 														class="btn btn-warning btn-block"> <span

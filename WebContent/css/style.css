@@ -1,3 +1,8 @@
+.headimg{
+	width: 5rem;
+	height: 5rem;
+}
+
 .object_ok {
 	display: block;
 	width: 100%;
@@ -37,6 +42,13 @@
 .formHead {
 	color: blue;
 	font-family: 'Indie Flower', cursive;
+}
+
+@media only screen and (max-width: 890px) {
+	img {
+/* 		width: 30%; to make the image responsive */
+		max-height: 30%;
+	}
 }
 
 .modalDialog {

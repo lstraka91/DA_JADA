@@ -26,22 +26,22 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript">
-		$(document).ready(function() {
-			$("#datepicker").datepicker({
-				dateFormat : 'dd.mm.yy',
-				changeMonth : true,
-				changeYear : true,
-				yearRange : "1900:+nn"
-			});
+	$(document).ready(function() {
+		$("#datepicker").datepicker({
+			dateFormat : 'dd.mm.yy',
+			changeMonth : true,
+			changeYear : true,
+			yearRange : "1900:+nn"
 		});
-	</script>
-	<script type="text/javascript" src="js/usernameExists.js"></script>
-	<script type="text/javascript" src="js/checkPasswordStrong.js"></script>
-	<script type="text/javascript" src="js/validatePassword.js"></script>
-	
+	});
+</script>
+<script type="text/javascript" src="js/usernameExists.js"></script>
+<script type="text/javascript" src="js/checkPasswordStrong.js"></script>
+<script type="text/javascript" src="js/validatePassword.js"></script>
 
-<div class="jumbotron">
-	<div class="row">
+
+<div id="jumbo" class="jumbotron">
+	<div id="jumborow" class="row">
 		<div class="col-md-2 col-lg-2">
 			<img src="images/qaa.png" alt="JADA" class="img-responsive">
 		</div>
@@ -89,7 +89,7 @@
 										</c:when>
 									</c:choose>
 							</a></li>
-							<li><a href="#">Edit comments/topic - in progress</a></li>
+							<!-- 							<li><a href="showUsecase">Show usecase</a></li> -->
 						</ul></li>
 				</c:if>
 				<c:if test="${user.getClass().simpleName.equals('SuperAdmin')}">
@@ -112,6 +112,8 @@
 							<li><a href="showAdminsPermission">Change admin
 									permissions</a></li>
 							<li><a href="changePersonType">Change User type</a></li>
+							<!-- 							<li><a href="showUsecase">Show usecase</a></li> -->
+
 						</ul></li>
 				</c:if>
 
@@ -150,7 +152,8 @@
 
 						<li><a href="#" data-toggle="modal" data-target="#login"><span
 								class="glyphicon glyphicon-log-in"></span> Log in</a></li>
-						<li><a href="#" data-toggle="modal" data-target="#registration"><span
+						<li><a href="#" data-toggle="modal"
+							data-target="#registration"><span
 								class="glyphicon glyphicon-log-in"></span> Registration</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -217,9 +220,8 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h2 class="modal-title text-center formHead">
-					Registration page
-					</h2>
+				<h2 class="modal-title text-center formHead">Registration page
+				</h2>
 			</div>
 			<div class="modal-body">
 				<c:if test="${not empty param.error}">
@@ -270,7 +272,7 @@
 										<input type="password" name="PasswordC"
 											placeholder="Confirm password" class="form-control input-lg"
 											id="confirm_password" required />
-									<div id="passValidation"></div>
+										<div id="passValidation"></div>
 									</div>
 									<div class="form-group">
 										<input type="email" name="Email"

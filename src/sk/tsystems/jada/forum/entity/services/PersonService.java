@@ -183,6 +183,9 @@ public class PersonService {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByActiv() {
 		EntityManager em = JpaHelper.getEntityManager();
@@ -195,6 +198,9 @@ public class PersonService {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByRegistrationDate() {
 		EntityManager em = JpaHelper.getEntityManager();
@@ -207,6 +213,9 @@ public class PersonService {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByPersonName() {
 		EntityManager em = JpaHelper.getEntityManager();
@@ -219,6 +228,9 @@ public class PersonService {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public int getNumberOfActivationRequests() {
 		EntityManager em = JpaHelper.getEntityManager();
@@ -231,9 +243,12 @@ public class PersonService {
 				count++;
 			}
 		}
-		return count -1;
+		return count - 1;
 	}
 
+	/**
+	 * @param person
+	 */
 	public void setRemovedPerson(Person person) {
 		Person removedPerson = new Person();
 		removedPerson = new PersonService().getPersonByName("Removed User");

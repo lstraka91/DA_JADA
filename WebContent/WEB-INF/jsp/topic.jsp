@@ -87,10 +87,12 @@
 							<p>${commRate.comment.commentaryBody}</p>
 						</div>
 
-						<p>
-							<span class="pull-right">
-								(${commRate.comment.person.fullName}) </span>
-						</p>
+						<div class="pull-right text-center">
+							<div>
+								<img class="headimg" alt="head" src="images/headimg.png">
+							</div>
+							<div>(${commRate.comment.person.fullName})</div>
+						</div>
 						<fmt:parseNumber var="rate" value="${commRate.rateOfComment}" />
 						<div class="row">
 

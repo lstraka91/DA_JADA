@@ -1,6 +1,7 @@
 package sk.tsystems.jada.forum.entity.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -51,7 +52,8 @@ public class TopicService {
 	 * Person, KeyWords.
 	 * 
 	 * @param idTopic
-	 *            type: Integer, unique identifier of Topic
+	 *            type: Integer, unique identifier of Topic {@link TopicService}
+	 * 
 	 */
 	public void removeTopicByIdChecked(int idTopic) {
 		CommentaryService cs = new CommentaryService();
@@ -224,6 +226,10 @@ public class TopicService {
 		}
 	}
 
+	/**
+	 * @param topic
+	 * @param id
+	 */
 	public void addVisitorToTopic(Topic topic, Integer id) {
 		JpaHelper.beginTransaction();
 		Topic existingTopic = findTopicById(topic.getIdTopic());
@@ -231,6 +237,9 @@ public class TopicService {
 			return;
 		}
 		if (existingTopic != null) {
+			if (existingTopic.getViewersList() == null) {
+				existingTopic.setViewersList(new HashSet<>());
+			}
 			if (!existingTopic.getViewersList().contains(id)) {
 				existingTopic.addViewerToList(id);
 				JpaHelper.commitTransaction();
@@ -238,6 +247,10 @@ public class TopicService {
 		}
 	}
 
+	/**
+	 * @param person
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Topic> selectAllTopicsByPerson(Person person) {
 
@@ -254,6 +267,9 @@ public class TopicService {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Topic> getTopicsOrderViews() {
 		EntityManager em = JpaHelper.getEntityManager();
