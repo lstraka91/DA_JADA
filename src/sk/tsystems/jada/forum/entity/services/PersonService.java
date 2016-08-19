@@ -30,7 +30,7 @@ public class PersonService {
 	public Person getPersonByID(int idPerson) {
 		Person person = null;
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("select p from Person where p.idPerson =: idPerson");
+		Query query = em.createQuery("select p from Person p where p.idPerson =:idPerson");
 		query.setParameter("idPerson", idPerson);
 		if (!query.getResultList().isEmpty()) {
 			person = (Person) query.getResultList().get(0);

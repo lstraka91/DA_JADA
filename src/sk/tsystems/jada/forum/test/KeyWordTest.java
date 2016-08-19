@@ -1,7 +1,6 @@
 package sk.tsystems.jada.forum.test;
 
 import static org.junit.Assert.*;
-import javax.validation.constraints.NotNull;
 
 import org.junit.After;
 import org.junit.Before;

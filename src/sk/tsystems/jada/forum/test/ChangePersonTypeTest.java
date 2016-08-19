@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import jdk.net.NetworkPermission;
 import sk.tsystems.jada.forum.entity.Admin;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.SuperAdmin;

@@ -12,7 +12,6 @@ import sk.tsystems.jada.forum.entity.Commentary;
 import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Rating;
 import sk.tsystems.jada.forum.entity.services.CommentaryService;
-import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 import sk.tsystems.jada.forum.entity.services.RatingService;
 import sk.tsystems.jada.forum.entity.services.TopicService;
