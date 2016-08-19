@@ -57,7 +57,7 @@
 									</div>
 									<br>
 								</c:when>
-								<c:when test="${user.getClass().simpleName eq 'SuperAdmin'}">
+								<c:when test="${user.getClass().simpleName eq 'Admin'}">
 
 									<c:if test="${user.deleteCommentPermission}">
 
