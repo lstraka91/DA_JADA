@@ -51,8 +51,8 @@
 						<div class="alert alert-warning" role="alert">
 							<span class="glyphicon glyphicon-exclamation-sign"
 								aria-hidden="true"></span> <span class="sr-only">Info:</span>You
-							must be logged in to create topic !!! <a href="login">Go to
-								login page </a>or<a href="registration"> sign up as new user</a>
+							must be logged in to create topic !!! <a href="#" data-toggle="modal" data-target="#login">Go to
+								login page </a>or<a href="#" data-toggle="modal" data-target="#registration">sign up as new user</a>
 						</div>
 			</c:otherwise>
 		</c:choose>
