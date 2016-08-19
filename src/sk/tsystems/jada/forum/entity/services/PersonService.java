@@ -231,7 +231,7 @@ public class PersonService {
 				count++;
 			}
 		}
-		return count;
+		return count -1;
 	}
 
 	public void setRemovedPerson(Person person) {
