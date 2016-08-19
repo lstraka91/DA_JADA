@@ -76,7 +76,7 @@ public class ShowUsers extends HttpServlet {
 				String pName= request.getParameter("name");
 				Person person = new PersonService().getPersonByName(pName);
 				System.out.println(person);
-				new PersonService().changePersonPassword(person, "123456798");
+				new PersonService().changePersonPassword(person, "123456");
 			}
 
 			request.setAttribute("persons", persons);
@@ -110,7 +110,7 @@ public class ShowUsers extends HttpServlet {
 			JpaHelper.commitTransaction();
 		}
 
-		else if (request.getParameter("activate") != null) {
+		if (request.getParameter("activate") != null) {
 			JpaHelper.beginTransaction();
 			person = new PersonService().getPersonByName(request.getParameter("activate"));
 			System.out.println(person.getFullName() + "   " + person.getBirthday());
@@ -123,7 +123,7 @@ public class ShowUsers extends HttpServlet {
 			System.out.println("-----------------------------------------------------------");
 		}
 
-		else if (request.getParameter("disable") != null) {
+		if (request.getParameter("disable") != null) {
 			JpaHelper.beginTransaction();
 			person = new PersonService().getPersonByName(request.getParameter("dissable"));
 			System.out.println(person.getFullName() + "   " + person.isActive());
