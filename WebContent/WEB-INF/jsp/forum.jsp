@@ -144,7 +144,7 @@
 												</c:if>
 											</c:when>
 											<c:when
-												test="${user.personName eq topic.person.personName && !(user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin')}">
+												test="${user.personName eq topic.person.personName && user.getClass().simpleName ne 'SuperAdmin' && user.getClass().simpleName ne 'Admin'}">
 												<a href="editTopic?idTopic=${topic.idTopic}"
 													class="btn btn-warning btn-block"> <span
 													class="glyphicon glyphicon-edit" aria-hidden="true"></span>
