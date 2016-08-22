@@ -45,11 +45,7 @@ public class ChangePersonType extends HttpServlet {
 					persons.clear();
 					persons = (ArrayList<Person>) new PersonService().getPersonsOrderByDtype();
 				}
-				if ("activ".equals(action)) {
-					persons.clear();
-					persons = (ArrayList<Person>) new PersonService().getPersonsOrderByActiv();
-
-				}
+				
 				if ("rDate".equals(action)) {
 					persons.clear();
 					persons = (ArrayList<Person>) new PersonService().getPersonsOrderByRegistrationDate();

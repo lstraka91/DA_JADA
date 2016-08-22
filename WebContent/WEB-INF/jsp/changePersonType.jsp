@@ -17,13 +17,52 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<ul class="nav nav-tabs navbar-right">
-					<li><a
-						href="/JADA_Tsystems_TeamProject/changePersonType?ordebBy=name">ABC...</a></li>
-					<li><a
-						href="/JADA_Tsystems_TeamProject/changePersonType?ordebBy=name">Type</a></li>
-					<li><a
-						href="/JADA_Tsystems_TeamProject/changePersonType?ordebBy=name">Reg.
-							Date</a></li>
+
+					<c:choose>
+						<c:when test="${orderBy == 1 }">
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li role="presentation" class="active"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+
+						</c:when>
+
+						<c:when test="${orderBy == 2 }">
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li role="presentation" class="active"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+						</c:when>
+
+
+						<c:when test="${orderBy == 4 }">
+							<li role="presentation" class="active"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li role="presentation"><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+						</c:when>
+
+						<c:otherwise>
+
+							<li><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+							<li><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+							<li><a
+								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+									Date</a></li>
+
+						</c:otherwise>
+					</c:choose>
 				</ul>
 
 
@@ -84,11 +123,13 @@
 										<c:when
 											test="${persons.getClass().simpleName.equals('SuperAdmin') }">
 											<a href="#">
-												<div class="btn btn-default disabled">Set as SuperAdmin</div>
+												<div class="btn btn-default disabled">Set as
+													SuperAdmin</div>
 											</a>
 										</c:when>
 										<c:otherwise>
-											<a href="changePersonType?changeTo=superAdmin&personName=${persons.personName}">
+											<a
+												href="changePersonType?changeTo=superAdmin&personName=${persons.personName}">
 												<div class="btn btn-info">Set as SuperAdmin</div>
 											</a>
 										</c:otherwise>
@@ -101,12 +142,13 @@
 											</a>
 										</c:when>
 										<c:otherwise>
-										<a href="changePersonType?changeTo=admin&personName=${persons.personName}">
+											<a
+												href="changePersonType?changeTo=admin&personName=${persons.personName}">
 												<div class="btn btn-info">Set as Admin</div>
-											</a>	
+											</a>
 										</c:otherwise>
 									</c:choose></td>
-											<td><c:choose>
+								<td><c:choose>
 										<c:when
 											test="${persons.getClass().simpleName.equals('Person') }">
 											<a href="#">
@@ -114,9 +156,10 @@
 											</a>
 										</c:when>
 										<c:otherwise>
-										<a href="changePersonType?changeTo=person&personName=${persons.personName}">
+											<a
+												href="changePersonType?changeTo=person&personName=${persons.personName}">
 												<div class="btn btn-info">Set as Person</div>
-											</a>	
+											</a>
 										</c:otherwise>
 									</c:choose></td>
 							</tr>
@@ -127,6 +170,6 @@
 			</div>
 		</div>
 	</div>
-<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
