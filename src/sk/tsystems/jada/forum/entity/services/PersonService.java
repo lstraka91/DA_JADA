@@ -21,12 +21,14 @@ import sk.tsystems.jada.forum.entity.Topic;
 public class PersonService {
 
 	/**
-	 * Find object of Class Person in database by persons ID.
+	 * Find object Person in database by persons ID, if nothing was found in
+	 * database, method return null otherwise return object of type Person
 	 *
 	 * @param idPerson
-	 * @return Object Person with parameter idPerson.
+	 *            identification number of person
+	 * @return Object Person or null if nothing found
+	 * @see Person
 	 */
-	@SuppressWarnings("unused")
 	public Person getPersonByID(int idPerson) {
 		Person person = null;
 		EntityManager em = JpaHelper.getEntityManager();
@@ -39,11 +41,14 @@ public class PersonService {
 	}
 
 	/**
-	 * Find object of Class Person in database by persons name.
+	 * Find object of Person in database by user username, if nothing was found
+	 * in database, method return null otherwise return object of type Person
 	 * 
 	 * @param personName
+	 *            unique user username by which is searching in database
 	 * @return Object Person with requested personName or null when person not
 	 *         in database.
+	 * @see Person
 	 */
 	public Person getPersonByName(String personName) {
 		Person person;
@@ -60,11 +65,18 @@ public class PersonService {
 	}
 
 	/**
-	 * Find object of Class Person in database by persons name and his password.
+	 * Find object of Class Person in database by persons name and his
+	 * password.Method that is usefull to logining to application by username
+	 * and password, on success return object of type Person other wise return
+	 * null
 	 * 
 	 * @param personName
-	 * @return Object Person with requested personName or null when person not
-	 *         in database.
+	 *            unique user username by which is searching in database
+	 * @param password
+	 *            users password
+	 * @return Object Person with requested personName and password or null when
+	 *         person not in database or username and password no matched.
+	 * @see Person
 	 */
 	public Person getPersonByNameAndPass(String personName, String password) {
 		Person person;
@@ -84,11 +96,16 @@ public class PersonService {
 
 	/**
 	 * Checks if player is already in database or persists new object of player
-	 * in database.
+	 * in database. If person allready exist the method returns null and nothing
+	 * done. If person doesn't exist yet, it create a new one Person and save it
+	 * to database
 	 * 
 	 * @param person
+	 *            Person which trying to save to database and check if allready
+	 *            not exists
 	 * @return returns null if person already is in database otherwise persists
 	 *         Player in database and returns Player.
+	 * @see Person
 	 */
 	public Person registerPerson(Person person) {
 
@@ -115,10 +132,15 @@ public class PersonService {
 	}
 
 	/**
-	 * Update person data / fullname and email
+	 * method that could update some personal information of person. Person is
+	 * trying to find existing person and after that update some new information
+	 * from new person to old person and save updated information to database
 	 * 
 	 * @param person
+	 *            existing object of person in Database that is trying to update
 	 * @param updatePerson
+	 *            new object in which is shared some information about new
+	 *            updated personal information
 	 */
 	public void updatePersonProfile(Person person, Person updatePerson) {
 		JpaHelper.beginTransaction();
@@ -134,10 +156,13 @@ public class PersonService {
 	}
 
 	/**
-	 * Change person password
+	 * method that trying to change password for existing Person
 	 * 
 	 * @param person
+	 *            existing person in database to which is trying to change the
+	 *            password
 	 * @param newPassword
+	 *            new String representation of password
 	 */
 	public void changePersonPassword(Person person, String newPassword) {
 		JpaHelper.beginTransaction();
@@ -148,11 +173,15 @@ public class PersonService {
 	}
 
 	/**
-	 * Encryption of User password with MD5 algorithm
+	 * Encryption of User password with MD5 algorithm. Method that encrypt the
+	 * password by MessageDigest object with MD5 algorithm. Method return new
+	 * encrypted String representation of password or null if something goes
+	 * wrong
 	 * 
 	 * @param password
-	 *            password to encrypt
-	 * @return String representation of encrypted password
+	 *            String representation of password to encrypt
+	 * @return String representation of encrypted password or null if encryption
+	 *         crashed
 	 */
 	public static String encryptPassword(String password) {
 		try {
@@ -171,6 +200,14 @@ public class PersonService {
 		return null;
 	}
 
+	/**
+	 * returns an arrayList of Persons from database that are ordered by
+	 * diskriminator type in database
+	 * 
+	 * @return null if there is nothing in database otherwise return ordered
+	 *         arrayList of type Person by type of object
+	 * @see Person
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByDtype() {
 		EntityManager em = JpaHelper.getEntityManager();
@@ -184,7 +221,12 @@ public class PersonService {
 	}
 
 	/**
-	 * @return
+	 * returns an arrayList of Persons from database that are ordered by
+	 * activation property so if the person is activated in database
+	 * 
+	 * @return arrayList of person ordered by activation property or null if
+	 *         there is no person in table
+	 * @see Person
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByActiv() {
@@ -199,7 +241,12 @@ public class PersonService {
 	}
 
 	/**
-	 * @return
+	 * returns an arrayList of Persons from database that are ordered by date of
+	 * registration in database
+	 * 
+	 * @return arrayList of Person objects that are ordered by registration date
+	 *         or null if there is no Persons in database
+	 * @see Person
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByRegistrationDate() {
@@ -214,7 +261,12 @@ public class PersonService {
 	}
 
 	/**
-	 * @return
+	 * returns an arrayList of Persons from database that are ordered by
+	 * username in database
+	 * 
+	 * @return arrayList of Persons object ordered by userName or null if
+	 *         nothing found in database
+	 * @see Person
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Person> getPersonsOrderByPersonName() {
@@ -229,7 +281,9 @@ public class PersonService {
 	}
 
 	/**
-	 * @return
+	 * return count of persons that are not activated
+	 * 
+	 * @return value of count not activated person in database
 	 */
 	@SuppressWarnings("unchecked")
 	public int getNumberOfActivationRequests() {
@@ -247,7 +301,13 @@ public class PersonService {
 	}
 
 	/**
+	 * Method that change all persons data to default removed user type. It
+	 * provide that all data in database are not deleted from database but only
+	 * change to new type of Person but person are currently removed from
+	 * databse at the end of all changing person data changing
+	 * 
 	 * @param person
+	 *            person by which is all updated in database
 	 */
 	public void setRemovedPerson(Person person) {
 		Person removedPerson = new Person();

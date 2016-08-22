@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import sk.tsystems.jada.forum.entity.services.PersonService;
-
 @Entity
 public class Person {
 
