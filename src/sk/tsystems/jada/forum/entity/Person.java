@@ -68,10 +68,11 @@ public class Person {
 	/**
 	 * Class constructor using fields.
 	 * 
-	 * @param personName
-	 * @param password
-	 * @param email
-	 * @param birthday
+	 * @param personName representation of Person's username
+	 * @param password persons password
+	 * @param email persons email address
+	 * @param birthday person Date of birthday
+	 * @param fullName persons fullName 
 	 */
 	public Person(String personName, String password, String fullName, String email, Date birthday) {
 		super();
