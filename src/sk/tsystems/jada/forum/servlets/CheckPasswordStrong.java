@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CheckPasswordStrong
+ * Servlet implementation class CheckPasswordStrong, checks that persons
+ * password is matched by the Regex pattern and contain with specified options
  */
 @WebServlet("/checkPasswordStrong")
 public class CheckPasswordStrong extends HttpServlet {

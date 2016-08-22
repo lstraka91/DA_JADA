@@ -11,7 +11,8 @@ import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
- * Servlet implementation class CheckUsername
+ * Servlet implementation class CheckUsername, servlet that checks if username
+ * that, trying to register is not allready exists in database to avoid exception
  */
 @WebServlet("/checkUsername")
 public class CheckUsername extends HttpServlet {
@@ -35,7 +36,7 @@ public class CheckUsername extends HttpServlet {
 			throws ServletException, IOException {
 		String personName = request.getParameter("userName").trim();
 		if (personName != null) {
-			
+
 			Person person = new PersonService().getPersonByName(personName);
 			if (person == null) {
 				response.getWriter().print("OK");

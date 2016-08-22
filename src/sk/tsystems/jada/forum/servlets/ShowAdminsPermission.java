@@ -12,7 +12,8 @@ import sk.tsystems.jada.forum.entity.Admin;
 import sk.tsystems.jada.forum.entity.services.AdminService;
 
 /**
- * Servlet implementation class PermissioUpdate
+ * Servlet implementation class ShowAdminsPermission, servlet that send to
+ * Client arrayList of Admins persons
  */
 @WebServlet("/showAdminsPermission")
 public class ShowAdminsPermission extends HttpServlet {

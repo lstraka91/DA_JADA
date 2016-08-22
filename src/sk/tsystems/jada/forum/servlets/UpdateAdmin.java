@@ -12,7 +12,8 @@ import sk.tsystems.jada.forum.entity.Admin;
 import sk.tsystems.jada.forum.entity.services.AdminService;
 
 /**
- * Servlet implementation class UpdateAdmin
+ * Servlet implementation class UpdateAdmin, Servlet that have control of
+ * updating all admins permision to all Admin person types
  */
 @WebServlet("/UpdateAdmin")
 public class UpdateAdmin extends HttpServlet {
@@ -32,7 +33,6 @@ public class UpdateAdmin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") != null) {

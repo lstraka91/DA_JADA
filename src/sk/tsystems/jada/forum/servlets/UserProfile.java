@@ -11,7 +11,9 @@ import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
- * Servlet implementation class UserProfile
+ * Servlet implementation class UserProfile, that servlet have to show all
+ * person data to the Client and if client send request to update some profile
+ * info in post method are all changes implemented
  */
 @WebServlet("/userProfile")
 public class UserProfile extends HttpServlet {
@@ -72,9 +74,8 @@ public class UserProfile extends HttpServlet {
 					System.out.println("nezodne hesla");
 				}
 			}
-		} 
-		
-		
+		}
+
 	}
 
 }

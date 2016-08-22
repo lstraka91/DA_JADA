@@ -11,7 +11,9 @@ import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
- * Servlet implementation class LoginCheck
+ * Servlet implementation class LoginCheck, checks if user that trying to log in
+ * is activated or not if user is activated, response is with OK message
+ * otherwise error message is sent to Client
  */
 @WebServlet("/loginCheck")
 public class LoginCheck extends HttpServlet {
@@ -49,7 +51,7 @@ public class LoginCheck extends HttpServlet {
 				System.out.println("Succes logged as " + person.getPersonName());
 				request.getSession().setAttribute("user", person);
 				response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
-			}else{
+			} else {
 				response.getWriter().print("notActivated");
 			}
 

@@ -12,7 +12,8 @@ import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
- * Servlet implementation class Login
+ * Servlet for logining user to Application. On succces is Person object save to
+ * the Session to identify logged user
  */
 @WebServlet("/login")
 public class Login extends HttpServlet {
@@ -40,16 +41,29 @@ public class Login extends HttpServlet {
 
 		Person person = new PersonService().getPersonByNameAndPass(userName, pass);
 
+		loginUser(request, response, person);
+
+	}
+
+	/**
+	 * method that try to login person to the WebApplication, if succes the
+	 * Person object is saved to Session otherwise response send info about bad
+	 * login or not activated person
+	 * 
+	 * @param request request object
+	 * @param response response object
+	 * @param person Person that trying to log in to WebApplication
+	 * @throws IOException
+	 */
+	public void loginUser(HttpServletRequest request, HttpServletResponse response, Person person) throws IOException {
 		if (person == null) {
 			response.getWriter().print("error");
-//			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 		} else {
 			System.out.println("Succes logged as " + person.getPersonName());
 			request.getSession().setAttribute("user", person);
 			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
 
 		}
-
 	}
 
 }

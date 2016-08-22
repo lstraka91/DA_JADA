@@ -18,7 +18,9 @@ import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
- * Servlet implementation class ChangePersonType
+ * Servlet implementation class ChangePersonType, servlet in which logged
+ * SuperADmin could changing type of person to another types and could create
+ * Admin or Superadmins from Person object type or Downgrade back to Person.
  */
 @WebServlet("/changePersonType")
 public class ChangePersonType extends HttpServlet {
@@ -32,66 +34,55 @@ public class ChangePersonType extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") != null) {
-			
-		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("select p from Person p ");
-		ArrayList<Person> persons = (ArrayList<Person>) query.getResultList();
 
-		String action = request.getParameter("ordebBy");
-		if (action != null) {
-			if ("dType".equals(action)) {
-				persons.clear();
-				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByDtype();
-			}
-			if ("activ".equals(action)) {
-				persons.clear();
-				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByActiv();
+			EntityManager em = JpaHelper.getEntityManager();
+			Query query = em.createQuery("select p from Person p ");
+			ArrayList<Person> persons = (ArrayList<Person>) query.getResultList();
 
-			}
-			if ("rDate".equals(action)) {
-				persons.clear();
-				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByRegistrationDate();
+			String action = request.getParameter("ordebBy");
+			if (action != null) {
+				if ("dType".equals(action)) {
+					persons.clear();
+					persons = (ArrayList<Person>) new PersonService().getPersonsOrderByDtype();
+				}
+				if ("activ".equals(action)) {
+					persons.clear();
+					persons = (ArrayList<Person>) new PersonService().getPersonsOrderByActiv();
 
-			}
-			if ("name".equals(action)) {
-				persons.clear();
-				persons = (ArrayList<Person>) new PersonService().getPersonsOrderByPersonName();
+				}
+				if ("rDate".equals(action)) {
+					persons.clear();
+					persons = (ArrayList<Person>) new PersonService().getPersonsOrderByRegistrationDate();
 
-			}
-		}
-		String changeTo = request.getParameter("changeTo");
-		String personName = request.getParameter("personName");
-		if (changeTo != null && personName != null) {
-			Person person = new PersonService().getPersonByName(personName);
-			if (changeTo.equals("admin")) {
-				new ChangePersonTypeService().changePersonToAdmin(person);
-				request.removeAttribute("changeTo");
-			} else if (changeTo.equals("person")) {
-				new ChangePersonTypeService().changeAdminToPerson(person);
-				request.removeAttribute("changeTo");
-			} else if (changeTo.equals("superAdmin")) {
-				new ChangePersonTypeService().changePersonToSuperAdmin(person);
-				request.removeAttribute("changeTo");
-			}
-			response.sendRedirect("changePersonType");
-			return;
-		}
+				}
+				if ("name".equals(action)) {
+					persons.clear();
+					persons = (ArrayList<Person>) new PersonService().getPersonsOrderByPersonName();
 
-		request.setAttribute("persons", persons);
-		request.getRequestDispatcher("/WEB-INF/jsp/changePersonType.jsp").forward(request, response);
-		}else{
+				}
+			}
+			String changeTo = request.getParameter("changeTo");
+			String personName = request.getParameter("personName");
+			if (changeTo != null && personName != null) {
+				Person person = new PersonService().getPersonByName(personName);
+				if (changeTo.equals("admin")) {
+					new ChangePersonTypeService().changePersonToAdmin(person);
+					request.removeAttribute("changeTo");
+				} else if (changeTo.equals("person")) {
+					new ChangePersonTypeService().changeAdminToPerson(person);
+					request.removeAttribute("changeTo");
+				} else if (changeTo.equals("superAdmin")) {
+					new ChangePersonTypeService().changePersonToSuperAdmin(person);
+					request.removeAttribute("changeTo");
+				}
+				response.sendRedirect("changePersonType");
+				return;
+			}
+
+			request.setAttribute("persons", persons);
+			request.getRequestDispatcher("/WEB-INF/jsp/changePersonType.jsp").forward(request, response);
+		} else {
 			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

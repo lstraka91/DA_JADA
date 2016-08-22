@@ -15,7 +15,10 @@ import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 
 /**
- * Servlet implementation class Registration
+ * Servlet implementation class Registration, servlet that try to create new
+ * Person, Client make request to register new Person, that servlet checks if
+ * all inputs are valid and after all checks is Person created and saved to
+ * Database
  */
 @WebServlet("/registration")
 public class Registration extends HttpServlet {
@@ -47,12 +50,12 @@ public class Registration extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		Person person = new Person(userName, password, fullname, email, birthDate);
 		new PersonService().registerPerson(person);
-//		request.getSession().setAttribute("user", person);
+		// request.getSession().setAttribute("user", person);
 		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
-		
+
 	}
 
 }
