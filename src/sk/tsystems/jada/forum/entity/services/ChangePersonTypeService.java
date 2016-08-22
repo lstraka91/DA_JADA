@@ -15,24 +15,65 @@ import sk.tsystems.jada.forum.entity.Topic;
 
 public class ChangePersonTypeService {
 
+	/**
+	 * method that try to make an new type of Person from Person to Admin
+	 * object, method try to make new Object type of Admin and share to that
+	 * object all existing data from parameter and change all references in
+	 * database from old one Person to new one. New type of object Admin have to
+	 * default set the permisions to false
+	 * 
+	 * @param person
+	 *            Object that try to change to other type
+	 * @see Admin
+	 * @see Person
+	 */
 	public void changePersonToAdmin(Person person) {
 		Admin admin = new Admin(person.getPersonName(), person.getPassword(), person.getFullName(), person.getEmail(),
 				person.getBirthday(), false, false, false, false);
 		changeAllPersonIds(person, admin);
 	}
 
+	/**
+	 * method that try to make an new type of Person from Person to SuperAdmin
+	 * object, method try to make new Object type of SuperAdmin and share to
+	 * that object all existing data from parameter and change all references in
+	 * database from old one Person to new one. New type of object SuperAdmin
+	 * have default set the permisions to true because Super admin is the
+	 * strongest role in the application so default have all permission sets to
+	 * true
+	 * 
+	 * @param person
+	 *            Object that try to change to other type
+	 * @see SuperAdmin @ see Person
+	 */
 	public void changePersonToSuperAdmin(Person person) {
 		SuperAdmin superAdmin = new SuperAdmin(person.getPersonName(), person.getPassword(), person.getFullName(),
 				person.getEmail(), person.getBirthday());
 		changeAllPersonIds(person, superAdmin);
 	}
 
+	/**
+	 * method that try to make an new type of Person from Admin or SuperAdmin to
+	 * default user Person object, method try to make new Object type of Person
+	 * and share to that object all existing data from parameter and change all
+	 * references in database from old one Person to new one. Object type of
+	 * Person have no administration permission data so if old Object have some
+	 * admin permission they are set to new object by default to null because
+	 * Person object have no permission
+	 * 
+	 * @param person
+	 *            Object that try to change to other type
+	 *            @see Person
+	 */
 	public void changeAdminToPerson(Person person) {
 		Person newPerson = new Person(person.getPersonName(), person.getPassword(), person.getFullName(),
 				person.getEmail(), person.getBirthday());
 		changeAllPersonIds(person, newPerson);
 	}
 
+	/**
+	 * @param person
+	 */
 	private void removeUser(Person person) {
 		EntityManager em = JpaHelper.getEntityManager();
 		JpaHelper.beginTransaction();
@@ -40,6 +81,10 @@ public class ChangePersonTypeService {
 		JpaHelper.commitTransaction();
 	}
 
+	/**
+	 * @param person
+	 * @param newPerson
+	 */
 	private void changeTopicPerson(Person person, Person newPerson) {
 		List<Topic> topics = new TopicService().selectAllTopicsByPerson(person);
 		if (topics != null) {
@@ -54,6 +99,10 @@ public class ChangePersonTypeService {
 		}
 	}
 
+	/**
+	 * @param person
+	 * @param newPerson
+	 */
 	private void changeCommentPerson(Person person, Person newPerson) {
 		List<Commentary> comments = new CommentaryService().selectAllComentByPerson(person);
 		if (comments != null) {
@@ -67,6 +116,10 @@ public class ChangePersonTypeService {
 		}
 	}
 
+	/**
+	 * @param person
+	 * @param newPerson
+	 */
 	private void changeRatingPerson(Person person, Person newPerson) {
 		List<Rating> ratings = new RatingService().selectAllRatingsByPerson(person);
 		if (ratings != null) {
@@ -87,6 +140,9 @@ public class ChangePersonTypeService {
 		}
 	}
 
+	/**
+	 * @param person
+	 */
 	private void createCopiedPerson(Person person) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
@@ -94,6 +150,10 @@ public class ChangePersonTypeService {
 		JpaHelper.commitTransaction();
 	}
 
+	/**
+	 * @param person
+	 * @param changedPerson
+	 */
 	private void changeAllPersonIds(Person person, Person changedPerson) {
 		createCopiedPerson(changedPerson);
 		changeCommentPerson(person, changedPerson);

@@ -25,9 +25,15 @@ public class RatingService {
 	}
 
 	/**
-	 * function that add rating to DB
+	 * methot that try to save object from parameter to the Database by
+	 * hibernate. in function is checking if the rating object allready exists
+	 * in database and if no that its create a new one otherwise if exist it
+	 * just update existing object to new values from parameter
 	 * 
 	 * @param rating
+	 *            object of type Rating that should be update or added to
+	 *            database
+	 * @see Rating
 	 */
 	public void addRating(Rating rating) {
 		if (checkIfRatingExist(rating)) {
@@ -40,7 +46,7 @@ public class RatingService {
 	}
 
 	/**
-	 * create new Rating
+	 * method to creating new Rating
 	 * 
 	 * @param rating
 	 */
@@ -51,7 +57,7 @@ public class RatingService {
 	}
 
 	/**
-	 * update Rating
+	 * method to update Rating
 	 * 
 	 * @param rating
 	 */
@@ -64,12 +70,18 @@ public class RatingService {
 	}
 
 	/**
-	 * function that return integer sum of all rating for current Comment
+	 * function that return value sum of all rating for current Comment. That
+	 * means that it should return negative or positive representation of rating
+	 * default it returns zero if there is no matched results. But also zero
+	 * could return if the count of added rating is zero.
 	 * 
 	 * @param comment
-	 * @return sum of all ratings for current comment on succes select and 0 if
+	 *            object for which is method searching the rating value
+	 * @return sum of all ratings for current comment on success select and 0 if
 	 *         select failed
+	 * @see Commentary
 	 */
+	@SuppressWarnings("unchecked")
 	public int getRatingOfComment(Commentary comment) {
 		JpaHelper.beginTransaction();
 		List<Long> sumRating = em
@@ -91,6 +103,7 @@ public class RatingService {
 	 * @param rating
 	 * @return true if Rating doesn't exist yet and false otherwise
 	 */
+	@SuppressWarnings("unchecked")
 	private boolean checkIfRatingExist(Rating rating) {
 		ArrayList<Rating> ratingList = (ArrayList<Rating>) em
 				.createQuery("Select r from Rating r where r.ratingIdCompositePK=:rid ")
@@ -103,11 +116,17 @@ public class RatingService {
 	}
 
 	/**
-	 * Select Rating object from database
+	 * return an object of rating or null if object passes as parameter doesn't
+	 * exists in database. Searching in database is by rating primary key and
+	 * that method is use full just for checking if rating allready doesn't
+	 * exist
 	 * 
 	 * @param rating
+	 *            object of type Rating by which the method searching result
 	 * @return object Rating or null if Entity notExist
+	 * @see Rating
 	 */
+	@SuppressWarnings("unchecked")
 	public Rating getRatingByRating(Rating rating) {
 		ArrayList<Rating> ratingList = (ArrayList<Rating>) em
 				.createQuery("Select r from Rating r where r.ratingIdCompositePK=:rid ")
@@ -120,11 +139,17 @@ public class RatingService {
 	}
 
 	/**
-	 * Select count of rating for current comment
+	 * function that return value count of all rating for current Comment. That
+	 * means that it should return zero if there is no matched result or value
+	 * of count of all rating added to current comment that is passed to this
+	 * method as parameter
 	 * 
 	 * @param comment
-	 * @return count of rating
+	 *            Comment object to which is count of rating searching
+	 * @return count of rating or zero if there is no match
+	 * @see Commentary
 	 */
+	@SuppressWarnings("unchecked")
 	public int getCountOfCommentRating(Commentary comment) {
 		JpaHelper.beginTransaction();
 		List<Long> countRating = em
@@ -141,6 +166,19 @@ public class RatingService {
 		}
 	}
 
+	/**
+	 * method that returns list of Rating objects or null if there is no match.
+	 * Searching the database is by Person object parameter and it return all
+	 * rating object if the rating was added by searched person
+	 * 
+	 * @param person
+	 *            person by which is searching rating provided
+	 * @return null if there is no match for current person or list of object
+	 *         Rating
+	 * @see Person
+	 * @see Rating
+	 */
+	@SuppressWarnings("unchecked")
 	public List<Rating> selectAllRatingsByPerson(Person person) {
 
 		JpaHelper.beginTransaction();

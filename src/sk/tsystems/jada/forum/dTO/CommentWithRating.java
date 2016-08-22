@@ -1,7 +1,6 @@
 package sk.tsystems.jada.forum.dTO;
 
 import sk.tsystems.jada.forum.entity.Commentary;
-import sk.tsystems.jada.forum.entity.Rating;
 
 public class CommentWithRating {
 
