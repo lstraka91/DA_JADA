@@ -12,9 +12,12 @@ import sk.tsystems.jada.forum.entity.Topic;
 public class CommentaryService {
 
 	/**
-	 * Insert Comment into DB
+	 * Method for add comment to database
 	 * 
 	 * @param comment
+	 *            object of Commentary
+	 * 
+	 * @see Commentary
 	 */
 	public void addComent(Commentary comment) {
 		JpaHelper.beginTransaction();
@@ -24,33 +27,37 @@ public class CommentaryService {
 	}
 
 	/**
-	 * Select all comment from DB
+	 * Select all comments from database
 	 * 
-	 * @return List<Commentary>
+	 * @return List of object Commentary
+	 * 
+	 * @see Commentary
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Commentary> selectAllComent() {
-
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		List<Commentary> list = em.createQuery("SELECT c FROM Commentary c").getResultList();
-
 		return list;
 	}
 
 	/**
-	 * sSelect comment by Topic
+	 * Select all comments from database by topic
 	 * 
-	 * @return List<Commentary>
+	 * @param topic
+	 *            object of type Topic
+	 * 
+	 * @return List of object Commentary by topic
+	 * 
+	 * @see Commentary
+	 * @see Topic
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Commentary> selectAllComentByTopic(Topic topic) {
-
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT c FROM Commentary c where c.topic.idTopic = :idTopic ");
 		query.setParameter("idTopic", topic.getIdTopic());
-
 		if (!query.getResultList().isEmpty()) {
 			List<Commentary> resultList = query.getResultList();
 			return resultList;
@@ -60,18 +67,22 @@ public class CommentaryService {
 	}
 
 	/**
-	 * Select comment by Person
+	 * Select all comments from database by person
 	 * 
-	 * @return List<Commentary>
+	 * @param person
+	 *            object of type Person
+	 * 
+	 * @return List of object Commentary by person
+	 * 
+	 * @see Commentary
+	 * @see Person
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Commentary> selectAllComentByPerson(Person person) {
-
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT c FROM Commentary c where c.person.idPerson = :idPerson ");
 		query.setParameter("idPerson", person.getIdPerson());
-
 		if (!query.getResultList().isEmpty()) {
 			List<Commentary> resultList = query.getResultList();
 			return resultList;
@@ -81,27 +92,31 @@ public class CommentaryService {
 	}
 
 	/**
-	 * Remove comment by ID
+	 * Remove comment from database by identifier comment
 	 * 
-	 * @param id
+	 * @param idComment
+	 *            identifier of comment
+	 * 
+	 * @see Commentary
 	 */
-	public void removeCommentById(int id) {
-		// Commentary comment = new Commentary();
+	public void removeCommentById(int idComment) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		// comment = selectCommentById(id);
-		// System.out.println(comment.getIdCommentary());
-		Commentary toDelete = em.find(Commentary.class, id);
-		System.out.println(toDelete.idCommentary);
+		Commentary toDelete = em.find(Commentary.class, idComment);
 		em.remove(toDelete);
 		JpaHelper.commitTransaction();
 	}
 
 	/**
-	 * Remove comment by object
+	 * Method for remove comment from database by object of type Commentary,
+	 * with help of method SelectCommentById get object Commentary
+	 * 
+	 * Use the {@link CommentaryService #selectCommentById(integer)} method
 	 * 
 	 * @param comment
+	 *            object of type Commentary
 	 * 
+	 * @see Commentary
 	 */
 	public void removeCommentByObject(Commentary comment) {
 		JpaHelper.beginTransaction();
@@ -112,19 +127,21 @@ public class CommentaryService {
 	}
 
 	/**
-	 * Select Commentary object from Database by id of COmment
+	 * Select Commentary object from database by identifier of comment
 	 * 
-	 * @param id
-	 * @return return Commentary object or null if select failed and have no
-	 *         result for the current Id
+	 * @param idComment
+	 *            identifier of comment
+	 * @return object of type Commentary or null if select failed and have no
+	 *         result for the current identifier comment
+	 * 
+	 * @see Commentary
 	 */
 	@SuppressWarnings("unchecked")
-	public Commentary selectCommentById(int id) {
+	public Commentary selectCommentById(int idComment) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT c FROM Commentary c where c.idCommentary = :idComment ");
-		query.setParameter("idComment", id);
-
+		query.setParameter("idComment", idComment);
 		if (!query.getResultList().isEmpty()) {
 			List<Commentary> resultList = query.getResultList();
 			return resultList.get(0);
@@ -134,16 +151,21 @@ public class CommentaryService {
 	}
 
 	/**
-	 * Find comment in table by text
+	 * Method for return object of type Commentary by comment body
 	 * 
-	 * @param text
-	 * @return
+	 * @param commentaryBody
+	 *            body of comment
+	 * 
+	 * @return object of type Commentary or null if select failed and have no
+	 *         result for the current comment body
+	 * 
+	 * @see Commentary
 	 */
-	public Commentary getCommentByText(String text) {
+	public Commentary getCommentByText(String commentaryBody) {
 		Commentary comment;
 		EntityManager em = JpaHelper.getEntityManager();
-		Query query = em.createQuery("select c from Commentary c where c.commentaryBody = :text");
-		query.setParameter("text", text);
+		Query query = em.createQuery("select c from Commentary c where c.commentaryBody = :commentaryBody");
+		query.setParameter("commentaryBody", commentaryBody);
 		if (!query.getResultList().isEmpty()) {
 			comment = (Commentary) query.getResultList().get(0);
 			return comment;
@@ -153,17 +175,23 @@ public class CommentaryService {
 	}
 
 	/**
-	 * update body of comment
+	 * Method for update comment body by object of type Commentary
+	 * 
+	 * Use the {@link Commentary #setCommentaryBody(String)} method
 	 * 
 	 * @param comment
-	 * @param commentBody
+	 *            object of type Commentary
+	 * 
+	 * @param commentaryBody
+	 *            body of comment
+	 * 
+	 * @see Commentary
 	 */
-	public void updateCommentBody(Commentary comment, String commentBody) {
+	public void updateCommentBody(Commentary comment, String commentaryBody) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
 		Commentary commentToEdit = em.find(Commentary.class, comment.getIdCommentary());
-		commentToEdit.setCommentaryBody(commentBody);
+		commentToEdit.setCommentaryBody(commentaryBody);
 		JpaHelper.commitTransaction();
 	}
-
 }

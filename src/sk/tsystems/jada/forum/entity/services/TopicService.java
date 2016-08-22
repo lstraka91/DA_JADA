@@ -24,7 +24,7 @@ public class TopicService {
 	 * Use the {@link Topic #getTopicName()} method
 	 * 
 	 * @param topic
-	 *            object of current topic
+	 *            object of Topic
 	 * 
 	 * @see Topic
 	 */
