@@ -26,7 +26,14 @@
 
 		<div class="panel panel-default">
 			<div class="panel-body">
-
+				<form class="navbar-form navbar-left">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"><span
+							class="glyphicon glyphicon-search"></span></span> <input id=searchTopics
+							type="text" class="form-control" placeholder="Search..."
+							aria-describedby="basic-addon1" size="102">
+					</div>
+				</form>
 				<ul class="nav nav-tabs navbar-right">
 
 					<c:choose>
@@ -64,9 +71,13 @@
 					</c:choose>
 				</ul>
 				<div class="table">
-					<table class="table table-hover">
+					<table id="topicsTable" class="table display table-hover">
 						<thead>
-
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
 						</thead>
 						<tbody id="myTable">
 							<c:forEach items="${topics}" var="topic">
@@ -106,7 +117,8 @@
 											<c:choose>
 												<c:when test="${not empty topic.keyWords }">
 													<c:forEach items="${topic.keyWords}" var="keyword">
-														<button class="btn btn-sm-info disabled">${keyword.keyWord }</button>
+														<button class="btn btn-sm-info kw-button"
+															value="${keyword.keyWord }">${keyword.keyWord }</button>
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
@@ -128,9 +140,10 @@
 												now</time>
 											</c:otherwise>
 										</c:choose></td>
-									<td><div><img class="headimg"
-										alt="head" src="images/headimg.png"></div><div>
-											(${topic.person.personName })</div></td>
+									<td><div>
+											<img class="headimg" alt="head" src="images/headimg.png">
+										</div>
+										<div>(${topic.person.personName })</div></td>
 									<td><c:choose>
 											<c:when
 												test="${user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin'}">
@@ -167,14 +180,8 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="col-md-12 text-center">
-					<ul class="pagination pagination-md pager" id="myPager"></ul>
-				</div>
 			</div>
 		</div>
-
-
-
 
 		<script type="text/javascript" src="js/jquery.timeago.js"></script>
 		<script type="text/javascript" src="js/forumScripts.js"></script>
