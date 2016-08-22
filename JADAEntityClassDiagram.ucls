@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.10" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="sk.tsystems.jada.forum.entity.Commentary" project="JADA_Tsystems_TeamProject" 
+    file="/JADA_Tsystems_TeamProject/src/sk/tsystems/jada/forum/entity/Commentary.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="351" width="187" x="339" y="5"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="sk.tsystems.jada.forum.entity.KeyWord" project="JADA_Tsystems_TeamProject" 
+    file="/JADA_Tsystems_TeamProject/src/sk/tsystems/jada/forum/entity/KeyWord.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="145" x="124" y="949"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="sk.tsystems.jada.forum.entity.Admin" project="JADA_Tsystems_TeamProject" 
+    file="/JADA_Tsystems_TeamProject/src/sk/tsystems/jada/forum/entity/Admin.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="374" x="124" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="sk.tsystems.jada.forum.entity.Topic" project="JADA_Tsystems_TeamProject" 
+    file="/JADA_Tsystems_TeamProject/src/sk/tsystems/jada/forum/entity/Topic.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="513" width="231" x="124" y="396"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="sk.tsystems.jada.forum.entity.Rating" project="JADA_Tsystems_TeamProject" 
+    file="/JADA_Tsystems_TeamProject/src/sk/tsystems/jada/forum/entity/Rating.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="211" x="566" y="5"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="sk.tsystems.jada.forum.entity.RatingId" project="JADA_Tsystems_TeamProject" 
+    file="/JADA_Tsystems_TeamProject/src/sk/tsystems/jada/forum/entity/RatingId.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="169" x="566" y="396"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="sk.tsystems.jada.forum.entity.SuperAdmin" project="JADA_Tsystems_TeamProject" 
+    file="/JADA_Tsystems_TeamProject/src/sk/tsystems/jada/forum/entity/SuperAdmin.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="243" width="239" x="538" y="1538"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="sk.tsystems.jada.forum.entity.Person" project="JADA_Tsystems_TeamProject" 
+    file="/JADA_Tsystems_TeamProject/src/sk/tsystems/jada/forum/entity/Person.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="549" width="214" x="376" y="949"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="9">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="10" name="ratingIdCompositePK"/>      
+      <multiplicity id="11" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="13">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="14" name="person"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="17">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="18" name="keyWords"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="21" name="topic"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <bendpoint x="385" y="396"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="24" name="person"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
