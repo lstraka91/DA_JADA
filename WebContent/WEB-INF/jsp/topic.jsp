@@ -33,7 +33,44 @@
 						</c:forEach>
 					</tr>
 					<hr>
+					<div class="row">
+						<ul class="nav nav-tabs navbar-right">
 
+							<c:choose>
+								<c:when test="${sorting==2 }">
+									<li role="presentation">
+										<a
+											href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
+											newest
+										</a>
+									</li>
+									<li role="presentation" class="active">
+										<a
+											href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
+											most rated
+										</a>
+									</li>
+								</c:when>
+
+							
+								<c:otherwise>
+									<li role="presentation"
+										class="active">
+										<a
+											href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
+											newest</a>
+									</li>
+									
+									<li role="presentation">
+										<a
+											href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
+											most rated	</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+					</div>
+					
 					<!-- My implementation of comments with rating -->
 					<c:forEach items="${commentWithRateList}" var="commRate"
 						varStatus="myindex">

@@ -2,6 +2,7 @@ package sk.tsystems.jada.forum.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -92,11 +93,40 @@ public class TopicServlet extends HttpServlet {
 		List<Commentary> topicComment = new ArrayList<>();
 		topicComment = (List<Commentary>) cs.selectAllComentByTopic(topic);
 		request.setAttribute("topicComments", topicComment);
-
-		List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatings(topic);
-		if (topicCommentsWithRate != null) {
-			request.setAttribute("commentWithRateList", topicCommentsWithRate);
+		
+		String action = request.getParameter("orderBy");
+		if (action != null) {
+			if ("new".equals(action)) {
+				List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatingsOrderedByDate(topic);
+				if (topicCommentsWithRate != null) {
+					request.setAttribute("commentWithRateList", topicCommentsWithRate);
+				}
+				session.setAttribute("sorting", 1);
+			}			
+			else if ("rating".equals(action)) {
+				List<CommentWithRating> topicCommentsWithRateOrderedByRate = new CommentWithRatingService().getCommentsAndRatingsOrderedByRating(topic);
+				if (topicCommentsWithRateOrderedByRate != null) {
+					request.setAttribute("commentWithRateList", topicCommentsWithRateOrderedByRate);
+				}
+				session.setAttribute("sorting", 2);
+			}
 		}
+			else{
+				List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatings(topic);
+				if (topicCommentsWithRate != null) {
+					request.setAttribute("commentWithRateList", topicCommentsWithRate);
+				}
+			}
+//			Collections.reverse();
+
+//		List<CommentWithRating> topicCommentsWithRate = new CommentWithRatingService().getCommentsAndRatings(topic);
+//		if (topicCommentsWithRate != null) {
+//			request.setAttribute("commentWithRateList", topicCommentsWithRate);
+//		}
+//		List<CommentWithRating> topicCommentsWithRateOrderedByRate = new CommentWithRatingService().getCommentsAndRatingsOrderedByRating(topic);
+//		if (topicCommentsWithRateOrderedByRate != null) {
+//			request.setAttribute("commentWithRateOrderedList", topicCommentsWithRateOrderedByRate);
+//		}
 		forwardToList(request, response);
 
 	}
