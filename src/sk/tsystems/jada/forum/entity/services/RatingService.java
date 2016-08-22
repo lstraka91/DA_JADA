@@ -140,7 +140,7 @@ public class RatingService {
 			return 0;
 		}
 	}
-	
+
 	public List<Rating> selectAllRatingsByPerson(Person person) {
 
 		JpaHelper.beginTransaction();

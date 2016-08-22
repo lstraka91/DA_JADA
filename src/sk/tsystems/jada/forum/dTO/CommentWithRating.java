@@ -20,9 +20,10 @@ public class CommentWithRating {
 
 	/**
 	 * Constructor that return DtO object of Comment with rating and count of ratings
-	 * @param comment
-	 * @param rateOfComment
-	 * @param countOfCommentsRating
+	 * @param comment - current object of comment 
+	 * @param rateOfComment - int representation rating of comment
+	 * @param countOfCommentsRating int count of rating for comment
+	 * @see Commentary
 	 */
 	public CommentWithRating(Commentary comment, int rateOfComment, int countOfCommentsRating) {
 		this.comment = comment;
@@ -31,16 +32,17 @@ public class CommentWithRating {
 	}
 
 	/**
-	 * Get Commentary object
-	 * 
-	 * @return comment
+	 * return comment object 
+	 *  
+	 * @return object of Comment
+	 * @see Commentary
 	 */
 	public Commentary getComment() {
 		return comment;
 	}
 
 	/**
-	 * get rate of Comment
+	 * return rating of comment
 	 * 
 	 * @return integer value of rating
 	 */
@@ -49,7 +51,7 @@ public class CommentWithRating {
 	}
 
 	/**
-	 * get count of rating to current comment
+	 * return count of rating to current comment
 	 * 
 	 * @return integer value of count
 	 */

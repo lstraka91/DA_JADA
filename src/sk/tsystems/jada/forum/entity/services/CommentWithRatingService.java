@@ -10,10 +10,20 @@ import sk.tsystems.jada.forum.entity.Topic;
 public class CommentWithRatingService {
 
 	/**
-	 * method that return List of CommentWithRating object from database
+	 * method that returns null or List of object CommentWithRating. Function
+	 * have to connect to the database and try to find all object Comment with
+	 * rating for current Topic that is passed to this method by parameter. In
+	 * database that search for comments to this topic and for current comment
+	 * that is searching rating and count of rating to this comment, if there is
+	 * no comment method returns null
 	 * 
 	 * @param topic
-	 * @return List of CommentWithRating object
+	 *            Object of type Topic for which are Comments and rating
+	 *            searching
+	 * @return null if Topic have no Comments on the other side that returns
+	 *         List of CommentaryWithRating object that consist of Comment and
+	 *         rating and count of rating to Comment
+	 * @see CommentWithRatingService
 	 */
 	public List<CommentWithRating> getCommentsAndRatings(Topic topic) {
 		List<CommentWithRating> dToList = new ArrayList<>();

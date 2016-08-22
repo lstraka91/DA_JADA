@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import sk.tsystems.jada.forum.entity.services.PersonService;
-
 @Entity
 @Table(name = "Ratinggg")
 public class Rating implements Serializable {
@@ -36,6 +34,20 @@ public class Rating implements Serializable {
 	@EmbeddedId
 	private RatingId ratingIdCompositePK;
 
+	/**
+	 * Constructor for object Rating, returns an object of Person that add
+	 * rating and Comment to what rating was added
+	 * 
+	 * @param rate
+	 *            value of rating for current Comment
+	 * @param person
+	 *            Object of type Person, to identify who add rating
+	 * @param commentary
+	 *            object of type Comment to identify to which comment was rating
+	 *            added
+	 * @see Person
+	 * @see Commentary
+	 */
 	public Rating(int rate, Person person, Commentary commentary) {
 
 		// initialize ratingID compostite Primary Keys
@@ -45,14 +57,17 @@ public class Rating implements Serializable {
 
 	}
 
+	/**
+	 * Constructor without parameters
+	 */
 	public Rating() {
 
 	}
 
 	/**
-	 * getter that return ident of rating
+	 * return ident of rating
 	 * 
-	 * @return idRating
+	 * @return idRating id of comment
 	 */
 
 	public int getIdRating() {
@@ -60,9 +75,9 @@ public class Rating implements Serializable {
 	}
 
 	/**
-	 * getter that return value of rating
+	 * return value of rating
 	 * 
-	 * @return rate
+	 * @return rate value of rate
 	 */
 
 	public int getRate() {
@@ -73,6 +88,7 @@ public class Rating implements Serializable {
 	 * set the value of rating
 	 * 
 	 * @param rate
+	 *            value of rate
 	 */
 
 	public void setRate(int rate) {
@@ -80,9 +96,10 @@ public class Rating implements Serializable {
 	}
 
 	/**
-	 * getter that returns object of Rating composite primary key
+	 * returns object of Rating composite primary key
 	 * 
-	 * @return RatingId object
+	 * @return RatingId object that consist of Person and Comment reference by
+	 *         id of both Objects
 	 */
 	public RatingId getRatingIdCompositePK() {
 		return ratingIdCompositePK;
@@ -91,7 +108,9 @@ public class Rating implements Serializable {
 	/**
 	 * set the RatingId object
 	 * 
-	 * @param rid
+	 * @param ratingIdCompositePK
+	 *            set the object of ratingId primary key that consist of
+	 *            reference to another objects Person and Comment
 	 */
 	public void setRatingIdCompositePK(RatingId ratingIdCompositePK) {
 		this.ratingIdCompositePK = ratingIdCompositePK;

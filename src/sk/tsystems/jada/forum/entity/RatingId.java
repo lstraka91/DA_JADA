@@ -26,7 +26,13 @@ public class RatingId implements Serializable {
 	 * Constructor that initialize personId and commentId
 	 * 
 	 * @param person
+	 *            Object of type Person that represent who add rating
 	 * @param comment
+	 *            Object of type Comment that represent to which comment is
+	 *            rating added
+	 * @see Person
+	 * @see Commentary
+	 * 
 	 */
 	public RatingId(Person person, Commentary comment) {
 		this.idCommentary = comment.getIdCommentary();
@@ -41,9 +47,9 @@ public class RatingId implements Serializable {
 	}
 
 	/**
-	 * get personId
+	 * return personId
 	 * 
-	 * @return idPerson
+	 * @return idPerson identification number of User
 	 */
 	public int getIdPerson() {
 		return idPerson;
@@ -53,15 +59,18 @@ public class RatingId implements Serializable {
 	 * set IdPeron
 	 * 
 	 * @param idPerson
+	 *            identification number of User object
+	 * @see Person
 	 */
 	public void setIdPerson(int idPerson) {
 		this.idPerson = idPerson;
 	}
 
 	/**
-	 * get commentary Id
+	 * return commentary Id
 	 * 
-	 * @return idCommentary
+	 * @return idCommentary identification number of comment object
+	 * @see Commentary
 	 */
 	public int getIdCommentary() {
 		return idCommentary;
@@ -71,6 +80,7 @@ public class RatingId implements Serializable {
 	 * set idComment
 	 * 
 	 * @param idCommentary
+	 *            value of id for Commentary object
 	 */
 	public void setIdCommentary(int idCommentary) {
 		this.idCommentary = idCommentary;
