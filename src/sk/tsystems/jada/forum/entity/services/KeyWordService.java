@@ -25,19 +25,19 @@ public class KeyWordService {
 	}
 
 	/**
-	 * Method finds keyword in database (by String), if keyword isn't in database,
-	 * function save it. Function have to connect to the database and try to find
-	 * object of type  keyword by String that is passed to this method by parameter.
-	 * If keyword from parameter is in database, Method return object of type keyWord
-	 * where body of keyWord is the same as parameter. Where this object isn't 
-	 * in database, method create new object and save it to database. 
+	 * Method finds keyword in database (by String), if keyword isn't in
+	 * database, function save it. Function have to connect to the database and
+	 * try to find object of type keyword by String that is passed to this
+	 * method by parameter. If keyword from parameter is in database, Method
+	 * return object of type keyWord where body of keyWord is the same as
+	 * parameter. Where this object isn't in database, method create new object
+	 * and save it to database.
 	 * 
 	 * @param input
-	 * 			String, method check if this String is in database, 
-	 * 			if not, method save it.
-	 * @return kw  
-	 * 			Kw is object of type keyword. This object contains 
-	 * 			id of keyword(int) and keyWord(String)	 
+	 *            String, method check if this String is in database, if not,
+	 *            method save it.
+	 * @return kw Kw is object of type keyword. This object contains id of
+	 *         keyword(int) and keyWord(String)
 	 */
 	public KeyWord findKeyWord(String input) {
 		KeyWord kw;
@@ -54,12 +54,12 @@ public class KeyWordService {
 	}
 
 	/**
-	 *Function have to connect to the database and try to find most used keyWords from 
-	 *forum id database by query. Method return ArrayList<Integer> of ids most used 
-	 *keyWords. Max size of ArrayList is set to 10. 
+	 * Function have to connect to the database and try to find most used
+	 * keyWords from forum id database by query. Method return
+	 * ArrayList<Integer> of ids most used keyWords. Max size of ArrayList is
+	 * set to 10.
 	 * 
-	 * @return ArrayList<Integer>
-	 * 			ArrayList of ids of ten most used keywords. 
+	 * @return ArrayList<Integer> ArrayList of ids of ten most used keywords.
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> topKeyWords() {
@@ -72,11 +72,10 @@ public class KeyWordService {
 	}
 
 	/**
-	 * Function have to connect to database and try to find all keyWords from 
-	 * database. Method return ArrayList of all objects of type keyWord.  
+	 * Function have to connect to database and try to find all keyWords from
+	 * database. Method return ArrayList of all objects of type keyWord.
 	 * 
-	 * @return ArrayList<KeyWord>
-	 * 			ArrayList of objects of type keyWord.
+	 * @return ArrayList<KeyWord> ArrayList of objects of type keyWord.
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<KeyWord> getAllKeyWords() {

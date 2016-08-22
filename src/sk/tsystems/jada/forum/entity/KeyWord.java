@@ -12,17 +12,33 @@ import javax.persistence.Id;
 @Entity
 public class KeyWord {
 
+	/**
+	 * Integer variable, id of keyword
+	 */
 	private int idKeyWord;
 
+	/**
+	 * String variable, body of keyword
+	 */
 	private String keyWord;
 
+	/**
+	 * Implicit class constructor
+	 */
 	public KeyWord() {
 
 	}
 
+	/**
+	 * Class constructor.
+	 * 
+	 * @param keyWord
+	 */
 	public KeyWord(String keyWord) {
 		this.keyWord = keyWord.toLowerCase();
 	}
+
+	/*** Getters and Setters ***/
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
