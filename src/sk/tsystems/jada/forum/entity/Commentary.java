@@ -18,7 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Commentary {
 
 	/**
-	 * Comment identifier
+	 * identifier of comment
 	 */
 	@Id
 	@GeneratedValue
@@ -35,31 +35,41 @@ public class Commentary {
 	public Date commentaryDate;
 
 	/**
-	 * User object
+	 * Person who commented topic
+	 * 
+	 * @see Person
 	 */
 	@ManyToOne(cascade = CascadeType.DETACH)
 	public Person person;
 
 	/**
-	 * Topic object
+	 * Topic object for identity whose topic was commented
+	 * 
+	 * @see Topic
 	 */
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	public Topic topic;
 
 	/**
-	 * Default constructor
+	 * Default constructor without parameters
 	 */
 	public Commentary() {
 
 	}
 
 	/**
+	 * Constructor for object Commentary
 	 * 
 	 * @param commentaryBody
-	 * @param commentaryDate
+	 *            body of current comment
 	 * @param person
+	 *            object of type Person for identity who added topic
 	 * @param topic
+	 *            object of type Topic for identity whose topic was commented
+	 * 
+	 * @see Person
+	 * @see Topic
 	 */
 	public Commentary(String commentaryBody, Person person, Topic topic) {
 		this.commentaryBody = commentaryBody;
@@ -69,56 +79,118 @@ public class Commentary {
 	}
 
 	/**
-	 * Getters
+	 * Return identifier of current comment
+	 * 
+	 * @return idCommentary of comment
 	 */
 	public int getIdCommentary() {
 		return idCommentary;
 	}
 
+	/**
+	 * Sets identifier of current comment
+	 * 
+	 * @param idCommentary
+	 *            identifier of comment
+	 */
+	public void setIdCommentary(int idCommentary) {
+		this.idCommentary = idCommentary;
+	}
+
+	/**
+	 * Return commentary body of current comment
+	 * 
+	 * @return commentaryBody of comment
+	 */
 	public String getCommentaryBody() {
 		return commentaryBody;
 	}
 
+	/**
+	 * Sets body of current comment
+	 * 
+	 * @param commentaryBody
+	 *            body of comment
+	 */
+	public void setCommentaryBody(String commentaryBody) {
+		this.commentaryBody = commentaryBody;
+	}
+
+	/**
+	 * Return date added comment
+	 * 
+	 * @return commentaryDate of comment
+	 * 
+	 * @see Date
+	 */
 	public Date getCommentaryDate() {
 		return commentaryDate;
 	}
 
+	/**
+	 * Sets date added comment
+	 * 
+	 * @param commentaryDate
+	 *            date when was comment added
+	 *
+	 * @see Date
+	 */
+	public void setCommentaryDate(Date commentaryDate) {
+		this.commentaryDate = commentaryDate;
+	}
+
+	/**
+	 * Return person who added current comment
+	 * 
+	 * @return person who add comment
+	 * 
+	 * @see Person
+	 */
 	public Person getPerson() {
 		return person;
 	}
 
+	/**
+	 * Sets person who added current comment
+	 * 
+	 * @param person
+	 *            who add commend
+	 * 
+	 * @see Person
+	 */
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	/**
+	 * Return topic has current comment
+	 * 
+	 * @return topic whose was comment
+	 * 
+	 * @see Topic
+	 */
 	public Topic getTopic() {
 		return topic;
 	}
 
 	/**
-	 * Setters
+	 * Sets topic whose was commented
+	 * 
+	 * @param topic
+	 *            whose topic was comment added
+	 * 
+	 * @see Topic
 	 */
-
-	public void setIdCommentary(int idCommentary) {
-		this.idCommentary = idCommentary;
-	}
-
-	public void setCommentaryBody(String commentaryBody) {
-		this.commentaryBody = commentaryBody;
-	}
-
-	public void setCommentaryDate(Date commentaryDate) {
-		this.commentaryDate = commentaryDate;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
 	public void setTopic(Topic topic) {
 		this.topic = topic;
 	}
 
+	/**
+	 * Method toString
+	 */
 	@Override
 	public String toString() {
 		return "Commentary [idCommentary=" + idCommentary + ", commentaryBody=" + commentaryBody + ", commentaryDate="
 				+ commentaryDate + ", person=" + person + ", topic=" + topic + "]";
 	}
-
 }

@@ -20,6 +20,12 @@ import javax.persistence.Transient;
 
 import sk.tsystems.jada.forum.entity.services.CommentaryService;
 
+/**
+ * 
+ * @author Jozef
+ *
+ *Database entity for topic
+ */
 @Entity
 public class Topic {
 
