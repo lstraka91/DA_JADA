@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class Person {
 
 	/**
-	 * Identifies user.
+	 * Identifiers user.
 	 */
 	@Id
 	@GeneratedValue
@@ -68,7 +68,7 @@ public class Person {
 	/**
 	 * Class constructor using fields.
 	 * 
-	 * @param personName representation of Person's username
+	 * @param personName representation of Person's userName
 	 * @param password persons password
 	 * @param email persons email address
 	 * @param birthday person Date of birthday
@@ -84,12 +84,8 @@ public class Person {
 		this.registrationDate = new Date(System.currentTimeMillis());
 	}
 
-	/********************************************************************************************************
-	 ********************************** Getters and setters for fields **************************************
-	 ********************************************************************************************************/
-
 	/**
-	 * return id of Person
+	 * return identifier of Person
 	 * 
 	 * @return id value of Person
 	 */
@@ -98,10 +94,10 @@ public class Person {
 	}
 
 	/**
-	 * set person value of ident
+	 * set person value of identifier
 	 * 
 	 * @param idPerson
-	 *            person value of id
+	 *            person value of identifier
 	 */
 	public void setIdPerson(int idPerson) {
 		this.idPerson = idPerson;
@@ -110,7 +106,7 @@ public class Person {
 	/**
 	 * return person userName
 	 * 
-	 * @return String of person username
+	 * @return String of person userName
 	 */
 	public String getPersonName() {
 		return personName;
@@ -240,11 +236,13 @@ public class Person {
 		this.fullName = fullName;
 	}
 
+	/**
+	 * Method toString
+	 */
 	@Override
 	public String toString() {
 		return "Person [idPerson=" + idPerson + ", personName=" + personName + ", password=" + password + ", fullName="
 				+ fullName + ", email=" + email + ", birthday=" + birthday + ", registrationDate=" + registrationDate
 				+ ", active=" + active + "]";
 	}
-
 }
