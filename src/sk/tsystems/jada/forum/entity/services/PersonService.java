@@ -6,6 +6,7 @@ package sk.tsystems.jada.forum.entity.services;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -387,6 +388,11 @@ public class PersonService {
 	public void setRemovedPerson(Person person) {
 		Person removedPerson = new Person();
 		removedPerson = new PersonService().getPersonByName("Removed User");
+		if(removedPerson==null){
+			removedPerson=new Person("Removed User", "ahahsju@1235", "Removed", "removed@user.sk",
+					new Date(System.currentTimeMillis()));
+			registerPerson(removedPerson);
+		}
 		List<Commentary> commList = new CommentaryService().selectAllComentByPerson(person);
 		if (commList != null) {
 			for (Commentary commentary : commList) {
