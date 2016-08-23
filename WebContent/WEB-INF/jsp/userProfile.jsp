@@ -147,9 +147,9 @@
 			</div>
 			</div>
 		</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 	</div>
 	<script type="text/javascript" src='js/profileForm.js'></script>
 
-	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
