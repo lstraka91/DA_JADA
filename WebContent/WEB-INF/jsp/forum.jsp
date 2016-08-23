@@ -30,7 +30,7 @@
 						<span class="input-group-addon" id="basic-addon1"><span
 							class="glyphicon glyphicon-search"></span></span> <input id=searchTopics
 							type="text" class="form-control" placeholder="Search..."
-							aria-describedby="basic-addon1" size="102rem" autofocus>
+							aria-describedby="basic-addon1" size="80rem" autofocus>
 					</div>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
