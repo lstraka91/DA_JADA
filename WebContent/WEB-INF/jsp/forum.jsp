@@ -23,9 +23,8 @@
 
 		<jsp:include page="header.jsp"></jsp:include>
 
-
 		<div class="panel panel-default">
-			<div class="panel-body">
+			<div class="panel-heading nav navbar-default">
 				<form class="navbar-form navbar-left">
 					<div class="input-group">
 						<span class="input-group-addon" id="basic-addon1"><span
@@ -34,44 +33,43 @@
 							aria-describedby="basic-addon1" size="102">
 					</div>
 				</form>
-				<ul class="nav nav-tabs navbar-right">
+				<ul class="nav navbar-nav navbar-right">
 
 					<c:choose>
 						<c:when test="${sorting==2 }">
-							<li role="presentation"><a
-								href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-							<li role="presentation" class="active"><a
+							<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
+							<li class="active"><a
 								href="/JADA_Tsystems_TeamProject/forum?action=top">top
 									viewed</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
 									commented</a></li>
 						</c:when>
 
 						<c:when test="${sorting==3 }">
-							<li role="presentation"><a
-								href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-							<li role="presentation"><a
-								href="/JADA_Tsystems_TeamProject/forum?action=top">top
+							<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
+							<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top
 									viewed</a></li>
-							<li role="presentation" class="active"><a
+							<li class="active"><a
 								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
 									commented</a></li>
 						</c:when>
 						<c:otherwise>
-							<li role="presentation" class="active"><a
+							<li class="active"><a
 								href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-							<li role="presentation"><a
-								href="/JADA_Tsystems_TeamProject/forum?action=top">top
+							<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top
 									viewed</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
 									commented</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
+			</div>
+			<div class="panel-body">
+
 				<div class="table">
-					<table id="topicsTable" class="table display table-hover">
+					<table id="topicsTable" class="table display">
 						<thead>
 							<th></th>
 							<th></th>

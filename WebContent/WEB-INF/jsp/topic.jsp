@@ -15,69 +15,85 @@
 		<jsp:include page="header.jsp"></jsp:include>
 
 		<div class="panel panel-default">
-			<div class="panel-body">
-				<table cellspacing="0" width="100%">
+			<div class="panel-heading">
+				<!-- 				<table cellspacing="0" width="100%"> -->
 
-					<tr>
-						<h3>
-							<span>${currentTopic.topicName}</span> <span class="pull-right">(${currentTopic.person.personName})</span>
-						</h3>
-						<p>${currentTopic.topicDescription}</p>
+				<!-- 					<tr> -->
+				<div class="topicShow">
+					<h3>
+						<span>${currentTopic.topicName}</span> <span class="pull-right">(${currentTopic.person.personName})</span>
+					</h3>
+					<p>${currentTopic.topicDescription}</p>
 
-						<p class="pull-right">
-							<fmt:formatDate value="${currentTopic.topicDate}"
-								pattern="dd.MM.yyyy HH:mm" />
-						</p>
-						<c:forEach items="${currentTopic.keyWords}" var="keyword">
-							<button class="btn btn-sm-info">${keyword.keyWord }</button>
-						</c:forEach>
-					</tr>
+					<p class="pull-right">
+						<fmt:formatDate value="${currentTopic.topicDate}"
+							pattern="dd.MM.yyyy HH:mm" />
+					</p>
+					<c:forEach items="${currentTopic.keyWords}" var="keyword">
+						<button class="btn btn-sm-info">${keyword.keyWord }</button>
+					</c:forEach>
+					<!-- 					</tr> -->
+					<!-- 				</table> -->
 					<hr>
-					<div class="row">
-						<ul class="nav nav-tabs navbar-right">
 
-							<c:choose>
-								<c:when test="${sorting==2 }">
-									<li role="presentation">
-										<a
-											href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
-											newest
-										</a>
-									</li>
-									<li role="presentation" class="active">
-										<a
-											href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
-											most rated
-										</a>
-									</li>
-								</c:when>
 
-							
-								<c:otherwise>
-									<li role="presentation"
-										class="active">
-										<a
-											href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
-											newest</a>
-									</li>
-									
-									<li role="presentation">
-										<a
-											href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
-											most rated	</a>
-									</li>
-								</c:otherwise>
-							</c:choose>
-						</ul>
-					</div>
-					
-					<!-- My implementation of comments with rating -->
-					<c:forEach items="${commentWithRateList}" var="commRate"
-						varStatus="myindex">
-						<p>
-							<c:choose>
-								<c:when
-									test="${commRate.comment.person.personName eq user.personName or user.getClass().simpleName eq 'SuperAdmin'}">
+				</div>
+				<c:if test="${!empty commentWithRateList}">
+					<ul class="nav navbar-nav navbar-right">
+
+						<c:choose>
+							<c:when test="${sorting==2 }">
+								<li><a
+									href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
+										newest </a></li>
+								<li class="active"><a
+									href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
+										most rated </a></li>
+							</c:when>
+
+
+							<c:otherwise>
+								<li class="active"><a
+									href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
+										newest</a></li>
+
+								<li><a
+									href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
+										most rated </a></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</c:if>
+			</div>
+			<div class="panel-body">
+
+				<!-- My implementation of comments with rating -->
+				<c:forEach items="${commentWithRateList}" var="commRate"
+					varStatus="myindex">
+					<div>
+						<c:choose>
+							<c:when
+								test="${commRate.comment.person.personName eq user.personName or user.getClass().simpleName eq 'SuperAdmin'}">
+								<div class="text-right">
+									<div class="btn-group">
+										<span class="pull-right"> <a
+											href="topic?idTopic=${currentTopic.idTopic}&delete=true&idComment=${commRate.comment.idCommentary}"
+											class="btn btn-danger"> <span
+												class="glyphicon glyphicon-remove-sign"> </span> Delete
+										</a>
+										</span> <a
+											href="editComment?idTopic=${currentTopic.idTopic}&idComment=${commRate.comment.idCommentary}&commentaryBody=${commRate.comment.commentaryBody}"
+											class="btn btn-warning"> <span
+											class="glyphicon glyphicon-edit"> </span> Edit
+										</a>
+									</div>
+								</div>
+								<br>
+							</c:when>
+							<c:when test="${user.getClass().simpleName eq 'Admin'}">
+
+								<c:if test="${user.deleteCommentPermission}">
+
 									<div class="text-right">
 										<div class="btn-group">
 											<span class="pull-right"> <a
@@ -93,81 +109,60 @@
 										</div>
 									</div>
 									<br>
-								</c:when>
-								<c:when test="${user.getClass().simpleName eq 'Admin'}">
+								</c:if>
+							</c:when>
+						</c:choose>
+					</div>
+					<!-- Try to add MODAL TO EDIT -->
 
-									<c:if test="${user.deleteCommentPermission}">
+					<div id="idComment${ myindex.index }" class="commentBody">
 
-										<div class="text-right">
-											<div class="btn-group">
-												<span class="pull-right"> <a
-													href="topic?idTopic=${currentTopic.idTopic}&delete=true&idComment=${commRate.comment.idCommentary}"
-													class="btn btn-danger"> <span
-														class="glyphicon glyphicon-remove-sign"> </span> Delete
-												</a>
-												</span> <a
-													href="editComment?idTopic=${currentTopic.idTopic}&idComment=${commRate.comment.idCommentary}&commentaryBody=${commRate.comment.commentaryBody}"
-													class="btn btn-warning"> <span
-													class="glyphicon glyphicon-edit"> </span> Edit
-												</a>
-											</div>
-										</div>
-										<br>
-									</c:if>
-								</c:when>
-							</c:choose>
-						</p>
-						<!-- Try to add MODAL TO EDIT -->
+						<p>${commRate.comment.commentaryBody}</p>
+					</div>
 
-						<div id="idComment${ myindex.index }" class="commentBody">
-
-							<p>${commRate.comment.commentaryBody}</p>
+					<div class="pull-right text-center">
+						<div>
+							<img class="headimg" alt="head" src="images/headimg.png">
 						</div>
+						<div>(${commRate.comment.person.fullName})</div>
+					</div>
+					<fmt:parseNumber var="rate" value="${commRate.rateOfComment}" />
+					<div class="row">
 
-						<div class="pull-right text-center">
-							<div>
-								<img class="headimg" alt="head" src="images/headimg.png">
-							</div>
-							<div>(${commRate.comment.person.fullName})</div>
+						<div class="col-md-5 offset-md-5">
+							<span class="badge "><span
+								class="glyphicon glyphicon-info-sign"></span>
+								${commRate.countOfCommentsRating} times rated</span>
+							<c:if test="${user!=null}">
+								<a
+									href="topic?idTopic=${currentTopic.idTopic}&addRate=like&idComment=${commRate.comment.idCommentary}"
+									class="btn btn-default"><span
+									class="glyphicon glyphicon-thumbs-up"></span>Like</a>
+							</c:if>
+							<c:if test="${rate>0}">
+								<span class="label label-success">${commRate.rateOfComment}</span>
+
+							</c:if>
+							<c:if test="${rate==0}">
+								<span class="label label-default">${commRate.rateOfComment}</span>
+							</c:if>
+							<c:if test="${rate<0}">
+								<span class="label label-danger">${commRate.rateOfComment}</span>
+							</c:if>
+							<c:if test="${user!=null}">
+								<a
+									href="topic?idTopic=${currentTopic.idTopic}&addRate=dislike&idComment=${commRate.comment.idCommentary}"
+									class="btn btn-default"><span
+									class="glyphicon glyphicon-thumbs-down"></span>Dislike</a>
+							</c:if>
 						</div>
-						<fmt:parseNumber var="rate" value="${commRate.rateOfComment}" />
-						<div class="row">
-
-							<div class="col-md-5 offset-md-5">
-								<span class="badge "><span
-									class="glyphicon glyphicon-info-sign"></span>
-									${commRate.countOfCommentsRating} times rated</span>
-								<c:if test="${user!=null}">
-									<a
-										href="topic?idTopic=${currentTopic.idTopic}&addRate=like&idComment=${commRate.comment.idCommentary}"
-										class="btn btn-default"><span
-										class="glyphicon glyphicon-thumbs-up"></span>Like</a>
-								</c:if>
-								<c:if test="${rate>0}">
-									<span class="label label-success">${commRate.rateOfComment}</span>
-
-								</c:if>
-								<c:if test="${rate==0}">
-									<span class="label label-default">${commRate.rateOfComment}</span>
-								</c:if>
-								<c:if test="${rate<0}">
-									<span class="label label-danger">${commRate.rateOfComment}</span>
-								</c:if>
-								<c:if test="${user!=null}">
-									<a
-										href="topic?idTopic=${currentTopic.idTopic}&addRate=dislike&idComment=${commRate.comment.idCommentary}"
-										class="btn btn-default"><span
-										class="glyphicon glyphicon-thumbs-down"></span>Dislike</a>
-								</c:if>
-							</div>
-						</div>
-						<span class="pull-right">commented <strong><fmt:formatDate
-									value="${commRate.comment.commentaryDate}"
-									pattern="dd.MM.yyyy HH:mm" /></strong></span>
-						<br>
-						<hr>
-					</c:forEach>
-				</table>
+					</div>
+					<span class="pull-right">commented <strong><fmt:formatDate
+								value="${commRate.comment.commentaryDate}"
+								pattern="dd.MM.yyyy HH:mm" /></strong></span>
+					<br>
+					<hr>
+				</c:forEach>
 			</div>
 		</div>
 

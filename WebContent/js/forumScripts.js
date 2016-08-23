@@ -11,21 +11,28 @@ $(function() {
 	});
 });
 
-$(document)
-		.ready(
-				function() {
-					var topicstable = $('#topicsTable')
-							.DataTable(
-									{
-										"dom" : '<t><"row"ip><"row"l>',
-										"ordering" : false
-									});
+// Datatable, datatable's DOM and search function
+$(document).ready(
+		function() {
+			var topicsTable = $('#topicsTable').DataTable({
+				"dom" : 'r<t><"row"ip><"row"l>',
+				"ordering" : false,
+				"oLanguage" : {
+					"sEmptyTable" : "No data available",
+					"sInfoEmpty" : "No topics found",
+					"sInfo" : "Showing _START_ to _END_ of _TOTAL_ topics"
+				}
+			});
 
-					$('#searchTopics').keyup(function() {
-						topicstable.search($(this).val()).draw();
+			$('#searchTopics').keyup(
+					function() {
+						topicsTable.search($(this).val()).draw();
+						localStorage.setItem('searchTopicsInput', JSON
+								.stringify($(this).val()));
 					});
-				});
+		});
 
+//Adds clicked keyword to search input
 $(function() {
 	$('.kw-button').click(function() {
 		var text = $('#searchTopics');
