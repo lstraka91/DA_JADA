@@ -30,7 +30,7 @@
 						<span class="input-group-addon" id="basic-addon1"><span
 							class="glyphicon glyphicon-search"></span></span> <input id=searchTopics
 							type="text" class="form-control" placeholder="Search..."
-							aria-describedby="basic-addon1" size="102">
+							aria-describedby="basic-addon1" size="102rem">
 					</div>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
@@ -70,17 +70,19 @@
 
 				<div class="table">
 					<table id="topicsTable" class="table display">
-						<thead class="hidden">
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
 						</thead>
 						<tbody id="myTable">
 							<c:forEach items="${topics}" var="topic">
 								<tr>
-									<td><div class="text-center">
+									<td class="col-md-1"><div class="text-center">
 											<div class="center">
 												<div>
 													<c:choose>
@@ -107,7 +109,7 @@
 												<div>Comments</div>
 											</div>
 										</div></td>
-									<td colspan="10"><div class="row">
+									<td class="col-md-6"><div class="row">
 											<a
 												href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
 										</div>
@@ -125,24 +127,7 @@
 											</c:choose>
 										</div></td>
 
-
-									<td><c:choose>
-											<c:when test="${now.date gt topic.topicDate.date}">
-												<p>
-													<fmt:formatDate value="${topic.topicDate}"
-														pattern="dd.MMM yyy HH:mm" />
-												</p>
-											</c:when>
-											<c:otherwise>
-												<time class="timeago" datetime="${topic.topicDate}">just
-												now</time>
-											</c:otherwise>
-										</c:choose></td>
-									<td><div>
-											<img class="headimg" alt="head" src="images/headimg.png">
-										</div>
-										<div>(${topic.person.personName })</div></td>
-									<td><c:choose>
+									<td class="col-md-1"><c:choose>
 											<c:when
 												test="${user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin'}">
 												<c:if test="${user.deleteTopicPermission }">
@@ -173,6 +158,23 @@
 											</c:when>
 
 										</c:choose></td>
+									<td class="col-md-1 text-center"><c:choose>
+											<c:when test="${now.date gt topic.topicDate.date}">
+												<p>
+													<fmt:formatDate value="${topic.topicDate}"
+														pattern="dd.MMM yyy HH:mm" />
+												</p>
+											</c:when>
+											<c:otherwise>
+												<div class="timeago" datetime="${topic.topicDate}">just
+													now</div>
+											</c:otherwise>
+										</c:choose></td>
+									<td class="col-md-1 text-center"><div>
+											<img class="headimg" alt="head" src="images/headimg.png">
+										</div>
+										<div>(${topic.person.personName })</div></td>
+
 								</tr>
 							</c:forEach>
 						</tbody>
