@@ -105,7 +105,7 @@
 						<div>
 							<img class="headimg" alt="head" src="images/headimg.png">
 						</div>
-						<div>(${commRate.comment.person.fullName})</div>
+						<div>(${commRate.comment.person.personName})</div>
 					</div>
 					<fmt:parseNumber var="rate" value="${commRate.rateOfComment}" />
 					<div class="row">
