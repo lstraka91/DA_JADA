@@ -16,14 +16,29 @@ import sk.tsystems.jada.forum.entity.Topic;
 public class ChangePersonTypeService {
 
 	/**
-	 * method that try to make an new type of Person from Person to Admin
-	 * object, method try to make new Object type of Admin and share to that
-	 * object all existing data from parameter and change all references in
-	 * database from old one Person to new one. New type of object Admin have to
-	 * default set the permisions to false
+	 * Method that try to make an new type of Person from Person to
+	 * Administrator object, method try to make new Object type of Admin and
+	 * share to that object all existing data from parameter and change all
+	 * references in database from old one Person to new one. New type of object
+	 * Admin have to default set the permissions to false
+	 * 
+	 * Use the {@link Person #getPersonName()} method
+	 * 
+	 * Use the {@link Person #getPassword()} method
+	 * 
+	 * Use the {@link Person #getFullName()} method
+	 * 
+	 * Use the {@link Person #getEmail()} method
+	 * 
+	 * Use the {@link Person #getBirthday()} method
+	 * 
+	 * Use the
+	 * {@link ChangePersonTypeService #changeAllPersonIds(Person, Person)}
+	 * method
 	 * 
 	 * @param person
 	 *            Object that try to change to other type
+	 * 
 	 * @see Admin
 	 * @see Person
 	 */
@@ -34,17 +49,33 @@ public class ChangePersonTypeService {
 	}
 
 	/**
-	 * method that try to make an new type of Person from Person to SuperAdmin
+	 * Method that try to make an new type of Person from Person to SuperAdmin
 	 * object, method try to make new Object type of SuperAdmin and share to
 	 * that object all existing data from parameter and change all references in
 	 * database from old one Person to new one. New type of object SuperAdmin
-	 * have default set the permisions to true because Super admin is the
-	 * strongest role in the application so default have all permission sets to
-	 * true
+	 * have default set the permissions to true because Super administrator is
+	 * the strongest role in the application so default have all permission sets
+	 * to true
+	 * 
+	 * Use the {@link Person #getPersonName()} method
+	 * 
+	 * Use the {@link Person #getPassword()} method
+	 * 
+	 * Use the {@link Person #getFullName()} method
+	 * 
+	 * Use the {@link Person #getEmail()} method
+	 * 
+	 * Use the {@link Person #getBirthday()} method
+	 * 
+	 * Use the
+	 * {@link ChangePersonTypeService #changeAllPersonIds(Person, Person)}
+	 * method
 	 * 
 	 * @param person
 	 *            Object that try to change to other type
-	 * @see SuperAdmin @ see Person
+	 * 
+	 * @see SuperAdmin
+	 * @see Person
 	 */
 	public void changePersonToSuperAdmin(Person person) {
 		SuperAdmin superAdmin = new SuperAdmin(person.getPersonName(), person.getPassword(), person.getFullName(),
@@ -53,17 +84,32 @@ public class ChangePersonTypeService {
 	}
 
 	/**
-	 * method that try to make an new type of Person from Admin or SuperAdmin to
+	 * Method that try to make an new type of Person from Admin or SuperAdmin to
 	 * default user Person object, method try to make new Object type of Person
 	 * and share to that object all existing data from parameter and change all
 	 * references in database from old one Person to new one. Object type of
 	 * Person have no administration permission data so if old Object have some
-	 * admin permission they are set to new object by default to null because
-	 * Person object have no permission
+	 * administrator permission they are set to new object by default to null
+	 * because Person object have no permission
+	 * 
+	 * Use the {@link Person #getPersonName()} method
+	 * 
+	 * Use the {@link Person #getPassword()} method
+	 * 
+	 * Use the {@link Person #getFullName()} method
+	 * 
+	 * Use the {@link Person #getEmail()} method
+	 * 
+	 * Use the {@link Person #getBirthday()} method
+	 * 
+	 * Use the
+	 * {@link ChangePersonTypeService #changeAllPersonIds(Person, Person)}
+	 * method
 	 * 
 	 * @param person
 	 *            Object that try to change to other type
-	 *            @see Person
+	 * 
+	 * @see Person
 	 */
 	public void changeAdminToPerson(Person person) {
 		Person newPerson = new Person(person.getPersonName(), person.getPassword(), person.getFullName(),
@@ -72,7 +118,12 @@ public class ChangePersonTypeService {
 	}
 
 	/**
+	 * Method that remove user from database by object Person
+	 * 
 	 * @param person
+	 *            object of type Person
+	 * 
+	 * @see Person
 	 */
 	private void removeUser(Person person) {
 		EntityManager em = JpaHelper.getEntityManager();
@@ -82,13 +133,24 @@ public class ChangePersonTypeService {
 	}
 
 	/**
+	 * Method that select all topics by person and if result is not null then
+	 * all topics add new person
+	 * 
+	 * Use the {@link TopicService #selectAllTopicsByPerson(Person)} method
+	 * 
+	 * Use the {@link Topic #getIdTopic()} method
+	 * 
+	 * Use the {@link Topic #setPerson(Person)} method
+	 * 
 	 * @param person
 	 * @param newPerson
+	 * 
+	 * @see Person
+	 * @see Topic
 	 */
 	private void changeTopicPerson(Person person, Person newPerson) {
 		List<Topic> topics = new TopicService().selectAllTopicsByPerson(person);
 		if (topics != null) {
-
 			for (Topic topic : topics) {
 				JpaHelper.beginTransaction();
 				EntityManager em = JpaHelper.getEntityManager();
@@ -100,8 +162,20 @@ public class ChangePersonTypeService {
 	}
 
 	/**
+	 * Method that select all comments by person and if result is not null then
+	 * all comments add new person
+	 * 
+	 * Use the {@link CommentaryService #selectAllComentByPerson(Person)} method
+	 * 
+	 * Use the {@link Commentary #getIdCommentary()} method
+	 * 
+	 * Use the {@link Commentary #setPerson(Person)} method
+	 * 
 	 * @param person
 	 * @param newPerson
+	 * 
+	 * @see Person
+	 * @see Commentary
 	 */
 	private void changeCommentPerson(Person person, Person newPerson) {
 		List<Commentary> comments = new CommentaryService().selectAllComentByPerson(person);
@@ -117,8 +191,24 @@ public class ChangePersonTypeService {
 	}
 
 	/**
+	 * Method that select all ratings by person and if result is not null then
+	 * all ratings add new person
+	 * 
+	 * Use the {@link RatingService #selectAllRatingsByPerson(Person)} method
+	 * 
+	 * Use the {@link Rating #getRatingIdCompositePK()} method
+	 * 
+	 * Use the {@link RatingId #setIdPerson(Integer)} method
+	 * 
+	 * Use the {@link Person #getIdPerson()} method
+	 * 
+	 * Use the {@link RatingId #getIdPerson(Integer)} method
+	 * 
 	 * @param person
 	 * @param newPerson
+	 * 
+	 * @see Person
+	 * @see Rating
 	 */
 	private void changeRatingPerson(Person person, Person newPerson) {
 		List<Rating> ratings = new RatingService().selectAllRatingsByPerson(person);
@@ -141,7 +231,10 @@ public class ChangePersonTypeService {
 	}
 
 	/**
+	 * Method that create copy of object Person and save to database
+	 * 
 	 * @param person
+	 *            object of type Person
 	 */
 	private void createCopiedPerson(Person person) {
 		JpaHelper.beginTransaction();
@@ -151,8 +244,32 @@ public class ChangePersonTypeService {
 	}
 
 	/**
+	 * Method that change completely two users with their comments, topics,
+	 * ratings
+	 * 
+	 * Use the {@link ChangePersonTypeService #createCopiedPerson(Person)}
+	 * method
+	 * 
+	 * Use the
+	 * {@link ChangePersonTypeService #changeCommentPerson(Person, Person)}
+	 * method
+	 * 
+	 * Use the
+	 * {@link ChangePersonTypeService #changeRatingPerson(Person, Person)}
+	 * method
+	 * 
+	 * Use the {@link ChangePersonTypeService #changeTopicPerson(Person,
+	 * Person))} method
+	 * 
+	 * Use the {@link ChangePersonTypeService #removeUser(Person)} method
+	 * 
 	 * @param person
+	 *            object of type Person
+	 * 
 	 * @param changedPerson
+	 *            object of type Person
+	 * 
+	 * @see Person
 	 */
 	private void changeAllPersonIds(Person person, Person changedPerson) {
 		createCopiedPerson(changedPerson);

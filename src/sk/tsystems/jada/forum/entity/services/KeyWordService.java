@@ -16,6 +16,9 @@ public class KeyWordService {
 	 * Save keyword to database
 	 * 
 	 * @param keyWord
+	 *            object of type KeyWord
+	 * 
+	 * @see KeyWord
 	 */
 	private void saveKeyWord(KeyWord keyWord) {
 		EntityManager em = JpaHelper.getEntityManager();
@@ -36,8 +39,11 @@ public class KeyWordService {
 	 * @param input
 	 *            String, method check if this String is in database, if not,
 	 *            method save it.
-	 * @return kw Kw is object of type keyword. This object contains id of
-	 *         keyword(int) and keyWord(String)
+	 * 
+	 * @return kw is object of type keyword. This object contains id of
+	 *         keyword(integer) and keyWord(String)
+	 * 
+	 * @see KeyWord
 	 */
 	public KeyWord findKeyWord(String input) {
 		KeyWord kw;
@@ -56,10 +62,11 @@ public class KeyWordService {
 	/**
 	 * Function have to connect to the database and try to find most used
 	 * keyWords from forum id database by query. Method return
-	 * ArrayList<Integer> of ids most used keyWords. Max size of ArrayList is
-	 * set to 10.
+	 * ArrayList<Integer> of identifiers most used keyWords. Max size of
+	 * ArrayList is set to 10.
 	 * 
-	 * @return ArrayList<Integer> ArrayList of ids of ten most used keywords.
+	 * @return ArrayList<Integer> ArrayList of identifiers of ten most used
+	 *         keywords.
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> topKeyWords() {
@@ -76,6 +83,8 @@ public class KeyWordService {
 	 * database. Method return ArrayList of all objects of type keyWord.
 	 * 
 	 * @return ArrayList<KeyWord> ArrayList of objects of type keyWord.
+	 * 
+	 * @see KeyWord
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<KeyWord> getAllKeyWords() {
@@ -84,5 +93,4 @@ public class KeyWordService {
 		ArrayList<KeyWord> resultList = (ArrayList<KeyWord>) query.getResultList();
 		return resultList;
 	}
-
 }

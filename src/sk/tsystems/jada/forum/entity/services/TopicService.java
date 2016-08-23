@@ -44,7 +44,7 @@ public class TopicService {
 	 * findTopicById we get identifier of current topic, if identifier is not
 	 * null remove current topic
 	 * 
-	 * Use the {@link TopicService #findTopicById(integer)} method
+	 * Use the {@link TopicService #findTopicById(Integer)} method
 	 * 
 	 * @param idTopic
 	 *            identifier of current topic
@@ -69,14 +69,14 @@ public class TopicService {
 	 * current topic and then remove all comments of topic by method
 	 * removeCommentByObject. Then use method removeTopicById.
 	 * 
-	 * Use the {@link TopicService #findTopicById(integer)} method
+	 * Use the {@link TopicService #findTopicById(Integer)} method
 	 * 
 	 * Use the {@link CommentaryService #selectAllComentByTopic(Topic)} method
 	 * 
 	 * Use the {@link CommentaryService #removeCommentByObject(Commentary)}
 	 * method
 	 * 
-	 * Use the {@link TopicService #removeTopicById(integer)} method
+	 * Use the {@link TopicService #removeTopicById(Integer)} method
 	 * 
 	 * @param idTopic
 	 *            type: Integer, unique identifier of Topic {@link TopicService}
@@ -106,7 +106,7 @@ public class TopicService {
 	/**
 	 * Method for update name exist topic
 	 * 
-	 * Use the {@link TopicService #findTopicById(integer)} method
+	 * Use the {@link TopicService #findTopicById(Integer)} method
 	 * 
 	 * Use the {@link Topic #setTopicName(String)} method
 	 * 
@@ -130,7 +130,7 @@ public class TopicService {
 	/**
 	 * Method for update description exist topic
 	 * 
-	 * Use the {@link TopicService #findTopicById(integer)} method
+	 * Use the {@link TopicService #findTopicById(Integer)} method
 	 * 
 	 * Use the {@link Topic #setTopicDescription(String)} method
 	 * 
@@ -154,7 +154,7 @@ public class TopicService {
 	/**
 	 * Method for update name, description, keywords exist topic
 	 * 
-	 * Use the {@link TopicService #findTopicById(integer)} method
+	 * Use the {@link TopicService #findTopicById(Integer)} method
 	 * 
 	 * Use the {@link Topic #setTopicName(String)} method
 	 * 
@@ -309,7 +309,7 @@ public class TopicService {
 	 * Method for add visitor to viewersList. If visitor visit new topic then
 	 * will add to viewersList
 	 * 
-	 * Use the {@link TopicService #findTopicById(integer)} method
+	 * Use the {@link TopicService #findTopicById(Integer)} method
 	 * 
 	 * Use the {@link Topic #getPerson()} method
 	 * 

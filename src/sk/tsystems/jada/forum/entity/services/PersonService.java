@@ -366,7 +366,7 @@ public class PersonService {
 	 * 
 	 * Use the {@link Rating #getRatingIdCompositePK()} method
 	 * 
-	 * Use the {@link RatingId #setIdPerson(integer)} method
+	 * Use the {@link RatingId #setIdPerson(Integer)} method
 	 * 
 	 * Use the {@link Person #getIdPerson()} method
 	 * 

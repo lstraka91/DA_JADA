@@ -1,21 +1,20 @@
 package sk.tsystems.jada.forum.entity.services;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import sk.tsystems.jada.forum.entity.Admin;
-import sk.tsystems.jada.forum.entity.Commentary;
 
 public class AdminService {
 
 	/**
-	 * Show all admins
+	 * Method for select all administrators from database
 	 * 
-	 * @return
+	 * @return ArrayList of all administrators
 	 */
+	@SuppressWarnings("unchecked")
 	public ArrayList<Admin> showAllAdmins() {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT a  from Admin a ");
@@ -25,22 +24,27 @@ public class AdminService {
 	}
 
 	/**
-	 * 
-	 * update admin permissions
+	 * Method update all permissions for administrator in parameter
 	 * 
 	 * @param admin
+	 *            object of type Admin which is updated
 	 * @param deleteCommentPermission
+	 *            variable of type boolean for permission delete and edit
+	 *            comments
 	 * @param deleteUserPermission
+	 *            variable of type boolean for permission delete users
 	 * @param deleteTopicPermission
+	 *            variable of type boolean for permission delete and edit topics
 	 * @param activationUserPernmision
+	 *            variable of type boolean for permission activation users
+	 * 
+	 * @see Admin
 	 */
 	public void permissionUpdate(Admin admin, boolean deleteCommentPermission, boolean deleteUserPermission,
 			boolean deleteTopicPermission, boolean activationUserPernmision) {
 		JpaHelper.beginTransaction();
 		EntityManager em = JpaHelper.getEntityManager();
-		// Admin admin1 = em.find(Admin.class );
 		if (admin != null) {
-			System.out.println("som dnu ");
 			admin.setActivationUserPernmision(activationUserPernmision);
 			admin.setDeleteCommentPermission(deleteCommentPermission);
 			admin.setDeleteTopicPermission(deleteTopicPermission);
@@ -48,15 +52,17 @@ public class AdminService {
 			em.merge(admin);
 		}
 		JpaHelper.commitTransaction();
-
 	}
 
 	/**
-	 * 
-	 * find admin by name
+	 * Method select administrator by personName
 	 * 
 	 * @param personName
-	 * @return
+	 *            for find administrator by name
+	 * 
+	 * @return admin object of type Admin
+	 * 
+	 * @see Admin
 	 */
 	public Admin findAdminByName(String personName) {
 		JpaHelper.beginTransaction();
@@ -70,5 +76,4 @@ public class AdminService {
 			return null;
 		}
 	}
-
 }

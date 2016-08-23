@@ -111,7 +111,7 @@ public class CommentaryService {
 	 * Method for remove comment from database by object of type Commentary,
 	 * with help of method SelectCommentById get object Commentary
 	 * 
-	 * Use the {@link CommentaryService #selectCommentById(integer)} method
+	 * Use the {@link CommentaryService #selectCommentById(Integer)} method
 	 * 
 	 * @param comment
 	 *            object of type Commentary
