@@ -341,11 +341,14 @@ public class PersonService {
 		int count = 0;
 		ArrayList<Person> resultList = (ArrayList<Person>) query.getResultList();
 		for (int i = 0; i < resultList.size(); i++) {
-			if (resultList.get(i).isActive() == false) {
-				count++;
+			Person removedPerson = new PersonService().getPersonByName("Removed User");
+			if (!removedPerson.getPersonName().equals(resultList.get(i).getPersonName())) {
+				if (resultList.get(i).isActive() == false) {
+					count++;
+				}
 			}
 		}
-		return count - 1;
+		return count;
 	}
 
 	/**
@@ -432,11 +435,18 @@ public class PersonService {
 		}
 		removeUser(person);
 	}
-	
-/**
- * 
- * @param name
- */
+
+	/**
+	 * Method that disable person by name
+	 * 
+	 * Use the {@link PersonService #getPersonByName(String)} method
+	 * 
+	 * Use the {@link Person #setActive(boolean)} method
+	 * 
+	 * @param name
+	 * 
+	 * @see Person
+	 */
 	public void dissablePerson(String name) {
 		JpaHelper.beginTransaction();
 		Person person = new PersonService().getPersonByName(name);
@@ -445,11 +455,19 @@ public class PersonService {
 		}
 		JpaHelper.commitTransaction();
 	}
+
 	/**
+	 * Method that active person by name
+	 * 
+	 * Use the {@link PersonService #getPersonByName(String)} method
+	 * 
+	 * Use the {@link Person #setActive(boolean)} method
 	 * 
 	 * @param name
+	 * 
+	 * @see Person
 	 */
-	public void activatePerson(String name){
+	public void activatePerson(String name) {
 		JpaHelper.beginTransaction();
 		Person person = new PersonService().getPersonByName(name);
 		if (person != null) {
@@ -457,7 +475,7 @@ public class PersonService {
 		}
 		JpaHelper.commitTransaction();
 	}
-	
+
 	/**
 	 * Method that remove user from database by object Person
 	 * 
