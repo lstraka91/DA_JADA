@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import sk.tsystems.jada.forum.entity.KeyWord;
+import sk.tsystems.jada.forum.entity.Topic;
 
 public class KeyWordService {
 
@@ -90,5 +91,27 @@ public class KeyWordService {
 		Query query = em.createQuery("select k from KeyWord k");
 		ArrayList<KeyWord> resultList = (ArrayList<KeyWord>) query.getResultList();
 		return resultList;
+	}
+
+	/**
+	 * Used to get how many {@link Topic} objects are subjects of
+	 * {@link KeyWord} with identifier {@link KeyWord#idKeyWord} /
+	 * {@link #idKeyWord} provided as parameter of this method.
+	 * 
+	 * @param idKeyWord
+	 *            identifier of {@link KeyWord}
+	 * @return number of occurrences of {@link KeyWord} in a field
+	 *         {@link Topic#keyWords} / {@link #keyWords}
+	 */
+	public long getKeyWordOccurences(int idKeyWord) {
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery(
+				"select count(t) from Topic t join t.keyWords tkeywords where tkeywords.idKeyWord = :idKeyWord");
+		query.setParameter("idKeyWord", idKeyWord);
+
+		if (!query.getResultList().isEmpty()) {
+			return (long) query.getResultList().get(0);
+		}
+		return 0;
 	}
 }

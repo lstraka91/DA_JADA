@@ -36,12 +36,8 @@ $(document).ready(
 $(function() {
 	$('.kw-button').click(function() {
 		var text = $('#searchTopics');
-		text.val(text.val() + $(this).val() + ' ');
+		text.val(text.val() + ' '+ $(this).val() + ' ');
 		$('#searchTopics').keyup();
 	});
 });
 
-
-$("input[type=text]").focus(function() {
-	   $(this).select();
-	});

@@ -6,6 +6,8 @@
 <jsp:useBean id="now" class="java.util.Date" />
 <jsp:useBean id="commentService"
 	class="sk.tsystems.jada.forum.entity.services.CommentaryService" />
+<jsp:useBean id="kwService"
+	class="sk.tsystems.jada.forum.entity.services.KeyWordService" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -137,7 +139,7 @@
 											</div>
 										</div></td>
 									<td class="col-md-6"><div class="row">
-											<a
+											<a title="${topic.topicDescription}"
 												href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
 										</div>
 										<div class="row">
@@ -145,16 +147,29 @@
 												<c:when test="${not empty topic.keyWords }">
 													<c:forEach items="${topic.keyWords}" var="keyword">
 														<button class="btn btn-sm-info kw-button"
-															value="${keyword.keyWord }">${keyword.keyWord }</button>
+															value="${keyword.keyWord }"
+															title="Questions with tag: ${kwService.getKeyWordOccurences(keyword.idKeyWord)}">${keyword.keyWord }</button>
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-													<p>key words not defined.</p>
+													<button class="btn btn-sm-info disabled">-no tags-</button>
 												</c:otherwise>
 											</c:choose>
 										</div></td>
 
 									<td class="col-md-1"><c:choose>
+											<c:when test="${user.personName eq topic.person.personName}">
+												<a href="editTopic?idTopic=${topic.idTopic}"
+													class="btn btn-warning btn-block"> <span
+													class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+													Edit
+												</a>
+												<a href="forum?idTopicDelete=${topic.idTopic}"
+													class="btn btn-danger btn-block"> <span
+													class="glyphicon glyphicon-delete" aria-hidden="true"></span>
+													Delete
+												</a>
+											</c:when>
 											<c:when
 												test="${user.getClass().simpleName eq 'SuperAdmin' || user.getClass().simpleName eq 'Admin'}">
 												<c:if test="${user.deleteTopicPermission }">
@@ -170,19 +185,7 @@
 													</a>
 												</c:if>
 											</c:when>
-											<c:when
-												test="${user.personName eq topic.person.personName && user.getClass().simpleName ne 'SuperAdmin' && user.getClass().simpleName ne 'Admin'}">
-												<a href="editTopic?idTopic=${topic.idTopic}"
-													class="btn btn-warning btn-block"> <span
-													class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-													Edit
-												</a>
-												<a href="forum?idTopicDelete=${topic.idTopic}"
-													class="btn btn-danger btn-block"> <span
-													class="glyphicon glyphicon-delete" aria-hidden="true"></span>
-													Delete
-												</a>
-											</c:when>
+
 
 										</c:choose></td>
 									<td class="col-md-1 text-center"><c:choose>

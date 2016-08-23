@@ -38,10 +38,10 @@
 
 						<li><a
 							href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
-								newest </a></li>
+								new </a></li>
 						<li><a
 							href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
-								most rated </a></li>
+								top comments </a></li>
 
 					</ul>
 				</c:if>
