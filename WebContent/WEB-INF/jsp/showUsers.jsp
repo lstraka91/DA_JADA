@@ -162,7 +162,7 @@
 																	<input type="hidden" name="dissable"
 																		value="${persons.personName}">
 																	<button type="submit" value="DISSABLE"
-																		class="btn btn-warning disabled btn-block">
+																		class="btn btn-warning btn-block">
 																		<span class="glyphicon glyphicon-ban-circle"></span> DISSABLE
 																	</button>
 																</form>

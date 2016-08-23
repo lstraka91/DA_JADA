@@ -388,8 +388,8 @@ public class PersonService {
 	public void setRemovedPerson(Person person) {
 		Person removedPerson = new Person();
 		removedPerson = new PersonService().getPersonByName("Removed User");
-		if(removedPerson==null){
-			removedPerson=new Person("Removed User", "ahahsju@1235", "Removed", "removed@user.sk",
+		if (removedPerson == null) {
+			removedPerson = new Person("Removed User", "ahahsju@1235", "Removed", "removed@user.sk",
 					new Date(System.currentTimeMillis()));
 			registerPerson(removedPerson);
 		}
@@ -430,5 +430,46 @@ public class PersonService {
 				JpaHelper.commitTransaction();
 			}
 		}
+		removeUser(person);
+	}
+	
+/**
+ * 
+ * @param name
+ */
+	public void dissablePerson(String name) {
+		JpaHelper.beginTransaction();
+		Person person = new PersonService().getPersonByName(name);
+		if (person != null) {
+			person.setActive(false);
+		}
+		JpaHelper.commitTransaction();
+	}
+	/**
+	 * 
+	 * @param name
+	 */
+	public void activatePerson(String name){
+		JpaHelper.beginTransaction();
+		Person person = new PersonService().getPersonByName(name);
+		if (person != null) {
+			person.setActive(true);
+		}
+		JpaHelper.commitTransaction();
+	}
+	
+	/**
+	 * Method that remove user from database by object Person
+	 * 
+	 * @param person
+	 *            object of type Person
+	 * 
+	 * @see Person
+	 */
+	private void removeUser(Person person) {
+		EntityManager em = JpaHelper.getEntityManager();
+		JpaHelper.beginTransaction();
+		em.remove(person);
+		JpaHelper.commitTransaction();
 	}
 }

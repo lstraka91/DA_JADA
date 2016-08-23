@@ -22,20 +22,11 @@ public class ShowUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public ShowUsers() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") != null) {
@@ -47,7 +38,7 @@ public class ShowUsers extends HttpServlet {
 			@SuppressWarnings("unchecked")
 			ArrayList<Person> persons = (ArrayList<Person>) query.getResultList();
 
-			String resetPass=request.getParameter("resetPass");
+			String resetPass = request.getParameter("resetPass");
 			String action = request.getParameter("ordebBy");
 			if (action != null) {
 				if ("dType".equals(action)) {
@@ -72,8 +63,8 @@ public class ShowUsers extends HttpServlet {
 				}
 
 			}
-			if(resetPass!=null){
-				String pName= request.getParameter("name");
+			if (resetPass != null) {
+				String pName = request.getParameter("name");
 				Person person = new PersonService().getPersonByName(pName);
 				System.out.println(person);
 				new PersonService().changePersonPassword(person, "123456");
@@ -94,50 +85,20 @@ public class ShowUsers extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Person person = new Person();
-		EntityManager em = JpaHelper.getEntityManager();
+		String personToDelete = request.getParameter("delete");
+		String personToActivate = request.getParameter("activate");
+		String personToDissable = request.getParameter("dissable");
 
-		if (request.getParameter("delete") != null) {
-
-			person = new PersonService().getPersonByName(request.getParameter("delete"));
+		if (personToDelete != null) {
 			PersonService personService = new PersonService();
-			personService.setRemovedPerson(person);
-
-			JpaHelper.beginTransaction();
-			if (person != null) {
-				em.remove(person);
-			}
-			JpaHelper.commitTransaction();
+			personService.setRemovedPerson(personService.getPersonByName(personToDelete));
 		}
-
-		if (request.getParameter("activate") != null) {
-			JpaHelper.beginTransaction();
-			person = new PersonService().getPersonByName(request.getParameter("activate"));
-			System.out.println(person.getFullName() + "   " + person.getBirthday());
-			if (person != null) {
-				person.setActive(true);
-				System.out.println("****-----*****----*****---***---**-*-*-*-*-*-*");
-			}
-			JpaHelper.commitTransaction();
-
-			System.out.println("-----------------------------------------------------------");
+		if (personToActivate != null) {
+			new PersonService().activatePerson(personToActivate);
 		}
-
-		if (request.getParameter("disable") != null) {
-			JpaHelper.beginTransaction();
-			person = new PersonService().getPersonByName(request.getParameter("dissable"));
-			System.out.println(person.getFullName() + "   " + person.isActive());
-			if (person != null) {
-				person.setActive(false);
-				System.out.println("****-----*****----*****---***---**-*-*-*-*-*-*");
-			}
-			JpaHelper.commitTransaction();
-
-			System.out.println("-----------------------------------------------------------");
-			System.out.println(person.getFullName() + "   " + person.isActive());
-
+		if (personToDissable != null) {
+			new PersonService().dissablePerson(personToDissable);
 		}
-
 		doGet(request, response);
 	}
 
