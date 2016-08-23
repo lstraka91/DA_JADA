@@ -388,4 +388,16 @@ public class TopicService {
 			return null;
 		}
 	}
+	
+	public List<Topic> getTopicByPerson(Person person){
+		EntityManager em = JpaHelper.getEntityManager();
+		Query query = em.createQuery("SELECT t FROM Topic t WHERE t.person=:person");
+		query.setParameter("person",person );
+		List<Topic>topicsPersonList=query.getResultList();
+		if(topicsPersonList!=null){
+			return topicsPersonList;
+		}else{
+			return null;
+		}
+	}
 }
