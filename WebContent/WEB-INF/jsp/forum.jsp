@@ -43,6 +43,11 @@
 							<li><a
 								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
 									commented</a></li>
+							<c:if test="${user ne null }">
+								<li><a
+									href="/JADA_Tsystems_TeamProject/forum?action=myTopic"> my
+										Topic </a></li>
+							</c:if>
 						</c:when>
 
 						<c:when test="${sorting==3 }">
@@ -52,6 +57,24 @@
 							<li class="active"><a
 								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
 									commented</a></li>
+							<c:if test="${user ne null }">
+								<li><a
+									href="/JADA_Tsystems_TeamProject/forum?action=myTopic"> my
+										Topic </a></li>
+							</c:if>
+						</c:when>
+						<c:when test="${sorting==4 }">
+							<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
+							<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top
+									viewed</a></li>
+							<li><a
+								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+									commented</a></li>
+							<c:if test="${user ne null }">
+								<li class="active"><a
+									href="/JADA_Tsystems_TeamProject/forum?action=myTopic"> my
+										Topic </a></li>
+							</c:if>
 						</c:when>
 						<c:otherwise>
 							<li class="active"><a
@@ -61,6 +84,11 @@
 							<li><a
 								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
 									commented</a></li>
+							<c:if test="${user ne null }">
+								<li><a
+									href="/JADA_Tsystems_TeamProject/forum?action=myTopic"> my
+										Topic </a></li>
+							</c:if>
 						</c:otherwise>
 					</c:choose>
 				</ul>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sk.tsystems.jada.forum.entity.Person;
 import sk.tsystems.jada.forum.entity.Topic;
 import sk.tsystems.jada.forum.entity.services.PersonService;
 import sk.tsystems.jada.forum.entity.services.TopicService;
@@ -42,6 +43,7 @@ public class Forum extends HttpServlet {
 
 		String action = request.getParameter("action");
 		if (action != null) {
+			topics = (List<Topic>) new TopicService().getTopicsOrderDate();
 			if ("new".equals(action)) {
 				topics.sort((t1, t2) -> t1.getTopicDate().compareTo(t2.getTopicDate()));
 				session.setAttribute("sorting", 1);
@@ -53,6 +55,11 @@ public class Forum extends HttpServlet {
 			if ("mostcommented".equals(action)) {
 				topics.sort((t1, t2) -> t1.getNumberOfComments() - t2.getNumberOfComments());
 				session.setAttribute("sorting", 3);
+			}
+			if ("myTopic".equals(action)&&session.getAttribute("user")!=null) {
+				Person person = (Person) session.getAttribute("user");
+				topics = (List<Topic>) new TopicService().getTopicByPerson(person);
+				session.setAttribute("sorting", 4);
 			}
 			Collections.reverse(topics);
 
