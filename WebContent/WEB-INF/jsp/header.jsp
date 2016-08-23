@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link
-	href='https://fonts.googleapis.com/css?family=Indie+Flower|Candal|Sigmar+One'
+	href='https://fonts.googleapis.com/css?family=Indie+Flower|Candal|Sigmar+One|Nova+Square|Imprima'
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
@@ -161,7 +161,7 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h2 class="modal-title text-center formHead">
-					Login page
+					Please log in
 					</h4>
 			</div>
 			<div class="modal-body">
@@ -170,8 +170,6 @@
 						<form method="post" id="loginForm">
 							<div class="panel panel-default">
 								<div class="panel-body">
-									<h2 class="text-center formHead">Please log in</h2>
-
 									<div class="form-group">
 										<div id="failedLogin"></div>
 										<input type="text" name="userName" value="" id="username"

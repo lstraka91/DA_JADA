@@ -30,7 +30,7 @@
 
 .jumbotext {
 	color: #fdfdfd;
-	font-family: 'Indie Flower', cursive;
+	font-family: 'Imprima', cursive;
 }
 
 .jumboHead {
@@ -39,8 +39,8 @@
 }
 
 .formHead {
-	color: blue;
-	font-family: 'Indie Flower', cursive;
+	color: #333333;
+	font-family: 'Nova+Square', sans-serif;
 }
 
 @media only screen and (max-width: 890px) {
@@ -74,4 +74,7 @@ body {
 
 .container {
 	margin-top: 5rem;
+}
+.img{
+	max-height: 120px;
 }

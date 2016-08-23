@@ -19,51 +19,38 @@
 <body>
 	<div class="container">
 		<jsp:include page="header.jsp"></jsp:include>
-		<div class="container">
-			<form method="get">
 
-				Topic name :
-				<div class="row">
-					</label>
-					<div class="col-sm-9">
-						<input type="text" id="topicname"
-							name="topicname" value="${currentTopic.topicName}"
-							class="form-control input-lg">
-					</div>
+		<form method="get">
+					<h3 class="formHead text-center">Edit question</h3>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<label>Topic name :</label> <input type="text" id="topicname"
+						name="topicname" value="${currentTopic.topicName}"
+						class="form-control input-lg"> <label>Topic
+						description :</label>
+					<textarea id="topicdescription" name="topicdescription"
+						class="form-control input-lg">${currentTopic.topicDescription}</textarea>
+					<label>Topic keywords</label>
+
+
+					<ul id="keyWords">
+						<c:forEach items="${currentTopic.keyWords}" var="keyword">
+							<li class="btn btn-sm-info">${keyword.keyWord }</li>
+						</c:forEach>
+					</ul>
+					<input type="hidden" name="idTopic" value="${currentTopic.idTopic}">
+					<center>
+						<button type="submit" class="btn btn-lg btn-success ">
+							<span class="glyphicon glyphicon-comment " aria-hidden="true">
+							</span> Save changes
+						</button>
+						<a href="forum" class="btn btn-lg btn-primary"> Cancel </a>
+					</center>
 				</div>
+			</div>
+		</form>
 
-				Topic description :
-				<div class="row">
-					<div class="col-sm-9">
-						<input type="text" id="topicdescription"
-							name="topicdescription" value="${currentTopic.topicDescription}"
-							class="form-control input-lg">
-					</div>
-				</div>
-
-				Topic keywords
-				<div class="row">
-					<div class="col-sm-9">
-						<ul id="keyWords">
-							<c:forEach items="${currentTopic.keyWords}"
-								var="keyword">
-								<li class="btn btn-sm-info">
-									${keyword.keyWord }
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
-				</div>
-				<input type="hidden" name="idTopic" value="${currentTopic.idTopic}">
-
-				<button type="submit" class="btn btn-success green">
-					<span class="glyphicon glyphicon-comment "
-						aria-hidden="true">
-					</span>
-					Save
-				</button>
-			</form>
-		</div>
+		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
 
 	<script
@@ -87,6 +74,5 @@
 	var jsArray = [<%for (int i = 0; i < keyWordStrings.size(); i++) {%>"<%=keyWordStrings.get(i)%>"<%=i + 1 < keyWordStrings.size() ? "," : ""%><%}%>];
 </script>
 	<script src="js/prototype.js" type="text/javascript" charset="utf-8"></script>
-<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

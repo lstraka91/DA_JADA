@@ -228,8 +228,8 @@
 			</div>
 
 		</div>
-	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
+	</div>
 		<script type="text/javascript" src="js/numberOfPage.js"></script>
 </body>
 </html>
