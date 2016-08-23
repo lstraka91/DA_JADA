@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="css/style.css">
 <footer class="text-center">
 	<hr>
 <div id="footerDiv">

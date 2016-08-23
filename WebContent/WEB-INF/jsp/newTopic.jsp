@@ -24,21 +24,24 @@
 	<div class="container">
 		<jsp:include page="header.jsp"></jsp:include>
 
-
-
-		<c:choose>
+<div class="panel panel-default">
+  <div class="panel-body">
+  
+  	<c:choose>
 			<c:when test="${user!=null }">
 				<form>
-					<input type="hidden" name="action" value="addtopic"> Enter
-					keywords other users can find your question:
+					<input type="hidden" name="action" value="addtopic"><b><br> Enter
+					keywords other users can find your question:<br></b>
 					<ul id="keyWords">
 
-					</ul>
-					Ask question to start new topic: <input type="text"
+					</ul><b>
+					<br>Ask question to start new topic: </b><br><input type="text"
 						class="form-control" placeholder="Topic name" name="topicName"
-						required> Describe your problem:
+						required><b><br>Describe your problem:	</b><br>
+					
 					<textarea name="topicDesc" type="text" class="form-control"
 						placeholder="Write description..." id="topicDesc" required></textarea>
+						<br>
 					<button type="submit" class="btn btn-success green">
 						<span class="glyphicon glyphicon-comment " aria-hidden="true"></span>
 						Share
@@ -56,6 +59,13 @@
 						</div>
 			</c:otherwise>
 		</c:choose>
+  
+  
+  
+  </div>
+</div>
+
+	
 	</div>
 
 	<script

@@ -1,4 +1,4 @@
-.headimg{
+.headimg {
 	width: 5rem;
 	height: 5rem;
 }
@@ -24,9 +24,8 @@
 	background-image: url("../images/head.png");
 	background-size: 100%;
 	color: #c0c0c0;
-	padding-top: 10rem;
 	width: 100%;
-	height: 100%;
+	height: 60%;
 }
 
 .jumbotext {
@@ -46,28 +45,33 @@
 
 @media only screen and (max-width: 890px) {
 	img {
-/* 		width: 30%; to make the image responsive */
+		/* 		width: 30%; to make the image responsive */
 		max-height: 30%;
 	}
-	
+	.jumbotron {
+		display: none;
+	}
 }
-
 
 body {
 	background-image: url("../images/background.jpg");
-	}
+	background-repeat: no-repeat;
+	height: auto;
+}
+
 .dataTables_info {
-	margin-left: 20px; 
+	margin-left: 20px;
 	margin-right: 30px;
 }
-.dataTables_length{
-	
-	margin-left: 18px;
-}	
 
-#footerDiv{
-	
+.dataTables_length {
+	margin-left: 18px;
+}
+
+#footerDiv {
 	max-height: 4em;
 }
 
-
+.container {
+	margin-top: 5rem;
+}

@@ -8,62 +8,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Forum-JADA</title>
 </head>
 <body>
 	<div class="container">
 		<jsp:include page="header.jsp"></jsp:include>
 		<div class="panel panel-default">
-			<div class="panel-body">
-				<ul class="nav nav-tabs navbar-right">
+			<div class="panel-heading nav navbar-default">
+				<ul class="nav navbar-nav navbar-right">
 
 					<c:choose>
 						<c:when test="${orderBy == 1 }">
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
-							<li role="presentation" class="active"><a
+							<li class="active"><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 
 						</c:when>
 
 						<c:when test="${orderBy == 2 }">
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
-							<li role="presentation" class="active"><a
+							<li class="active"><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 						</c:when>
 
 						<c:when test="${orderBy == 3 }">
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
-							<li role="presentation" class="active"><a
+							<li class="active"><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 						</c:when>
 
 						<c:when test="${orderBy == 4 }">
-							<li role="presentation" class="active"><a
+							<li class="active"><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
-							<li role="presentation"><a
+							<li><a
 								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 						</c:when>
@@ -83,6 +83,9 @@
 						</c:otherwise>
 					</c:choose>
 				</ul>
+			</div>
+			<div class="panel-body">
+
 				<table class="table table-striped table-inverse">
 					<thead>
 						<tr>
@@ -149,7 +152,8 @@
 																		value="${persons.personName}">
 																	<button type="submit" value="DELETE"
 																		class="btn btn-danger btn-block">
-																		<span class="glyphicon glyphicon-remove-sign"></span> DELETE
+																		<span class="glyphicon glyphicon-remove-sign"></span>
+																		DELETE
 																	</button>
 																</form>
 															</c:when>
@@ -163,7 +167,8 @@
 																		value="${persons.personName}">
 																	<button type="submit" value="DISSABLE"
 																		class="btn btn-warning btn-block">
-																		<span class="glyphicon glyphicon-ban-circle"></span> DISSABLE
+																		<span class="glyphicon glyphicon-ban-circle"></span>
+																		DISSABLE
 																	</button>
 																</form>
 															</c:when>
@@ -182,7 +187,7 @@
 																	<button type="submit" value="DELETE"
 																		class="btn btn-danger btn-block">
 																		<span class="glyphicon glyphicon-remove-sign"></span>
-																		 DELETE
+																		DELETE
 																	</button>
 																</form>
 															</c:when>
@@ -197,7 +202,7 @@
 																	<button type="submit" name="activate" value="ACTIVATE"
 																		class="btn btn-success btn-block">
 																		<span class="glyphicon glyphicon-ok-circle"></span>
-																		 ACTIVATE
+																		ACTIVATE
 																	</button>
 																</form>
 															</c:when>
@@ -205,24 +210,26 @@
 													</c:otherwise>
 
 												</c:choose>
-											</c:if>
-											<c:if test="${user.getClass().simpleName eq 'SuperAdmin'}">
-											<a href="ShowUsers?name=${persons.personName}&resetPass=true" class="btn btn-info btn-block"><span class="glyphicon glyphicon-refresh"></span> Reset password</a>
-											</c:if>
-											</td>
+											</c:if> <c:if test="${user.getClass().simpleName eq 'SuperAdmin'}">
+												<a
+													href="ShowUsers?name=${persons.personName}&resetPass=true"
+													class="btn btn-info btn-block"><span
+													class="glyphicon glyphicon-refresh"></span> Reset password</a>
+											</c:if></td>
 									</tr>
 								</c:when>
 							</c:choose>
 						</c:forEach>
 					</tbody>
 				</table>
+				<!-- 				<div class="col-md-12 text-center"> -->
+				<!-- 					<ul class="pagination pagination-md pager" id="numberOfPage"></ul> -->
+				<!-- 				</div> -->
 			</div>
-			<div class="col-md-12 text-center">
-				<ul class="pagination pagination-md pager" id="numberOfPage"></ul>
-			</div>
+
 		</div>
 	</div>
-	<script type="text/javascript" src="js/numberOfPage.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>
+		<script type="text/javascript" src="js/numberOfPage.js"></script>
 </body>
 </html>

@@ -52,7 +52,7 @@
 <div id="jumbo" class="jumbotron">
 	<div id="jumborow" class="row">
 		<div class="col-md-2 col-lg-2">
-			<img src="images/qaa.png" alt="JADA" class="img-responsive">
+			<img src="images/qaa.png" alt="JADA" class="img">
 		</div>
 		<div class="col-md-9 col-lg-9">
 			<h1 class="text-center text-primary jumboHead">JaDa - FORUM</h1>
