@@ -61,12 +61,10 @@ public class KeyWordService {
 
 	/**
 	 * Function have to connect to the database and try to find most used
-	 * keyWords from forum id database by query. Method return
-	 * ArrayList<Integer> of identifiers most used keyWords. Max size of
-	 * ArrayList is set to 10.
+	 * keyWords from forum id database by query. Method return ArrayList of
+	 * identifiers most used keyWords. Max size of ArrayList is set to 10.
 	 * 
-	 * @return ArrayList<Integer> ArrayList of identifiers of ten most used
-	 *         keywords.
+	 * @return ArrayList of identifiers of ten most used keywords.
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> topKeyWords() {
@@ -82,7 +80,7 @@ public class KeyWordService {
 	 * Function have to connect to database and try to find all keyWords from
 	 * database. Method return ArrayList of all objects of type keyWord.
 	 * 
-	 * @return ArrayList<KeyWord> ArrayList of objects of type keyWord.
+	 * @return ArrayList of objects of type keyWord.
 	 * 
 	 * @see KeyWord
 	 */
