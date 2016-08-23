@@ -28,16 +28,16 @@ public class SuperAdmin extends Person {
 	private boolean activationUserPernmision;
 
 	/**
-	 * Contstructor for Super Administrator, that is equal to Admin entity but
-	 * could manage others administrator and all permision are default set to
-	 * true
+	 * Constructor for Super Administrator, that is equal to Administrator
+	 * entity, but could manage others administrator and all permission are
+	 * default set to true
 	 * 
 	 * @param personName
-	 *            String representation of SuperAdmin username
+	 *            String representation of SuperAdmin userName
 	 * @param password
 	 *            String representation of SuperAdmin password
 	 * @param fullName
-	 *            String representation of SuperAdmin fullname
+	 *            String representation of SuperAdmin fullName
 	 * @param email
 	 *            String representation of SuperAdmin email address
 	 * @param birthday
@@ -94,5 +94,4 @@ public class SuperAdmin extends Person {
 	public boolean isActivationUserPernmision() {
 		return activationUserPernmision;
 	}
-
 }
