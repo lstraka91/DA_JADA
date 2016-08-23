@@ -40,3 +40,8 @@ $(function() {
 		$('#searchTopics').keyup();
 	});
 });
+
+
+$("input[type=text]").focus(function() {
+	   $(this).select();
+	});
