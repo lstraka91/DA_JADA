@@ -1,6 +1,7 @@
 package sk.tsystems.jada.forum.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 
@@ -12,10 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sk.tsystems.jada.forum.entity.Person;
-import sk.tsystems.jada.forum.entity.services.CommentaryService;
 import sk.tsystems.jada.forum.entity.services.JpaHelper;
 import sk.tsystems.jada.forum.entity.services.PersonService;
-import sk.tsystems.jada.forum.entity.services.TopicService;
 
 public class PersonTest {
 
@@ -90,6 +89,7 @@ public class PersonTest {
 				ps.getPersonByName("TestPerson1").getPassword());
 	}
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void testEncryprPassword() {
 		String pass = ps.encryptPassword("PassWorD@963");
@@ -120,6 +120,7 @@ public class PersonTest {
 		assertNotNull(list);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testGetNumberOfActivationRequests() {
 		EntityManager em = JpaHelper.getEntityManager();
