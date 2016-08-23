@@ -15,10 +15,7 @@
 		<jsp:include page="header.jsp"></jsp:include>
 
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<!-- 				<table cellspacing="0" width="100%"> -->
-
-				<!-- 					<tr> -->
+			<div class="panel-heading nav navbar-default">
 				<div class="topicShow">
 					<h3>
 						<span>${currentTopic.topicName}</span> <span class="pull-right">(${currentTopic.person.personName})</span>
@@ -32,8 +29,6 @@
 					<c:forEach items="${currentTopic.keyWords}" var="keyword">
 						<button class="btn btn-sm-info">${keyword.keyWord }</button>
 					</c:forEach>
-					<!-- 					</tr> -->
-					<!-- 				</table> -->
 					<hr>
 
 
@@ -41,27 +36,13 @@
 				<c:if test="${!empty commentWithRateList}">
 					<ul class="nav navbar-nav navbar-right">
 
-						<c:choose>
-							<c:when test="${sorting==2 }">
-								<li><a
-									href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
-										newest </a></li>
-								<li class="active"><a
-									href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
-										most rated </a></li>
-							</c:when>
+						<li><a
+							href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
+								newest </a></li>
+						<li><a
+							href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
+								most rated </a></li>
 
-
-							<c:otherwise>
-								<li class="active"><a
-									href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
-										newest</a></li>
-
-								<li><a
-									href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
-										most rated </a></li>
-							</c:otherwise>
-						</c:choose>
 					</ul>
 				</c:if>
 			</div>
