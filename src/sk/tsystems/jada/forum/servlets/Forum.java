@@ -67,6 +67,7 @@ public class Forum extends HttpServlet {
 				ts.removeTopicByIdChecked(idTopicDelete);
 			}
 			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+			return;
 		}
 
 		forwardToList(request, response);

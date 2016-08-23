@@ -70,7 +70,7 @@
 
 				<div class="table">
 					<table id="topicsTable" class="table display">
-						<thead>
+						<thead class="hidden">
 							<th></th>
 							<th></th>
 							<th></th>

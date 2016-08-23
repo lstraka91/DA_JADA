@@ -7,16 +7,14 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
 <link
 	href='https://fonts.googleapis.com/css?family=Indie+Flower|Candal|Sigmar+One'
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.6/jqc-1.12.3/dt-1.10.12/b-1.2.2/b-print-1.2.2/r-2.1.0/se-1.2.0/datatables.min.css"/> -->
-
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.6/jqc-1.12.3/dt-1.10.12/b-1.2.2/b-print-1.2.2/r-2.1.0/se-1.2.0/datatables.min.js"></script> -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
+<link rel="stylesheet" href="css/style.css">
 
 <!-- jQuery library -->
 <script type="text/javascript"
@@ -33,17 +31,9 @@
 
 <!--  datatables  -->
 
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
 
 <script type="text/javascript"
 	src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
-
-<!-- <script type="text/javascript" -->
-<!-- 	src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> -->
-
-
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#datepicker").datepicker({
@@ -137,27 +127,6 @@
 				</c:if>
 
 			</ul>
-			<!-- 			<form class="navbar-form navbar-left"> -->
-			<!-- 				<div class="form-group"> -->
-			<!-- 					<input class="global_filter form-control" id="global_filter" -->
-			<!-- 						type="text" placeholder="Describe your problem..."><span -->
-			<!-- 						class="glyphicon glyphicon-search"></span> -->
-			<!-- 				</div> -->
-			<!-- 				<a href="#openModal" type="submit" class="btn btn-default"> <span -->
-			<!-- 					class="glyphicon glyphicon-search"></span> Search -->
-			<!-- 				</a> -->
-			<!-- 			</form> -->
-
-			<!-- 			<div id="openModal" class="modalDialog"> -->
-			<!-- 				<div class="text-center"> -->
-			<!-- 					<a href="#close" title="Close" class="close"><span -->
-			<!-- 						class="glyphicon glyphicon-remove"></span></a> <img -->
-			<!-- 						src="images/construction.png" alt="work in progress"> -->
-			<!-- 					<h3>Work in progress</h3> -->
-			<!-- 				</div> -->
-			<!-- 			</div> -->
-
-
 
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
@@ -184,7 +153,7 @@
 
 
 <!-- Modal Login -->
-<div class="modal fade" id="login" role="dialog">
+<div class="modal fade data-backdrop="static" id="login" role="dialog">
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
@@ -198,7 +167,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="center-form panel">
-						<form method="post">
+						<form method="post" id="loginForm">
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<h2 class="text-center formHead">Please log in</h2>
@@ -213,7 +182,7 @@
 											class="form-control input-lg" requried />
 									</div>
 									<div id="loginStatus"></div>
-									<input type="button" value="Login" id="login"
+									<input type="submit" value="Login" id="login"
 										class="btn btn-lg btn-block btn-success" />
 
 
