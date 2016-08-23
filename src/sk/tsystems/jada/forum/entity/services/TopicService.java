@@ -388,15 +388,27 @@ public class TopicService {
 			return null;
 		}
 	}
-	
-	public List<Topic> getTopicByPerson(Person person){
+
+	/**
+	 * Method for select all topics by person in parameter
+	 * 
+	 * @param person
+	 *            object of type Person
+	 * 
+	 * @return topicsPersonList list of topics by person
+	 * 
+	 * @see Topic
+	 * @see Person
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Topic> getTopicByPerson(Person person) {
 		EntityManager em = JpaHelper.getEntityManager();
 		Query query = em.createQuery("SELECT t FROM Topic t WHERE t.person=:person");
-		query.setParameter("person",person );
-		List<Topic>topicsPersonList=query.getResultList();
-		if(topicsPersonList!=null){
+		query.setParameter("person", person);
+		List<Topic> topicsPersonList = query.getResultList();
+		if (topicsPersonList != null) {
 			return topicsPersonList;
-		}else{
+		} else {
 			return null;
 		}
 	}
