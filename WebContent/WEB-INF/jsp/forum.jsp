@@ -34,7 +34,6 @@
 					</div>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-
 					<c:choose>
 						<c:when test="${sorting==2 }">
 							<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
