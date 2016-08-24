@@ -37,11 +37,11 @@
 							</ul>
 							<b> <br>Ask question to start new topic:
 							</b><br> <input type="text" class="form-control"
-								placeholder="Topic name" name="topicName" required><b><br>Describe
+								placeholder="Topic name" maxlength="254" name="topicName" required><b><br>Describe
 								your problem: </b><br>
 
 							<textarea name="topicDesc" type="text" class="form-control"
-								placeholder="Write description..." id="topicDesc" required></textarea>
+								placeholder="Write description..." maxlength="254" id="topicDesc" required></textarea>
 							<br>
 							<center>
 								<button type="submit" class="btn btn-lg btn-success ">
