@@ -73,7 +73,7 @@ public class ShowUsers extends HttpServlet {
 			request.setAttribute("persons", persons);
 			request.getRequestDispatcher("/WEB-INF/jsp/showUsers.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+			response.sendRedirect("forum");
 		}
 
 	}

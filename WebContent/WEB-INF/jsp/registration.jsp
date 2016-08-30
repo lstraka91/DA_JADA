@@ -22,7 +22,7 @@
 		</c:if>
 		<div class="row">
 			<div class="center-form panel">
-				<form method="post" action="/JADA_Tsystems_TeamProject/registration"  onsubmit="alert('success');">
+				<form method="post" action="registration"  onsubmit="alert('success');">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h2 class="text-center formHead">Registration form</h2>

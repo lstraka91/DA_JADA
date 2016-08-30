@@ -170,7 +170,7 @@
 
 					</div>
 					<div class="modal-footer">
-						<a href="/JADA_Tsystems_TeamProject/topic?idTopic=${idTopic}"
+						<a href="topic?idTopic=${idTopic}"
 							class="btn btn-default">Close</a>
 
 					</div>

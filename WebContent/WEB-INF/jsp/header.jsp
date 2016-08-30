@@ -78,7 +78,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="/JADA_Tsystems_TeamProject/newtopic"><span
+				<li><a href="newtopic"><span
 						class="glyphicon glyphicon-question-sign"></span> ASK QUESTION</a></li>
 
 				<c:if test="${user.getClass().simpleName.equals('Admin')}">
@@ -220,7 +220,7 @@
 				<div class="row">
 					<div class="center-form panel">
 						<form method="post"
-							action="/JADA_Tsystems_TeamProject/registration">
+							action="registration">
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<div class="form-group">

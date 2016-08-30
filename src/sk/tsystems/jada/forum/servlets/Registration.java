@@ -54,7 +54,7 @@ public class Registration extends HttpServlet {
 		Person person = new Person(userName, password, fullname, email, birthDate);
 		new PersonService().registerPerson(person);
 		// request.getSession().setAttribute("user", person);
-		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+		response.sendRedirect("forum");
 
 	}
 

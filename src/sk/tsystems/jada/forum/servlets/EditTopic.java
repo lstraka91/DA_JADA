@@ -54,14 +54,14 @@ public class EditTopic extends HttpServlet {
 						}
 					if (topicName != null & topicDescription != null) {
 						ts.updateTopic(idTopic, topicName, topicDescription, keyWords);
-						response.sendRedirect("/JADA_Tsystems_TeamProject/topic?idTopic=" + idTopic);
+						response.sendRedirect("topic?idTopic=" + idTopic);
 					}
 				}
 			}
 
 			forwardToList(request, response);
 		} else {
-			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+			response.sendRedirect("forum");
 		}
 	}
 

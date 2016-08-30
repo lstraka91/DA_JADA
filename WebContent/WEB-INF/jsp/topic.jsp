@@ -37,10 +37,10 @@
 					<ul class="nav navbar-nav navbar-right">
 
 						<li><a
-							href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=new">
+							href="topic?idTopic=${currentTopic.idTopic }&orderBy=new">
 								new </a></li>
 						<li><a
-							href="/JADA_Tsystems_TeamProject/topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
+							href="topic?idTopic=${currentTopic.idTopic }&orderBy=rating">
 								top comments </a></li>
 
 					</ul>

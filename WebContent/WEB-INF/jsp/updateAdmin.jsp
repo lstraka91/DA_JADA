@@ -131,7 +131,7 @@
 											<div class="btn-group ">
 												<input type="submit" name="save" value="Save changes"
 													class="btn btn-primary btn-block"> <a
-													href="/JADA_Tsystems_TeamProject/showAdminsPermission"
+													href="showAdminsPermission"
 													class="btn btn-info btn-block"> Cancel </a>
 											</div>
 										</div>
@@ -140,7 +140,7 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<a href="/JADA_Tsystems_TeamProject/showAdminsPermission"
+							<a href="showAdminsPermission"
 								class="btn btn-default">Close</a>
 
 						</div>

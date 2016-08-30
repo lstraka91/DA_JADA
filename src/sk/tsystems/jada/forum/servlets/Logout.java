@@ -24,7 +24,7 @@ public class Logout extends HttpServlet {
 		if (request.getSession().getAttribute("user") != null) {
 			request.getSession().removeAttribute("user");
 		}
-		response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+		response.sendRedirect("forum");
 	}
 
 	/**

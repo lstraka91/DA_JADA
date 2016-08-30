@@ -50,7 +50,7 @@ public class LoginCheck extends HttpServlet {
 			if (person.isActive()) {
 				System.out.println("Succes logged as " + person.getPersonName());
 				request.getSession().setAttribute("user", person);
-				response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+				response.sendRedirect("forum");
 			} else {
 				response.getWriter().print("notActivated");
 			}

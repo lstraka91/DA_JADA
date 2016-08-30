@@ -19,7 +19,7 @@
 			<div class="panel panel-default">
 			<div class="panel-body">
 				<form method="post"
-					action="/JADA_Tsystems_TeamProject/userProfile">
+					action="userProfile">
 					<div id="profile">
 						<h2 class="text-center formHead">
 							Profile user ${sessionScope.user.fullName}

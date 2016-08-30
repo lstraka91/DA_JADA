@@ -38,57 +38,57 @@
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${sorting==2 }">
-							<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
+							<li><a href="forum?action=new">new</a></li>
 							<li class="active"><a
-								href="/JADA_Tsystems_TeamProject/forum?action=top">top
+								href="forum?action=top">top
 									viewed</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+								href="forum?action=mostcommented">most
 									commented</a></li>
 							<c:if test="${user ne null }">
 								<li><a
-									href="/JADA_Tsystems_TeamProject/forum?action=myTopic"> my
+									href="forum?action=myTopic"> my
 										Topic </a></li>
 							</c:if>
 						</c:when>
 
 						<c:when test="${sorting==3 }">
-							<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-							<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top
+							<li><a href="forum?action=new">new</a></li>
+							<li><a href="forum?action=top">top
 									viewed</a></li>
 							<li class="active"><a
-								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+								href="forum?action=mostcommented">most
 									commented</a></li>
 							<c:if test="${user ne null }">
 								<li><a
-									href="/JADA_Tsystems_TeamProject/forum?action=myTopic"> my
+									href="forum?action=myTopic"> my
 										Topic </a></li>
 							</c:if>
 						</c:when>
 						<c:when test="${sorting==4 }">
-							<li><a href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-							<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top
+							<li><a href="forum?action=new">new</a></li>
+							<li><a href="forum?action=top">top
 									viewed</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+								href="forum?action=mostcommented">most
 									commented</a></li>
 							<c:if test="${user ne null }">
 								<li class="active"><a
-									href="/JADA_Tsystems_TeamProject/forum?action=myTopic"> my
+									href="forum?action=myTopic"> my
 										Topic </a></li>
 							</c:if>
 						</c:when>
 						<c:otherwise>
 							<li class="active"><a
-								href="/JADA_Tsystems_TeamProject/forum?action=new">new</a></li>
-							<li><a href="/JADA_Tsystems_TeamProject/forum?action=top">top
+								href="forum?action=new">new</a></li>
+							<li><a href="forum?action=top">top
 									viewed</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/forum?action=mostcommented">most
+								href="forum?action=mostcommented">most
 									commented</a></li>
 							<c:if test="${user ne null }">
 								<li><a
-									href="/JADA_Tsystems_TeamProject/forum?action=myTopic"> my
+									href="forum?action=myTopic"> my
 										Topic </a></li>
 							</c:if>
 						</c:otherwise>
@@ -140,7 +140,7 @@
 										</div></td>
 									<td class="col-md-6"><div class="row">
 											<a title="${topic.topicDescription}"
-												href="/JADA_Tsystems_TeamProject/topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
+												href="topic?idTopic=${topic.idTopic }">${topic.topicName }</a>
 										</div>
 										<div class="row">
 											<c:choose>

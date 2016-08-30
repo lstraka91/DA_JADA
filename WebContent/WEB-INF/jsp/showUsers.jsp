@@ -21,63 +21,63 @@
 					<c:choose>
 						<c:when test="${orderBy == 1 }">
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+								href="ShowUsers?ordebBy=name">ABC...</a></li>
 							<li class="active"><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+								href="ShowUsers?ordebBy=dType">Type</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+								href="ShowUsers?ordebBy=activ">Activate</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+								href="ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 
 						</c:when>
 
 						<c:when test="${orderBy == 2 }">
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+								href="ShowUsers?ordebBy=name">ABC...</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+								href="ShowUsers?ordebBy=dType">Type</a></li>
 							<li class="active"><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+								href="ShowUsers?ordebBy=activ">Activate</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+								href="ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 						</c:when>
 
 						<c:when test="${orderBy == 3 }">
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+								href="ShowUsers?ordebBy=name">ABC...</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+								href="ShowUsers?ordebBy=dType">Type</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+								href="ShowUsers?ordebBy=activ">Activate</a></li>
 							<li class="active"><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+								href="ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 						</c:when>
 
 						<c:when test="${orderBy == 4 }">
 							<li class="active"><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+								href="ShowUsers?ordebBy=name">ABC...</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+								href="ShowUsers?ordebBy=dType">Type</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+								href="ShowUsers?ordebBy=activ">Activate</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+								href="ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 						</c:when>
 
 						<c:otherwise>
 
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=name">ABC...</a></li>
+								href="ShowUsers?ordebBy=name">ABC...</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=dType">Type</a></li>
+								href="ShowUsers?ordebBy=dType">Type</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=activ">Activate</a></li>
+								href="ShowUsers?ordebBy=activ">Activate</a></li>
 							<li><a
-								href="/JADA_Tsystems_TeamProject/ShowUsers?ordebBy=rDate">Reg.
+								href="ShowUsers?ordebBy=rDate">Reg.
 									Date</a></li>
 
 						</c:otherwise>

@@ -29,7 +29,7 @@ public class UserProfile extends HttpServlet {
 
 			request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+			response.sendRedirect("forum");
 		}
 	}
 

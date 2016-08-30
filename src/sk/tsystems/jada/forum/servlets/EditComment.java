@@ -67,7 +67,7 @@ public class EditComment extends HttpServlet {
 
 			request.getRequestDispatcher("/WEB-INF/jsp/editComment.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("/JADA_Tsystems_TeamProject/forum");
+			response.sendRedirect("forum");
 		}
 
 	}
@@ -84,7 +84,7 @@ public class EditComment extends HttpServlet {
 			int topicId = Integer.parseInt(request.getParameter("idTopic"));
 			Commentary commentToUpdate = new CommentaryService().selectCommentById(commentId);
 			new CommentaryService().updateCommentBody(commentToUpdate, editComment);
-			response.sendRedirect("/JADA_Tsystems_TeamProject/topic?idTopic=" + topicId);
+			response.sendRedirect("topic?idTopic=" + topicId);
 
 		}
 	}

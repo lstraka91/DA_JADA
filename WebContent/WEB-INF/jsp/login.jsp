@@ -14,15 +14,7 @@
 
 		<jsp:include page="header.jsp" />
 
-		<!-- 
-		<c:if test="${not empty param.error}">
-			<div class="alert alert-danger" role="alert">
-				<strong>Login Error!</strong> Invalid username or password, try
-				again.
-			</div>
-		</c:if>
- -->
-		
+			
 		<div class="row">
 			<div class="center-form panel">
 				<form method="post">
